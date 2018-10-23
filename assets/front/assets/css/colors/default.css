@@ -1,0 +1,22 @@
+.why_exc{
+	text-align:center;
+}
+.why_exc h2{
+	text-align: center !important;
+    font-size: 39px;
+}
+.landing-reason .module-title + .module-subtitle, .why_exc .module-subtitle{
+	margin-bottom: 0;
+}
+.pad-30{
+	padding:0 30px;
+}
+.navbar-brand img{
+	width: 86px;
+}
+.fnt-15{
+	font-size:15px;
+}
+.table-res{
+	overflow-x: auto;
+}

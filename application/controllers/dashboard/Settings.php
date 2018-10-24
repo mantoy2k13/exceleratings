@@ -37,7 +37,7 @@ class Settings extends CI_Controller {
 	
 	public function rev_questions()
 	{
-		$this->load->view('dashboard/settings', $data);
+		$this->load->view('dashboard/rev-question-list');
 	}
 	public function rev_question_add()
 	{
@@ -49,15 +49,118 @@ class Settings extends CI_Controller {
 				'answer_option' => $this->input->post('answer_option')
 			];
 		  if($this->db->insert('rev_questions', $question_form)){
+				$insert_qid = $this->db->insert_id();
 				$this->session->set_flashdata('success', 'Saved');
-				redirect('dashboard/settings/rev_question_add');
+				redirect('dashboard/settings/rev_question/'. $insert_qid);
 		  }
 		}
 		
 		$this->load->view('dashboard/rev-question-add');
 	}
+	/* 
+	public function rev_question($qid = null)
+	{
+		if( $qid != null ){
+				
+			
+			if( isset($_POST['rev_question_update']) ){
+
+				$question_form = [
+					'question' => $this->input->post('question'),
+					'answer_option' => $this->input->post('answer_option')
+				];
+				$this->db->where('qid', $qid);
+			  if($this->db->update('rev_questions', $question_form)){
+					$this->session->set_flashdata('success', 'Updated <b>"'.$this->input->post('question').'"</b>');
+					redirect('dashboard/settings/rev_question/'.$qid);
+			  }
+			}
+			$this->db->select('*');
+			$this->db->from('rev_questions');
+			$this->db->where('qid', $qid);
+			$data['question'] = $this->db->get()->row();
+			$this->load->view('dashboard/rev-question-list');
+		}else{
+			$this->load->view('dashboard/rev-question-list');
+		}
+	}
+ */
+
+	public function rev_question_edit()
+	{
+		$qid = $this->input->post('qid');
+		if( isset($_POST['rev_question_update']) ){
+
+			$question_form = [
+				'question' => $this->input->post('question'),
+				'status' => $this->input->post('status'),
+				'answer_option' => $this->input->post('answer_option')
+			];
+		//	prex($qid);
+			
+			$this->db->where('qid', $qid);
+		  if($this->db->update('rev_questions', $question_form)){
+				$this->session->set_flashdata('success', 'Updated <h6>"'.$this->input->post('question').'"</h6>');
+				redirect('dashboard/settings/rev_questions/');
+		  }
+		}
+	}
 	
+
+	public function ajax_get_all_questions()
+	{
+		$this->db->select('*');
+		$this->db->from('rev_questions');
+		$this->db->order_by('qid', 'DESC');
+		$ques = $this->db->get()->result_object();
+		
+		$data['data'] = [];
+		$q_data = [];
+		foreach( $ques as $q_k => $q_v ){
+			$answer_option = '';
+			if( $q_v->answer_option == 'yes_no' ){
+				$answer_option = 'Yes/No selection';
+			}else if( $q_v->answer_option == 'rev_1_5' ){
+				$answer_option = 'Review 1-5 selection';
+			}else if( $q_v->answer_option == 'rev_1_10' ){
+				$answer_option = 'Review 1-10 selection';
+			}
+			
+			$status = '<span class="badge badge-info">ACTIVE</span>';
+			if( $q_v->status == '0' ){
+				$status = 'Inactive';
+			}
+			
+			$q_data['sl'] = $q_k *1 +1;
+			$q_data['question'] = '<span class="qs">' . $q_v->question . '</span> <small>('. $q_v->qid .')</small>';
+			$q_data['answer_option'] = $answer_option . '<span class="ans" hidden>'. $q_v->answer_option .'</span>';
+			$q_data['status'] = $status . '<span class="sts" hidden>'. $q_v->status .'</span>';
+			$q_data['action'] = '<button data-qid="'. $q_v->qid .'" data-toggle="modal" data-target="#qusEditForm" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" title="">
+                  <i class="fa fa-fw fa-lg fa-eye"></i> / <i class="fa fa-fw fa-lg fa-edit"></i></button> &nbsp; 
+						<button type="button" class="btn btn-outline-secondary btn-sm toremove" data-toggle="tooltip" data-id="'. $q_v->qid .'">
+                  <i class="fa fa-fw fa-lg fa-close"></i></button>';
+			
+			array_push($data['data'], $q_data);
+		}
+	//	exit;
+	//	prex($data);
+	//	print_r($posts->result_array());
+		echo json_encode($data);
+	}
 	
+	public function remove_qs_item(){
+		if( $_POST ){			
+						
+			if ( $this->db->delete('rev_questions', array('qid' => $this->input->post('id'))) ) {
+				 $result = 'Success';
+			} else {
+				 $result = 'Error!';
+			}
+			echo json_encode($result);
+		}else{
+			echo 'Not posted !';
+		}
+	}
 }
 
 

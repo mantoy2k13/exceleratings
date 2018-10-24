@@ -3,7 +3,7 @@
 </div>
   
     <script src="<?php echo base_url('/'); ?>assets/dashboard/assets/js/vendor/jquery-2.1.4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/dashboard/plugins/wow.min.js"></script>
 	<script>
 		new WOW().init();
 	</script>
@@ -27,6 +27,7 @@
     <script src="<?php echo base_url('/'); ?>assets/dashboard/assets/js/lib/moment/moment.js"></script>
     <script src="<?php echo base_url('/'); ?>assets/dashboard/assets/calendar/fullcalendar.min.js"></script>
     <script src="<?php echo base_url('/'); ?>assets/dashboard/assets/calendar/fullcalendar-init.js"></script>
+    <script src="<?php echo base_url('/'); ?>assets/dashboard/plugins/jquery-sortable.js"></script>
     <script src="<?php echo base_url('/'); ?>assets/dashboard/custom/custom.js"></script>
 
     <script src="<?php echo base_url(); ?>assets/dashboard/assets/js/lib/data-table/datatables-init.js"></script>

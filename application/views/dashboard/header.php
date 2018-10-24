@@ -47,7 +47,6 @@
     <link rel="stylesheet" href="<?php echo base_url('/'); ?>assets/dashboard/assets/wow/animate.css">
     <link rel="stylesheet" href="<?php echo base_url('/'); ?>assets/dashboard/custom/style.css">
 
-	<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
 
     <style>
     #weatherWidget .currentDesc {
@@ -91,6 +90,9 @@
 
     </style>
 
+	<script type="text/javascript">
+		var base_url = '<?php echo base_url('/'); ?>';
+	</script>
 </head>
 <body>
 
@@ -105,7 +107,7 @@
                     <li class="menu-title">UI elements</li><!-- /.menu-title -->
                     
 						  <li><a href="<?php echo base_url('dashboard/settings/rev_questions'); ?>"><i class="menu-icon fa fa-link"></i> <span>Question List</span></a></li>
-						  <li><a href="<?php echo base_url('admin/screensaver/add'); ?>"><i class="menu-icon fa fa-link"></i> <span>Add Question</span></a></li>
+						  <li><a href="<?php echo base_url('dashboard/settings/rev_question_add'); ?>"><i class="menu-icon fa fa-link"></i> <span>Add Question</span></a></li>
                     <li class="menu-title"> --- </li><!-- /.menu-title -->
 						  <li><a href="<?php echo base_url('admin/screensaver/add'); ?>"><i class="menu-icon fa fa-sign-out"></i> <span>LogOut</span></a></li>
 						 

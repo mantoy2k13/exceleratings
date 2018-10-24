@@ -1,6 +1,9 @@
 *{
 	color: #eee;
 }
+input{
+	color: #aaa;
+}
 p,pre{
 	color: #fff;
 }
@@ -11,6 +14,7 @@ body{
 	display: block;
 	font-size: 14px;
 }
+.modal-content:before,
 body:before{
 	content: '';
 	width: 100%;
@@ -74,6 +78,12 @@ aside.left-panel{
 	box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.25);
    border-radius: 2px;
 	overflow: hidden;
+	display: inline-block;
+	min-width: 100%;
+}
+.modal-content{
+	background: none;
+	border: 1px solid #17a2b8;
 }
 .card:before{
 	content: '';
@@ -361,7 +371,14 @@ footer p {
 .alert-warning * {
     color: #856404;
 }
-
+.modal-header {
+    border-bottom: 1px solid rgba(0,0,0,.12);
+    box-shadow: 0 1px 0 0 rgba(255,255,255,.12);
+}
+.modal-footer {
+    border-top: 1px solid rgba(0,0,0,.12);
+    box-shadow: 0 1px 0 0 rgba(255,255,255,.12);
+}
 
 
 

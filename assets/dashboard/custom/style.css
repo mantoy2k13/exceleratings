@@ -39,6 +39,9 @@ a,
 .user-area .user-menu .nav-link{
 	color: #fff;
 }
+.list-group-item{
+	background: none;
+}
 .navbar {
 	display: block;
 }
@@ -378,6 +381,29 @@ footer p {
 .modal-footer {
     border-top: 1px solid rgba(0,0,0,.12);
     box-shadow: 0 1px 0 0 rgba(255,255,255,.12);
+}
+.question_list li .act{
+	visibility: hidden;
+}
+.question_list li.list-group-item.inactive{
+	opacity: 0.5;
+}
+.question_list li:hover{
+	background: #1b243536;
+}
+.question_list li:hover .act{
+	visibility: visible;
+}
+.question_list li .q_qnt{
+    margin-right: 10px;
+    padding: 10px;
+}
+.question_list li .q_qnt span{
+	padding: 10px;
+	cursor: move;
+}
+.question_list li .qShorting{
+	cursor: move;
 }
 
 

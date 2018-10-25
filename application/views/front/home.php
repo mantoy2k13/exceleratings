@@ -1,4 +1,4 @@
-<?php $this->load->view('front/header');?>
+<?php $this->load->view('front/header-home');?>
       <section class="home-section home-fade home-full-height bg-dark-60 landing-header" id="home" data-background="<?php echo base_url('assets/front/'); ?>assets/img/top_Image.jpg">
         <div class="titan-caption">
           <div class="caption-content">
@@ -43,4 +43,4 @@ real time reviews and negates bad news!</div>
           </div>
         </section>
         <section>
-<?php $this->load->view('front/footer');?>
+<?php $this->load->view('front/footer-home');?>

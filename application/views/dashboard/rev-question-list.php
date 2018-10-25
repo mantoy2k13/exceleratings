@@ -17,6 +17,41 @@
 							<div class="alert alert-success" role="alert"><?php echo $this->session->flashdata('success'); ?></div>
 						</div>
 					<?php } ?>
+
+					<ul class="list-group question_list">
+					  <?php 
+						foreach( $ques as $q_k => $q_v ){ 
+									
+						$answer_option = '';
+						if( $q_v->answer_option == 'yes_no' ){
+							$answer_option = 'Yes/No selection';
+						}else if( $q_v->answer_option == 'rev_1_5' ){
+							$answer_option = 'Review 1-5 selection';
+						}else if( $q_v->answer_option == 'rev_1_10' ){
+							$answer_option = 'Review 1-10 selection';
+						}
+						
+						$status = '<span class="badge badge-info">ACTIVE</span>';
+						$inactClass = '';
+						if( $q_v->status == '0' ){
+							$status = 'Inactive';
+							$inactClass = 'inactive';
+						}
+						?>
+							<li class="list-group-item <?php echo $inactClass; ?>">
+								<i class="fa fa-arrows fa-lg float-left qShorting" aria-hidden="true"></i> 
+								<h3 class="q_qnt float-left"><span class="border border-white"><?php echo $q_k * 1 +1; ?></span></h3>
+								<span class="act float-right">
+									<button data-qid="<?php echo  $q_v->qid; ?>" data-toggle="modal" data-target="#qusEditForm" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" title="">
+									<i class="fa fa-fw fa-lg fa-eye"></i> / <i class="fa fa-fw fa-lg fa-edit"></i></button> &nbsp; 
+									<button type="button" class="btn btn-outline-secondary btn-sm toremove" data-toggle="tooltip" data-id="<?php echo $q_v->qid; ?>">
+									<i class="fa fa-fw fa-lg fa-close"></i></button>
+								</span>
+								<b class="qs"><?php echo $q_v->question; ?></b><br>
+								<?php echo $answer_option . '<span class="ans" hidden>'. $q_v->answer_option .'</span>'; ?> &nbsp; | &nbsp; <?php echo $status . '<span class="sts" hidden>'. $q_v->status .'</span>'; ?> 
+							</li>
+						<?php } ?>
+					</ul>
               <table id="questionList" class="table table-bordered table-hover table-striped col_1_center datatable col_4_center col_1ast_center wow bounceInLeft">
                 <thead>
                 <tr>
@@ -102,23 +137,11 @@
 									</div>
 								  </div>
 								  <div class="col-md-6">
-										<div class="row">
-										  <div class="btn" data-toggle="buttons">
-												<div class="btn-group">
-												  <label class="btn btn-sm btn-info" title="Active">
-													 <input type="radio" value="1" name="status" class="status_option"> 
-														Active
-												  </label>
-												
-												  <label class="btn btn-sm btn-secondary" title="Inactive">
-													 <input type="radio" value="0" name="status" class="status_option">
-														Inactive
-												  </label>
-												
-												</div>
-											</div>
+										<div class="custom-control custom-checkbox">
+										  <input type="checkbox" class="custom-control-input" id="status" name="status" value="1" <?php // if($advertise->status == 1 ){ echo 'checked';} ?>>
+										  <label class="custom-control-label" for="status">Active</label>
 										</div>
-										<br>
+										<hr>
 										<div class="form-group">
 											<button type="submit" name="rev_question_update" class="btn btn-lg btn-info btn-block"> Save </button>
 										</div>

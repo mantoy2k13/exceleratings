@@ -27,7 +27,7 @@
     <script src="<?php echo base_url('/'); ?>assets/dashboard/assets/js/lib/moment/moment.js"></script>
     <script src="<?php echo base_url('/'); ?>assets/dashboard/assets/calendar/fullcalendar.min.js"></script>
     <script src="<?php echo base_url('/'); ?>assets/dashboard/assets/calendar/fullcalendar-init.js"></script>
-    <script src="<?php echo base_url('/'); ?>assets/dashboard/plugins/jquery-sortable.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="<?php echo base_url('/'); ?>assets/dashboard/custom/custom.js"></script>
 
     <script src="<?php echo base_url(); ?>assets/dashboard/assets/js/lib/data-table/datatables-init.js"></script>

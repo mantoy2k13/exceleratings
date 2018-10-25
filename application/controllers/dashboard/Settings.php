@@ -37,7 +37,12 @@ class Settings extends CI_Controller {
 	
 	public function rev_questions()
 	{
-		$this->load->view('dashboard/rev-question-list');
+		$this->db->select('*');
+		$this->db->from('rev_questions');
+		$this->db->order_by('shorting', 'ASC');
+		$data['ques'] = $this->db->get()->result_object();
+		
+		$this->load->view('dashboard/rev-question-list', $data);
 	}
 	public function rev_question_add()
 	{
@@ -161,6 +166,29 @@ class Settings extends CI_Controller {
 			echo 'Not posted !';
 		}
 	}
+	
+	public function qShortingSave(){
+			
+		if( $_POST ){	
+		//	prex($_POST);
+		
+			foreach( $_POST as $q_k => $q_v ){
+				
+				$question_shorting = [
+					'shorting' => $q_k
+				];
+				
+				$this->db->where('qid', $q_v);
+				$this->db->update('rev_questions', $question_shorting);
+				
+			}
+			echo 'done';
+		}else{
+			echo 'Not posted !';
+		}
+	}
+	
+	
 }
 
 

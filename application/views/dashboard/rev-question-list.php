@@ -25,8 +25,6 @@
 						$answer_option = '';
 						if( $q_v->answer_option == 'yes_no' ){
 							$answer_option = 'Yes/No selection';
-						}else if( $q_v->answer_option == 'rev_1_5' ){
-							$answer_option = 'Review 1-5 selection';
 						}else if( $q_v->answer_option == 'rev_1_10' ){
 							$answer_option = 'Review 1-10 selection';
 						}

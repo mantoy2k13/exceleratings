@@ -38,11 +38,6 @@
 											 Answer get by Yes/No options
 										  </label>
 										
-										  <label class="btn btn-sm btn-info" title="Answer get by 1 to 5 reviewing options">
-											 <input type="radio" value="rev_1_5" name="answer_option" id="option2" > 
-												Answer get by 1 to 5 reviewing options
-										  </label>
-										
 										  <label class="btn btn-sm btn-info" title="Answer get by 1 to 10 reviewing options">
 											 <input type="radio" value="rev_1_10" name="answer_option" id="option3" >
 												Answer get by 1 to 10 reviewing options
@@ -53,11 +48,11 @@
 									</div>
 							  </div>
 							  <div class="col-md-6">
-									<hr>
+									<br>
 									<div class="form-group">
 										<button type="submit" name="rev_question_add" class="btn btn-lg btn-info btn-block"> Save </button>
 									</div>
-									<hr>
+									
 							  </div>
 						  </div>
 					</div>

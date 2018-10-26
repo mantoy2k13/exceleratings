@@ -7,6 +7,7 @@ class Front extends CI_Controller {
 	{
 		$this->load->view('front/home');
 	}
+	
 	public function review()
 	{
 		$this->db->select('*');
@@ -15,6 +16,11 @@ class Front extends CI_Controller {
 		$this->db->order_by('shorting', 'ASC');
 		$data['ques'] = $this->db->get()->result_object();
 		
+		$this->load->view('front/review', $data);
+	}
+	public function review_add()
+	{
+		prex( $_POST );
 		$this->load->view('front/review', $data);
 	}
 }

@@ -38,11 +38,6 @@
 											 Answer get by Yes/No options
 										  </label>
 										
-										  <label class="btn btn-sm btn-info" title="Answer get by 1 to 5 reviewing options">
-											 <input type="radio" value="rev_1_5" name="answer_option" id="" <?php if( $question->answer_option == 'rev_1_5' ){ echo 'checked'; } ?>> 
-												Answer get by 1 to 5 reviewing options
-										  </label>
-										
 										  <label class="btn btn-sm btn-info" title="Answer get by 1 to 10 reviewing options">
 											 <input type="radio" value="rev_1_10" name="answer_option" id="" <?php if( $question->answer_option == 'rev_1_10' ){ echo 'checked'; } ?>>
 												Answer get by 1 to 10 reviewing options

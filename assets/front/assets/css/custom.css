@@ -1,3 +1,15 @@
 .list-group-item{
 	display: flex;
 }
+.rateit.rateit-font .rateit-reset span{
+	top: 3px;
+}
+.first_rating_wrap{
+	padding-bottom: 10px;
+	border: 1px solid;
+}
+.first_rating_wrap h5{
+	display: inline;
+	font-weight: bold;
+	font-size: 1.3em;
+}

@@ -40,7 +40,6 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
     <link href="<?php echo base_url('assets/front/'); ?>assets/lib/animate.css/animate.css" rel="stylesheet">
     <link href="<?php echo base_url('assets/front/'); ?>assets/lib/components-font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="<?php echo base_url('assets/front/'); ?>assets/lib/components-font-awesome/css/fontawesome-stars.css" rel="stylesheet">
     <link href="<?php echo base_url('assets/front/'); ?>assets/lib/et-line-font/et-line-font.css" rel="stylesheet">
     <link href="<?php echo base_url('assets/front/'); ?>assets/lib/flexslider/flexslider.css" rel="stylesheet">
     <link href="<?php echo base_url('assets/front/'); ?>assets/lib/owl.carousel/dist/assets/owl.carousel.min.css" rel="stylesheet">
@@ -51,6 +50,7 @@
     <link href="<?php echo base_url('assets/front/'); ?>assets/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo base_url('assets/front/'); ?>admin/assets/css/login.css">
     <link id="color-scheme" href="<?php echo base_url('assets/front/'); ?>assets/css/colors/default.css" rel="stylesheet">
+    <link id="color-scheme" href="<?php echo base_url('assets/common/'); ?>rateit/rateit.css" rel="stylesheet">
     <link id="color-scheme" href="<?php echo base_url('assets/front/'); ?>assets/css/custom.css" rel="stylesheet">
   </head>
   <body data-spy="scroll" data-target=".onpage-navigation" data-offset="60">

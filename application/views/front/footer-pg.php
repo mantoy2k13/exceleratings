@@ -31,14 +31,11 @@
     <script src="<?php echo base_url('assets/front/'); ?>assets/lib/magnific-popup/dist/jquery.magnific-popup.js"></script>
     <script src="<?php echo base_url('assets/front/'); ?>assets/lib/simple-text-rotator/jquery.simple-text-rotator.min.js"></script>
     <script src="<?php echo base_url('assets/front/'); ?>assets/js/plugins.js"></script>
-    <script src="<?php echo base_url('assets/front/'); ?>assets/js/jquery.barrating-spec.js"></script>
-    <script src="<?php echo base_url('assets/front/'); ?>assets/js/main.js"></script>
+    <script src="<?php echo base_url('assets/common/'); ?>rateit/jquery.rateit.min.js"></script>
     <script src="<?php echo base_url('assets/front/'); ?>assets/js/main.js"></script>
 	<script type="text/javascript">
-		$(function() {
-			$('#example').barrating({
-			  theme: 'fontawesome-stars'
-			});
+		$('.rateit').bind('rated', function() { 
+			$('input', this).val( $(this).rateit('value') ); 
 		});
 	</script>
   </body>

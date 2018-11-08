@@ -61,17 +61,22 @@
       <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
         <div class="container">
           <div class="navbar-header">
-            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#custom-collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="index.php"><img src="<?php echo base_url('assets/front/'); ?>assets/img/logo.png" alt="logo" /></a>
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#custom-collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="<?php echo base_url('/'); ?>"><img src="<?php echo base_url('assets/front/'); ?>assets/img/logo.png" alt="logo" /></a>
           </div>
           <div class="collapse navbar-collapse" id="custom-collapse">
             <ul class="nav navbar-nav navbar-right">
-              <li class="dropdown"><a href="index.php" >Home</a>
+              <li class="dropdown"><a href="<?php echo base_url('/'); ?>" >Home</a>
               </li>
-              <li class="dropdown"><a href="admin.php">Admin</a>
+              <li class="dropdown"><a href="<?php echo base_url('/'); ?>front/review">Review Page</a>
               </li>
-              <li class="dropdown"><a href="contact.php" >Contact</a>
+              <li class="dropdown"><a href="<?php echo base_url('/'); ?>dashboard">Admin</a>
               </li>
             </ul>
+				<div class="navbar-form navbar-right">
+				  <div class="form-group">
+					 <input type="text" class="form-control total_rev_plus" name="total_rev_plus" Readonly size="5">
+				  </div>
+				</div>
           </div>
         </div>
       </nav>

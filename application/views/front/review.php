@@ -22,7 +22,7 @@
 								  <h5>CLICK INSIDE THE CIRCLE TO THE RIGHT THAT BEST ANSWERS EACH QUESTION</h5>
 									<form action="review_add" method="post">
 										<div class="img_container_center first_rating_wrap"> 
-											<h5>Need Improve - &nbsp; &nbsp; </h5><input type="range" name="first_rating" min="0" max="10" step="1" value="0" id="first_rating">
+											<h5>Need Improve - &nbsp; &nbsp; </h5><input type="range" name="first_rating" min="0" max="10" step="1" value="0" class="rev_input" id="first_rating">
 											<div class="rateit" data-rateit-mode="font"  style="font-size:30px;top: 8px;" data-rateit-backingfld="#first_rating"></div><h5> &nbsp; &nbsp;  + Very Positive </h5>
 									  </div>
 										<div class="questions"> 
@@ -32,18 +32,18 @@
 												foreach($ques as $q_k => $q_v){ // pre($q_v); ?>
 													
 													<li class="list-group-item">
-														<span class="rado_2" ><?php echo $q_k *1 +1; ?>. <?php echo $q_v->question; ?></span> 
+														<span class="rado_2" ><b><?php echo $q_k *1 +1; ?>.</b> <?php echo $q_v->question; ?></span> 
 														<span class="rado_1" >
 															<?php if( $q_v->answer_option == 'rev_1_10' ){ ?>
-																<input type="range" name="rev_ques['<?php echo $q_k; ?>']" min="0" max="10" step="1" value="0" id="qrev<?php echo $q_k; ?>">
+																<input type="range" name="rev_ques['<?php echo $q_k; ?>']" min="0" max="10" step="1" value="0" class="rev_input" id="qrev<?php echo $q_k; ?>">
 																<div class="rateit" data-rateit-backingfld="#qrev<?php echo $q_k; ?>"></div>
 															<?php }elseif($q_v->answer_option == 'yes_no'){ ?>
-																<div class="btn-group" data-toggle="buttons">
+																<div class="btn-group">
 																	<label class="btn btn-primary btn-sm">
-																		<input type="radio" name="rev_ques['<?php echo $q_k; ?>']" value="yes"> Yes
+																		<input type="radio" name="rev_ques[<?php echo $q_k; ?>]" class="rev_input" value="7" > Yes
 																	</label>
 																	<label class="btn btn-primary btn-sm">
-																		<input type="radio" name="rev_ques['<?php echo $q_k; ?>']" value="yes"> No
+																		<input type="radio" name="rev_ques[<?php echo $q_k; ?>]" class="rev_input" value="3"> No
 																	</label>
 																</div>
 															<?php } ?>

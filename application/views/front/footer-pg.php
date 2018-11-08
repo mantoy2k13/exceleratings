@@ -37,6 +37,63 @@
 		$('.rateit').bind('rated', function() { 
 			$('input', this).val( $(this).rateit('value') ); 
 		});
+		
+		function getAllRevNumber(){
+			var rev;
+			$( ".rev_input" ).each(function( index ) {
+			  rev + $( this ).val();
+			});
+			return rev;
+		}
+		
+		$( document ).ready(function() {
+			
+			var rev = 0;
+			var totalRevItem = 0;
+			var revItem = 0;
+			var ratingPercentage = 0;
+			$('.rev_input').on('change', function(){
+			//	console.log( $(this).closest('form').serializeArray() );
+			//	/* 
+				$( ".rev_input" ).each(function( index, e ) {
+				//	console.log( $( this ).attr('type') );
+				//  console.log( $(this).prop('checked') );
+					if( $( this ).attr('type') == 'range' ){
+						
+						if( $( this ).val() > 0 ){
+							
+							rev = rev*1 + $( this ).val() *1;
+							revItem = revItem + 1;
+						}
+					}
+					
+					if( $( this ).attr('type') == 'radio' ){
+						
+						if( $(this).prop('checked') ){
+						//	console.log($(this).prop('checked'));
+							rev = rev + $( this ).val() *1;
+							revItem = revItem + 1;
+						}
+					}
+					
+					totalRevItem = index;
+				});
+				
+				console.log('rev: ' + rev);
+				console.log('revItem: ' + revItem);
+				console.log('totalRevItem: ' + totalRevItem);
+				ratingPercentage = (rev / revItem) * 10;
+				
+				ratingPercentage = ratingPercentage.toFixed(1);
+				ratingPercentage = parseFloat(ratingPercentage);
+				$('.total_rev_plus').val(ratingPercentage + '%');
+				console.log('===');
+				rev = 0;
+				revItem = 0;
+			//	 */
+			});
+			
+		});
 	</script>
   </body>
 </html>

@@ -79,6 +79,6 @@ class Auth extends CI_Controller
 	{
 		unset($_SESSION);
 		session_destroy();
-		redirect(base_url('/'), 'refresh');
+		redirect(base_url('dashboard'), 'refresh');
 	}
 }

@@ -109,7 +109,7 @@
 						  <li><a href="<?php echo base_url('dashboard/settings/rev_questions'); ?>"><i class="menu-icon fa fa-link"></i> <span>Question List</span></a></li>
 						  <li><a href="<?php echo base_url('dashboard/settings/rev_question_add'); ?>"><i class="menu-icon fa fa-link"></i> <span>Add Question</span></a></li>
                     <li class="menu-title"> --- </li><!-- /.menu-title -->
-						  <li><a href="<?php echo base_url('admin/screensaver/add'); ?>"><i class="menu-icon fa fa-sign-out"></i> <span>LogOut</span></a></li>
+						  <li><a href="<?php echo base_url('auth/logout'); ?>"><i class="menu-icon fa fa-sign-out"></i> <span>LogOut</span></a></li>
 						 
                 </ul>
             </div><!-- /.navbar-collapse -->

@@ -6,65 +6,50 @@
     <section class="content">
 	
 		<div class="row">
-			<div class="col-lg-6">
+			<div class="col-lg-10">
 			<!-- Default box -->
 			<div class="card wow bounceInLeft">
 
 			  <div class="card-body">
 				 <h3 class="card-title box-title">Dashboard Home </h3>
-				 
-				 Lectus ligula doloremque praesent explicabo non porta, auctor eveniet, accusantium lacinia! Natoque curae officia habitasse, magni? Atque scelerisque platea, congue fugit fugit? Aptent consequat, consequatur inventore odit, phasellus error incididunt amet proin distinctio eleifend quae ultricies doloremque impedit ac adipisicing, lacinia facilis mus cupiditate distinctio numquam magna quas quo sem. 
+
+              <table id="totalRev" data-uid="" class="display table table-bordered table-hover table-striped datatable  col_1_center col_1ast_center col_3_center col_4_center col_5_center col_6_center">
+                <thead>
+                <tr>
+                  <th>SL.</th>
+                  <th>Review Time</th>
+                  <th>Reviewer Email</th>
+                  <th>Average Rating</th>
+                  <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td></td>
+                  <td>Loading .... </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                  <th>SL.</th>
+                  <th>Review Time</th>
+                  <th>Reviewer Email</th>
+                  <th>Average Rating</th>
+                  <th>Action</th>
+                </tr>
+                </tfoot>
+              </table>
 			  </div>
 			  <!-- /.box-body -->
 			</div>
 			<!-- /.box -->
 			</div>
 
-			<div class="col-lg-6">
-			<!-- Default box -->
-			<div class="card wow bounceInRight">
-
-			  <div class="card-body">
-				 <h3 class="card-title box-title">Dashboard Home </h3>
-				 
-				 Lectus ligula doloremque praesent explicabo non porta, auctor eveniet, accusantium lacinia! Natoque curae officia habitasse, magni? Atque scelerisque platea, congue fugit fugit? Aptent consequat, consequatur inventore odit, phasellus error incididunt amet proin distinctio eleifend quae ultricies doloremque impedit ac adipisicing, lacinia facilis mus cupiditate distinctio numquam magna quas quo sem. 
-			  </div>
-			  <!-- /.box-body -->
-			</div>
-			<!-- /.box -->
-			</div>
       </div>
-
-		<div class="row">
-			<div class="col-lg-6">
-			<!-- Default box -->
-			<div class="card wow bounceInUp">
-
-			  <div class="card-body">
-				 <h3 class="card-title box-title">Dashboard Home </h3>
-				 
-				 Lectus ligula doloremque praesent explicabo non porta, auctor eveniet, accusantium lacinia! Natoque curae officia habitasse, magni? Atque scelerisque platea, congue fugit fugit? Aptent consequat, consequatur inventore odit, phasellus error incididunt amet proin distinctio eleifend quae ultricies doloremque impedit ac adipisicing, lacinia facilis mus cupiditate distinctio numquam magna quas quo sem.
-			  </div>
-			  <!-- /.box-body -->
-			</div>
-			<!-- /.box -->
-			</div>
-
-			<div class="col-lg-6">
-			<!-- Default box -->
-			<div class="card wow bounceInDown">
-
-			  <div class="card-body">
-				 <h3 class="card-title box-title">Dashboard Home </h3>
-				 
-				 Lectus ligula doloremque praesent explicabo non porta, auctor eveniet, accusantium lacinia! Natoque curae officia habitasse, magni? Atque scelerisque platea, congue fugit fugit? Aptent consequat, consequatur inventore odit, phasellus error incididunt amet proin distinctio eleifend quae ultricies doloremque impedit ac adipisicing, lacinia facilis mus cupiditate distinctio numquam magna quas quo sem.
-			  </div>
-			  <!-- /.box-body -->
-			</div>
-			<!-- /.box -->
-			</div>
-      </div>
-
+	
     </section>
     <!-- /.content -->
   </div>

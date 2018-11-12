@@ -6,8 +6,16 @@
           <div class="container">
             <div class="row">
               <div class="col-sm-6 col-sm-offset-3">
+					<?php if( $this->session->flashdata('success') ){ ?>
+						<h2 class="module-title font-alt"><?php echo $this->session->flashdata('success'); ?></h2>
+						<center>
+						<a href="#"><img src="https://s3-media3.fl.yelpcdn.com/assets/srv0/yelp_design_web/b085a608c15f/assets/img/logos_homepage/default.png" class="img-thumbnail"></a>
+						<a href="#"><img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" class="img-thumbnail"></a>
+						</center>
+					<?php }else{  ?>
                 <h2 class="module-title font-alt">Review</h2>
-				<div class="module-subtitle font-serif">Your feedback is a VITAL TOOL used to ensure that we are providing the BEST SERVICE possible!</div>
+					<div class="module-subtitle font-serif">Your feedback is a VITAL TOOL used to ensure that we are providing the BEST SERVICE possible!</div>
+					<?php } ?>
               </div>
             </div>
           </div>
@@ -18,6 +26,10 @@
 						<div class="col-sm-12">
 							<div class="in_center">
 								<div class="in_center_content">
+									<?php if( $this->session->flashdata('success') ){ ?>
+										<div class="alert alert-success" role="alert"><h4><?php echo $this->session->flashdata('success'); ?></h4></div>
+										
+									<?php }else{  ?>
 								  <h4>Answering a few short questions, enables us to better serve you.</h4>
 								  <h5>CLICK INSIDE THE CIRCLE TO THE RIGHT THAT BEST ANSWERS EACH QUESTION</h5>
 									<form action="review_add" method="post">
@@ -35,7 +47,7 @@
 														<span class="rado_2" ><b><?php echo $q_k *1 +1; ?>.</b> <?php echo $q_v->question; ?></span> 
 														<span class="rado_1" >
 															<?php if( $q_v->answer_option == 'rev_1_10' ){ ?>
-																<input type="range" name="rev_ques['<?php echo $q_k; ?>']" min="0" max="10" step="1" value="0" class="rev_input" id="qrev<?php echo $q_k; ?>">
+																<input type="range" name="rev_ques[<?php echo $q_v->qid; ?>]" min="0" max="10" step="1" value="0" class="rev_input" id="qrev<?php echo $q_k; ?>">
 																<div class="rateit" data-rateit-backingfld="#qrev<?php echo $q_k; ?>"></div>
 															<?php }elseif($q_v->answer_option == 'yes_no'){ ?>
 																<div class="btn-group">
@@ -51,24 +63,35 @@
 													</li>
 											<?php	} ?>
 											</ul>
-											
+											<input type="text" class="total_rev_plus" name="total_rev_plus" hidden >
+											<?php $randNumber = rand(1, 20); ?>
 											<p><span class="rado_2" ><b>Do you have additional comments or concerns?</b></span></p>
-											<p><input class="add_coment" type="text" /></p>
+											<p><input class="add_coment" name="rev_comment" type="text" value="Comments ... <?=$randNumber?> <?=$randNumber?>" /></p>
 											<h5 class="last_title" >We apologize that your experience did not meet your expectations.</h5>
 											<h5>We Would like to learn how we can improve our service.</h5>
 											
-											<p class="deff_ask" ><span class="rado_2" > Do you know about our "Intelidata" extended analytics services?</span> <span class="rado_1" >
-											Yes <input type="radio" value="1"  name="is_intelidata" />No <input type="radio" value="0"  name="is_intelidata" /></span> </p>
+											<p class="deff_ask" >
+												<span class="rado_2" > Do you know about our "Intelidata" extended analytics services?</span> 
+												<span class="rado_1" >
+													<label class="">
+													<input type="radio" value="1"  name="is_intelidata" />Yes 
+													</label>
+													&nbsp; | &nbsp; 
+													<label class="">
+													<input type="radio" value="0"  name="is_intelidata" />No 
+													</label>
+												</span> 
+											</p>
 											<br>
 											<div class="row padd-b10">
-												<div class="col-md-3 col-sm-12"><input class="add_coment height-s" type="text" name="c_firstname" placeholder="First Name" /></div>
-												<div class="col-md-3 col-sm-12"><input class="add_coment height-s" type="text" name="c_lastname" placeholder="Last Name"  /></div>
-												<div class="col-md-6 col-sm-12"><input class="add_coment height-s" type="text" name="c_email" placeholder="email"  /></div>
+												<div class="col-md-3 col-sm-12"><input class="add_coment height-s" type="text" name="c_firstname" placeholder="First Name" value="F Name <?=$randNumber?>" /></div>
+												<div class="col-md-3 col-sm-12"><input class="add_coment height-s" type="text" name="c_lastname" placeholder="Last Name" value="L Name <?=$randNumber?>" /></div>
+												<div class="col-md-6 col-sm-12"><input class="add_coment height-s" type="email" name="c_email" placeholder="email" value="reviewer<?=$randNumber . rand(0, 999)?>@email.com" /></div>
 											</div>
 											<div class="row">
-												<div class="col-md-3 col-sm-12"><input class="add_coment height-s" type="text" name="c_phone" placeholder="Phone#" /></div>
-												<div class="col-md-3 col-sm-12"><input class="add_coment height-s" type="text" name="c_street" placeholder="Street Address" /></div>
-												<div class="col-md-6 col-sm-12"><input class="add_coment height-s" type="text" name="c_address" placeholder="City, State, Zip" /></div>
+												<div class="col-md-3 col-sm-12"><input class="add_coment height-s" type="text" name="c_phone" placeholder="Phone#" value="<?=$randNumber?>" /></div>
+												<div class="col-md-3 col-sm-12"><input class="add_coment height-s" type="text" name="c_street" placeholder="Street Address" value="Address <?=$randNumber?>" /></div>
+												<div class="col-md-6 col-sm-12"><input class="add_coment height-s" type="text" name="c_address" placeholder="City, State, Zip" value="<?=$randNumber?>" /></div>
 											</div>
 											<h4 class="thank_title" >
 												<strong>Thank you!</strong> Please click "SUBMIT" below to confirm your answers!
@@ -77,6 +100,7 @@
 											
 										</div>
 									</form>
+									<?php } ?>
 								</div>
 						
 							</div>

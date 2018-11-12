@@ -20,13 +20,8 @@
 	 <script src="<?php echo base_url(); ?>assets/dashboard/assets/js/lib/data-table/dataTables.buttons.min.js"></script>
 	 <script src="<?php echo base_url(); ?>assets/dashboard/plugins/iCheck/icheck.min.js"></script>
 	 
-	 <!-- bootstrap datepicker -->
-	 <script src="<?php echo base_url(); ?>assets/dashboard/plugins/datepicker/bootstrap-datepicker.js"></script>
-	 <script src="<?php echo base_url(); ?>assets/dashboard/plugins/timepicker/bootstrap-timepicker.min.js"></script>
-
-    <script src="<?php echo base_url('/'); ?>assets/dashboard/assets/js/lib/moment/moment.js"></script>
-    <script src="<?php echo base_url('/'); ?>assets/dashboard/assets/calendar/fullcalendar.min.js"></script>
-    <script src="<?php echo base_url('/'); ?>assets/dashboard/assets/calendar/fullcalendar-init.js"></script>
+    <script src="<?php echo base_url('assets/common/'); ?>rateit/jquery.rateit.min.js"></script>
+	 
     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="<?php echo base_url('/'); ?>assets/dashboard/custom/custom.js"></script>
 

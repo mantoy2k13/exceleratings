@@ -132,97 +132,31 @@ jQuery(function ($) {
 		}
 	})
 	
+	
+
+	function load_all_revs(){
+		
+		$('#totalRev').DataTable( {
+				'ajax': base_url + "dashboard/page/dt_ajax_get_rev_list",
+				'destroy': true,
+				'paging': true,
+				'lengthChange': true,
+				'searching': true,
+				'ordering': true,
+				'info': true,
+				'autoWidth': true,
+				"columns": [
+					{ "data": "sl" },
+					{ "data": "inserted_at" },
+					{ "data": "email" },
+					{ "data": "average_rating" },
+					{ "data": "action" }
+				]
+		} );
+	}
+	load_all_revs();
+	
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -39,6 +39,12 @@ a,
 .user-area .user-menu .nav-link{
 	color: #fff;
 }
+p {
+   font-size: 15px;
+}
+h5 {
+    font-size: 1.3em;
+}
 .list-group-item{
 	background: none;
 }
@@ -121,6 +127,9 @@ aside.left-panel{
 }
 .messenger-box .msg-sent .inner-box:after {
     border-color: transparent transparent transparent #0000002e;
+}
+.form-control{
+   font-size: 0.85rem;
 }
 .form-control,
 .form-control:focus{

@@ -12,7 +12,7 @@
 			<!-- Default box -->
 			<div class="card">
 				<div class="card-header with-border wow bounceInLeft">
-					<h3 class="card-title card-box">Reviewe question add form</h3>
+					<h3 class="card-title card-box">Review question add form</h3>
 				</div>
 
 				<form action="" method="post" enctype="multipart/form-data">

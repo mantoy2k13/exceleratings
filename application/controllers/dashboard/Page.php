@@ -26,6 +26,17 @@ class Page extends CI_Controller {
 	
 	public function review($rid){
 		
+		if( isset($_POST['status_change']) ){
+			$status = $this->input->post('rev_status');
+		//	prex($status);
+			$this->db->where('id', $rid);
+			if($this->db->update('reviews', array('status'=>$status))){
+				
+				$this->session->set_flashdata('success', 'Status Updated');
+				redirect(base_url('dashboard/page/review/' . $rid));
+			}
+		}
+		
 		$this->db->select('qr.*,rq.*');
 		$this->db->from('question_ratings as qr');
 		$this->db->join('rev_questions as rq', 'qr.qid = rq.qid', 'left');
@@ -37,7 +48,8 @@ class Page extends CI_Controller {
 		$this->db->from('reviews');
 		$this->db->where('id', $rid);
 		$data['revItem'] = $this->db->get()->row();
-	//	$data['revItem']->questions = $data['ques'];
+		
+		$data['averageRating'] = $this->get_ques_average_rating($data['revItem']->id);
 		
 	//	prex($data);
 		
@@ -46,11 +58,16 @@ class Page extends CI_Controller {
 	
 	public function get_ques_average_rating( $rid )
 	{
+		$this->db->select('*');
+		$this->db->from('reviews');
+		$this->db->where('id', $rid);
+		$first_rating = $this->db->get()->row()->first_rating;
+		
 		// Get question reviews 
 		$this->db->select('*');
 		$this->db->from('question_ratings');
 		$this->db->where('rid', $rid);
-		$rev = 0;
+		$rev = $first_rating;
 		$actRev = []; // only this review which is greater then 0
 		$ratingPercentage = '';
 		foreach( $this->db->get()->result_object() as $actRev_k => $actRev_v ){
@@ -65,7 +82,8 @@ class Page extends CI_Controller {
 		pre($revItem = count($actRev));
 		pre($actRev);
 		*/
-		$revItem = count($actRev);
+		$revItem = count($actRev) + 1;
+	//	prex($revItem);
 		if( $revItem > 0 ){
 			
 			$ratingPercentage = ($rev / $revItem) * 10;
@@ -92,9 +110,9 @@ class Page extends CI_Controller {
 			}
 			if( $this->get_ques_average_rating($rv_v->id) != '' ){
 					
-				if($this->get_ques_average_rating($rv_v->id) > 70 ){
+				if($this->get_ques_average_rating($rv_v->id) > 69 ){
 					$rating = '<h4><span class="badge badge-info">'. round($this->get_ques_average_rating($rv_v->id), 1) .' %</span></h4>';
-				}elseif( $this->get_ques_average_rating($rv_v->id) < 70 ){
+				}elseif( $this->get_ques_average_rating($rv_v->id) <= 69 ){
 					$rating = '<span class="badge badge-secondary">'. round($this->get_ques_average_rating($rv_v->id), 1) .' %</span>';
 				}
 			}
@@ -102,7 +120,7 @@ class Page extends CI_Controller {
 			$rv_data['inserted_at'] = $rv_v->inserted_at;
 			$rv_data['email'] = $rv_v->email;
 			$rv_data['average_rating'] = $rating;
-			$rv_data['action'] = '<a href="'. base_url('/admin/settings/advertises/'. $rv_v->id ) .'" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" title="">
+			$rv_data['action'] = '<a href="'. base_url('/dashboard/page/review/'. $rv_v->id ) .'" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" title="">
 						<i class="fa fa-fw fa-lg fa-eye"></i> / <i class="fa fa-fw fa-lg fa-edit"></i></a>';
 			
 			array_push($data['data'], $rv_data);

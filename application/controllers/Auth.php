@@ -30,7 +30,7 @@ class Auth extends CI_Controller
 						unset($user->password);
 						$_SESSION['logedin_user'] = $user;
 						
-						redirect('dashboard/home', 'refresh');
+						redirect('dashboard/page', 'refresh');
 					} else {
 						$this->session->set_flashdata('error', 'Account not match !!');
 						redirect('auth/login', 'refresh');
@@ -42,7 +42,7 @@ class Auth extends CI_Controller
 			}
 		}
 		if( isset($_SESSION['user_loged']) && $_SESSION['user_loged'] ){
-			redirect('dashboard/home', 'refresh');
+			redirect('dashboard/page', 'refresh');
 		}else{
 			$this->load->view('auth/login');
 		}
@@ -70,7 +70,7 @@ class Auth extends CI_Controller
 			}
 		}
 		if( isset($_SESSION['user_loged']) ){
-			redirect('dashboard/home', 'refresh');
+			redirect('dashboard/page', 'refresh');
 		}else{
 			$this->load->view('auth/registration');
 		}

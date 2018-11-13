@@ -35,6 +35,7 @@
 							$status = 'Inactive';
 							$inactClass = 'inactive';
 						}
+						$inactClass .= ($q_k % 2 ? ' wow bounceInLeft ' : ' wow bounceInRight ');
 						?>
 							<li class="list-group-item <?php echo $inactClass; ?>">
 								<i class="fa fa-arrows fa-lg float-left qShorting" aria-hidden="true"></i> 
@@ -50,35 +51,6 @@
 							</li>
 						<?php } ?>
 					</ul>
-              <table id="questionList" class="table table-bordered table-hover table-striped col_1_center datatable col_4_center col_1ast_center wow bounceInLeft">
-                <thead>
-                <tr>
-                  <th>SL.</th>
-                  <th>Question Title</th>
-                  <th>Ans Option</th>
-                  <th>Status</th>
-                  <th>Acction</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                  <td></td>
-                  <td>Loading .... </td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                </tbody>
-                <tfoot>
-                <tr>
-                  <th>SL.</th>
-                  <th>Question Title</th>
-                  <th>Ans Option</th>
-                  <th>Status</th>
-                  <th>Acction</th>
-                </tr>
-                </tfoot>
-              </table>
           </div>
           <!-- /.box -->
 

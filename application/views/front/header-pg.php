@@ -74,6 +74,7 @@
             </ul>
 				<div class="navbar-form navbar-right">
 				  <div class="form-group">
+						<span>Average Rating</span>
 					 <input type="text" class="form-control total_rev_plus" name="total_rev_plus" Readonly size="5">
 				  </div>
 				</div>

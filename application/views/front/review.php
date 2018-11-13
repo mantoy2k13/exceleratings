@@ -8,10 +8,12 @@
               <div class="col-sm-6 col-sm-offset-3">
 					<?php if( $this->session->flashdata('success') ){ ?>
 						<h2 class="module-title font-alt"><?php echo $this->session->flashdata('success'); ?></h2>
-						<center>
-						<a href="#"><img src="https://s3-media3.fl.yelpcdn.com/assets/srv0/yelp_design_web/b085a608c15f/assets/img/logos_homepage/default.png" class="img-thumbnail"></a>
-						<a href="#"><img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" class="img-thumbnail"></a>
-						</center>
+						<?php if( $this->session->flashdata('review70up') ){ ?>
+							<center>
+							<a href="#"><img src="https://s3-media3.fl.yelpcdn.com/assets/srv0/yelp_design_web/b085a608c15f/assets/img/logos_homepage/default.png" class="img-thumbnail"></a>
+							<a href="#"><img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" class="img-thumbnail"></a>
+							</center>
+						<?php } ?>
 					<?php }else{  ?>
                 <h2 class="module-title font-alt">Review</h2>
 					<div class="module-subtitle font-serif">Your feedback is a VITAL TOOL used to ensure that we are providing the BEST SERVICE possible!</div>
@@ -66,32 +68,21 @@
 											<input type="text" class="total_rev_plus" name="total_rev_plus" hidden >
 											<?php $randNumber = rand(1, 20); ?>
 											<p><span class="rado_2" ><b>Do you have additional comments or concerns?</b></span></p>
-											<p><input class="add_coment" name="rev_comment" type="text" value="Comments ... <?=$randNumber?> <?=$randNumber?>" /></p>
-											<h5 class="last_title" >We apologize that your experience did not meet your expectations.</h5>
-											<h5>We Would like to learn how we can improve our service.</h5>
+											<textarea class="form-control" name="rev_comment"></textarea>
+											<br>
+											<p><b>If anything about your experience here failed to meet your expectations, what could we do to improve it for you?</b></p>
+											<textarea class="form-control" name="rev_about_experience"></textarea>
 											
-											<p class="deff_ask" >
-												<span class="rado_2" > Do you know about our "Intelidata" extended analytics services?</span> 
-												<span class="rado_1" >
-													<label class="">
-													<input type="radio" value="1"  name="is_intelidata" />Yes 
-													</label>
-													&nbsp; | &nbsp; 
-													<label class="">
-													<input type="radio" value="0"  name="is_intelidata" />No 
-													</label>
-												</span> 
-											</p>
 											<br>
 											<div class="row padd-b10">
-												<div class="col-md-3 col-sm-12"><input class="add_coment height-s" type="text" name="c_firstname" placeholder="First Name" value="F Name <?=$randNumber?>" /></div>
-												<div class="col-md-3 col-sm-12"><input class="add_coment height-s" type="text" name="c_lastname" placeholder="Last Name" value="L Name <?=$randNumber?>" /></div>
-												<div class="col-md-6 col-sm-12"><input class="add_coment height-s" type="email" name="c_email" placeholder="email" value="reviewer<?=$randNumber . rand(0, 999)?>@email.com" /></div>
+												<div class="col-md-3 col-sm-12"><input class="add_coment height-s" type="text" name="c_firstname" placeholder="First Name"  /></div>
+												<div class="col-md-3 col-sm-12"><input class="add_coment height-s" type="text" name="c_lastname" placeholder="Last Name"  /></div>
+												<div class="col-md-6 col-sm-12"><input class="add_coment height-s" type="email" name="c_email" placeholder="email" /></div>
 											</div>
 											<div class="row">
-												<div class="col-md-3 col-sm-12"><input class="add_coment height-s" type="text" name="c_phone" placeholder="Phone#" value="<?=$randNumber?>" /></div>
-												<div class="col-md-3 col-sm-12"><input class="add_coment height-s" type="text" name="c_street" placeholder="Street Address" value="Address <?=$randNumber?>" /></div>
-												<div class="col-md-6 col-sm-12"><input class="add_coment height-s" type="text" name="c_address" placeholder="City, State, Zip" value="<?=$randNumber?>" /></div>
+												<div class="col-md-3 col-sm-12"><input class="add_coment height-s" type="text" name="c_phone" placeholder="Phone #" /></div>
+												<div class="col-md-3 col-sm-12"><input class="add_coment height-s" type="text" name="c_street" placeholder="Street Address"  /></div>
+												<div class="col-md-6 col-sm-12"><input class="add_coment height-s" type="text" name="c_address" placeholder="City, State, Zip" /></div>
 											</div>
 											<h4 class="thank_title" >
 												<strong>Thank you!</strong> Please click "SUBMIT" below to confirm your answers!

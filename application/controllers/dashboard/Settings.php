@@ -31,7 +31,23 @@ class Settings extends CI_Controller {
 	}
 	
 	public function index()
-	{
+	{	
+		$data['menuitem4'] = 'home';
+		
+		if( isset($_POST['save_setting_options']) ){
+			foreach( $this->input->post('setting_options') as $op_p_k => $op_p_v ){
+				
+				$this->db->where('option_slug', $op_p_k);
+				$this->db->update('settings', array('option_value'=>$op_p_v));
+			}
+			
+			$this->session->set_flashdata('success', 'Updated ');
+			redirect('dashboard/settings');
+		}
+		$this->db->select('*');
+		$this->db->from('settings');
+		$data['seting_options'] = $this->db->get()->result_object();
+		
 		$this->load->view('dashboard/settings', $data);
 	}
 	
@@ -55,8 +71,8 @@ class Settings extends CI_Controller {
 			];
 		  if($this->db->insert('rev_questions', $question_form)){
 				$insert_qid = $this->db->insert_id();
-				$this->session->set_flashdata('success', 'Saved');
-				redirect('dashboard/settings/rev_question/'. $insert_qid);
+				$this->session->set_flashdata('success', 'Added new question');
+				redirect('dashboard/settings/rev_questions/');
 		  }
 		}
 		

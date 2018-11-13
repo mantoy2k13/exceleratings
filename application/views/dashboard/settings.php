@@ -12,10 +12,10 @@
 			<!-- Default box -->
 			<div class="card">
 				<div class="card-header with-border wow bounceInLeft">
-					<h3 class="card-title card-box">Review question add form</h3>
+					<h3 class="card-title card-box">Settings</h3>
 				</div>
 
-				<form action="" method="post" enctype="multipart/form-data">
+				<form action="" method="post" >
 
 					<?php if( $this->session->flashdata('success') ){ ?>
 						<div class="container-fluid">
@@ -23,34 +23,23 @@
 						</div>
 					<?php } ?>
 					<div class="card-body wow bounceInRight" id="cat_add_form">
-						
-					  <div class="form-group">
-						 <label for="post_title">The Question</label>
-						<textarea name="question" id="question" class="form-control" rows=""><?php echo $question->question; ?></textarea>
-					  </div>
+						<?php 
+							foreach( $seting_options as $so ){ ?>
+								
+							  <div class="form-group">
+									<label for="post_title"><?php echo $so->option_title; ?></label>
+								
+									<input type="text" name="setting_options[<?php echo $so->option_slug; ?>]" class="form-control" value="<?php echo $so->option_value; ?>" >
+							  </div>
+						<?php	} ?>
 						  <div class="row">
 							  <div class="col-md-6">
-								<div class="row">
-								  <div class="btn" data-toggle="buttons">
-										<div class="btn-group-vertical">
-										  <label class="btn btn-sm btn-info" title="Anser get by Yes/No options">
-											 <input type="radio" value="yes_no" name="answer_option" id="" <?php if( $question->answer_option == 'yes_no' ){ echo 'checked'; } ?>> 
-											 Answer get by Yes/No options
-										  </label>
-										
-										  <label class="btn btn-sm btn-info" title="Answer get by 1 to 10 reviewing options">
-											 <input type="radio" value="rev_1_10" name="answer_option" id="" <?php if( $question->answer_option == 'rev_1_10' ){ echo 'checked'; } ?>>
-												Answer get by 1 to 10 reviewing options
-										  </label>
-										
-										</div>
-									</div>
-									</div>
+							  
 							  </div>
 							  <div class="col-md-6">
 									<hr>
 									<div class="form-group">
-										<button type="submit" name="rev_question_update" class="btn btn-lg btn-info btn-block"> Save </button>
+										<button type="submit" name="save_setting_options" class="btn btn-lg btn-info btn-block"> Save </button>
 									</div>
 									<hr>
 							  </div>

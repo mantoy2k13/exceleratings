@@ -3,6 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Front extends CI_Controller {
 
+	function __construct() {
+       parent::__construct();
+		 
+	}
 	public function index()
 	{
 		$this->load->view('front/home');
@@ -18,6 +22,19 @@ class Front extends CI_Controller {
 		
 		$this->load->view('front/review', $data);
 	}
+	
+	public function slug2option_val( $slug = null ){
+		if( $slug != null ){
+			
+			$this->db->select('*');
+			$this->db->from('settings');
+			$this->db->where('option_slug', $slug);
+			return $this->db->get()->row()->option_value;
+		}else{
+			return '';
+		}
+	}
+	
 	public function review_add()
 	{
 		if( $this->input->post() ){
@@ -33,9 +50,12 @@ class Front extends CI_Controller {
 				'street' => $this->input->post('c_street'),
 				'address' => $this->input->post('c_address'),
 				'rev_comment' => $this->input->post('rev_comment'),
-				'is_intelidata' => $this->input->post('is_intelidata') ? $this->input->post('is_intelidata') : 0,
+				'rev_about_experience' => $this->input->post('rev_about_experience'),
 				'inserted_at' => date("Y-m-d H:i:s")
 			];
+			if( str_replace('%','',$this->input->post('total_rev_plus')) * 1 > 69 ){
+				$raringToSave['status'] = 1;
+			}
 			if($this->db->insert('reviews', $raringToSave)){
 				$inserted_rid = $this->db->insert_id();
 				

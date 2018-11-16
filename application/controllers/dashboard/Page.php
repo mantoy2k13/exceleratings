@@ -16,16 +16,18 @@ class Page extends CI_Controller {
 	
 	public function index()
 	{
+		$data['menuitem4'] = 'home';
 		if($this->session->userdata('logedin_user')->usertype == 'superadmin'){
 			
-			$this->load->view('dashboard/home-superadmin');
+			$this->load->view('dashboard/home-superadmin', $data);
 		}else{
-			$this->load->view('dashboard/home');
+			$this->load->view('dashboard/home', $data);
 		}
 	}
 	
 	public function review($rid){
 		
+		$data['menuitem4'] = '';
 		if( isset($_POST['status_change']) ){
 			$status = $this->input->post('rev_status');
 		//	prex($status);

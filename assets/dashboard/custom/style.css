@@ -414,7 +414,23 @@ footer p {
 .question_list li .qShorting{
 	cursor: move;
 }
-
+.progress{
+	border-radius: 0;
+}
+.ind_progress .bg-info {
+    background-color: #17a2b8a6!important;
+}
+.progress {
+	border: 1px solid #1c5054;
+	border-left: 0;
+	border-right: 0;
+-webkit-box-shadow: inset 24px 0px 14px -16px rgba(0,0,0,0.38);
+-moz-box-shadow: inset 24px 0px 14px -16px rgba(0,0,0,0.38);
+box-shadow: inset 24px 0px 14px -16px rgba(0,0,0,0.38);
+}
+.average_progress{
+	border-width: 2px;
+}
 
 
 

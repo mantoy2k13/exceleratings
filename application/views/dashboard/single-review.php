@@ -25,7 +25,16 @@
 						<div class="row">
 							<div class="col-md-6">
 								
-								<h4 class="text-center">Average Rating <b><span class="badge <?php if( round($averageRating,1) > 69 ){ echo 'badge-info'; }else{ echo 'badge-secondary'; } ?>" style="font-size: 1em;"><?=round($averageRating,1)?></span>%</b></h4>
+								<h4 class="text-center">Average Rating</h4>
+								<?php if( round($averageRating,1) > 69){ ?> 
+									<div class="progress average_progress" style="height: 25px;font-weight: bold;">
+									  <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: <?=round($averageRating,1)?>%" aria-valuenow="<?=round($averageRating,1)?>" aria-valuemin="0" aria-valuemax="100"><?=round($averageRating,1)?>%</div>
+								<?php }else{ ?>
+									<div class="progress average_progress" style="height: 25px;font-weight: bold;">
+									  <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: <?=round($averageRating,1)?>%" aria-valuenow="<?=round($averageRating,1)?>" aria-valuemin="0" aria-valuemax="100"><?=round($averageRating,1)?>%</div>
+								<?php } ?>
+								  
+								</div>
 							</div>
 							<div class="col-md-6">
 								<form action="" method="POST">
@@ -42,12 +51,20 @@
 								</form>
 							</div>
 						</div>
+						<div class="row">
+							<div class="container-fluid">
+											
+							</div>
+						</div>
 					</div>
 				</div>
 					<div class="container-fluid">
 						<div class="container-fluid border border-info wow flipInX">
 							<br>
-							<h5 class="text-center">First Rating is <b><span class="badge badge-info" style="font-size: 1em;"><?=$revItem->first_rating?></span>/</b><small><span class="badge badge-secondary">10</span></small></h5>
+							<h5 class="text-center">First Rating</h5><br>
+							<div class="progress ind_progress" style="height: 20px;font-weight: bold;">
+							  <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: <?=$revItem->first_rating * 10?>%" aria-valuenow="<?=$revItem->first_rating * 10?>" aria-valuemin="0" aria-valuemax="100"><?=$revItem->first_rating * 10?>%</div>
+							</div>
 							<br>
 						</div>
 					</div>
@@ -58,12 +75,17 @@
 					<?php } ?>
 					<div class="card-body" id="cat_add_form">
 						
-						<ul class="list-group wow bounceInRight">
+						<ul class="list-group">
 						<?php 
 							foreach($revItem_ques as $q_k => $q_v){ // pre($q_v); ?>
 								
-								<li class="list-group-item">
-									<b><?php echo $q_k *1 +1; ?>.</b> <?php echo $q_v->question; ?><h4 class="float-right"><span class="badge badge-info"><?php echo $q_v->review; ?></span><b>/</b><small><span class="badge badge-secondary">10</span></small></h4>
+								<li class="list-group-item <?php echo ($q_k % 2 ? ' wow bounceInLeft ' : ' wow bounceInRight '); ?>">
+									<b><?php echo $q_k *1 +1; ?>.</b> <?php echo $q_v->question; ?>
+																
+									<div class="progress ind_progress" style="height: 20px;font-weight: bold;">
+									  <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: <?=$q_v->review * 10?>%" aria-valuenow="<?=$q_v->review * 10?>" aria-valuemin="0" aria-valuemax="100"><?=$q_v->review * 10?>%</div>
+									</div>
+									
 								</li>
 						<?php	} ?>
 						</ul>

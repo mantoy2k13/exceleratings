@@ -53,6 +53,7 @@ class Settings extends CI_Controller {
 	
 	public function rev_questions()
 	{
+		$data['menuitem4'] = 'rev_questions';
 		$this->db->select('*');
 		$this->db->from('rev_questions');
 		$this->db->order_by('shorting', 'ASC');
@@ -62,6 +63,7 @@ class Settings extends CI_Controller {
 	}
 	public function rev_question_add()
 	{
+		$data['menuitem4'] = 'rev_question_add';
 		
 		if( isset($_POST['rev_question_add']) ){
 
@@ -76,7 +78,7 @@ class Settings extends CI_Controller {
 		  }
 		}
 		
-		$this->load->view('dashboard/rev-question-add');
+		$this->load->view('dashboard/rev-question-add', $data);
 	}
 	/* 
 	public function rev_question($qid = null)

@@ -108,6 +108,7 @@
                     
 						  <li class="<?=$menuitem4 == 'rev_questions' ? 'active':''?>"><a href="<?php echo base_url('dashboard/settings/rev_questions'); ?>"><i class="menu-icon fa fa-link"></i> <span>Question List</span></a></li>
 						  <li class="<?=$menuitem4 == 'rev_question_add' ? 'active':''?>"><a href="<?php echo base_url('dashboard/settings/rev_question_add'); ?>"><i class="menu-icon fa fa-link"></i> <span>Add Question</span></a></li>
+						  <li class="<?=$menuitem4 == 'notification_contacts' ? 'active':''?>"><a href="<?php echo base_url('dashboard/settings/notification_contacts'); ?>"><i class="menu-icon fa fa-link"></i> <span>Notification contacts</span></a></li>
                     <li class="menu-title"> --- </li><!-- /.menu-title -->
 						  <li><a href="<?php echo base_url('auth/logout'); ?>"><i class="menu-icon fa fa-sign-out"></i> <span>LogOut</span></a></li>
 						 

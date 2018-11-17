@@ -25,6 +25,9 @@ body:before{
 	background-size: cover;
 	z-index: -1;
 }
+.table{
+	font-size: 13px;
+}
 .text-muted {
     color: #ffffff!important;
 }
@@ -238,6 +241,13 @@ input[type="file"].form-control{
 }
 .table-striped tbody tr:nth-of-type(odd) {
     background-color: rgba(0, 0, 0, 0.12);
+}
+.table tr.table-active{
+	background: #000000b8 !important;
+}
+.tr_disabled td{
+	opacity: 0.5;
+	color: #ffffff8a !important;
 }
 .col_1_center th:first-child,
 .col_1_center td:first-child,

@@ -61,6 +61,7 @@ class Settings extends CI_Controller {
 		
 		$this->load->view('dashboard/rev-question-list', $data);
 	}
+	
 	public function rev_question_add()
 	{
 		$data['menuitem4'] = 'rev_question_add';
@@ -79,6 +80,71 @@ class Settings extends CI_Controller {
 		}
 		
 		$this->load->view('dashboard/rev-question-add', $data);
+	}
+	
+	public function notification_contacts( $cid = null ){
+		
+		$data['menuitem4'] = 'notification_contacts';
+		
+		$this->db->select('*');
+		$this->db->from('notification_contacts');
+		$this->db->order_by('id', 'DESC');
+		$data['contacts'] = $this->db->get()->result_object();
+		$data['edit_item'] = '';
+		
+		if( $cid == null ){
+			$data['page_env'] = 'addnew';
+			if( isset($_POST['add_contact']) ){
+
+				$contact2add = [
+					'title' => $this->input->post('title'),
+					'email' => $this->input->post('email'),
+					'phone' => $this->input->post('phone'),
+					'status' => 1
+				];
+			  if($this->db->insert('notification_contacts', $contact2add)){
+					$insert_qid = $this->db->insert_id();
+					$this->session->set_flashdata('success', '<< Added new contact');
+					redirect('dashboard/settings/notification_contacts');
+			  }
+			}
+		}else{
+			$data['page_env'] = 'edit';
+			$data['edit_item'] = $cid;
+			
+			$this->db->select('*');
+			$this->db->from('notification_contacts');
+			$this->db->where('id', $cid);
+			$data['contItem'] = $this->db->get()->row();
+			if( isset($_POST['edit_contact']) ){
+
+				$contact2edit = [
+					'title' => $this->input->post('title'),
+					'email' => $this->input->post('email'),
+					'phone' => $this->input->post('phone'),
+					'status' => $this->input->post('status')
+				];
+				$this->db->where('id', $cid);
+			  if($this->db->update('notification_contacts', $contact2edit)){
+					$insert_qid = $this->db->insert_id();
+					$this->session->set_flashdata('success', 'Contact item updated');
+					redirect('dashboard/settings/notification_contacts/' . $cid);
+			  }
+			}	
+		}
+		$this->load->view('dashboard/notification-contacts', $data);
+	}
+	public function notification_contact_remove( $cid = null ){
+		
+		if( $cid != null ){
+			$data['page_env'] = 'addnew';
+	
+			$this->db->where('id', $cid);
+			if($this->db->delete('notification_contacts')){
+				$this->session->set_flashdata('remvoe_success', 'Contact item removed successfully');
+				redirect('dashboard/settings/notification_contacts');
+			}
+		}
 	}
 	/* 
 	public function rev_question($qid = null)

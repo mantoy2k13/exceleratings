@@ -11,12 +11,25 @@ class Page extends CI_Controller {
 			redirect('auth/login');
 		 }
 		$this->logedin_usertype = $this->session->userdata('logedin_user')->usertype;
+		
+		$this->load->model('General_model');
+	//	$this->User_model->user_data_by_id( $this->session->userdata('logedin_user')->id )->usertype;
 	}
 	public $logedin_usertype;
 	
 	public function index()
 	{
 		$data['menuitem4'] = 'home';
+		
+		$data['overall_avr_rating'] = $this->General_model->get_overall_avr_rating();
+	//	pre(date('Y-m-d', strtotime('-2 months')));
+	//	prex($this->General_model->get_overall_avr_rating('2018-10-10'));
+		
+		$this->db->select('*');
+		$this->db->from('reviews');
+		$data['total_rating_item'] = count($this->db->get()->result_object());
+		$data['total_rating_item4chart'] = $this->General_model->get_overall_avr_rating_ind();
+		
 		if($this->session->userdata('logedin_user')->usertype == 'superadmin'){
 			
 			$this->load->view('dashboard/home-superadmin', $data);
@@ -51,46 +64,11 @@ class Page extends CI_Controller {
 		$this->db->where('id', $rid);
 		$data['revItem'] = $this->db->get()->row();
 		
-		$data['averageRating'] = $this->get_ques_average_rating($data['revItem']->id);
+		$data['averageRating'] = $this->General_model->get_ques_average_rating($data['revItem']->id);
 		
 	//	prex($data);
 		
 		$this->load->view('dashboard/single-review', $data);
-	}
-	
-	public function get_ques_average_rating( $rid )
-	{
-		$this->db->select('*');
-		$this->db->from('reviews');
-		$this->db->where('id', $rid);
-		$first_rating = $this->db->get()->row()->first_rating;
-		
-		// Get question reviews 
-		$this->db->select('*');
-		$this->db->from('question_ratings');
-		$this->db->where('rid', $rid);
-		$rev = $first_rating;
-		$actRev = []; // only this review which is greater then 0
-		$ratingPercentage = '';
-		foreach( $this->db->get()->result_object() as $actRev_k => $actRev_v ){
-			
-			if( $actRev_v->review > 0 ){
-				$rev = $rev + $actRev_v->review;
-				array_push($actRev, $actRev_v);
-			}
-		}
-		/*
-		pre($rev);
-		pre($revItem = count($actRev));
-		pre($actRev);
-		*/
-		$revItem = count($actRev) + 1;
-	//	prex($revItem);
-		if( $revItem > 0 ){
-			
-			$ratingPercentage = ($rev / $revItem) * 10;
-		}
-		return $ratingPercentage;
 	}
 	
 	public function dt_ajax_get_rev_list()
@@ -110,12 +88,12 @@ class Page extends CI_Controller {
 			if( $rv_v->status == 1 ){
 				$status = '<i class="fa fa-star" aria-hidden="true"></i>';
 			}
-			if( $this->get_ques_average_rating($rv_v->id) != '' ){
+			if( $this->General_model->get_ques_average_rating($rv_v->id) != '' ){
 					
-				if($this->get_ques_average_rating($rv_v->id) > 69 ){
-					$rating = '<h4><span class="badge badge-info">'. round($this->get_ques_average_rating($rv_v->id), 1) .' %</span></h4>';
-				}elseif( $this->get_ques_average_rating($rv_v->id) <= 69 ){
-					$rating = '<span class="badge badge-secondary">'. round($this->get_ques_average_rating($rv_v->id), 1) .' %</span>';
+				if($this->General_model->get_ques_average_rating($rv_v->id) > 69 ){
+					$rating = '<h4><span class="badge badge-info">'. round($this->General_model->get_ques_average_rating($rv_v->id), 1) .' %</span></h4>';
+				}elseif( $this->General_model->get_ques_average_rating($rv_v->id) <= 69 ){
+					$rating = '<span class="badge badge-secondary">'. round($this->General_model->get_ques_average_rating($rv_v->id), 1) .' %</span>';
 				}
 			}
 			$rv_data['sl'] = $rv_k *1 +1;

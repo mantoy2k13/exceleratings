@@ -47,6 +47,59 @@
     <link rel="stylesheet" href="<?php echo base_url('/'); ?>assets/dashboard/assets/wow/animate.css">
     <link rel="stylesheet" href="<?php echo base_url('/'); ?>assets/dashboard/custom/style.css">
 
+    <script src="<?php echo base_url('/'); ?>assets/dashboard/custom/Chart.bundle.min.js"></script>
+    <script>
+
+								function chartCall(getDiv2show, graphData){
+									graphData = JSON.parse(graphData);
+								//	console.log(JSON.parse(graphData));
+									var gdLabels = [];
+									var gdData = [];
+									var gdBgcolor = [];
+									var gdBgBorderColor = [];
+									for (var i = 0; i < graphData.length; i++){
+										 var obj = graphData[i];
+										 gdLabels.push(obj.title);
+										 gdData.push(obj.value_number);
+										 gdBgcolor.push(obj.bg_color);
+										 gdBgBorderColor.push(obj.border_color);
+										 /* 
+										 for (var key in obj){
+											  var attrName = key;
+											  var attrValue = obj[key];
+										 }
+										  */
+									}
+									Chart.defaults.global.defaultFontColor = '#fff';
+									var myChart = new Chart(getDiv2show, {
+										 type: 'bar',
+										 data: {
+											  labels: gdLabels,
+											  datasets: [{
+													label: '-',
+													 tooltips: {
+													backgroundColor: '#227799'
+														 },
+													data: gdData,
+													backgroundColor: gdBgcolor,
+													borderColor: gdBgBorderColor, 
+													borderWidth: 2
+											  }]
+										 },
+										 options: {
+											  scales: {
+												  xAxes: [{gridLines: { color: "#fff" }}],
+													yAxes: [{
+														gridLines: { color: "#fff" },
+														 ticks: {
+															  beginAtZero:true
+														 }
+													}]
+											  }
+										 }
+									});
+								}
+	 </script>
 
     <style>
     #weatherWidget .currentDesc {
@@ -106,9 +159,9 @@
                     </li>
                     <li class="menu-title"> --- </li><!-- /.menu-title -->
                     
-						  <li class="<?=$menuitem4 == 'rev_questions' ? 'active':''?>"><a href="<?php echo base_url('dashboard/settings/rev_questions'); ?>"><i class="menu-icon fa fa-link"></i> <span>Question List</span></a></li>
-						  <li class="<?=$menuitem4 == 'rev_question_add' ? 'active':''?>"><a href="<?php echo base_url('dashboard/settings/rev_question_add'); ?>"><i class="menu-icon fa fa-link"></i> <span>Add Question</span></a></li>
-						  <li class="<?=$menuitem4 == 'notification_contacts' ? 'active':''?>"><a href="<?php echo base_url('dashboard/settings/notification_contacts'); ?>"><i class="menu-icon fa fa-link"></i> <span>Notification contacts</span></a></li>
+						  <li class="<?=$menuitem4 == 'rev_questions' ? 'active':''?>"><a href="<?php echo base_url('dashboard/settings/rev_questions'); ?>"><i class="fa fa-question-circle"></i><i class="fa fa-wrench"></i> <span> Question Settings</span></a></li>
+						  <li class="<?=$menuitem4 == 'rev_question_add' ? 'active':''?>"><a href="<?php echo base_url('dashboard/settings/rev_question_add'); ?>"><i class="fa fa-question-circle"></i><i class="fa fa-plus"></i> <span> Add Question</span></a></li>
+						  <li class="<?=$menuitem4 == 'notification_contacts' ? 'active':''?>"><a href="<?php echo base_url('dashboard/settings/notification_contacts'); ?>"><i class="fa fa-bell"></i><i class="fa fa-users"></i> <span>Notification contacts</span></a></li>
                     <li class="menu-title"> --- </li><!-- /.menu-title -->
 						  <li><a href="<?php echo base_url('auth/logout'); ?>"><i class="menu-icon fa fa-sign-out"></i> <span>LogOut</span></a></li>
 						 

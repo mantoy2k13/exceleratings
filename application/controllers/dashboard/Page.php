@@ -30,6 +30,15 @@ class Page extends CI_Controller {
 		$data['total_rating_item'] = count($this->db->get()->result_object());
 		$data['total_rating_item4chart'] = $this->General_model->get_overall_avr_rating_ind();
 		
+		
+
+		$this->db->select('*');
+		$this->db->from('rev_questions');
+		$this->db->order_by('shorting', 'ASC');
+		$data['ques'] = $this->db->get()->result_object();
+		
+		
+		
 		if($this->session->userdata('logedin_user')->usertype == 'superadmin'){
 			
 			$this->load->view('dashboard/home-superadmin', $data);

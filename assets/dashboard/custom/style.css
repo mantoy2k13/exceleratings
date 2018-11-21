@@ -294,12 +294,13 @@ input[type="file"].form-control{
     display: none;
 }
 .btn-outline-secondary {
-    color: #ffffff;
-    border-color: #ffffff;
-}
-.btn-outline-secondary:hover {
     background-color: #232c38;
     border-color: #000000;
+}
+.btn-outline-secondary:hover {
+    color: #ffffff;
+    border-color: #ffffff;
+    background: none;
 }
 .table-hover tbody tr:hover {
     background-color: rgba(37, 53, 63, 0.35);
@@ -424,6 +425,10 @@ footer p {
 .question_list li .qShorting{
 	cursor: move;
 }
+.question_list .qs{
+	background: rgba(0,0,0,0.5);
+	padding: 5px 10px;
+}
 .progress{
 	border-radius: 0;
 }
@@ -442,7 +447,11 @@ box-shadow: inset 24px 0px 14px -16px rgba(0,0,0,0.38);
 	border-width: 2px;
 }
 
-
+.question_graph{
+	background: #ffffff20;
+	max-width: 100%;
+	max-height: 200px;
+}
 
 
 

@@ -12,6 +12,7 @@ class Settings extends CI_Controller {
 			redirect('auth/login');
 		 }
 			
+		$this->load->model('General_model');
 		$this->logedin_usertype = $this->session->userdata('logedin_user')->usertype;
 	}
 	
@@ -51,7 +52,7 @@ class Settings extends CI_Controller {
 		$this->load->view('dashboard/settings', $data);
 	}
 	
-	public function rev_questions()
+	public function rev_questions( $showReport = null )
 	{
 		$data['menuitem4'] = 'rev_questions';
 		$this->db->select('*');
@@ -59,7 +60,8 @@ class Settings extends CI_Controller {
 		$this->db->order_by('shorting', 'ASC');
 		$data['ques'] = $this->db->get()->result_object();
 		
-		$this->load->view('dashboard/rev-question-list', $data);
+	//	prex($this->General_model->get_queations_ratings(5));
+		$this->load->view('dashboard/rev-question-list-pg', $data);
 	}
 	
 	public function rev_question_add()

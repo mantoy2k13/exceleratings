@@ -12,7 +12,6 @@
     <script src="<?php echo base_url('/'); ?>assets/dashboard/assets/js/main.js"></script>
 
     <script src="-bs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
-    <script src="<?php echo base_url('/'); ?>assets/dashboard/custom/Chart.bundle.min.js"></script>
 
 	 <!-- DataTables -->
 	 <script src="<?php echo base_url(); ?>assets/dashboard/assets/js/lib/data-table/datatables.min.js"></script>

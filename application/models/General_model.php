@@ -103,7 +103,6 @@ class General_model extends CI_Model {
 		$ratings['star9'] = 0;
 		$ratings['star10'] = 0;
 		
-		
 		foreach( $first_rating as $fr_k => $fr_v ){
 			$avr_rating = $this->get_ques_average_rating($fr_v->id);
 			switch ( true ) {
@@ -148,9 +147,7 @@ class General_model extends CI_Model {
 						$ratings['star10'] = $ratings['star10'] + 1;
 					  break;
 				 default:
-					
 			}
-			
 		}
 		$onlyRatings = [];
 		foreach( $ratings as $r ){
@@ -269,4 +266,77 @@ class General_model extends CI_Model {
 		}
 		return $ret;
 	}
+	
+	
+
+	public function get_queations_ratings( $qid = null ){
+		
+		$this->db->select('*');
+		$this->db->from('question_ratings');
+		if( $qid != null ){
+			$this->db->where('qid =',$qid);
+		}
+	//	prex($this->db->get()->result_object());
+		$qus_rating = $this->db->get()->result_object();
+	
+		$ratings = [];
+		$ratings['star1'] = 0;
+		$ratings['star2'] = 0;
+		$ratings['star3'] = 0;
+		$ratings['star4'] = 0;
+		$ratings['star5'] = 0;
+		$ratings['star6'] = 0;
+		$ratings['star7'] = 0;
+		$ratings['star8'] = 0;
+		$ratings['star9'] = 0;
+		$ratings['star10'] = 0;
+		
+		foreach( $qus_rating as $qr_k => $qr_v ){
+			switch ( true ) {
+				 case $qr_v->review <= 1 :
+					
+						$ratings['star1'] = $ratings['star1'] + 1;
+					  break;
+				 case $qr_v->review <= 2 :
+					
+						$ratings['star2'] = $ratings['star2'] + 1;
+					  break;
+				 case $qr_v->review <= 3 :
+					
+						$ratings['star3'] = $ratings['star3'] + 1;
+					  break;
+				 case $qr_v->review <= 4 :
+					
+						$ratings['star4'] = $ratings['star4'] + 1;
+					  break;
+				 case $qr_v->review <= 5 :
+					
+						$ratings['star5'] = $ratings['star5'] + 1;
+					  break;
+				 case $qr_v->review <= 6 :
+					
+						$ratings['star6'] = $ratings['star6'] + 1;
+					  break;
+				 case $qr_v->review <= 7 :
+					
+						$ratings['star7'] = $ratings['star7'] + 1;
+					  break;
+				 case $qr_v->review <= 8 :
+					
+						$ratings['star8'] = $ratings['star8'] + 1;
+					  break;
+				 case $qr_v->review <= 9 :
+					
+						$ratings['star9'] = $ratings['star9'] + 1;
+					  break;
+				 case $qr_v->review <= 10 :
+					
+						$ratings['star10'] = $ratings['star10'] + 1;
+					  break;
+				 default:
+			}
+		}
+		return (object)$ratings;
+	}
+
 }

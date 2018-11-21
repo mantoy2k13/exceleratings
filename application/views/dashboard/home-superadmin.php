@@ -47,7 +47,7 @@
                 <div class="col-md-7">
                     <div class="card wow bounceIn">
                         <div class="card-body jackInTheBox">
-                            <canvas id="myChart" width="400" height="300" style="background: #fff;"></canvas>
+                            <canvas id="myChart" width="400" height="300"></canvas>
                         </div>
                     </div>
                 </div>
@@ -100,13 +100,21 @@
 
       </div>
 	
+		<div class="row">
+			<div class="container-fluid">
+				<?php $this->load->view('dashboard/rev-question-list'); ?>
+			</div>
+      </div>
+	
     </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
 <?php $this->load->view('dashboard/footer'); ?>
 <script>
+
 var ctx = document.getElementById("myChart");
+Chart.defaults.global.defaultFontColor = '#fff';
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
@@ -118,28 +126,28 @@ var myChart = new Chart(ctx, {
                 },
             data: <?php echo json_encode($total_rating_item4chart );?>,
             backgroundColor: [
-                'rgba(129,188,101, 0.3)', 
-                'rgba(129,188,122, 0.3)', 
-                'rgba(129,188,133, 0.3)', 
-                'rgba(129,188,144, 0.3)', 
-                'rgba(129,188,155, 0.3)', 
-                'rgba(129,188,166, 0.3)', 
-                'rgba(129,188,177, 0.3)', 
-                'rgba(129,188,188, 0.3)',
-                'rgba(129,188,199, 0.3)', 
-                'rgba(129,188,200, 0.3)' 
+                'rgba(9,255,101, 0.3)', 
+                'rgba(9,255,122, 0.3)', 
+                'rgba(9,255,133, 0.3)', 
+                'rgba(9,255,144, 0.3)', 
+                'rgba(9,255,155, 0.3)', 
+                'rgba(9,255,166, 0.3)', 
+                'rgba(9,255,177, 0.3)', 
+                'rgba(9,255,188, 0.3)',
+                'rgba(9,255,199, 0.3)', 
+                'rgba(9,255,200, 0.3)' 
             ],
             borderColor: [
-                'rgba(129,188,200, 0.8)',
-                'rgba(129,188,200, 0.8)',
-                'rgba(129,188,200, 0.8)',
-                'rgba(129,188,200, 0.8)',
-                'rgba(129,188,200, 0.8)',
-                'rgba(129,188,200, 0.8)',
-                'rgba(129,188,200, 0.8)',
-                'rgba(129,188,200, 0.8)',
-                'rgba(129,188,200, 0.8)',
-                'rgba(129,188,200, 0.8)'
+                'rgba(0,188,200, 0.8)',
+                'rgba(0,188,200, 0.8)',
+                'rgba(0,188,200, 0.8)',
+                'rgba(0,188,200, 0.8)',
+                'rgba(0,188,200, 0.8)',
+                'rgba(0,188,200, 0.8)',
+                'rgba(0,188,200, 0.8)',
+                'rgba(0,188,200, 0.8)',
+                'rgba(0,188,200, 0.8)',
+                'rgba(0,188,200, 0.8)'
             ], 
             borderWidth: 2
         }]

@@ -19,6 +19,7 @@ class Front extends CI_Controller {
 		$this->db->from('rev_questions');
 		$this->db->where('status', 1);
 		$this->db->order_by('shorting', 'ASC');
+		$this->db->order_by('qid', 'DESC');
 		$data['ques'] = $this->db->get()->result_object();
 		
 		$this->load->view('front/review', $data);
@@ -41,7 +42,7 @@ class Front extends CI_Controller {
 		if( $this->input->post() ){
 			
 			$rev_ques = $this->input->post()['rev_ques'];
-			
+		//	prex($rev_ques);
 			$cur_datetime = date("Y-m-d H:i:s");
 		//	prex($this->input->post());
 			$raringToSave = [

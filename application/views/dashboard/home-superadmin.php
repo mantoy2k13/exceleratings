@@ -7,9 +7,9 @@
 
             <!-- Widgets  -->
             <div class="row">
-                <div class="col-md-5">
+                <div class="col-lg-6 col-xl-7">
                     <div class="card wow bounceIn">
-                        <div class="card-body jackInTheBox">
+                        <div class="card-body jackInTheBox ">
 										
                             <div class="row text-center">
                                 <div class="container-fluid">
@@ -44,8 +44,8 @@
                     </div>
                 </div>
 
-                <div class="col-md-7">
-                    <div class="card wow bounceIn">
+                <div class="col-lg-6 col-xl-5">
+                    <div class="card wow bounceIn total_graph">
                         <div class="card-body jackInTheBox">
                             <canvas id="myChart" width="400" height="300"></canvas>
                         </div>
@@ -56,7 +56,7 @@
             <!-- Widgets End -->
 
 		<div class="row">
-			<div class="col-lg-10">
+			<div class="container-fluid">
 			<!-- Default box -->
 			<div class="card wow bounceInLeft">
 

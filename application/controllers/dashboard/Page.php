@@ -102,7 +102,7 @@ class Page extends CI_Controller {
 				if($this->General_model->get_ques_average_rating($rv_v->id) > 69 ){
 					$rating = '<h4><span class="badge badge-info">'. round($this->General_model->get_ques_average_rating($rv_v->id), 1) .' %</span></h4>';
 				}elseif( $this->General_model->get_ques_average_rating($rv_v->id) <= 69 ){
-					$rating = '<span class="badge badge-secondary">'. round($this->General_model->get_ques_average_rating($rv_v->id), 1) .' %</span>';
+					$rating = '<h5><span class="badge badge-secondary">'. round($this->General_model->get_ques_average_rating($rv_v->id), 1) .' %</span></h5>';
 				}
 			}
 			$rv_data['sl'] = $rv_k *1 +1;

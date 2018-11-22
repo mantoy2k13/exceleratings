@@ -68,8 +68,8 @@
 										 <canvas id="chart_<?=$q_v->qid?>" class="question_graph" style=""></canvas>
 									</div>
 									<div class="col-md-6">
-										Average Rating: 
-										<div class="progress average_progress" style="height: 25px;font-weight: bold;">
+										Average: 
+										<div class="progress average_progress" style="height: 40px;font-weight: bold;font-size: 1.3em;">
 										  <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: <?=$q_r_avg?>%" aria-valuenow="<?=$q_r_avg?>" aria-valuemin="0" aria-valuemax="100"><?=round($q_r_avg,1)?>%</div>
 										</div>
 									</div>

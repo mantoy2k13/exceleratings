@@ -47,8 +47,8 @@
             }
 
             .rateit .rateit-hover {
-                background: url(star.gif) left -32px;
-                color: rgb(239, 197, 41);
+                background: url(star.gif) left -16px;
+                color: rgb(191,66,66);
             }
 
             .rateit .rateit-hover-rtl {
@@ -56,8 +56,8 @@
             }
 
             .rateit .rateit-selected {
-                background: url(star.gif) left -16px;
-                color: rgb(191,66,66);
+                background: url(star.gif) left -32px;
+                color: rgb(239, 197, 41);
             }
 
             .rateit .rateit-selected-rtl {

@@ -58,6 +58,7 @@ class Settings extends CI_Controller {
 		$this->db->select('*');
 		$this->db->from('rev_questions');
 		$this->db->order_by('shorting', 'ASC');
+		$this->db->order_by('qid', 'DESC');
 		$data['ques'] = $this->db->get()->result_object();
 		
 	//	prex($this->General_model->get_queations_ratings(5));

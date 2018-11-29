@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Page extends CI_Controller {
-
+	
 	function __construct() {
        parent::__construct();
 		 
@@ -80,6 +80,19 @@ class Page extends CI_Controller {
 		$this->load->view('dashboard/single-review', $data);
 	}
 	
+	public function plan_subscription(){
+		
+		$data['menuitem4'] = 'plan_subscription';
+		
+		$this->load->view('dashboard/plan-subscriptions', $data);
+	}
+	public function plan_subscription_form(){
+		
+		$data['menuitem4'] = 'plan_subscription';
+		
+		$this->load->view('dashboard/plan-subscriptions-form', $data);
+	}
+	
 	public function dt_ajax_get_rev_list()
 	{
 		$this->db->select('*');
@@ -118,7 +131,6 @@ class Page extends CI_Controller {
 	//	prex($data);
 	//	print_r($posts->result_array());
 		echo json_encode($data);
-		
 	}
 	
 	

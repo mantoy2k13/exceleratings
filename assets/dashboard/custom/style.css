@@ -44,9 +44,16 @@ a,
 }
 p {
    font-size: 15px;
+	line-height: 20px;
 }
 h5 {
     font-size: 1.3em;
+}
+.input-group-text {
+    color: #ffffff;
+    background-color: #345759;
+    border: 1px solid #487478;
+	 border-radius: 0;
 }
 .list-group-item{
 	background: none;
@@ -107,6 +114,7 @@ aside.left-panel{
  position: absolute;
  opacity: 0.8;
  z-index: -1;
+ left: 0;
 }
 .user-area .user-menu{
  background: url('img/blur-bg-blurred.jpg') fixed;

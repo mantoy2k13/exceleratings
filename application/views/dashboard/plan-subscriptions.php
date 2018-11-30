@@ -9,11 +9,30 @@
 		<div class="row">
 		
 				<div class="col">
-					<div class="card">
+					<div class="card text-center">
 						<div class="card-body">
 						
 							  <div class="card-header text-center">
 									1
+							  </div>
+							  <div class="card-body">
+								 <h4 class="card-title">Basic Plan</h4>
+							  </div>
+							  <div class="card-footer text-muted">
+									
+							  </div>
+							  <div class="clearfix"></div>
+							  <hr>
+							  
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card">
+						<div class="card-body">
+						
+							  <div class="card-header text-center">
+									2
 							  </div>
 							  <div class="card-body text-center">
 								 <h4 class="card-title">Silver Plan</h4>
@@ -48,7 +67,7 @@
 					<div class="card ">
 						<div class="card-body">
 							  <div class="card-header text-center">
-									2
+									3
 							  </div>
 							  <div class="card-body text-center">
 								 <h4 class="card-title">Gold Plan</h4>
@@ -76,25 +95,6 @@
 									√ Quarterly Design Edits
 									<hr>
 									<a href="<?=base_url('dashboard/page/plan_subscription_form?plan=golden')?>" type="submit" name="subs_submit2buy" class="btn btn-info btn-lg btn-block">Subscribe</a>
-						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="card text-center">
-						<div class="card-body">
-						
-							  <div class="card-header text-center">
-									3
-							  </div>
-							  <div class="card-body">
-								 <h4 class="card-title">Basic Plan</h4>
-							  </div>
-							  <div class="card-footer text-muted">
-									
-							  </div>
-							  <div class="clearfix"></div>
-							  <hr>
-							  
 						</div>
 					</div>
 				</div>

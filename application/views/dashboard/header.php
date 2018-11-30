@@ -187,6 +187,41 @@
             <div class="top-right"> 
                 <div class="header-menu"> 
 
+                    <div class="header-left">
+                       
+                        <div class="dropdown for-notification">
+									<?php 
+										if( $this->logedin_user->usertype == 'superadmin' ){ ?>
+											<span class="badge badge-info">Super Admin</span>
+									<?php	}elseif( $this->logedin_user->usertype == 'generaladmin' ){ ?>
+											<span class="badge badge-dark">General Admin</span>
+									<?php	}elseif( $this->logedin_user->usertype == 'generaluser' ){ ?>
+											<span class="badge badge-light">General User</span>
+									<?php	} ?>
+                            <span class="badge badge-info userinfo_label">
+                                <?php echo $this->session->userdata('logedin_user')->username; ?>
+                            </span>
+                            <span class="badge badge-info userinfo_label">
+                                <?php echo $this->logedin_user->email; ?>
+                            </span>
+                            <div class="dropdown-menu" aria-labelledby="notification">
+                                <p class="red">You have 3 Notification</p>
+                                <a class="dropdown-item media" href="<?php echo base_url('/')?>accessories/#">
+                                    <i class="fa fa-check"></i>
+                                    <p>Server #1 overloaded.</p>
+                                </a>
+                                <a class="dropdown-item media" href="<?php echo base_url('/')?>accessories/#">
+                                    <i class="fa fa-info"></i>
+                                    <p>Server #2 overloaded.</p>
+                                </a>
+                                <a class="dropdown-item media" href="<?php echo base_url('/')?>accessories/#">
+                                    <i class="fa fa-warning"></i>
+                                    <p>Server #3 overloaded.</p>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
                     <div class="user-area dropdown float-right">
                         <a href="<?php echo base_url('/'); ?>assets/dashboard/#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img class="user-avatar rounded-circle" src="<?php echo base_url('/'); ?>assets/dashboard/images/admin.jpg" alt="User Avatar">

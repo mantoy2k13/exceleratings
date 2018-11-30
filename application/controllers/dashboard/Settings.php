@@ -11,6 +11,9 @@ class Settings extends CI_Controller {
 			
 			redirect('auth/login');
 		 }
+		$this->load->model('User_model');		
+		$this->logedin_usertype = $this->User_model->user_data_by_id( $this->session->userdata('logedin_user')->id )->usertype;
+		$this->logedin_user = $this->User_model->user_data_by_id( $this->session->userdata('logedin_user')->id );
 			
 		$this->load->model('General_model');
 		$this->logedin_usertype = $this->session->userdata('logedin_user')->usertype;

@@ -4,13 +4,17 @@
 	  <!-- /.login-logo -->
 	  <div class="login-content">
 		  <div class="login-form">
-			  <div class="card wow bounceInUp">
+			  <div class="card wow flipInX">
 				  <div class="card-body">
 					 <h4 class="login-box-msg"><strong>Sign Up</strong></h4>
 						<?php 
 							if( isset($_SESSION['success']) ){
 								echo '<div class="callout callout-success">' . $_SESSION['success'] . '</div>';
 							}
+							
+							if( isset($_SESSION['error']) ){
+								echo '<div class="alert alert-danger">' . $_SESSION['error'] . '</div>';
+							} 
 						?>
 						<?php echo validation_errors('<p class="text-red"><b>', '</b></p>'); ?>
 					 <form action="" method="post">
@@ -31,14 +35,14 @@
 						  <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
 						</div>
 						<hr>
-						<button type="submit" name="login" class="btn btn-info btn-block btn-flat">Sign Up / Registration</button>
+						<button type="submit" name="submitForm" value="register" class="btn btn-info btn-block btn-flat">Sign Up / Registration</button>
 					 </form>
 						<hr>
 					 <a href="<?php echo base_url('auth/login'); ?>"><b>To Login</b></a>
 				  </div>
 			  </div>
 			  <!-- /.login-box-body -->
-				<center class="container-fluid"><a href="<?php echo base_url('/'); ?>"><img src="<?php echo base_url('/'); ?>assets/front/assets/img/logo.png" /></a></center>
+				<center class="container-fluid"><a href="<?php echo base_url('/'); ?>"><img src="<?php echo base_url('/'); ?>assets/dashboard/images/logo.png" /></a></center>
 				<br>
 		  </div>
 	  </div>

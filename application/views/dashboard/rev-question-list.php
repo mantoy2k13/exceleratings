@@ -53,21 +53,23 @@
 						//	pre($q_r_avg);
 						?>
 							<li class="list-group-item <?php echo $inactClass; ?>">
-								<i class="fa fa-arrows fa-lg float-left qShorting" aria-hidden="true"></i> 
-								<h3 class="q_qnt float-left"><span class="border border-white"><?php echo $q_k * 1 +1; ?></span></h3>
 								<span class="act float-right">
 									<button data-qid="<?php echo  $q_v->qid; ?>" data-toggle="modal" data-target="#qusEditForm" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" title="">
 									<i class="fa fa-fw fa-lg fa-eye"></i> / <i class="fa fa-fw fa-lg fa-edit"></i></button> &nbsp; 
 									<button type="button" class="btn btn-outline-secondary btn-sm toremove" data-toggle="tooltip" data-id="<?php echo $q_v->qid; ?>">
 									<i class="fa fa-fw fa-lg fa-close"></i></button>
 								</span>
-								<b class="qs"><?php echo $q_v->question; ?></b><br>
-								<?php echo $answer_option . '<span class="ans" hidden>'. $q_v->answer_option .'</span>'; ?> &nbsp; | &nbsp; <?php echo $status . '<span class="sts" hidden>'. $q_v->status .'</span>'; ?> 
+								<i class="fa fa-arrows fa-lg float-left qShorting" aria-hidden="true"></i> 
+								<h4 class="q_qnt float-left"><span class="border border-white"><?php echo $q_k * 1 +1; ?></span><b class="qs"><?php echo $q_v->question; ?></b></h4>
+								<div class="clearfix"></div>
 								<div class="row">
-									<div class="col-md-6">
+									<div class="col-md-1"></div>
+									<div class="col-md-5">
 										 <canvas id="chart_<?=$q_v->qid?>" class="question_graph" style=""></canvas>
 									</div>
 									<div class="col-md-6">
+										<?php echo $answer_option . '<span class="ans" hidden>'. $q_v->answer_option .'</span>'; ?> &nbsp; | &nbsp; <?php echo $status . '<span class="sts" hidden>'. $q_v->status .'</span>'; ?> 
+										<hr>
 										Average: 
 										<div class="progress average_progress" style="height: 40px;font-weight: bold;font-size: 1.3em;">
 										  <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: <?=$q_r_avg?>%" aria-valuenow="<?=$q_r_avg?>" aria-valuemin="0" aria-valuemax="100"><?=round($q_r_avg,1)?>%</div>

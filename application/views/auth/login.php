@@ -4,7 +4,7 @@
 	  <!-- /.login-logo -->
 	  <div class="login-content">
 		  <div class="login-form">
-			  <div class="card wow bounceInUp">
+			  <div class="card wow flipInX">
 			 
 				  <div class="card-body">
 					 <h4 class="login-box-msg"><strong>Sign In</strong> to start your session</h4>
@@ -34,7 +34,7 @@
 				  </div>
 			  </div>
 			  <!-- /.login-box-body -->
-				<center class="container-fluid"><a href="<?php echo base_url('/'); ?>"><img src="<?php echo base_url('/'); ?>assets/front/assets/img/logo.png" /></a></center>
+				<center class="container-fluid"><a href="<?php echo base_url('/'); ?>"><img src="<?php echo base_url('/'); ?>assets/dashboard/images/logo.png" /></a></center>
 				<br>
 		  </div>
 	  </div>

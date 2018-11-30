@@ -10,7 +10,9 @@ class Page extends CI_Controller {
 			$this->session->set_flashdata('error', 'Please login first !!!');
 			redirect('auth/login');
 		 }
-		$this->logedin_usertype = $this->session->userdata('logedin_user')->usertype;
+		$this->load->model('User_model');		
+		$this->logedin_usertype = $this->User_model->user_data_by_id( $this->session->userdata('logedin_user')->id )->usertype;
+		$this->logedin_user = $this->User_model->user_data_by_id( $this->session->userdata('logedin_user')->id );
 		
 		$this->load->model('General_model');
 	//	$this->User_model->user_data_by_id( $this->session->userdata('logedin_user')->id )->usertype;

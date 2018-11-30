@@ -1,4 +1,4 @@
-<?php $this->load->view('admin/header'); ?>
+<?php $this->load->view('dashboard/header'); ?>
 
         <div class="content pb-0">
 
@@ -543,4 +543,4 @@
     </div><!-- /#right-panel -->
 
 
-<?php $this->load->view('admin/footer'); ?>
+<?php $this->load->view('dashboard/footer'); ?>

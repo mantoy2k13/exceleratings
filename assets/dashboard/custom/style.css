@@ -423,18 +423,21 @@ footer p {
 	visibility: visible;
 }
 .question_list li .q_qnt{
+	background: rgba(0,0,0,0.5);
     margin-right: 10px;
     padding: 10px;
+	 
 }
 .question_list li .q_qnt span{
-	padding: 10px;
+		float: left;
+	padding: 7px 10px;
 	cursor: move;
 }
 .question_list li .qShorting{
 	cursor: move;
 }
 .question_list .qs{
-	background: rgba(0,0,0,0.5);
+    font-size: 0.8em;
 	padding: 5px 10px;
 }
 .question_list .ui-sortable-placeholder{
@@ -476,7 +479,27 @@ box-shadow: inset 24px 0px 14px -16px rgba(0,0,0,0.38);
  */
 
 
-
+@media (max-width:600px)  {
+	
+	.question_list li .act{
+		visibility: visible;
+		display: block;
+		width: 100%;
+		margin-bottom: 10px;
+		text-align: right;
+	}
+	.question_list .q_qnt {
+		display: block;
+		clear: both;
+	}
+	.question_list li .q_qnt span{
+		float: left;
+	}
+	.question_list li .qShorting{
+		position: absolute;
+		top: 20px;
+	}
+}
 
 
 

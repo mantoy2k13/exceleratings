@@ -50,18 +50,22 @@ class Auth extends CI_Controller
 	
 	public function registration()
 	{
-		if( isset($_POST['register']) ){
-			$this->form_validation->set_rules('username','UserName','required');
+	//	prex($this->input->post);
+		if( $this->input->post('submitForm') == 'register' ){
+		//	prex($this->input->post());
+			$this->form_validation->set_rules('username','UserName','required|is_unique[users.username]');
 			$this->form_validation->set_rules('email','Email','required');
-			$this->form_validation->set_rules('password','Password','required|min_length[4]');
-			$this->form_validation->set_rules('conf_password','Confarm Password','required|min_length[4]|matches[password]');
+			$this->form_validation->set_rules('password','Password','required|min_length[3]');
+			$this->form_validation->set_rules('conf_password','Confarm Password','required|min_length[3]|matches[password]');
 			
 			if( $this->form_validation->run() == TRUE ){
 				
 				$data = array(
 					'username' => $_POST['username'],
 					'email' => $_POST['email'],
-					'password' => md5($_POST['password'])
+					'password' => md5($_POST['password']),
+					'usertype' => 'generaluser',
+					'subs_package_slug' => 'free'
 				);
 				$this->db->insert('users', $data);
 				

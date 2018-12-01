@@ -22,6 +22,12 @@
 							<div class="alert alert-success" role="alert"><?php echo $this->session->flashdata('success'); ?></div>
 						</div>
 					<?php } ?>
+					<?php if( $this->session->flashdata('error') ){ ?>
+						<div class="container-fluid">
+							<div class="alert alert-danger" role="alert"><?php echo $this->session->flashdata('error'); ?></div>
+						</div>
+					<?php } ?>
+											
 					<div class="card-body wow bounceInRight" id="cat_add_form">
 						
 					  <div class="form-group">

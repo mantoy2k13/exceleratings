@@ -206,7 +206,9 @@ aside.left-panel{
 .right-panel {
     margin-left: 250px;
 }
-
+.form-control:disabled, .form-control[readonly] {
+	background-color: #223742a1;
+}
 .form-control{
 	border-radius: 0.1rem;
 	color: #fff;
@@ -401,6 +403,9 @@ footer p {
 }
 .alert-warning * {
     color: #856404;
+}
+.alert-info * {
+	color: #0c5460;
 }
 .modal-header {
     border-bottom: 1px solid rgba(0,0,0,.12);

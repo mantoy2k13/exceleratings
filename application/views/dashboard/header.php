@@ -140,7 +140,6 @@
         #cellPaiChart{
             height: 160px;
         }
-
     </style>
 
 	<script type="text/javascript">
@@ -149,28 +148,29 @@
 </head>
 <body>
 
-    <!-- Left Panel --> 
-    <aside id="left-panel" class="left-panel">
-        <nav class="navbar navbar-expand-sm navbar-default"> 
-            <div id="main-menu" class="main-menu collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li class="<?=$menuitem4 == 'home' ? 'active':''?>">
-                        <a href="<?php echo base_url('dashboard/page'); ?>"><i class="menu-icon fa fa-laptop"></i>Dashboard Home</a>
-                    </li>
-                    <li class="menu-title"> --- </li><!-- /.menu-title -->
-                    
-						  <li class="<?=$menuitem4 == 'rev_questions' ? 'active':''?>"><a href="<?php echo base_url('dashboard/settings/rev_questions'); ?>"><i class="menu-icon fa fa-wrench"></i> <span> Question Settings</span></a></li>
-						  <li class="<?=$menuitem4 == 'rev_question_add' ? 'active':''?>"><a href="<?php echo base_url('dashboard/settings/rev_question_add'); ?>"><i class="menu-icon fa fa-plus"></i> <span> Add Question</span></a></li>
-						  <li class="<?=$menuitem4 == 'notification_contacts' ? 'active':''?>"><a href="<?php echo base_url('dashboard/settings/notification_contacts'); ?>"><i class="menu-icon fa fa-users"></i> <span>Notification contacts</span></a></li>
-						  <li class="<?=$menuitem4 == 'plan_subscription' ? 'active':''?>"><a href="<?php echo base_url('dashboard/page/plan_subscription'); ?>"><i class="menu-icon fa fa-bars"></i> <span>Plan Subscription</span></a></li>
-                    <li class="menu-title"> --- </li><!-- /.menu-title -->
-						  <li><a href="<?php echo base_url('auth/logout'); ?>"><i class="menu-icon fa fa-sign-out"></i> <span>LogOut</span></a></li>
-						 
-                </ul>
-            </div><!-- /.navbar-collapse -->
-        </nav>
-    </aside><!-- /#left-panel --> 
-    <!-- Left Panel -->
+	<!-- Left Panel --> 
+	<aside id="left-panel" class="left-panel">
+	  <nav class="navbar navbar-expand-sm navbar-default"> 
+			<div id="main-menu" class="main-menu collapse navbar-collapse">
+				 <ul class="nav navbar-nav">
+					<li class="<?=$menuitem4 == 'home' ? 'active':''?>">
+						<a href="<?php echo base_url('dashboard/page'); ?>"><i class="menu-icon fa fa-laptop"></i>Dashboard Home</a>
+					</li>
+					<li class="menu-title"> --- </li><!-- /.menu-title -->
+
+					<li class="<?=$menuitem4 == 'rev_questions' ? 'active':''?>"><a href="<?php echo base_url('dashboard/settings/rev_questions'); ?>"><i class="menu-icon fa fa-wrench"></i> <span> Question Settings</span></a></li>
+					<li class="<?=$menuitem4 == 'rev_question_add' ? 'active':''?>"><a href="<?php echo base_url('dashboard/settings/rev_question_add'); ?>"><i class="menu-icon fa fa-plus"></i> <span> Add Question</span></a></li>
+					<li class="<?=$menuitem4 == 'notification_contacts' ? 'active':''?>"><a href="<?php echo base_url('dashboard/settings/notification_contacts'); ?>"><i class="menu-icon fa fa-users"></i> <span>Notification contacts</span></a></li>
+						
+					<li class="<?=$menuitem4 == 'plan_subscription' ? 'active':''?>"><a href="<?php echo base_url('dashboard/page/plan_subscription'); ?>"><i class="menu-icon fa fa-bars"></i> <span>Plan Subscription</span></a></li>
+					<li class="menu-title"> --- </li><!-- /.menu-title -->
+					<li class="<?=$menuitem4 == 'profile' ? 'active':''?>"><a href="<?php echo base_url('dashboard/settings/profile'); ?>"><i class="menu-icon fa fa-user"></i> <span>Profile</span></a></li>
+					<li><a href="<?php echo base_url('auth/logout'); ?>"><i class="menu-icon fa fa-sign-out"></i> <span>LogOut</span></a></li>
+				 </ul>
+			</div><!-- /.navbar-collapse -->
+	  </nav>
+	</aside><!-- /#left-panel --> 
+	<!-- Left Panel -->
 
     <!-- Right Panel --> 
     <div id="right-panel" class="right-panel">

@@ -36,6 +36,24 @@ jQuery(function ($) {
 	}
 	toAjaxRemove(base_url + "dashboard/settings/remove_qs_item");
 	
+
+	function readURL(input) {
+
+	  if (input.files && input.files[0]) {
+		var reader = new FileReader();
+
+		reader.onload = function(e) {
+		  $(input).closest('div').find('.actions_prev').html('<img src="'+ e.target.result +'" class="img-thumbnail"/>');
+		}
+
+		reader.readAsDataURL(input.files[0]);
+	  }
+	}
+
+	$(".media_upload_prev").change(function() {
+		readURL(this);
+	});
+		
 	
 	function qShortingSave(sData){
 		

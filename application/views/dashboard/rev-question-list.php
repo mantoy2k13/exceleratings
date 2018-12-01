@@ -64,12 +64,14 @@
 								<div class="clearfix"></div>
 								<div class="row">
 									<div class="col-md-1"></div>
-									<div class="col-md-5">
-										 <canvas id="chart_<?=$q_v->qid?>" class="question_graph" style=""></canvas>
+									<div class="col-md-5" >
+										 <div class="collapse collapse-in" id="tg_<?=$q_v->qid?>" style="height: 200px;"><canvas id="chart_<?=$q_v->qid?>" class="question_graph" style=""></canvas></div>
+										 <button class="btn btn-sm btn-dark float-right" type="button" data-toggle="collapse" data-target="#tg_<?=$q_v->qid?>" aria-expanded="false" aria-controls="collapseExample"> View graph </button>
 									</div>
 									<div class="col-md-6">
+										
 										<?php echo $answer_option . '<span class="ans" hidden>'. $q_v->answer_option .'</span>'; ?> &nbsp; | &nbsp; <?php echo $status . '<span class="sts" hidden>'. $q_v->status .'</span>'; ?> 
-										<hr>
+										
 										Average: 
 										<div class="progress average_progress" style="height: 40px;font-weight: bold;font-size: 1.3em;">
 										  <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: <?=$q_r_avg?>%" aria-valuenow="<?=$q_r_avg?>" aria-valuemin="0" aria-valuemax="100"><?=round($q_r_avg,1)?>%</div>

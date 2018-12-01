@@ -1,5 +1,20 @@
 <?php $this->load->view('dashboard/header'); ?>
+<script src="https://js.braintreegateway.com/web/dropin/1.11.0/js/dropin.min.js"></script>
+<?php
 
+//	To Payment ####################################
+// Initiate the Braintree
+$gateway = new Braintree_Gateway([
+    'environment' => 'sandbox',
+    'merchantId' => '5288gkfmzrh7bzyp',
+    'publicKey' => '37r7jyjnqn7hv4tg',
+    'privateKey' => 'c41d6f73d3797f59b8e138ad0fe2a8df'
+]);
+
+// get the client token
+$clientToken = $gateway->clientToken()->generate();
+
+?>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     
@@ -23,23 +38,45 @@
 						</div>
 					<?php } ?>
 					<div class="card-body" id="cat_add_form">
-						
+						<?php 
+							$selected_plan = '';
+							if( isset($_GET['plan']) ){ 
+								$selected_plan = $_GET['plan'];
+							} 
+							
+							if( $selected_plan == 'silver' ){
+								$setup_fee = 999;
+								$service_fee_month2month = 129;
+								$service_fee_yearcotract = 0;
+								$additional_services = 250;
+							}elseif( $selected_plan == 'gold' ){
+								$setup_fee = 1799;
+								$service_fee_month2month = 129;
+								$service_fee_yearcotract = 0;
+								$additional_services = 250;
+							}else{
+								$setup_fee = 0;
+								$service_fee_month2month = 0;
+								$service_fee_yearcotract =0 ;
+								$additional_services = 0;
+							}
+						?>
 						<form>
 						  <div class="row wow bounceInRight">
 								<div class="btn" data-toggle="buttons">
 									<div class="btn-group">
-										<label class="btn btn-info" title="Anser get by Yes/No options">
-											<input type="radio" value="yes_no" name="answer_option" id="option1" > 
+										<label class="btn btn-info <?=$selected_plan == 'basic' ? 'active' : ''?>" title="Anser get by Yes/No options">
+											<input type="radio" value="free" name="answer_option" id="option1" <?php if( $selected_plan == 'basic' ){ echo 'checked'; } ?>> 
 											Basic Plan
 										</label>
 									
-										<label class="btn btn-info" title="Answer get by 1 to 10 reviewing options">
-											<input type="radio" value="rev_1_10" name="answer_option" id="option3" >
+										<label class="btn btn-info <?=$selected_plan == 'silver' ? 'active' : ''?>" title="Answer get by 1 to 10 reviewing options">
+											<input type="radio" value="silver" name="answer_option" id="option3" <?php if( $selected_plan == 'silver' ){ echo 'checked'; } ?>>
 											Basic Plus Plan (Silver)
 										</label>
 									
-										<label class="btn btn-info" title="Answer get by 1 to 10 reviewing options">
-											<input type="radio" value="rev_1_10" name="answer_option" id="option3" >
+										<label class="btn btn-info <?=$selected_plan == 'gold' ? 'active' : ''?>" title="Answer get by 1 to 10 reviewing options">
+											<input type="radio" value="gold" name="answer_option" id="option3" <?php if( $selected_plan == 'gold' ){ echo 'checked'; } ?>>
 											Premium Plan (Golden)
 										</label>
 									</div>
@@ -119,38 +156,32 @@
 							</div>
 							<div class="form-group wow bounceInRight">
 								<label for="inputAddress">Choose your preferred review site:</label>
-
-								<div class="row" >
-									<div class="btn" data-toggle="buttons">
-										<div class="btn-group">
-											<label class="btn btn-sm btn-info" title="Anser get by Yes/No options">
-												<input type="radio" value="yes_no" name="answer_option" id="option1" > 
-												Yelp
-											</label>
-										
-											<label class="btn btn-sm btn-info" title="Answer get by 1 to 10 reviewing options">
-												<input type="radio" value="rev_1_10" name="answer_option" id="option3" >
-												Facebook
-											</label>
-											<label class="btn btn-sm btn-info" title="Answer get by 1 to 10 reviewing options">
-												<input type="radio" value="rev_1_10" name="answer_option" id="option3" >
-												Urban Spoon
-											</label>
-											<label class="btn btn-sm btn-info" title="Answer get by 1 to 10 reviewing options">
-												<input type="radio" value="rev_1_10" name="answer_option" id="option3" >
-												Google+
-											</label>
-											<label class="btn btn-sm btn-info" title="Answer get by 1 to 10 reviewing options">
-												<input type="radio" value="rev_1_10" name="answer_option" id="option3" >
-												Trip Advisor
-											</label>
-											<label class="btn btn-sm btn-info" title="Answer get by 1 to 10 reviewing options">
-												<input type="radio" value="rev_1_10" name="answer_option" id="option3" >
-												City Search
-											</label>
-										</div>
+									<br>
+								
+									<div class="custom-control custom-checkbox custom-control-inline">
+									  <input type="checkbox" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
+									  <label class="custom-control-label" for="customRadioInline1">Yelp</label>
 									</div>
-								</div>
+									<div class="custom-control custom-checkbox custom-control-inline">
+									  <input type="checkbox" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
+									  <label class="custom-control-label" for="customRadioInline2">Facebook</label>
+									</div>
+									<div class="custom-control custom-checkbox custom-control-inline">
+									  <input type="checkbox" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
+									  <label class="custom-control-label" for="customRadioInline2">Urban Spoon</label>
+									</div>
+									<div class="custom-control custom-checkbox custom-control-inline">
+									  <input type="checkbox" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
+									  <label class="custom-control-label" for="customRadioInline2">Google+</label>
+									</div>
+									<div class="custom-control custom-checkbox custom-control-inline">
+									  <input type="checkbox" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
+									  <label class="custom-control-label" for="customRadioInline2">Trip Advisor</label>
+									</div>
+									<div class="custom-control custom-checkbox custom-control-inline">
+									  <input type="checkbox" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
+									  <label class="custom-control-label" for="customRadioInline2">City Search</label>
+									</div>
 							</div>
 							
 
@@ -161,7 +192,7 @@
 									<div class="input-group-prepend">
 										<div class="input-group-text">$</div>
 									</div>
-									<input type="number" class="form-control text-right" id="inputEmail3" placeholder="#">
+									<input type="number" class="form-control text-right" id="inputEmail3" value="<?=$setup_fee?>" placeholder="#" readonly >
 								</div>
 							 </div>
 							 
@@ -171,7 +202,7 @@
 									<div class="input-group-prepend">
 										<div class="input-group-text">$</div>
 									</div>
-									<input type="number" class="form-control text-right" id="inputEmail3" placeholder="#">
+									<input type="number" class="form-control text-right" id="inputEmail3" value="<?=$service_fee_month2month?>" placeholder="#" readonly >
 								</div>
 							 </div>
 							 <label for="inputPassword3" class="col-sm-6 col-form-label">Service fee (year contract):</label>
@@ -180,7 +211,7 @@
 									<div class="input-group-prepend">
 										<div class="input-group-text">$</div>
 									</div>
-									<input type="number" class="form-control text-right" id="inputEmail3" placeholder="#">
+									<input type="number" class="form-control text-right" id="inputEmail3" value="<?=$service_fee_yearcotract?>" placeholder="#" readonly >
 								</div>
 							 </div>
 							 <label for="inputPassword3" class="col-sm-6 col-form-label">Additional services (Tablets, etc):</label>
@@ -189,75 +220,29 @@
 									<div class="input-group-prepend">
 										<div class="input-group-text">$</div>
 									</div>
-									<input type="number" class="form-control text-right" id="inputEmail3" placeholder="#">
+									<input type="number" class="form-control text-right" id="inputEmail3" value="<?=$additional_services?>" placeholder="#" readonly >
 								</div>
 							 </div>
-							 
+							
 							 <label for="inputPassword3" class="col-sm-6 col-form-label font-weight-bold"><br>TOTAL:</label>
 							 <div class="col-sm-6">
 								<div class="input-group">
 									<div class="input-group-prepend">
 										<div class="input-group-text font-weight-bold ">$</div>
 									</div>
-									<input type="number" class="form-control form-control-lg font-weight-bold text-right" id="inputEmail3" placeholder="#">
+									<input type="number" class="form-control form-control-lg font-weight-bold text-right" id="total_amount" placeholder="#" value="<?=$setup_fee + $service_fee_month2month + $service_fee_yearcotract + $additional_services?>" readonly >
 								</div>
 							 </div>
 						  </div>
-							
+						  
 							<h4>Payment Method:</h4>
-							<div class="form-group wow bounceInRight">
-								<label for="inputAddress">Payment to: Excel Marketing Group, LLC </label>
-								<div class="row" >
-									<div class="btn" data-toggle="buttons">
-										<div class="btn-group">
-											<label class="btn btn-sm btn-info" title="Anser get by Yes/No options">
-												<input type="radio" value="yes_no" name="answer_option" id="option1" > 
-												Visa
-												<i class="fa fa-cc-visa" aria-hidden="true"></i>
-											</label>
-										
-											<label class="btn btn-sm btn-info" title="Answer get by 1 to 10 reviewing options">
-												<input type="radio" value="rev_1_10" name="answer_option" id="option3" >
-												Master Card 
-												<i class="fa fa-cc-mastercard" aria-hidden="true"></i>
-											</label>
-											<label class="btn btn-sm btn-info" title="Answer get by 1 to 10 reviewing options">
-												<input type="radio" value="rev_1_10" name="answer_option" id="option3" >
-												Amex
-												<i class="fa fa-cc-amex" aria-hidden="true"></i>
-											</label>
-											<label class="btn btn-sm btn-info" title="Answer get by 1 to 10 reviewing options">
-												<input type="radio" value="rev_1_10" name="answer_option" id="option3" >
-												Paypal
-												<i class="fa fa-cc-paypal" aria-hidden="true"></i>
-											</label>
-										</div>
-									</div>
-								</div>
+							<label for="inputAddress">Payment to: Excel Marketing Group, LLC </label>
+							<div class="bt-drop-in-wrapper">
+								<div id="bt-dropin"></div>
 							</div>
 							
-							<div class="form-group wow bounceInLeft">
-								 <label for="inputAddress">Card #:</label>
-								 <input type="text" class="form-control" id="inputAddress" placeholder="Card #:">
-							</div>
-							<div class="form-row wow bounceInRight">
-								 <div class="form-group col-md-6">
-									<label for="inputPassword4">Expiration Date</label>
-									<input type="text" class="form-control" id="inputPassword4" placeholder="Expiration Date">
-								 </div>
-								 <div class="form-group col-md-6">
-									<label for="inputEmail4">CVV Code (on back)</label>
-									<input type="email" class="form-control" id="inputEmail4" placeholder="CVV Code (on back)">
-								 </div>
-							</div>
-							<div class="form-group wow bounceInLeft">
-								 <label for="inputAddress">Name on card:</label>
-								 <input type="text" class="form-control" id="inputAddress" placeholder="Card #:">
-							</div>
-							<div class="form-group wow bounceInRight">
-								 <label for="inputAddress">Billing Address:</label>
-								 <textarea class="form-control" id="inputAddress" placeholder="Billing Address"></textarea>
-							</div>
+							 <input id="nonce" name="payment_method_nonce" type="hidden" />
+							
 							<hr>
 							<p>Your signature authorizes Excel Marketing, LLC to charge your card for the Set Up Fees, Monthly Service Fees agreed to under the terms of this contract.</p>
 							<hr>
@@ -360,4 +345,50 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+
+<script>
+
+    (function () {
+        var amount = document.querySelector('#total_amount');
+        var amountLabel = document.querySelector('label[for="amount"]');
+
+        amount.addEventListener('focus', function () {
+            amountLabel.className = 'has-focus';
+        }, false);
+        amount.addEventListener('blur', function () {
+            amountLabel.className = '';
+        }, false);
+    })();
+
+    var form = document.querySelector('#payment-form');
+    var client_token = "<?php echo($gateway->ClientToken()->generate()); ?>";
+    braintree.dropin.create({
+        authorization: client_token,
+        selector: '#bt-dropin',
+        paypal: {
+            flow: 'vault'
+        }
+    }, function (createErr, instance) {
+        if (createErr) {
+            console.log('Create Error', createErr);
+            return;
+        }
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            instance.requestPaymentMethod(function (err, payload) {
+                if (err) {
+                    console.log('Request Payment Method Error', err);
+                    return;
+                }
+                // Add the nonce to the form and submit
+                document.querySelector('#nonce').value = payload.nonce;
+                
+                     setTimeout(function(){
+                        form.submit();
+                     }, 1000);
+            });
+        });
+    });
+</script>  
+
 <?php $this->load->view('dashboard/footer'); ?>

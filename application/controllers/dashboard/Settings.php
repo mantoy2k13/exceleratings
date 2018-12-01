@@ -57,9 +57,15 @@ class Settings extends CI_Controller {
 	
 	public function rev_questions( $showReport = null )
 	{
+	//	$session_user = $this->logedin_user;
+		
 		$data['menuitem4'] = 'rev_questions';
+		
 		$this->db->select('*');
 		$this->db->from('rev_questions');
+		if( $this->logedin_user->usertype == 'generaluser' ){
+			$this->db->where('userid', $this->logedin_user->id);
+		}
 		$this->db->order_by('shorting', 'ASC');
 		$this->db->order_by('qid', 'DESC');
 		$data['ques'] = $this->db->get()->result_object();
@@ -71,18 +77,34 @@ class Settings extends CI_Controller {
 	public function rev_question_add()
 	{
 		$data['menuitem4'] = 'rev_question_add';
-		
+	//	$session_user = $this->logedin_user;
+	//	prex($session_user);
 		if( isset($_POST['rev_question_add']) ){
-
-			$question_form = [
-				'question' => $this->input->post('question'),
-				'answer_option' => $this->input->post('answer_option')
-			];
-		  if($this->db->insert('rev_questions', $question_form)){
-				$insert_qid = $this->db->insert_id();
-				$this->session->set_flashdata('success', 'Added new question');
-				redirect('dashboard/settings/rev_questions/');
-		  }
+			
+			$this->form_validation->set_rules('question','Question','required');
+			
+			if( $this->form_validation->run() == TRUE ){
+				
+				$this->db->select('MIN(shorting) as min_shorting');
+				$this->db->from('rev_questions');
+				$get_min_shorting = $this->db->get()->row()->min_shorting;
+				
+			//	prex($get_min_shorting);
+				
+				$question_form = [
+					'question' => $this->input->post('question'),
+					'answer_option' => $this->input->post('answer_option'),
+					'userid' => $this->logedin_user->id,
+					'shorting' => $get_min_shorting - 1
+				];
+				if($this->db->insert('rev_questions', $question_form)){
+					$insert_qid = $this->db->insert_id();
+					$this->session->set_flashdata('success', 'Added new question');
+					redirect('dashboard/settings/rev_questions/');
+				}
+			}else{
+				redirect('dashboard/settings/rev_question_add', $data);
+			}
 		}
 		
 		$this->load->view('dashboard/rev-question-add', $data);
@@ -94,6 +116,9 @@ class Settings extends CI_Controller {
 		
 		$this->db->select('*');
 		$this->db->from('notification_contacts');
+		if( $this->logedin_user->usertype == 'generaluser' ){
+			$this->db->where('userid', $this->logedin_user->id);
+		}
 		$this->db->order_by('id', 'DESC');
 		$data['contacts'] = $this->db->get()->result_object();
 		$data['edit_item'] = '';
@@ -106,13 +131,14 @@ class Settings extends CI_Controller {
 					'title' => $this->input->post('title'),
 					'email' => $this->input->post('email'),
 					'phone' => $this->input->post('phone'),
+					'userid' => $this->logedin_user->id,
 					'status' => 1
 				];
-			  if($this->db->insert('notification_contacts', $contact2add)){
+				if($this->db->insert('notification_contacts', $contact2add)){
 					$insert_qid = $this->db->insert_id();
 					$this->session->set_flashdata('success', '<< Added new contact');
 					redirect('dashboard/settings/notification_contacts');
-			  }
+				}
 			}
 		}else{
 			$data['page_env'] = 'edit';
@@ -279,6 +305,143 @@ class Settings extends CI_Controller {
 	}
 	
 	
+
+	public function profile( $uid = null )
+	{
+		$data['menuitem4'] = 'profile';
+	//	prex($this->User_model->user_data_by_id($this->session->userdata('logedin_user')->id));
+		if( $this->logedin_usertype != 'superadmin' ){
+			$uid = null;
+		}
+		
+		if( $uid == null ){
+			$uid = $this->session->userdata('logedin_user')->id;
+		}
+		if( isset($_POST['profile_save']) ) {
+	
+			$proPicUpload = $this->do_upload('profilePic','uploads/profile-pic/');
+		
+			if( isset($proPicUpload['upload_data']) ){
+				$profilePicName = $proPicUpload['upload_data']['file_name'];
+			}else{
+				$profilePicName = '';
+			}
+			//	prex($this->input->post('user_subs'));
+			$toSave1 = [
+				'email' => $this->input->post('email')
+			];
+			
+			if( $this->input->post('user_subs') ){
+				$toSave1['subs_package_slug'] = $this->input->post('user_subs');
+			}
+			
+			if( $this->input->post('usertype') ){
+				$toSave1['usertype'] = $this->input->post('usertype');
+			}
+			
+			$this->db->where('id', $uid);
+			
+			if($this->db->update('users', $toSave1)){
+			//  	prex(4543);
+				$ql = $this->db->select('uid')->from('user_profile')->where('uid',$uid)->get();
+				if( $ql->num_rows() > 0 ){
+					
+				$profilePicName = $this->input->post('profilePic_hid');
+				if($_FILES['profilePic']['name']) {
+					
+					$catImgUpload = $this->do_upload('profilePic','uploads/profile-pic/');
+					
+					if( isset($catImgUpload['upload_data']) ){
+						
+						$profilePicName = $catImgUpload['upload_data']['file_name'];
+						
+						if (is_file('uploads/profile-pic/' . $categories->category_img)){
+							
+							unlink('uploads/profile-pic/' . $categories->category_img);
+						}
+					}
+				}
+					
+					$toSave2 = [
+						'fullname' => $this->input->post('fullname'),
+						'about' => $this->input->post('about'),
+						'profilpic' => $profilePicName
+					];
+					
+					if( $this->input->post('pos_rdr_url_yelp') ){
+						$toSave2['pos_rdr_url_yelp'] = $this->input->post('pos_rdr_url_yelp');
+					}
+					if( $this->input->post('pos_rdr_url_google') ){
+						$toSave2['pos_rdr_url_google'] = $this->input->post('pos_rdr_url_google');
+					}
+					if( $this->input->post('pos_rdr_url_facebook') ){
+						$toSave2['pos_rdr_url_facebook'] = $this->input->post('pos_rdr_url_facebook');
+					}
+					if( $this->input->post('pos_rdr_url_trip_advisor') ){
+						$toSave2['pos_rdr_url_trip_advisor'] = $this->input->post('pos_rdr_url_trip_advisor');
+					}
+					$this->db->where('uid', $uid);
+				  if($this->db->update('user_profile', $toSave2)){
+						
+						$this->session->set_flashdata('success', 'Updated done.');
+						redirect('dashboard/settings/profile/'. $uid);
+				  }
+				}else{
+						
+					$toSave2 = [
+						'uid' => $uid,
+						'fullname' => $this->input->post('fullname'),
+						'about' => $this->input->post('about'),
+						'profilpic' => $profilePicName
+					];
+				  if($this->db->insert('user_profile', $toSave2)){
+						$this->session->set_flashdata('success', 'Updated done.');
+						redirect('dashboard/profile/'. $uid);
+				  }
+				}
+			}
+		}else{
+				
+			$this->db->select('*');
+			$this->db->from('users');
+			$this->db->join('user_profile', 'user_profile.uid = users.id', 'left');
+			$this->db->join('subs_packages', 'subs_packages.spk_slug = users.subs_package_slug', 'left');
+			$this->db->where('users.id', $uid);
+			$profile = $this->db->get()->row();
+		//	prex($this->db->last_query());
+			unset($profile->password);
+			$data['profile'] = $profile;
+		//	prex($profile);
+		
+			$this->db->select('*');
+			$this->db->from('subs_packages');
+			$data['subs'] = $this->db->get()->result_object();
+		
+			$this->load->view('dashboard/profile', $data);
+		}
+	}
+	
+	public function do_upload($fileInputName,$save_location){
+		
+		$config['upload_path']          = $save_location;
+		$config['allowed_types']        = 'gif|jpg|png|mp4';
+		$config['max_size']             = 0;
+
+		$this->load->library('upload', $config);
+
+		if ( ! $this->upload->do_upload($fileInputName))
+		{
+				$error = array('error' => $this->upload->display_errors());
+
+				return $error;
+		}
+		else
+		{
+				$data = array('upload_data' => $this->upload->data());
+
+				return $data;
+		}
+	}
 }
 
 

@@ -41,11 +41,11 @@ class Page extends CI_Controller {
 		
 		
 		
-		if($this->session->userdata('logedin_user')->usertype == 'superadmin'){
+		if($this->logedin_user->usertype == 'superadmin'){
 			
 			$this->load->view('dashboard/home-superadmin', $data);
 		}else{
-			$this->load->view('dashboard/home', $data);
+			$this->load->view('dashboard/plan-subscriptions', $data);
 		}
 	}
 	

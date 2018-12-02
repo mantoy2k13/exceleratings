@@ -51,7 +51,7 @@
 							<?php } ?>
 						<?php }else{ ?>
 								<div class="alert alert-info alert-dismissible fade show" role="alert">
-								  <i><strong><?php if( $profile->usertype == 'generaladmin' ){ echo 'General Admin'; }elseif( $profile->usertype == 'generaluser' ){ echo 'General User'; }?></strong></i>
+								  <i><strong><?php if( $profile->usertype == 'generaladmin' ){ echo 'General Admin'; }elseif( $profile->usertype == 'generaluser' ){ echo 'General User'; }?></strong> <small>(User type)</small></i>
 								</div>
 							<?php } ?>
 							<hr>

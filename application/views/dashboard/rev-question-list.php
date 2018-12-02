@@ -63,8 +63,8 @@
 								<h4 class="q_qnt float-left"><span class="border border-white"><?php echo $q_k * 1 +1; ?></span><b class="qs"><?php echo $q_v->question; ?></b></h4>
 								<div class="clearfix"></div>
 								<div class="row">
-									<div class="col-md-1"></div>
-									<div class="col-md-5" >
+									<div class="col-md-6" >
+										<br>
 										 <div class="collapse collapse-in" id="tg_<?=$q_v->qid?>" style="height: 200px;"><canvas id="chart_<?=$q_v->qid?>" class="question_graph" style=""></canvas></div>
 										 <button class="btn btn-sm btn-dark float-right" type="button" data-toggle="collapse" data-target="#tg_<?=$q_v->qid?>" aria-expanded="false" aria-controls="collapseExample"> View graph </button>
 									</div>

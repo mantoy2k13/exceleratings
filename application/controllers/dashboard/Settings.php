@@ -77,6 +77,7 @@ class Settings extends CI_Controller {
 	public function rev_question_add()
 	{
 		$data['menuitem4'] = 'rev_question_add';
+		$data['profile'] = $this->General_model->get_user_data($this->logedin_user->id);
 	//	$session_user = $this->logedin_user;
 	//	prex($session_user);
 		if( isset($_POST['rev_question_add']) ){
@@ -442,6 +443,8 @@ class Settings extends CI_Controller {
 				return $data;
 		}
 	}
+	
+	
 }
 
 

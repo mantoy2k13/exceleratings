@@ -86,6 +86,11 @@
 				
 				ratingPercentage = ratingPercentage.toFixed(1);
 				ratingPercentage = parseFloat(ratingPercentage);
+				if( ratingPercentage > 0 ){
+					$('#nav_rev_count_show').show();
+				}else{
+					$('#nav_rev_count_show').hide();
+				}
 				$('.total_rev_plus').val(ratingPercentage + '%');
 				console.log('===');
 				rev = 0;

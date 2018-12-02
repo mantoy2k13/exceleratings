@@ -272,6 +272,9 @@ input[type="file"].form-control{
 .col_6_center td:nth-child(6){
 	text-align: center;
 }
+.braintree-toggle span {
+   color: #000;
+}
 .img-thumbnail {
     padding: 0.15rem;
     background-color: #ffffff6b;

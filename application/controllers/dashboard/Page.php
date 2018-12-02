@@ -23,12 +23,20 @@ class Page extends CI_Controller {
 	{
 		$data['menuitem4'] = 'home';
 		
+		$this->db->select('*');
+		$this->db->from('subs_packages');
+		$data['subs'] = $this->db->get()->result_object();
+		
 		$data['overall_avr_rating'] = $this->General_model->get_overall_avr_rating();
+		$data['profile'] = $this->General_model->get_user_data($this->session->userdata('logedin_user')->id);
 	//	pre(date('Y-m-d', strtotime('-2 months')));
 	//	prex($this->General_model->get_overall_avr_rating('2018-10-10'));
 		
 		$this->db->select('*');
 		$this->db->from('reviews');
+		if($this->logedin_user->usertype == 'generaluser'){
+			$this->db->where('for_uid',$this->logedin_user->id);
+		}
 		$data['total_rating_item'] = count($this->db->get()->result_object());
 		$data['total_rating_item4chart'] = $this->General_model->get_overall_avr_rating_ind();
 		
@@ -36,6 +44,9 @@ class Page extends CI_Controller {
 
 		$this->db->select('*');
 		$this->db->from('rev_questions');
+		if($this->logedin_user->usertype == 'generaluser'){
+			$this->db->where('userid',$this->logedin_user->id);
+		}
 		$this->db->order_by('shorting', 'ASC');
 		$data['ques'] = $this->db->get()->result_object();
 		
@@ -45,7 +56,7 @@ class Page extends CI_Controller {
 			
 			$this->load->view('dashboard/home-superadmin', $data);
 		}else{
-			$this->load->view('dashboard/plan-subscriptions', $data);
+			$this->load->view('dashboard/home-superadmin', $data);
 		}
 	}
 	
@@ -85,13 +96,63 @@ class Page extends CI_Controller {
 	public function plan_subscription(){
 		
 		$data['menuitem4'] = 'plan_subscription';
-		
+		/* 
+		$uid = $this->session->userdata('logedin_user')->id;
+		$data['profile'] = $this->General_model->get_user_data($uid);
+		 */
 		$this->load->view('dashboard/plan-subscriptions', $data);
 	}
 	public function plan_subscription_form(){
 		
 		$data['menuitem4'] = 'plan_subscription';
+		$uid = $this->session->userdata('logedin_user')->id;
 		
+		$data['profile'] = $this->General_model->get_user_data($uid);
+		
+		if( $this->input->post() ){
+			
+			$enroll_data = [
+				'fullname' => $this->input->post('fullname'),
+				'fullname_contact' => $this->input->post('fullname_contact'),
+				'phone' => $this->input->post('phone'),
+				'alt_name_client_contact' => $this->input->post('alt_name_client_contact'),
+				'alt_phone' => $this->input->post('alt_phone'),
+				'alt_email' => $this->input->post('alt_email'),
+				'tablet_needed' => $this->input->post('tablet_needed'),
+				'tablet_so_how_many' => $this->input->post('tablet_so_how_many'),
+				'service_location' => $this->input->post('service_location'),
+				'start_date_of_contract' => $this->input->post('start_date_of_contract'),
+				'pos_rdr_url_yelp' => $this->input->post('pos_rdr_url_yelp'),
+				'pos_rdr_url_google' => $this->input->post('pos_rdr_url_google'),
+				'pos_rdr_url_facebook' => $this->input->post('pos_rdr_url_facebook'),
+				'pos_rdr_url_trip_advisor' => $this->input->post('pos_rdr_url_trip_advisor'),
+				'pos_rdr_url_urban_spoon' => $this->input->post('pos_rdr_url_urban_spoon'),
+				'pos_rdr_url_city_search' => $this->input->post('pos_rdr_url_city_search')
+			];
+			
+			$this->db->select('*');
+			$this->db->from('user_profile');
+			$this->db->where('uid', $uid);
+			
+			if($this->db->get()->row()){ // Checking if user row found in user_profile table
+				
+				$this->db->where('uid', $uid);
+				if( $this->db->update('user_profile', $enroll_data) ){
+					$this->db->where('id', $uid);
+					$this->db->update('users', ['subs_package_slug'=>$this->input->post('subs_package_slug')]);
+					redirect('dashboard/settings/profile');
+				}
+				
+			}else{
+				$enroll_data['uid'] = $uid;
+				if( $this->db->insert('user_profile', $enroll_data) ){
+					$this->db->where('id', $uid);
+					$this->db->update('users', ['subs_package_slug'=>$this->input->post('subs_package_slug')]);
+					redirect('dashboard/settings/profile');
+				}
+			}
+		exit;
+		}
 		$this->load->view('dashboard/plan-subscriptions-form', $data);
 	}
 	
@@ -99,6 +160,9 @@ class Page extends CI_Controller {
 	{
 		$this->db->select('*');
 		$this->db->from('reviews');
+		if($this->logedin_user->usertype == 'generaluser'){
+			$this->db->where('for_uid',$this->logedin_user->id);
+		}
 		$this->db->order_by('id', 'DESC');
 		$reviews = $this->db->get();
 		

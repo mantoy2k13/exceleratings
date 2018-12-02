@@ -13,6 +13,17 @@ class General_model extends CI_Model {
 	//	$this->load->view('welcome_message');
 	}
 	
+	public function get_user_data($uid){
+
+		$this->db->select('*');
+		$this->db->from('users');
+		$this->db->join('user_profile', 'user_profile.uid = users.id', 'left');
+		$this->db->join('subs_packages', 'subs_packages.spk_slug = users.subs_package_slug', 'left');
+		$this->db->where('users.id', $uid);
+		
+		return $this->db->get()->row();
+	}
+		
 	public function get_note_contacts(){
 
 		$this->db->select('*');
@@ -62,6 +73,11 @@ class General_model extends CI_Model {
 		
 		$this->db->select('*');
 		$this->db->from('reviews');
+		if($this->logedin_user->usertype == 'generaluser'){
+			
+			$this->db->where('for_uid',$this->logedin_user->id);
+		}
+		
 		if( $from != null ){
 			$this->db->where('inserted_at >',$from);
 		}
@@ -87,6 +103,9 @@ class General_model extends CI_Model {
 
 		$this->db->select('*');
 		$this->db->from('reviews');
+		if($this->logedin_user->usertype == 'generaluser'){
+			$this->db->where('for_uid',$this->logedin_user->id);
+		}
 		$first_rating = $this->db->get()->result_object();
 		$all_ratings_total = 0;
 		$count_total_ret_item = count($first_rating);

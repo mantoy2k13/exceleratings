@@ -5,8 +5,12 @@ class Front extends CI_Controller {
 
 	function __construct() {
        parent::__construct();
-		 
+	//	prex($this->session->userdata('logedin_user'));
+		$this->load->model('User_model');
 		$this->load->model('General_model');
+		if($this->session->userdata('logedin_user')){
+		$this->logedin_user = $this->User_model->user_data_by_id( $this->session->userdata('logedin_user')->id );
+		}
 	}
 	public function index()
 	{
@@ -15,14 +19,27 @@ class Front extends CI_Controller {
 	
 	public function review()
 	{
+		if( !$this->session->userdata('logedin_user') ){
+			redirect('auth/login');
+		}
 		$this->db->select('*');
 		$this->db->from('rev_questions');
 		$this->db->where('status', 1);
+		$this->db->where('userid', $this->session->userdata('logedin_user')->id);
 		$this->db->order_by('shorting', 'ASC');
 		$this->db->order_by('qid', 'DESC');
 		$data['ques'] = $this->db->get()->result_object();
 		
 		$this->load->view('front/review', $data);
+	}
+	
+	public function good_review()
+	{
+		if( !$this->session->userdata('logedin_user') ){
+			redirect('auth/login');
+		}
+		$data['profile'] = $this->General_model->get_user_data($this->logedin_user->id);
+		$this->load->view('front/good-review', $data);
 	}
 	
 	public function enrollment(){
@@ -58,6 +75,7 @@ class Front extends CI_Controller {
 			$cur_datetime = date("Y-m-d H:i:s");
 		//	prex($this->input->post());
 			$raringToSave = [
+				'for_uid' => $this->logedin_user->id,
 				'first_rating' => $this->input->post('first_rating'),
 				'firstname' => $this->input->post('c_firstname'),
 				'lastname' => $this->input->post('c_lastname'),
@@ -89,7 +107,8 @@ class Front extends CI_Controller {
 			
 				if( str_replace('%','',$this->input->post('total_rev_plus')) * 1 > 69 ){
 					$this->session->set_flashdata('review70up', true);
-					$this->session->set_flashdata('success', 'Thanks for your rating, Please review us also on Yelp and Google review page. ');
+				//	$this->session->set_flashdata('success', 'Thanks for your rating, Please review us also on Yelp and Google review page. ');
+					redirect(base_url('front/good_review'));
 				}else{
 					
 					$emailContent = '';

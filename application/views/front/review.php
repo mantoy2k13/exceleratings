@@ -10,7 +10,7 @@
 						<h2 class="module-title font-alt"><?php echo $this->session->flashdata('success'); ?></h2>
 						<?php if( $this->session->flashdata('review70up') ){ ?>
 							<center>
-							<a href="#"><img src="https://s3-media3.fl.yelpcdn.com/assets/srv0/yelp_design_web/b085a608c15f/assets/img/logos_homepage/default.png" class="img-thumbnail"></a>
+							<a href="#"><img src="https://s3-media3.fl.yelpcdn.com/assets/srv0/yelp_design_web/b085a608c15f/assets/img/logos_homepage/default.png" class="img-thumbnail" style=""></a>
 							<a href="#"><img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" class="img-thumbnail"></a>
 							</center>
 						<?php } ?>

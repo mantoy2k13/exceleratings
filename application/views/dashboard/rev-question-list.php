@@ -66,7 +66,7 @@
 									<div class="col-md-6" >
 										<br>
 										 <div class="collapse collapse-in" id="tg_<?=$q_v->qid?>" style="height: 200px;"><canvas id="chart_<?=$q_v->qid?>" class="question_graph" style=""></canvas></div>
-										 <button class="btn btn-sm btn-dark float-right" type="button" data-toggle="collapse" data-target="#tg_<?=$q_v->qid?>" aria-expanded="false" aria-controls="collapseExample"> View graph </button>
+										 <button class="btn btn-sm btn-dark float-right view_graph" type="button" data-toggle="collapse" data-target="#tg_<?=$q_v->qid?>" aria-expanded="false" aria-controls="collapseExample"> Show Graph </button>
 									</div>
 									<div class="col-md-6">
 										

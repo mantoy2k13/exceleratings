@@ -356,10 +356,6 @@ class Settings extends CI_Controller {
 						
 						$profilePicName = $catImgUpload['upload_data']['file_name'];
 						
-						if (is_file('uploads/profile-pic/' . $categories->category_img)){
-							
-							unlink('uploads/profile-pic/' . $categories->category_img);
-						}
 					}
 				}
 					

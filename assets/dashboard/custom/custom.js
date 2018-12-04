@@ -173,7 +173,15 @@ jQuery(function ($) {
 		} );
 	}
 	load_all_revs();
-	
+	   	
+   $('.collapse').on('shown.bs.collapse', function () {
+      $(this).closest('.row').find('.view_graph').text(" Hide Graph ");
+   });
+
+   $('.collapse').on('hidden.bs.collapse', function () {
+     $(this).closest('.row').find('.view_graph').text(" Show Graph ");
+   });
+
 });
 
 

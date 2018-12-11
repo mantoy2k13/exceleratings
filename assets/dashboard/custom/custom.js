@@ -58,7 +58,7 @@ jQuery(function ($) {
 	function qShortingSave(sData){
 		
 		console.log(base_url + "dashboard/settings/qShortingSave");
-		console.log( 11111 );
+	//	console.log( 11111 );
 		 
 		$.ajax({
 			 type: "POST",
@@ -67,14 +67,14 @@ jQuery(function ($) {
 			 success: function(response) {
 					
 					console.log(response);
-					console.log( 22222 );
+				//	console.log( 22222 );
 			 },
 			 error: function(jqXHR, textStatus, errorThrown) {
-					console.log( 333333 );
+				//	console.log( 333333 );
 					console.log(jqXHR);
 					console.log(textStatus);
 					console.log(errorThrown);
-					console.log( 44444 );
+				//	console.log( 44444 );
 			 }
 		}); 
 	}

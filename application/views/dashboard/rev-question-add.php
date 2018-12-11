@@ -8,7 +8,7 @@
 
 	<?php 
 	//	pre($this->logedin_user->subs_package_slug);
-		if( $this->logedin_user->subs_package_slug == 'silver' || $this->logedin_user->subs_package_slug == 'gold' ){ ?>
+		if( $this->logedin_user->subs_package_slug == 'silver' || $this->logedin_user->subs_package_slug == 'gold' || $this->logedin_user->usertype == 'superadmin' ){ ?>
       <div class="row">
         <!-- left column -->
         <div class="col-md-9">

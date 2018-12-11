@@ -184,102 +184,102 @@ class General_model extends CI_Model {
 			switch ( true ) {
 				 case $overall_avr_rating <= 10 :
 					$ret .= '
-					 <i class="fa fa-star-half-o" aria-hidden="true"></i>
-					 <i class="fa fa-star-o" aria-hidden="true"></i>
-					 <i class="fa fa-star-o" aria-hidden="true"></i>
-					 <i class="fa fa-star-o" aria-hidden="true"></i>
-					 <i class="fa fa-star-o" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star-half-o" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star-o" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star-o" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star-o" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star-o" aria-hidden="true"></i>
 					';
 					  break;
 				 case $overall_avr_rating <= 20 :
 					$ret .= '
-					 <i class="fa fa-star" aria-hidden="true"></i>
-					 <i class="fa fa-star-o" aria-hidden="true"></i>
-					 <i class="fa fa-star-o" aria-hidden="true"></i>
-					 <i class="fa fa-star-o" aria-hidden="true"></i>
-					 <i class="fa fa-star-o" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star-o" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star-o" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star-o" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star-o" aria-hidden="true"></i>
 					';
 					  break;
 				 case $overall_avr_rating <= 30 :
 					$ret .= '
-					 <i class="fa fa-star" aria-hidden="true"></i>
-					 <i class="fa fa-star-half-o" aria-hidden="true"></i>
-					 <i class="fa fa-star-o" aria-hidden="true"></i>
-					 <i class="fa fa-star-o" aria-hidden="true"></i>
-					 <i class="fa fa-star-o" aria-hidden="true"></i>
-					 <i class="fa fa-star-o" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star-half-o" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star-o" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star-o" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star-o" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star-o" aria-hidden="true"></i>
 					';
 					  break;
 				 case $overall_avr_rating <= 40 :
 					$ret .= '
-					 <i class="fa fa-star" aria-hidden="true"></i>
-					 <i class="fa fa-star" aria-hidden="true"></i>
-					 <i class="fa fa-star-o" aria-hidden="true"></i>
-					 <i class="fa fa-star-o" aria-hidden="true"></i>
-					 <i class="fa fa-star-o" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star-o" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star-o" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star-o" aria-hidden="true"></i>
 					';
 					  break;
 				 case $overall_avr_rating <= 50 :
 					$ret .= '
-					 <i class="fa fa-star" aria-hidden="true"></i>
-					 <i class="fa fa-star" aria-hidden="true"></i>
-					 <i class="fa fa-star-half-o" aria-hidden="true"></i>
-					 <i class="fa fa-star-o" aria-hidden="true"></i>
-					 <i class="fa fa-star-o" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star-half-o" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star-o" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star-o" aria-hidden="true"></i>
 					';
 					  break;
 				 case $overall_avr_rating <= 60 :
 					$ret .= '
-					 <i class="fa fa-star" aria-hidden="true"></i>
-					 <i class="fa fa-star" aria-hidden="true"></i>
-					 <i class="fa fa-star" aria-hidden="true"></i>
-					 <i class="fa fa-star-o" aria-hidden="true"></i>
-					 <i class="fa fa-star-o" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star-o" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star-o" aria-hidden="true"></i>
 					';
 					  break;
 				 case $overall_avr_rating <= 70 :
 					$ret .= '
-					 <i class="fa fa-star" aria-hidden="true"></i>
-					 <i class="fa fa-star" aria-hidden="true"></i>
-					 <i class="fa fa-star" aria-hidden="true"></i>
-					 <i class="fa fa-star-half-o" aria-hidden="true"></i>
-					 <i class="fa fa-star" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star-half-o" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star" aria-hidden="true"></i>
 					';
 					  break;
 				 case $overall_avr_rating <= 80 :
 					$ret .= '
-					 <i class="fa fa-star" aria-hidden="true"></i>
-					 <i class="fa fa-star" aria-hidden="true"></i>
-					 <i class="fa fa-star" aria-hidden="true"></i>
-					 <i class="fa fa-star" aria-hidden="true"></i>
-					 <i class="fa fa-star-o" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star-o" aria-hidden="true"></i>
 					';
 					  break;
 				 case $overall_avr_rating <= 90 :
 					$ret .= '
-					 <i class="fa fa-star" aria-hidden="true"></i>
-					 <i class="fa fa-star" aria-hidden="true"></i>
-					 <i class="fa fa-star" aria-hidden="true"></i>
-					 <i class="fa fa-star" aria-hidden="true"></i>
-					 <i class="fa fa-star-half-o" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star-half-o" aria-hidden="true"></i>
 					';
 					  break;
 				 case $overall_avr_rating <= 100 :
 					$ret .= '
-					 <i class="fa fa-star" aria-hidden="true"></i>
-					 <i class="fa fa-star" aria-hidden="true"></i>
-					 <i class="fa fa-star" aria-hidden="true"></i>
-					 <i class="fa fa-star" aria-hidden="true"></i>
-					 <i class="fa fa-star" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star" aria-hidden="true"></i>
 					';
 					  break;
 				 default:
 					$ret .= '
-					 <i class="fa fa-star-o" aria-hidden="true"></i>
-					 <i class="fa fa-star-o" aria-hidden="true"></i>
-					 <i class="fa fa-star-o" aria-hidden="true"></i>
-					 <i class="fa fa-star-o" aria-hidden="true"></i>
-					 <i class="fa fa-star-o" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star-o" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star-o" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star-o" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star-o" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star-o" aria-hidden="true"></i>
 					';
 			}
 		}

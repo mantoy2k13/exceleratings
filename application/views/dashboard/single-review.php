@@ -28,7 +28,7 @@
 								<h4 class="text-center">Average Rating</h4>
 								<?php if( round($averageRating,1) > 69){ ?> 
 									<div class="progress average_progress" style="height: 25px;font-weight: bold;">
-									  <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: <?=round($averageRating,1)?>%" aria-valuenow="<?=round($averageRating,1)?>" aria-valuemin="0" aria-valuemax="100"><?=round($averageRating,1)?>%</div>
+									  <div class="progress-bar progress-bar-striped bg_xlrting" role="progressbar" style="width: <?=round($averageRating,1)?>%" aria-valuenow="<?=round($averageRating,1)?>" aria-valuemin="0" aria-valuemax="100"><?=round($averageRating,1)?>%</div>
 								<?php }else{ ?>
 									<div class="progress average_progress" style="height: 25px;font-weight: bold;">
 									  <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: <?=round($averageRating,1)?>%" aria-valuenow="<?=round($averageRating,1)?>" aria-valuemin="0" aria-valuemax="100"><?=round($averageRating,1)?>%</div>
@@ -63,7 +63,7 @@
 							<br>
 							<h5 class="text-center">First Rating</h5><br>
 							<div class="progress ind_progress" style="height: 20px;font-weight: bold;">
-							  <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: <?=$revItem->first_rating * 10?>%" aria-valuenow="<?=$revItem->first_rating * 10?>" aria-valuemin="0" aria-valuemax="100"><?=$revItem->first_rating * 10?>%</div>
+							  <div class="progress-bar progress-bar-striped bg_xlrting" role="progressbar" style="width: <?=$revItem->first_rating * 10?>%" aria-valuenow="<?=$revItem->first_rating * 10?>" aria-valuemin="0" aria-valuemax="100"><?=$revItem->first_rating * 10?>%</div>
 							</div>
 							<br>
 						</div>
@@ -83,7 +83,7 @@
 									<b><?php echo $q_k *1 +1; ?>.</b> <?php echo $q_v->question; ?>
 																
 									<div class="progress ind_progress" style="height: 20px;font-weight: bold;">
-									  <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: <?=$q_v->review * 10?>%" aria-valuenow="<?=$q_v->review * 10?>" aria-valuemin="0" aria-valuemax="100"><?=$q_v->review * 10?>%</div>
+									  <div class="progress-bar progress-bar-striped bg_xlrting" role="progressbar" style="width: <?=$q_v->review * 10?>%" aria-valuenow="<?=$q_v->review * 10?>" aria-valuemin="0" aria-valuemax="100"><?=$q_v->review * 10?>%</div>
 									</div>
 									
 								</li>

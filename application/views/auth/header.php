@@ -40,7 +40,8 @@
 
 
 	<link rel="stylesheet" href="<?php echo base_url('/'); ?>assets/dashboard/assets/wow/animate.css">
-	<link rel="stylesheet" href="<?php echo base_url('/'); ?>assets/dashboard/custom/style.css">
+	<link rel="stylesheet" href="<?php echo base_url('/'); ?>--assets/dashboard/custom/style.css">
+	<link rel="stylesheet" href="<?php echo base_url('/'); ?>assets/dashboard/custom/style-2.css">
 
 </head>
 <body>

@@ -4,8 +4,7 @@
           <div class="caption-content">
             <div class="container">
               <div class="font-alt mb-30 titan-title-size-4">Exceleratings</div>
-              <div class="font-alt">The only platform that gives you 
-real time reviews and negates bad news!</div>
+              <div class="font-alt"><h3 style="background: #00000057;display: initial;padding: 0 20px;">The only platform that gives you real time reviews and negates bad news!</h3></div>
             </div>
           </div>
         </div>

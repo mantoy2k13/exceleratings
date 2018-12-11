@@ -45,7 +45,7 @@
 
     <link rel="stylesheet" href="<?php echo base_url('/'); ?>assets/dashboard/assets/css/lib/datatable/dataTables.bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo base_url('/'); ?>assets/dashboard/assets/wow/animate.css">
-    <link rel="stylesheet" href="<?php echo base_url('/'); ?>assets/dashboard/custom/style.css">
+    <link rel="stylesheet" href="<?php echo base_url('/'); ?>assets/dashboard/custom/style-2.css">
 
     <script src="<?php echo base_url('/'); ?>assets/dashboard/custom/Chart.bundle.min.js"></script>
     <script>
@@ -70,7 +70,7 @@
 										 }
 										  */
 									}
-									Chart.defaults.global.defaultFontColor = '#fff';
+									Chart.defaults.global.defaultFontColor = '#ED2424';
 									var myChart = new Chart(getDiv2show, {
 										 type: 'bar',
 										 data: {
@@ -88,9 +88,9 @@
 										 },
 										 options: {
 											  scales: {
-												  xAxes: [{gridLines: { color: "#fff" }}],
+												  xAxes: [{gridLines: { color: "#ddd" }}],
 													yAxes: [{
-														gridLines: { color: "#fff" },
+														gridLines: { color: "#ddd" },
 														 ticks: {
 															  beginAtZero:true
 														 }
@@ -179,7 +179,7 @@
         <header id="header" class="header">  
             <div class="top-left">
                 <div class="navbar-header"> 
-                    <a class="navbar-brand" href="<?php echo base_url('/')?>"><strong><i>Exceleratings</i></strong></a>
+                    <a class="navbar-brand" href="<?php echo base_url('/')?>"><img src="<?php echo base_url('assets/front/'); ?>assets/img/logo-sm.png" alt="logo" /></a>
                     <a class="navbar-brand hidden" href="<?php echo base_url('/'); ?>assets/dashboard/./">EX</a> 
                     <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a> 
                 </div> 

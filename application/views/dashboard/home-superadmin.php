@@ -14,7 +14,7 @@
                             <div class="row text-center">
                                 <div class="container-fluid">
 											<h4>Total average rating (All time)</h4>
-											  <h1 class="border" style="font-size: 45px;font-weight: bold;"><?php echo round($overall_avr_rating,1); ?><small>%</small>
+											  <h1 class="border" style="font-size: 45px;font-weight: bold;color: #ED2424;"><?php echo round($overall_avr_rating,1); ?><small>%</small>
 												<br>
 												<?php 
 													echo $this->General_model->rating_star($overall_avr_rating);
@@ -24,13 +24,13 @@
 												<hr>
 												<h3>
 													<small>Total number of reviews </small>
-													<span class="border"> &nbsp; <strong class="count"><?=$total_rating_item?></strong> &nbsp; </span>
+													<span class="border"> &nbsp; <strong class="count" style="color: #ED2424;"><?=$total_rating_item?></strong> &nbsp; </span>
 												</h3>
 												<hr>
 												<hr>
 												
 												<h4>Review activity (<b>Last 30 days</b>)</h4>
-												<h1 class="border border-dark" style="font-size: 40px;font-weight: bold;">
+												<h1 class="border border-dark" style="font-size: 40px;font-weight: bold;color: #ED2424;">
 													<?php echo round($this->General_model->get_overall_avr_rating(date('Y-m-d', strtotime('-1 months'))), 1); ?>
 													<small>%</small><br>
 													<?php 
@@ -114,7 +114,7 @@
 <script>
 
 var ctx = document.getElementById("myChart");
-Chart.defaults.global.defaultFontColor = '#fff';
+Chart.defaults.global.defaultFontColor = '#ED2424';
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
@@ -125,29 +125,29 @@ var myChart = new Chart(ctx, {
             backgroundColor: '#227799'
                 },
             data: <?php echo json_encode($total_rating_item4chart );?>,
-            backgroundColor: [
-                'rgba(9,255,101, 0.3)', 
-                'rgba(9,255,122, 0.3)', 
-                'rgba(9,255,133, 0.3)', 
-                'rgba(9,255,144, 0.3)', 
-                'rgba(9,255,155, 0.3)', 
-                'rgba(9,255,166, 0.3)', 
-                'rgba(9,255,177, 0.3)', 
-                'rgba(9,255,188, 0.3)',
-                'rgba(9,255,199, 0.3)', 
-                'rgba(9,255,200, 0.3)' 
+            backgroundColor: [					 
+                'rgba(253,180,10, 0.3)', 
+                'rgba(253,160,10, 0.3)', 
+                'rgba(253,140,10, 0.3)', 
+                'rgba(253,120,10, 0.3)', 
+                'rgba(253,100,10, 0.3)', 
+                'rgba(253,080,10, 0.3)', 
+                'rgba(253,060,10, 0.3)', 
+                'rgba(253,040,10, 0.3)',
+                'rgba(253,020,10, 0.3)', 
+                'rgba(253,000,10, 0.3)' 
             ],
             borderColor: [
-                'rgba(0,188,200, 0.8)',
-                'rgba(0,188,200, 0.8)',
-                'rgba(0,188,200, 0.8)',
-                'rgba(0,188,200, 0.8)',
-                'rgba(0,188,200, 0.8)',
-                'rgba(0,188,200, 0.8)',
-                'rgba(0,188,200, 0.8)',
-                'rgba(0,188,200, 0.8)',
-                'rgba(0,188,200, 0.8)',
-                'rgba(0,188,200, 0.8)'
+                'rgba(237,36,20, 0.8)',
+                'rgba(237,36,20, 0.8)',
+                'rgba(237,36,20, 0.8)',
+                'rgba(237,36,20, 0.8)',
+                'rgba(237,36,20, 0.8)',
+                'rgba(237,36,20, 0.8)',
+                'rgba(237,36,20, 0.8)',
+                'rgba(237,36,20, 0.8)',
+                'rgba(237,36,20, 0.8)',
+                'rgba(237,36,20, 0.8)'
             ], 
             borderWidth: 2
         }]

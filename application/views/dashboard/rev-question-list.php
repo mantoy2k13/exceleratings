@@ -60,7 +60,7 @@
 									<i class="fa fa-fw fa-lg fa-close"></i></button>
 								</span>
 								<i class="fa fa-arrows fa-lg float-left qShorting" aria-hidden="true"></i> 
-								<h4 class="q_qnt float-left"><span class="border border-white"><?php echo $q_k * 1 +1; ?></span><b class="qs"><?php echo $q_v->question; ?></b></h4>
+								<h4 class="q_qnt float-left"> &nbsp; <span class="border border-white"><?php echo $q_k * 1 +1; ?></span> . &nbsp; <b class="qs"><?php echo $q_v->question; ?></b></h4>
 								<div class="clearfix"></div>
 								<div class="row">
 									<div class="col-md-6" >
@@ -74,23 +74,23 @@
 										
 										Average: 
 										<div class="progress average_progress" style="height: 40px;font-weight: bold;font-size: 1.3em;">
-										  <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: <?=$q_r_avg?>%" aria-valuenow="<?=$q_r_avg?>" aria-valuemin="0" aria-valuemax="100"><?=round($q_r_avg,1)?>%</div>
+										  <div class="progress-bar progress-bar-striped bg_xlrting" role="progressbar" style="width: <?=$q_r_avg?>%" aria-valuenow="<?=$q_r_avg?>" aria-valuemin="0" aria-valuemax="100"><?=round($q_r_avg,1)?>%</div>
 										</div>
 									</div>
 								</div>
 							</li>
 								<?php 
 									$qus_ratings_graph_data = [
-										['title'=>'1 Star','value_number'=>$queations_ratings->star1 *10,'bg_color'=>'rgba(0,255,'. (197 + $queations_ratings->star1*1) .', 0.4)','border_color'=>'rgba(0,255,'. (197 +$queations_ratings->star1*1) .', 0.8)'],
-										['title'=>'2 Star','value_number'=>$queations_ratings->star2 *10,'bg_color'=>'rgba(0,255,'. (197 + $queations_ratings->star2*1) .', 0.4)','border_color'=>'rgba(0,255,'. (197 +$queations_ratings->star2*1) .', 0.8)'],
-										['title'=>'3 Star','value_number'=>$queations_ratings->star3 *10,'bg_color'=>'rgba(0,255,'. (197 + $queations_ratings->star3*1) .', 0.4)','border_color'=>'rgba(0,255,'. (197 +$queations_ratings->star3*1) .', 0.8)'],
-										['title'=>'4 Star','value_number'=>$queations_ratings->star4 *10,'bg_color'=>'rgba(0,255,'. (197 + $queations_ratings->star4*1) .', 0.4)','border_color'=>'rgba(0,255,'. (197 +$queations_ratings->star4*1) .', 0.8)'],
-										['title'=>'5 Star','value_number'=>$queations_ratings->star5 *10,'bg_color'=>'rgba(0,255,'. (197 + $queations_ratings->star5*1) .', 0.4)','border_color'=>'rgba(0,255,'. (197 +$queations_ratings->star5*1) .', 0.8)'],
-										['title'=>'6 Star','value_number'=>$queations_ratings->star6 *10,'bg_color'=>'rgba(0,255,'. (197 + $queations_ratings->star6*1) .', 0.4)','border_color'=>'rgba(0,255,'. (197 +$queations_ratings->star6*1) .', 0.8)'],
-										['title'=>'7 Star','value_number'=>$queations_ratings->star7 *10,'bg_color'=>'rgba(0,255,'. (197 + $queations_ratings->star7*1) .', 0.4)','border_color'=>'rgba(0,255,'. (197 +$queations_ratings->star7*1) .', 0.8)'],
-										['title'=>'8 Star','value_number'=>$queations_ratings->star8 *10,'bg_color'=>'rgba(0,255,'. (197 + $queations_ratings->star8*1) .', 0.4)','border_color'=>'rgba(0,255,'. (197 +$queations_ratings->star8*1) .', 0.8)'],
-										['title'=>'9 Star','value_number'=>$queations_ratings->star9 *10,'bg_color'=>'rgba(0,255,'. (197 + $queations_ratings->star9*1) .', 0.4)','border_color'=>'rgba(0,255,'. (197 +$queations_ratings->star9*1) .', 0.8)'],
-										['title'=>'10 Star','value_number'=>$queations_ratings->star10 *10,'bg_color'=>'rgba(0,255,'. (197 + $queations_ratings->star10*1) .', 0.4)','border_color'=>'rgba(0,255,'. (197 +$queations_ratings->star10*1) .', 0.8)']
+										['title'=>'1 Star','value_number'=>$queations_ratings->star1 *10,'bg_color'=>'rgba(240,82,'. (19 + $queations_ratings->star1*1) .', 0.4)','border_color'=>'rgba(237,36,'. (19 +$queations_ratings->star1*1) .', 0.8)'],
+										['title'=>'2 Star','value_number'=>$queations_ratings->star2 *10,'bg_color'=>'rgba(240,82,'. (19 + $queations_ratings->star2*1) .', 0.4)','border_color'=>'rgba(237,36,'. (19 +$queations_ratings->star2*1) .', 0.8)'],
+										['title'=>'3 Star','value_number'=>$queations_ratings->star3 *10,'bg_color'=>'rgba(240,82,'. (19 + $queations_ratings->star3*1) .', 0.4)','border_color'=>'rgba(237,36,'. (19 +$queations_ratings->star3*1) .', 0.8)'],
+										['title'=>'4 Star','value_number'=>$queations_ratings->star4 *10,'bg_color'=>'rgba(240,82,'. (19 + $queations_ratings->star4*1) .', 0.4)','border_color'=>'rgba(237,36,'. (19 +$queations_ratings->star4*1) .', 0.8)'],
+										['title'=>'5 Star','value_number'=>$queations_ratings->star5 *10,'bg_color'=>'rgba(240,82,'. (19 + $queations_ratings->star5*1) .', 0.4)','border_color'=>'rgba(237,36,'. (19 +$queations_ratings->star5*1) .', 0.8)'],
+										['title'=>'6 Star','value_number'=>$queations_ratings->star6 *10,'bg_color'=>'rgba(240,82,'. (19 + $queations_ratings->star6*1) .', 0.4)','border_color'=>'rgba(237,36,'. (19 +$queations_ratings->star6*1) .', 0.8)'],
+										['title'=>'7 Star','value_number'=>$queations_ratings->star7 *10,'bg_color'=>'rgba(240,82,'. (19 + $queations_ratings->star7*1) .', 0.4)','border_color'=>'rgba(237,36,'. (19 +$queations_ratings->star7*1) .', 0.8)'],
+										['title'=>'8 Star','value_number'=>$queations_ratings->star8 *10,'bg_color'=>'rgba(240,82,'. (19 + $queations_ratings->star8*1) .', 0.4)','border_color'=>'rgba(237,36,'. (19 +$queations_ratings->star8*1) .', 0.8)'],
+										['title'=>'9 Star','value_number'=>$queations_ratings->star9 *10,'bg_color'=>'rgba(240,82,'. (19 + $queations_ratings->star9*1) .', 0.4)','border_color'=>'rgba(237,36,'. (19 +$queations_ratings->star9*1) .', 0.8)'],
+										['title'=>'10 Star','value_number'=>$queations_ratings->star10 *10,'bg_color'=>'rgba(240,82,'. (19 + $queations_ratings->star10*1) .', 0.4)','border_color'=>'rgba(237,36,'. (19 +$queations_ratings->star10*1) .', 0.8)']
 									];
 								//	pre(json_encode($qus_ratings_graph_data));
 								//	pre($qus_ratings_graph_data);

@@ -65,7 +65,11 @@
           </div>
           <div class="collapse navbar-collapse" id="custom-collapse">
             <ul class="nav navbar-nav navbar-right">
-              <li class="dropdown"><a href="<?php echo base_url('/'); ?>" >Home</a></li>
+					<li class="dropdown"><a href="<?php echo base_url('/'); ?>" >Home</a></li>
+					<li class="dropdown"><a href="<?php echo base_url('/'); ?>front/about">About Us</a></li>
+					<li class="dropdown"><a href="<?php echo base_url('/'); ?>front/pricing">Pricing</a></li>
+					<li class="dropdown"><a href="<?php echo base_url('/'); ?>front/team">Our Team</a></li>
+					<li class="dropdown"><a href="<?php echo base_url('/'); ?>front/contact">Contact Us</a></li>
 				  <?php 
 				  if($this->session->userdata('logedin_user')){ ?>
 					<li class="dropdown"><a href="<?php echo base_url('/'); ?>front/review">Review Page</a></li>
@@ -84,3 +88,4 @@
           </div>
         </div>
       </nav>
+      <div class="main">

@@ -35,7 +35,7 @@
 						  <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
 						</div>
 						<hr>
-						<button type="submit" name="submitForm" value="register" class="btn btn-info btn-block btn-flat">Sign Up / Registration</button>
+						<button type="submit" name="submitForm" value="register" class="btn btn-danger btn_xlrting btn-block btn-flat">Sign Up / Registration</button>
 					 </form>
 						<hr>
 					 <a href="<?php echo base_url('auth/login'); ?>"><b>To Login</b></a>

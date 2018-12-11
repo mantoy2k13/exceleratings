@@ -155,4 +155,17 @@ class Front extends CI_Controller {
 		}
 		$this->load->view('front/review', $data);
 	}
+	
+	public function contact(){
+		$this->load->view('front/contact');
+	}
+	public function about(){
+		$this->load->view('front/about');
+	}
+	public function pricing(){
+		$this->load->view('front/pricing');
+	}
+	public function team(){
+		$this->load->view('front/team');
+	}
 }

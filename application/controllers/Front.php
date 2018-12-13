@@ -44,12 +44,55 @@ class Front extends CI_Controller {
 	
 	public function enrollment(){
 		
-		$this->db->select('*');
-		$this->db->from('rev_questions');
-		$this->db->where('status', 1);
-		$this->db->order_by('shorting', 'ASC');
-		$this->db->order_by('qid', 'DESC');
-		$data['ques'] = $this->db->get()->result_object();
+
+		$uid = $this->session->userdata('logedin_user')->id;
+		
+		$data['profile'] = $this->General_model->get_user_data($uid);
+		
+		if( $this->input->post() ){
+			
+			$enroll_data = [
+				'fullname' => $this->input->post('fullname'),
+				'fullname_contact' => $this->input->post('fullname_contact'),
+				'phone' => $this->input->post('phone'),
+				'alt_name_client_contact' => $this->input->post('alt_name_client_contact'),
+				'alt_phone' => $this->input->post('alt_phone'),
+				'alt_email' => $this->input->post('alt_email'),
+				'tablet_needed' => $this->input->post('tablet_needed'),
+				'tablet_so_how_many' => $this->input->post('tablet_so_how_many'),
+				'service_location' => $this->input->post('service_location'),
+				'start_date_of_contract' => $this->input->post('start_date_of_contract'),
+				'pos_rdr_url_yelp' => $this->input->post('pos_rdr_url_yelp'),
+				'pos_rdr_url_google' => $this->input->post('pos_rdr_url_google'),
+				'pos_rdr_url_facebook' => $this->input->post('pos_rdr_url_facebook'),
+				'pos_rdr_url_trip_advisor' => $this->input->post('pos_rdr_url_trip_advisor'),
+				'pos_rdr_url_urban_spoon' => $this->input->post('pos_rdr_url_urban_spoon'),
+				'pos_rdr_url_city_search' => $this->input->post('pos_rdr_url_city_search')
+			];
+			
+			$this->db->select('*');
+			$this->db->from('user_profile');
+			$this->db->where('uid', $uid);
+			
+			if($this->db->get()->row()){ // Checking if user row found in user_profile table
+				
+				$this->db->where('uid', $uid);
+				if( $this->db->update('user_profile', $enroll_data) ){
+					$this->db->where('id', $uid);
+					$this->db->update('users', ['subs_package_slug'=>$this->input->post('subs_package_slug')]);
+					redirect('dashboard/settings/profile');
+				}
+				
+			}else{
+				$enroll_data['uid'] = $uid;
+				if( $this->db->insert('user_profile', $enroll_data) ){
+					$this->db->where('id', $uid);
+					$this->db->update('users', ['subs_package_slug'=>$this->input->post('subs_package_slug')]);
+					redirect('dashboard/settings/profile');
+				}
+			}
+		exit;
+		}
 		
 		$this->load->view('front/enrollment', $data);
 	}
@@ -160,15 +203,20 @@ class Front extends CI_Controller {
 		
 		if( $this->input->post('contact_submit') ){
 			
+			$this->form_validation->set_rules('email','Email','required');
+			$this->form_validation->set_rules('comments','Comments','required');
+			
 			$this->load->library('email');
 			
 			$this->email->from($this->input->post('email'), $this->input->post('name'));
-			$this->email->to('someone@example.com');
+			$this->email->to('thomas.woodfin02@yopmail.com');
 			
 			$this->email->subject('Email from contact page by ' . $this->input->post('email'));
 			$this->email->message($this->input->post('comments'));
 			
-			$this->email->send();
+			if($this->email->send()){
+				redirect(base_url('front/contact'));
+			}
 		}
 		$this->load->view('front/contact');
 	}

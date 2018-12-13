@@ -29,8 +29,17 @@ class Auth extends CI_Controller
 						);
 						unset($user->password);
 						$_SESSION['logedin_user'] = $user;
-						
-						redirect('dashboard/page', 'refresh');
+						if( isset($_GET['rdr']) ){
+							if( $_GET['rdr'] == 'plan_subscription' ){
+								$get_plan = '';
+								if( isset($_GET['plan']) ){
+									$get_plan = $_GET['plan'];
+								}
+								redirect(base_url('dashboard/page/plan_subscription_form?plan=' . $get_plan), 'refresh');
+							}
+						}else{
+							redirect('dashboard/page', 'refresh');
+						}
 					} else {
 						$this->session->set_flashdata('error', 'Account not match !!');
 						redirect('auth/login', 'refresh');

@@ -26,6 +26,15 @@
 	<div class="container">
         <div class="row">
         	<div class="col-sm-8">
+						<?php 
+							if( isset($_SESSION['success']) ){
+								echo '<div class="alert alert-success">' . $_SESSION['success'] . '</div>';
+							} 
+							if( isset($_SESSION['error']) ){
+								echo '<div class="alert alert-danger">' . $_SESSION['error'] . '</div>';
+							} 
+						?>
+						<?php echo validation_errors('<p class="text-red"><b>', '</b></p>'); ?>
             	<form id="contactForm" role="form" method="post" action="">
                 	<div class="form-group">
                     	<label class="sr-only" for="name">Name</label>

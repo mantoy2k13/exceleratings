@@ -336,7 +336,7 @@ $clientToken = $gateway->clientToken()->generate();
 								√ Granular Reporting Metrics<br>
 								√ Quarterly Design Edits
 								<hr>
-								<a href="<?=base_url('dashboard/page/plan_subscription_form?plan=golden')?>" type="submit" name="subs_submit2buy" class="btn btn-info btn-lg btn-block">Subscribe</a>
+								<a href="<?=base_url('dashboard/page/plan_subscription_form?plan=gold')?>" type="submit" name="subs_submit2buy" class="btn btn-info btn-lg btn-block">Subscribe</a>
 					</div>
 				</div>
         </div>

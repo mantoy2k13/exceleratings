@@ -29,7 +29,13 @@
 					  <li>√ Email Alerts if there is negative feedback</li>
 					  <li>√ Functionality Updates</li>
 					  <li>√ Spreadsheet Reporting</li>
-					</ul><a class="btn btn-d btn-round" href="#">Subscribe</a>
+					</ul>
+					<?php 
+						if( $this->session->userdata('logedin_user') ){ ?>
+							<a class="btn btn-d btn-round" href="<?php echo base_url('dashboard/page/plan_subscription_form?plan=silver'); ?>">Subscribe</a>
+					<?php }else{ ?>
+							<a class="btn btn-d btn-round" href="<?php echo base_url('auth/login?rdr=plan_subscription&plan=silver'); ?>">Login to Subscribe</a>
+					<?php } ?>
 				 </div>
 			  </div>
 			  <div class="col-sm-6 col-md-4 col-lg-4">
@@ -51,7 +57,13 @@
 					  <li>√ Custom Reports</li>
 					  <li>√ Granular Reporting Metrics</li>
 					  <li>√ Quarterly Design Edits</li>
-					</ul><a class="btn btn-d btn-round" href="#">Subscribe</a>
+					</ul>
+					<?php 
+						if( $this->session->userdata('logedin_user') ){ ?>
+							<a class="btn btn-d btn-round" href="<?php echo base_url('dashboard/page/plan_subscription_form?plan=gold'); ?>">Subscribe</a>
+					<?php }else{ ?>
+							<a class="btn btn-d btn-round" href="<?php echo base_url('auth/login?rdr=plan_subscription&plan=gold'); ?>">Login to Subscribe</a>
+					<?php } ?>
 				 </div>
 			  </div>
 			  <div class="col-sm-6 col-md-2 col-lg-2">

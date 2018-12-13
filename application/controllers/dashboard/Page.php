@@ -103,7 +103,11 @@ class Page extends CI_Controller {
 		$this->load->view('dashboard/plan-subscriptions', $data);
 	}
 	public function plan_subscription_form(){
-		
+		$session_userdata = $this->session->userdata();
+		/* 
+		$session_userdata['subs_action'] = 'gold';
+		 */
+	//	prex($session_userdata);
 		$data['menuitem4'] = 'plan_subscription';
 		$uid = $this->session->userdata('logedin_user')->id;
 		

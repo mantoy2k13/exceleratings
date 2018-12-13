@@ -26,10 +26,9 @@
 	<div class="container">
         <div class="row">
         	<div class="col-sm-8">
-            	<form id="contactForm" role="form" method="post" action="php/contact.php">
+            	<form id="contactForm" role="form" method="post" action="">
                 	<div class="form-group">
                     	<label class="sr-only" for="name">Name</label>
-                    	<input class="form-control" type="hidden" id="formtype" name="formtype" value='Contact Form'/>
                     	<input class="form-control" type="text" id="name" name="name" placeholder="Your Name*" required="required" data-validation-required-message="Please enter your name."/>
                     	<p class="help-block text-danger"></p>
                   	</div>
@@ -47,7 +46,7 @@
                   	</div>        
                   
                   	<div class="text-center">
-                    	<button class="btn btn-block btn-round btn-d" id="cfsubmit" type="submit">Submit</button>
+                    	<button class="btn btn-block btn-round btn-d" name="contact_submit" id="contact_submit" type="submit">Submit</button>
                   	</div>
                 </form>
                 <div class="ajax-response font-alt" id="contactFormResponse"></div>

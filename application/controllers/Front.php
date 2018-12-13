@@ -157,6 +157,19 @@ class Front extends CI_Controller {
 	}
 	
 	public function contact(){
+		
+		if( $this->input->post('contact_submit') ){
+			
+			$this->load->library('email');
+			
+			$this->email->from($this->input->post('email'), $this->input->post('name'));
+			$this->email->to('someone@example.com');
+			
+			$this->email->subject('Email from contact page by ' . $this->input->post('email'));
+			$this->email->message($this->input->post('comments'));
+			
+			$this->email->send();
+		}
 		$this->load->view('front/contact');
 	}
 	public function about(){

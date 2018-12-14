@@ -109,10 +109,18 @@ class Front extends CI_Controller {
 		}
 	}
 	
+	public function emailtemp470up(){
+		$data = $this->logedin_user;
+		$this->load->view('front/emailtemp470up', $data);
+	}
+	
 	public function review_add()
 	{
 		if( $this->input->post() ){
 			
+			// load email library
+			$this->load->library('email');
+
 			$rev_ques = $this->input->post()['rev_ques'];
 		//	prex($rev_ques);
 			$cur_datetime = date("Y-m-d H:i:s");
@@ -148,20 +156,30 @@ class Front extends CI_Controller {
 					}
 				}
 			
+				$this->db->select('*');
+				$this->db->from('users');
+				$this->db->where('username', 'admin');
+				$siteadmin = $this->db->get()->row();
+				
 				if( str_replace('%','',$this->input->post('total_rev_plus')) * 1 > 69 ){
 					$this->session->set_flashdata('review70up', true);
 				//	$this->session->set_flashdata('success', 'Thanks for your rating, Please review us also on Yelp and Google review page. ');
+					$data = $this->logedin_user;
+					$this->email
+						 ->from($this->logedin_user->email, 'Exceleratings SuperAdmin')
+						 ->to($this->input->post('c_email'))
+						 ->subject('Thanks for your rating')
+						 ->message( $this->load->view('front/emailtemp470up', $data) )
+						 ->set_mailtype('html');
+
+					// send email
+					$this->email->send();
+					
+				
 					redirect(base_url('front/good_review'));
 				}else{
 					
 					$emailContent = '';
-					$this->db->select('*');
-					$this->db->from('users');
-					$this->db->where('username', 'admin');
-					$siteadmin = $this->db->get()->row();
-					
-					// load email library
-					$this->load->library('email');
 					
 					$emailContent .= '<h2><small>Rating percent<strong></small> : ' . $this->input->post('total_rev_plus') . '</strong> </h2><br> ';
 					$emailContent .= 'Time <strong> : ' . $cur_datetime . '</strong> <br> ';

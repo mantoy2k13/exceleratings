@@ -24,7 +24,7 @@ a.btn.btn-info:hover, a.btn.btn-info:focus{
 	color: #fff;
 }
 .btn-info:not(:disabled):not(.disabled).active, .btn-info:not(:disabled):not(.disabled):active, .show>.btn-info.dropdown-toggle{
-    background-color: #F05223;
+    background-color: #e80000;
     border-color: #ED2424;
 	 color: #fff;
 }
@@ -58,6 +58,8 @@ a.btn.btn-info:hover, a.btn.btn-info:focus{
 }
 .form-control{
 	border-radius: 0.1rem;
+	font-size: 0.9rem;
+	height: calc(2rem + 2px);
 }
 .card-header {
     background-color: #ff997b21;

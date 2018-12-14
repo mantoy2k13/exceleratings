@@ -142,12 +142,12 @@
 					<div class="card card-primary wow bounceInLeft">
 						<div class="card-body card-profile">
 							<div class="form-group">
-							  <label for="pos_rdr_url_yelp" class="control-label">Yelp URL</label>
-								 <input type="text" class="form-control" id="pos_rdr_url_yelp" name="pos_rdr_url_yelp" value="<?php echo $profile->pos_rdr_url_yelp; ?>" placeholder="Yelp URL">
-							</div>
-							<div class="form-group">
 							  <label for="pos_rdr_url_google" class="control-label">Google URL</label>
 								 <input type="text" class="form-control" id="pos_rdr_url_google" name="pos_rdr_url_google" value="<?php echo $profile->pos_rdr_url_google; ?>" placeholder="Google URL">
+							</div>
+							<div class="form-group">
+							  <label for="pos_rdr_url_yelp" class="control-label">Yelp URL</label>
+								 <input type="text" class="form-control" id="pos_rdr_url_yelp" name="pos_rdr_url_yelp" value="<?php echo $profile->pos_rdr_url_yelp; ?>" placeholder="Yelp URL">
 							</div>
 							<div class="form-group">
 							  <label for="pos_rdr_url_facebook" class="control-label">Facebook URL</label>
@@ -156,6 +156,14 @@
 							<div class="form-group">
 							  <label for="pos_rdr_url_trip_advisor" class="control-label">Trip Advisor URL</label>
 								 <input type="text" class="form-control" id="pos_rdr_url_trip_advisor" name="pos_rdr_url_trip_advisor" value="<?php echo $profile->pos_rdr_url_trip_advisor; ?>" placeholder="Trip Advisor URL">
+							</div>
+							<div class="form-group">
+							  <label for="pos_rdr_url_urban_spoon" class="control-label">Urban Spoon URL</label>
+								 <input type="text" class="form-control" id="pos_rdr_url_urban_spoon" name="pos_rdr_url_urban_spoon" value="<?php echo $profile->pos_rdr_url_urban_spoon; ?>" placeholder="Trip Advisor URL">
+							</div>
+							<div class="form-group">
+							  <label for="pos_rdr_url_city_search" class="control-label">City Search URL</label>
+								 <input type="text" class="form-control" id="pos_rdr_url_city_search" name="pos_rdr_url_city_search" value="<?php echo $profile->pos_rdr_url_city_search; ?>" placeholder="Trip Advisor URL">
 							</div>
 						</div>
 					</div>

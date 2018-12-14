@@ -355,34 +355,29 @@ class Settings extends CI_Controller {
 					if( isset($catImgUpload['upload_data']) ){
 						
 						$profilePicName = $catImgUpload['upload_data']['file_name'];
-						
 					}
 				}
 					
 					$toSave2 = [
 						'fullname' => $this->input->post('fullname'),
 						'about' => $this->input->post('about'),
-						'profilpic' => $profilePicName
+						'profilpic' => $profilePicName,
+						'pos_rdr_url_yelp' => $this->input->post('pos_rdr_url_yelp'),
+						'pos_rdr_url_google' => $this->input->post('pos_rdr_url_google'),
+						'pos_rdr_url_facebook' => $this->input->post('pos_rdr_url_facebook'),
+						'pos_rdr_url_trip_advisor' => $this->input->post('pos_rdr_url_trip_advisor'),
+						'pos_rdr_url_urban_spoon' => $this->input->post('pos_rdr_url_urban_spoon'),
+						'pos_rdr_url_urban_spoon' => $this->input->post('pos_rdr_url_urban_spoon'),
+						'pos_rdr_url_city_search' => $this->input->post('pos_rdr_url_city_search')
 					];
 					
-					if( $this->input->post('pos_rdr_url_yelp') ){
-						$toSave2['pos_rdr_url_yelp'] = $this->input->post('pos_rdr_url_yelp');
-					}
-					if( $this->input->post('pos_rdr_url_google') ){
-						$toSave2['pos_rdr_url_google'] = $this->input->post('pos_rdr_url_google');
-					}
-					if( $this->input->post('pos_rdr_url_facebook') ){
-						$toSave2['pos_rdr_url_facebook'] = $this->input->post('pos_rdr_url_facebook');
-					}
-					if( $this->input->post('pos_rdr_url_trip_advisor') ){
-						$toSave2['pos_rdr_url_trip_advisor'] = $this->input->post('pos_rdr_url_trip_advisor');
-					}
+				//	prex($toSave2);
 					$this->db->where('uid', $uid);
-				  if($this->db->update('user_profile', $toSave2)){
+					if($this->db->update('user_profile', $toSave2)){
 						
 						$this->session->set_flashdata('success', 'Updated done.');
 						redirect('dashboard/settings/profile/'. $uid);
-				  }
+					}
 				}else{
 						
 					$toSave2 = [

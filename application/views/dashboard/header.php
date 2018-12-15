@@ -46,7 +46,23 @@
     <link rel="stylesheet" href="<?php echo base_url('/'); ?>assets/dashboard/assets/css/lib/datatable/dataTables.bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo base_url('/'); ?>assets/dashboard/assets/wow/animate.css">
     <link rel="stylesheet" href="<?php echo base_url('/'); ?>assets/dashboard/custom/style-2.css">
-
+	
+	
+	<script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
+	<script>
+		// Initialize Firebase
+		var config = {
+			apiKey: "AIzaSyD-fJuBn0DP3Ep0DSZ1pYs-vllNtVRH7dE",
+			authDomain: "exceleratings.firebaseapp.com",
+			databaseURL: "https://exceleratings.firebaseio.com",
+			projectId: "exceleratings",
+			storageBucket: "exceleratings.appspot.com",
+			messagingSenderId: "411841575861"
+		};
+		firebase.initializeApp(config);
+	</script>
+	
+	
     <script src="<?php echo base_url('/'); ?>assets/dashboard/custom/Chart.bundle.min.js"></script>
     <script>
 

@@ -111,6 +111,34 @@ class Settings extends CI_Controller {
 		$this->load->view('dashboard/rev-question-add', $data);
 	}
 	
+	public function question_pages()
+	{
+	//	$session_user = $this->logedin_user;
+		
+		$data['menuitem4'] = 'question_pages';
+		
+
+		$this->db->select('*');
+		$this->db->from('rev_questions');
+		if( $this->logedin_user->usertype == 'generaluser' ){
+			$this->db->where('userid', $this->logedin_user->id);
+		}
+		$this->db->order_by('shorting', 'ASC');
+		$this->db->order_by('qid', 'DESC');
+		$data['ques'] = $this->db->get()->result_object();
+		
+		$this->db->select('*');
+		$this->db->from('question_pages');
+		if( $this->logedin_user->usertype == 'generaluser' ){
+			$this->db->where('userid', $this->logedin_user->id);
+		}
+		$this->db->order_by('id', 'DESC');
+		$data['pgs'] = $this->db->get()->result_object();
+		
+	//	prex($this->General_model->get_queations_ratings(5));
+		$this->load->view('dashboard/question-pages', $data);
+	}
+	
 	public function notification_contacts( $cid = null ){
 		
 		$data['menuitem4'] = 'notification_contacts';

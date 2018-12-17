@@ -81,3 +81,6 @@ a.btn.btn-info:hover, a.btn.btn-info:focus{
 .inactive {
 	opacity: 0.5;
 }
+.draging{
+	cursor: move;
+}

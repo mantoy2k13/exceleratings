@@ -111,32 +111,126 @@ class Settings extends CI_Controller {
 		$this->load->view('dashboard/rev-question-add', $data);
 	}
 	
-	public function question_pages()
+	public function question_pages($pgid = null)
 	{
-	//	$session_user = $this->logedin_user;
-		
+		$session_user = $this->logedin_user;
+	//	prex($this->input->post());
 		$data['menuitem4'] = 'question_pages';
-		
-
+	
 		$this->db->select('*');
-		$this->db->from('rev_questions');
-		if( $this->logedin_user->usertype == 'generaluser' ){
-			$this->db->where('userid', $this->logedin_user->id);
-		}
-		$this->db->order_by('shorting', 'ASC');
-		$this->db->order_by('qid', 'DESC');
-		$data['ques'] = $this->db->get()->result_object();
-		
-		$this->db->select('*');
-		$this->db->from('question_pages');
+		$this->db->from('q_pages');
 		if( $this->logedin_user->usertype == 'generaluser' ){
 			$this->db->where('userid', $this->logedin_user->id);
 		}
 		$this->db->order_by('id', 'DESC');
 		$data['pgs'] = $this->db->get()->result_object();
 		
-	//	prex($this->General_model->get_queations_ratings(5));
-		$this->load->view('dashboard/question-pages', $data);
+		$data['pageType'] = '';
+		$data['pgid'] = '';
+		
+		if( $pgid != null ){
+			$data['pgid'] = $pgid;
+			$data['pageType'] = 'edit';
+			$data['thePage'] = $this->db->select('*')->from('q_pages')->where('id', $pgid)->get()->row();
+			$data['thePageQs'] = $this->db->select('pages_questions.*, rev_questions.question')
+												->from('pages_questions')
+												->join('rev_questions', 'rev_questions.qid = pages_questions.qid', 'left')
+												->where('page_id', $pgid)
+												->order_by('q_shorting', 'ASC')
+												->get()->result_object();
+			
+			if( $this->input->post('submit') == 'q_pg_edit' ){
+				
+				$pg_data = [
+					'pg_title' => $this->input->post('pg_title')
+				];
+				$this->db->where('id', $pgid); // This page ID
+				if($this->db->update('q_pages', $pg_data)){
+					
+					$this->db->where('page_id', $pgid);
+					if($this->db->delete('pages_questions')){
+							
+						foreach( $this->input->post('qid') as $qid_k => $qid_v ){
+							
+							$data = [
+								'page_id' => $pgid,
+								'qid' => $qid_v,
+								'q_shorting' => $qid_k
+							];
+							$this->db->insert('pages_questions', $data);
+						}
+						$this->session->set_flashdata('success', 'Updated');
+						redirect('dashboard/settings/question_pages/'.$pgid);
+					}
+				}
+				
+				foreach( $this->input->post('qid') as $qid_k => $qid_v ){
+					
+					$data = [
+						'qid' => $qid_v,
+						'q_shorting' => $qid_k
+					];
+					$this->db->insert('pages_questions', $data);
+				}
+				$this->session->set_flashdata('success', 'Added new question');
+				redirect('dashboard/settings/rev_questions/');
+			//	prex( $this->input->post('qid') );
+			}else{
+					
+				$this->db->select('*');
+				$this->db->from('rev_questions');
+				if( $this->logedin_user->usertype == 'generaluser' ){
+					$this->db->where('userid', $this->logedin_user->id);
+				}
+				
+				foreach( $data['thePageQs'] as $qs ){
+					$this->db->where('qid !=', $qs->qid);
+				}
+				$this->db->order_by('shorting', 'ASC');
+				$this->db->order_by('qid', 'DESC');
+				$data['ques'] = $this->db->get()->result_object();
+			//	prex($this->db->last_query()); 
+			//	prex($this->General_model->get_queations_ratings(5));
+				$this->load->view('dashboard/question-pages', $data);
+			}
+		}else{
+			
+			if( $this->input->post('submit') == 'q_pg_save' ){
+			//	prex($this->input->post());
+				$pg_data = [
+					'pg_title' => $this->input->post('pg_title'),
+					'userid' => $session_user->id
+				];
+				if($this->db->insert('q_pages', $pg_data)){
+					$insert_pgid = $this->db->insert_id();
+					foreach( $this->input->post('qid') as $qid_k => $qid_v ){
+						
+						$data = [
+							'page_id' => $insert_pgid,
+							'qid' => $qid_v,
+							'q_shorting' => $qid_k
+						];
+						$this->db->insert('pages_questions', $data);
+					}
+					$this->session->set_flashdata('success', 'New question page greated');
+					redirect('dashboard/settings/question_pages/'.$insert_pgid);
+				}
+			//	prex( $this->input->post('qid') );
+			}else{
+					
+				$this->db->select('*');
+				$this->db->from('rev_questions');
+				if( $this->logedin_user->usertype == 'generaluser' ){
+					$this->db->where('userid', $this->logedin_user->id);
+				}
+				$this->db->order_by('shorting', 'ASC');
+				$this->db->order_by('qid', 'DESC');
+				$data['ques'] = $this->db->get()->result_object();
+				
+			//	prex($this->General_model->get_queations_ratings(5));
+				$this->load->view('dashboard/question-pages', $data);
+			}
+		}
 	}
 	
 	public function notification_contacts( $cid = null ){

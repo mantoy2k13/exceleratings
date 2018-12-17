@@ -122,11 +122,12 @@ jQuery(function ($) {
 			qShortingSave(qShorting);
 		}
     });
-		 
-    $( "#selected_questions, #all_questions" ).sortable({
-      connectWith: ".connectedSortable"
-    }).disableSelection();
-		 
+		
+   $( "#selected_questions, #all_questions" ).sortable({
+		
+		connectWith: ".connectedSortable"
+   }).disableSelection();
+		
 	$('#qusEditForm').on('show.bs.modal', function (event) {
 		
 		var button = $(event.relatedTarget); // Button that triggered the modal

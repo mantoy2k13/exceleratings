@@ -18,16 +18,14 @@
 												<br>
 												<?php 
 													echo $this->General_model->rating_star($overall_avr_rating);
-																								?>
+												?>
 												</h1>
-												<hr>
-												<hr>
+												<hr><hr>
 												<h3>
 													<small>Total number of reviews </small>
 													<span class="border"> &nbsp; <strong class="count" style="color: #ED2424;"><?=$total_rating_item?></strong> &nbsp; </span>
 												</h3>
-												<hr>
-												<hr>
+												<hr><hr>
 												
 												<h4>Review activity (<b>Last 30 days</b>)</h4>
 												<h1 class="border border-dark" style="font-size: 40px;font-weight: bold;color: #ED2424;">
@@ -69,6 +67,7 @@
                   <th>SL.</th>
                   <th>Review Time</th>
                   <th>Reviewer Email</th>
+                  <th>Question Page</th>
                   <th>Average Rating</th>
                   <th>Action</th>
                 </tr>
@@ -80,6 +79,7 @@
                   <td> </td>
                   <td> </td>
                   <td> </td>
+                  <td> </td>
                 </tr>
                 </tbody>
                 <tfoot>
@@ -87,6 +87,7 @@
                   <th>SL.</th>
                   <th>Review Time</th>
                   <th>Reviewer Email</th>
+                  <th>Question Page</th>
                   <th>Average Rating</th>
                   <th>Action</th>
                 </tr>

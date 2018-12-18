@@ -172,6 +172,7 @@ jQuery(function ($) {
 					{ "data": "sl" },
 					{ "data": "inserted_at" },
 					{ "data": "email" },
+					{ "data": "pg_title" },
 					{ "data": "average_rating" },
 					{ "data": "action" }
 				]

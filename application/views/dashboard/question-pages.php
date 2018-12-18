@@ -15,7 +15,7 @@
 						<h4 class="card-title card-box">Review questions page list</h4>
 					</div>
 
-					  <ol class="list-group list-group-flush">
+					  <ul class="list-group list-group-flush">
 						 <?php 
 							foreach( $pgs as $pg_k => $pg_v ){
 								$trClass = ($pg_k % 2 ? ' wow bounceInLeft ' : ' wow bounceInRight ');
@@ -31,7 +31,7 @@
 								</a>
 							</li>
 							<?php } ?>
-						</ol>
+						</ul>
 			  </div>
 			</div>
 
@@ -40,10 +40,8 @@
 				<div class="card">
 
 				  <div class="card-header with-border wow bounceInDown">
-					 <h4 class="card-title card-box"><?php if( $pageType == 'edit' ){ echo 'Edit page'; }else{ echo 'New Page'; }?></h4>
-					 <a href="<?=base_url('dashboard/settings/question_pages')?>" class="btn btn-info float-right btn-sm" data-toggle="tooltip" style="position: absolute;right: 0;z-index: 1;" title="">
-										+ New page
-									</a>
+					 <h4 class="card-title card-box"><?php if( $pageType == 'edit' ){ echo 'Edit page ' . '<i><small class="border border-white"><a href="'. base_url('front/review/' . $pgid) .'"> &nbsp; Front View &nbsp; </a></small></i>'; }else{ echo 'New Page'; }?></h4>
+					 <a href="<?=base_url('dashboard/settings/question_pages')?>" class="btn btn-info float-right btn-sm" data-toggle="tooltip" style="position: absolute;right: 0;z-index: 1;" title=""> + New page </a>
 					</div>
 				  <div class="card-body border border-danger">
 					 <h3 class="card-title box-title">Selected questions : </h3>

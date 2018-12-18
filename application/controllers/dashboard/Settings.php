@@ -107,7 +107,6 @@ class Settings extends CI_Controller {
 				redirect('dashboard/settings/rev_question_add', $data);
 			}
 		}
-		
 		$this->load->view('dashboard/rev-question-add', $data);
 	}
 	

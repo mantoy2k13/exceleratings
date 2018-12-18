@@ -40,6 +40,7 @@ class General_model extends CI_Model {
 		$this->db->from('reviews');
 		$this->db->where('id', $rid);
 		$first_rating = $this->db->get()->row()->first_rating;
+	//	prex($rid);
 		
 		// Get question reviews 
 		$this->db->select('*');
@@ -61,11 +62,11 @@ class General_model extends CI_Model {
 		pre($actRev);
 		*/
 		$revItem = count($actRev) + 1;
-	//	prex($revItem);
 		if( $revItem > 0 ){
 			
 			$ratingPercentage = ($rev / $revItem) * 10;
 		}
+	//	prex($ratingPercentage);
 		return $ratingPercentage;
 	}
 	
@@ -75,7 +76,7 @@ class General_model extends CI_Model {
 		$this->db->from('reviews');
 		if($this->logedin_user->usertype == 'generaluser'){
 			
-			$this->db->where('for_uid',$this->logedin_user->id);
+			$this->db->where('for_pgid',$this->logedin_user->id);
 		}
 		
 		if( $from != null ){
@@ -104,7 +105,7 @@ class General_model extends CI_Model {
 		$this->db->select('*');
 		$this->db->from('reviews');
 		if($this->logedin_user->usertype == 'generaluser'){
-			$this->db->where('for_uid',$this->logedin_user->id);
+			$this->db->where('for_pgid',$this->logedin_user->id);
 		}
 		$first_rating = $this->db->get()->result_object();
 		$all_ratings_total = 0;

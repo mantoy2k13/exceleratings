@@ -20,6 +20,14 @@ body {
 .bg_xlrting{
 	background-color: #F05223 !important;
 }
+a{
+	text-decoration: underline;
+}
+a.btn,
+.pagination a,
+.nav a{
+	text-decoration: none;
+}
 a.btn.btn-info:hover, a.btn.btn-info:focus{
 	color: #fff;
 }

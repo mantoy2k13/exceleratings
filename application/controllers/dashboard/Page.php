@@ -35,13 +35,11 @@ class Page extends CI_Controller {
 		$this->db->select('*');
 		$this->db->from('reviews');
 		if($this->logedin_user->usertype == 'generaluser'){
-			$this->db->where('for_uid',$this->logedin_user->id);
+			$this->db->where('for_pgid',$this->logedin_user->id);
 		}
 		$data['total_rating_item'] = count($this->db->get()->result_object());
 		$data['total_rating_item4chart'] = $this->General_model->get_overall_avr_rating_ind();
 		
-		
-
 		$this->db->select('*');
 		$this->db->from('rev_questions');
 		if($this->logedin_user->usertype == 'generaluser'){
@@ -49,8 +47,6 @@ class Page extends CI_Controller {
 		}
 		$this->db->order_by('shorting', 'ASC');
 		$data['ques'] = $this->db->get()->result_object();
-		
-		
 		
 		if($this->logedin_user->usertype == 'superadmin'){
 			
@@ -162,26 +158,27 @@ class Page extends CI_Controller {
 	
 	public function dt_ajax_get_rev_list()
 	{
-		$this->db->select('*');
+		$this->db->select('reviews.*, q_pages.id pg_id, q_pages.pg_title pg_title, q_pages.userid userid ');
 		$this->db->from('reviews');
+		$this->db->join('q_pages', 'reviews.for_pgid = q_pages.id', 'left');
 		if($this->logedin_user->usertype == 'generaluser'){
-			$this->db->where('for_uid',$this->logedin_user->id);
+			$this->db->where('q_pages.userid',$this->logedin_user->id);
 		}
-		$this->db->order_by('id', 'DESC');
+		$this->db->order_by('reviews.id', 'DESC');
 		$reviews = $this->db->get();
 		
 		$data['data'] = [];
 		$rv_data = [];
 		
 		foreach( $reviews->result_object() as $rv_k => $rv_v ){
-			
+		//	pre($rv_v->id);
 			$status = '';
 			$rating = '';
 			if( $rv_v->status == 1 ){
 				$status = '<i class="fa fa-star" aria-hidden="true"></i>';
 			}
 			if( $this->General_model->get_ques_average_rating($rv_v->id) != '' ){
-					
+				
 				if($this->General_model->get_ques_average_rating($rv_v->id) > 69 ){
 					$rating = '<h4><span class="badge badge-info">'. round($this->General_model->get_ques_average_rating($rv_v->id), 1) .' %</span></h4>';
 				}elseif( $this->General_model->get_ques_average_rating($rv_v->id) <= 69 ){
@@ -191,12 +188,14 @@ class Page extends CI_Controller {
 			$rv_data['sl'] = $rv_k *1 +1;
 			$rv_data['inserted_at'] = $rv_v->inserted_at;
 			$rv_data['email'] = $rv_v->email;
+			$rv_data['pg_title'] = '<a href="'. base_url('/dashboard/settings/question_pages/'. $rv_v->pg_id ) .'" >' . $rv_v->pg_title . ' <i>[' . $rv_v->pg_id . ']</i></a>';
 			$rv_data['average_rating'] = $rating;
 			$rv_data['action'] = '<a href="'. base_url('/dashboard/page/review/'. $rv_v->id ) .'" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" title="">
 						<i class="fa fa-fw fa-lg fa-eye"></i> / <i class="fa fa-fw fa-lg fa-edit"></i></a>';
 			
 			array_push($data['data'], $rv_data);
 		}
+		
 	//	exit;
 	//	prex($data);
 	//	print_r($posts->result_array());

@@ -22,7 +22,7 @@
 							
 					<?php } ?>
 						
-					  <table id="totalRev" data-uid="" class="display table table-bordered table-hover table-striped datatable  col_1_center col_1ast_center col_3_center col_4_center col_5_center col_6_center">
+					  <table id="" data-uid="" class="display table table-bordered table-hover table-striped datatable  col_1_center col_1ast_center col_3_center col_4_center col_5_center col_6_center">
 						 <thead>
 						 <tr>
 							<th>SL.</th>

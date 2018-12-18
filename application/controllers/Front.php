@@ -17,20 +17,34 @@ class Front extends CI_Controller {
 		$this->load->view('front/home');
 	}
 	
-	public function review()
+	public function review($qpg_id = null)
 	{
 		if( !$this->session->userdata('logedin_user') ){
 			redirect('auth/login');
 		}
-		$this->db->select('*');
-		$this->db->from('rev_questions');
-		$this->db->where('status', 1);
-		$this->db->where('userid', $this->session->userdata('logedin_user')->id);
-		$this->db->order_by('shorting', 'ASC');
-		$this->db->order_by('qid', 'DESC');
-		$data['ques'] = $this->db->get()->result_object();
+		if( $qpg_id == null ){
+
+			$this->db->select('*');
+			$this->db->from('q_pages');
+			if( $this->logedin_user->usertype == 'generaluser' ){
+				$this->db->where('userid', $this->logedin_user->id);
+			}
+			$this->db->order_by('id', 'DESC');
+			$data['pgs'] = $this->db->get()->result_object();
+			
+			$this->load->view('front/review-pages', $data);
+		}else{
+			$data['qpg_id'] = $qpg_id;
+			$this->db->select('*')
+						->from('pages_questions')
+						->join('rev_questions', 'pages_questions.qid = rev_questions.qid', 'left')
+						->where('page_id', $qpg_id)
+						->order_by('q_shorting', 'ASC');
+			$data['ques'] = $this->db->get()->result_object();
+		//	prex($data['ques']);
+			$this->load->view('front/review', $data);
+		}
 		
-		$this->load->view('front/review', $data);
 	}
 	
 	public function good_review()
@@ -126,7 +140,7 @@ class Front extends CI_Controller {
 			$cur_datetime = date("Y-m-d H:i:s");
 		//	prex($this->input->post());
 			$raringToSave = [
-				'for_uid' => $this->logedin_user->id,
+				'for_pgid' => $this->input->post('qpg_id'),
 				'first_rating' => $this->input->post('first_rating'),
 				'firstname' => $this->input->post('c_firstname'),
 				'lastname' => $this->input->post('c_lastname'),
@@ -141,13 +155,15 @@ class Front extends CI_Controller {
 			if( str_replace('%','',$this->input->post('total_rev_plus')) * 1 > 69 ){
 				$raringToSave['status'] = 1;
 			}
+		//	prex($raringToSave);
 			if($this->db->insert('reviews', $raringToSave)){
+				
 				$inserted_rid = $this->db->insert_id();
-								
+				
 				foreach( $rev_ques as $rvq_k => $rvq_v ){
 				//	pre($rvq_v);
 					if( $rvq_v > 0 ){
-
+						
 						$this->db->insert('question_ratings', [
 							'rid' => $inserted_rid,
 							'qid' => $rvq_k,
@@ -155,7 +171,7 @@ class Front extends CI_Controller {
 						]);
 					}
 				}
-			
+				
 				$this->db->select('*');
 				$this->db->from('users');
 				$this->db->where('username', 'admin');
@@ -188,7 +204,6 @@ class Front extends CI_Controller {
 					$emailContent .= 'First Name <strong> : ' . $this->input->post('c_firstname') . '</strong> <br> ';
 					$emailContent .= 'Last Name <strong> : ' . $this->input->post('c_lastname') . '</strong> <br> ';
 					
-					
 					$get_note_contacts = $this->General_model->get_note_contacts();
 					$note_contact_emails = [];
 					foreach($get_note_contacts as $conts ){
@@ -208,11 +223,10 @@ class Front extends CI_Controller {
 					$this->session->set_flashdata('review70up', false);
 					$this->session->set_flashdata('success', 'Thanks for your rating');
 				} 
-				redirect(base_url('front/review'));
+				redirect(base_url('front/review/' . $this->input->post('qpg_id')));
 			}
-		   
 		}else{
-		//	prex(44444);
+				prex(44444);
 		}
 		$this->load->view('front/review', $data);
 	}

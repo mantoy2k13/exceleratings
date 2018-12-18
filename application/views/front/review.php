@@ -1,6 +1,5 @@
 <?php $this->load->view('front/header-pg');?>
 
-
       <div class="main">
         <section class="module bg-dark-60 contact-page-header bg-dark" data-background="<?php echo base_url('assets/front/'); ?>assets/img/contact.jpg">
           <div class="container">
@@ -10,8 +9,8 @@
 						<h2 class="module-title font-alt"><?php echo $this->session->flashdata('success'); ?></h2>
 						<?php if( $this->session->flashdata('review70up') ){ ?>
 							<center>
-							<a href="#"><img src="https://s3-media3.fl.yelpcdn.com/assets/srv0/yelp_design_web/b085a608c15f/assets/img/logos_homepage/default.png" class="img-thumbnail" style=""></a>
-							<a href="#"><img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" class="img-thumbnail"></a>
+								<a href="#"><img src="https://s3-media3.fl.yelpcdn.com/assets/srv0/yelp_design_web/b085a608c15f/assets/img/logos_homepage/default.png" class="img-thumbnail" style=""></a>
+								<a href="#"><img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" class="img-thumbnail"></a>
 							</center>
 						<?php } ?>
 					<?php }else{  ?>
@@ -23,8 +22,8 @@
           </div>
         </section> 
         <section class="module review"> 
-				<div class="container">
-					<div class="row">
+				<div class="container"> 
+					<div class="row"> 
 						<div class="col-sm-12">
 							<div class="in_center">
 								<div class="in_center_content">
@@ -34,13 +33,14 @@
 									<?php }else{  ?>
 								  <h4>Answering a few short questions, enables us to better serve you.</h4>
 								  <h5>CLICK INSIDE THE CIRCLE TO THE RIGHT THAT BEST ANSWERS EACH QUESTION</h5>
-									<form action="review_add" method="post">
+									<form action="<?=base_url('front/review_add')?>" method="post">
 										<div class="img_container_center first_rating_wrap"> 
 											<h5>Need Improve - &nbsp; &nbsp; </h5><input type="range" name="first_rating" min="0" max="10" step="1" value="0" class="rev_input" id="first_rating">
 											<div class="rateit" data-rateit-mode="font"  style="font-size:30px;top: 8px;" data-rateit-backingfld="#first_rating"></div><h5> &nbsp; &nbsp;  + Very Positive </h5>
 									  </div>
 										<div class="questions"> 
 											<p><span class="rado_2" ><strong> Please rate your exceleratings experience:</strong></span> <span class="rado_1" ></span> </p>
+											<input type="hidden" name="qpg_id" value="<?=$qpg_id?>">
 											<ul class="list-group">
 											<?php 
 												foreach($ques as $q_k => $q_v){ // pre($q_v); ?>

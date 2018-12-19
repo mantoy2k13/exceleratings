@@ -62,59 +62,57 @@
 		firebase.initializeApp(config);
 	</script>
 	
-	
     <script src="<?php echo base_url('/'); ?>assets/dashboard/custom/Chart.bundle.min.js"></script>
     <script>
-
-								function chartCall(getDiv2show, graphData){
-									graphData = JSON.parse(graphData);
-								//	console.log(JSON.parse(graphData));
-									var gdLabels = [];
-									var gdData = [];
-									var gdBgcolor = [];
-									var gdBgBorderColor = [];
-									for (var i = 0; i < graphData.length; i++){
-										 var obj = graphData[i];
-										 gdLabels.push(obj.title);
-										 gdData.push(obj.value_number);
-										 gdBgcolor.push(obj.bg_color);
-										 gdBgBorderColor.push(obj.border_color);
-										 /* 
-										 for (var key in obj){
-											  var attrName = key;
-											  var attrValue = obj[key];
-										 }
-										  */
-									}
-									Chart.defaults.global.defaultFontColor = '#ED2424';
-									var myChart = new Chart(getDiv2show, {
-										 type: 'bar',
-										 data: {
-											  labels: gdLabels,
-											  datasets: [{
-													label: [' '],
-													 tooltips: {
-															backgroundColor: 'red'
-														 },
-													data: gdData,
-													backgroundColor: gdBgcolor,
-													borderColor: gdBgBorderColor, 
-													borderWidth: 2
-											  }]
-										 },
-										 options: {
-											  scales: {
-												  xAxes: [{gridLines: { color: "#ddd" }}],
-													yAxes: [{
-														gridLines: { color: "#ddd" },
-														 ticks: {
-															  beginAtZero:true
-														 }
-													}]
-											  }
-										 }
-									});
-								}
+		function chartCall(getDiv2show, graphData){
+			graphData = JSON.parse(graphData);
+		//	console.log(JSON.parse(graphData));
+			var gdLabels = [];
+			var gdData = [];
+			var gdBgcolor = [];
+			var gdBgBorderColor = [];
+			for (var i = 0; i < graphData.length; i++){
+				 var obj = graphData[i];
+				 gdLabels.push(obj.title);
+				 gdData.push(obj.value_number);
+				 gdBgcolor.push(obj.bg_color);
+				 gdBgBorderColor.push(obj.border_color);
+				 /* 
+				 for (var key in obj){
+					  var attrName = key;
+					  var attrValue = obj[key];
+				 }
+				  */
+			}
+			Chart.defaults.global.defaultFontColor = '#ED2424';
+			var myChart = new Chart(getDiv2show, {
+				 type: 'bar',
+				 data: {
+					  labels: gdLabels,
+					  datasets: [{
+							label: [' '],
+							 tooltips: {
+									backgroundColor: 'red'
+								 },
+							data: gdData,
+							backgroundColor: gdBgcolor,
+							borderColor: gdBgBorderColor, 
+							borderWidth: 2
+					  }]
+				 },
+				 options: {
+					  scales: {
+						  xAxes: [{gridLines: { color: "#ddd" }}],
+							yAxes: [{
+								gridLines: { color: "#ddd" },
+								 ticks: {
+									  beginAtZero:true
+								 }
+							}]
+					  }
+				 }
+			});
+		}
 	 </script>
 
     <style>

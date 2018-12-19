@@ -12,6 +12,7 @@ class Front extends CI_Controller {
 		$this->logedin_user = $this->User_model->user_data_by_id( $this->session->userdata('logedin_user')->id );
 		}
 	}
+	
 	public function index()
 	{
 		$this->load->view('front/home');
@@ -22,6 +23,33 @@ class Front extends CI_Controller {
 		if( !$this->session->userdata('logedin_user') ){
 			redirect('auth/login');
 		}
+		/* ========================= Firebase Update ======================== */
+		$this->db->select('rv.id');
+		$this->db->from('reviews as rv');
+		$this->db->join('q_pages as pg', 'rv.for_pgid = pg.id', 'left');
+		if($this->logedin_user->usertype == 'generaluser'){
+			$this->db->where('pg.userid',$this->logedin_user->id);
+		}
+		$data['user_id'] = $this->logedin_user->id;
+		$data['last_review_inserted'] = $this->db->order_by('rv.id','desc')->limit(1)->get()->row();
+	//	prex($data['last_review_inserted']);
+		if( $data['last_review_inserted'] ){
+			
+			$data['last_review_inserted'] = $data['last_review_inserted']->id;
+		}
+		
+		$data['overall_avr_rating'] = $this->General_model->get_overall_avr_rating();
+		$this->db->select('rv.*');
+		$this->db->from('reviews as rv');
+		$this->db->join('q_pages as pg', 'rv.for_pgid = pg.id', 'left');
+		if($this->logedin_user->usertype == 'generaluser'){
+			$this->db->where('pg.userid',$this->logedin_user->id);
+		}
+		$data['total_rating_item'] = count($this->db->get()->result_object());
+		
+		$data['total_rating_item4chart'] = $this->General_model->get_overall_avr_rating_ind();
+		/* ========================= Firebase Update ======================== */
+		
 		if( $qpg_id == null ){
 
 			$this->db->select('*');

@@ -71,16 +71,22 @@ class General_model extends CI_Model {
 	}
 	
 	public function get_overall_avr_rating( $from = null ){
-		
+		/* 
 		$this->db->select('*');
 		$this->db->from('reviews');
 		if($this->logedin_user->usertype == 'generaluser'){
 			
 			$this->db->where('for_pgid',$this->logedin_user->id);
 		}
-		
+		 */
+		$this->db->select('rv.*');
+		$this->db->from('reviews as rv');
+		$this->db->join('q_pages as pg', 'rv.for_pgid = pg.id', 'left');
+		if($this->logedin_user->usertype == 'generaluser'){
+			$this->db->where('pg.userid',$this->logedin_user->id);
+		}
 		if( $from != null ){
-			$this->db->where('inserted_at >',$from);
+			$this->db->where('rv.inserted_at >',$from);
 		}
 		$first_rating = $this->db->get()->result_object();
 		$all_ratings_total = 0;
@@ -102,10 +108,11 @@ class General_model extends CI_Model {
 
 	public function get_overall_avr_rating_ind(){
 
-		$this->db->select('*');
-		$this->db->from('reviews');
+		$this->db->select('rv.*');
+		$this->db->from('reviews as rv');
+		$this->db->join('q_pages as pg', 'rv.for_pgid = pg.id', 'left');
 		if($this->logedin_user->usertype == 'generaluser'){
-			$this->db->where('for_pgid',$this->logedin_user->id);
+			$this->db->where('pg.userid',$this->logedin_user->id);
 		}
 		$first_rating = $this->db->get()->result_object();
 		$all_ratings_total = 0;
@@ -244,7 +251,7 @@ class General_model extends CI_Model {
 					 <i class="txt_xlrting fa fa-star" aria-hidden="true"></i>
 					 <i class="txt_xlrting fa fa-star" aria-hidden="true"></i>
 					 <i class="txt_xlrting fa fa-star-half-o" aria-hidden="true"></i>
-					 <i class="txt_xlrting fa fa-star" aria-hidden="true"></i>
+					 <i class="txt_xlrting fa fa-star-o" aria-hidden="true"></i>
 					';
 					  break;
 				 case $overall_avr_rating <= 80 :

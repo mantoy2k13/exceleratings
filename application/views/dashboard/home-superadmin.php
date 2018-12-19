@@ -14,7 +14,7 @@
                             <div class="row text-center">
                                 <div class="container-fluid">
 											<h4>Total average rating (All time)</h4>
-											  <h1 class="border" style="font-size: 45px;font-weight: bold;color: #ED2424;"><?php echo round($overall_avr_rating,1); ?><small>%</small>
+											  <h1 class="border" style="font-size: 45px;font-weight: bold;color: #ED2424;"><span id="totlAvgRatAllTime"><span class="loading_spinning">.</span></span><small>%</small>
 												<br>
 												<?php 
 													echo $this->General_model->rating_star($overall_avr_rating);
@@ -23,14 +23,13 @@
 												<hr><hr>
 												<h3>
 													<small>Total number of reviews </small>
-													<span class="border"> &nbsp; <strong class="count" style="color: #ED2424;"><?=$total_rating_item?></strong> &nbsp; </span>
+													<span class="border"> &nbsp; <strong style="color: #ED2424;" id="totlNumOfRevAllTime"><span class="loading_spinning">.</span></strong> &nbsp; </span>
 												</h3>
 												<hr><hr>
 												
 												<h4>Review activity (<b>Last 30 days</b>)</h4>
 												<h1 class="border border-dark" style="font-size: 40px;font-weight: bold;color: #ED2424;">
-													<?php echo round($this->General_model->get_overall_avr_rating(date('Y-m-d', strtotime('-1 months'))), 1); ?>
-													<small>%</small><br>
+													<span id="revActLast30days"><span class="loading_spinning">.</span></span><?php // echo round($this->General_model->get_overall_avr_rating(date('Y-m-d', strtotime('-1 months'))), 1); ?><small>%</small><br>
 													<?php 
 														echo $this->General_model->rating_star(round($this->General_model->get_overall_avr_rating(date('Y-m-d', strtotime('-1 months'))), 1));
 													?>
@@ -75,8 +74,7 @@
                 <tbody>
                 <tr>
                   <td></td>
-                  <td>Loading .... </td>
-                  <td> </td>
+                  <td colspan="2">Loading .... </td>
                   <td> </td>
                   <td> </td>
                   <td> </td>
@@ -114,53 +112,95 @@
 <?php $this->load->view('dashboard/footer'); ?>
 <script>
 
-var ctx = document.getElementById("myChart");
-Chart.defaults.global.defaultFontColor = '#ED2424';
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ["1 Star", "2 Star", "3 Star", "4 Star", "5 Star", "6 Star", "7 Star", "8 Star", "9 Star", "10 Star"],
-        datasets: [{
-            label: '-',
-				 tooltips: {
-            backgroundColor: '#227799'
-                },
-            data: <?php echo json_encode($total_rating_item4chart );?>,
-            backgroundColor: [					 
-                'rgba(253,180,10, 0.3)', 
-                'rgba(253,160,10, 0.3)', 
-                'rgba(253,140,10, 0.3)', 
-                'rgba(253,120,10, 0.3)', 
-                'rgba(253,100,10, 0.3)', 
-                'rgba(253,080,10, 0.3)', 
-                'rgba(253,060,10, 0.3)', 
-                'rgba(253,040,10, 0.3)',
-                'rgba(253,020,10, 0.3)', 
-                'rgba(253,000,10, 0.3)' 
-            ],
-            borderColor: [
-                'rgba(237,36,20, 0.8)',
-                'rgba(237,36,20, 0.8)',
-                'rgba(237,36,20, 0.8)',
-                'rgba(237,36,20, 0.8)',
-                'rgba(237,36,20, 0.8)',
-                'rgba(237,36,20, 0.8)',
-                'rgba(237,36,20, 0.8)',
-                'rgba(237,36,20, 0.8)',
-                'rgba(237,36,20, 0.8)',
-                'rgba(237,36,20, 0.8)'
-            ], 
-            borderWidth: 2
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-            }]
-        }
-    }
-});
+
+
+
+		$(document).ready(function() {
+			var ref = firebase.database().ref("<?=$this->session->userdata('logedin_user')->id?>");
+		//	alert("<?=$this->session->userdata('logedin_user')->id?>");
+			ref.on("value", function(snapshot) {
+				snapshot.forEach(function(childSnapshot) {
+				//	console.log(childSnapshot.val());
+					if(childSnapshot.key == 'total_average_rating_alltime'){
+						$('#totlAvgRatAllTime').html(childSnapshot.val());
+					//	console.log(childSnapshot.val());
+					}
+					
+					if(childSnapshot.key === 'total_number_of_reviews'){
+						//alert(childSnapshot.val());
+						$('#totlNumOfRevAllTime').html( childSnapshot.val() );
+					}
+					
+					if(childSnapshot.key === 'review_activity_last_30_days'){
+						//alert(childSnapshot.val());
+						$('#revActLast30days').html( childSnapshot.val() );
+					}
+					
+					
+					if(childSnapshot.key === 'total_average_rating_alltime_graph'){
+						//alert(childSnapshot.val());
+					//	$('#revActLast30days').html( childSnapshot.val() );
+						
+						
+
+								var ctx = document.getElementById("myChart");
+								Chart.defaults.global.defaultFontColor = '#ED2424';
+								var myChart = new Chart(ctx, {
+									 type: 'bar',
+									 data: {
+										  labels: ["1 Star", "2 Star", "3 Star", "4 Star", "5 Star", "6 Star", "7 Star", "8 Star", "9 Star", "10 Star"],
+										  datasets: [{
+												label: '-',
+												 tooltips: {
+												backgroundColor: '#227799'
+													 },
+												data: childSnapshot.val(),
+												backgroundColor: [					 
+													 'rgba(253,180,10, 0.3)', 
+													 'rgba(253,160,10, 0.3)', 
+													 'rgba(253,140,10, 0.3)', 
+													 'rgba(253,120,10, 0.3)', 
+													 'rgba(253,100,10, 0.3)', 
+													 'rgba(253,080,10, 0.3)', 
+													 'rgba(253,060,10, 0.3)', 
+													 'rgba(253,040,10, 0.3)',
+													 'rgba(253,020,10, 0.3)', 
+													 'rgba(253,000,10, 0.3)' 
+												],
+												borderColor: [
+													 'rgba(237,36,20, 0.8)',
+													 'rgba(237,36,20, 0.8)',
+													 'rgba(237,36,20, 0.8)',
+													 'rgba(237,36,20, 0.8)',
+													 'rgba(237,36,20, 0.8)',
+													 'rgba(237,36,20, 0.8)',
+													 'rgba(237,36,20, 0.8)',
+													 'rgba(237,36,20, 0.8)',
+													 'rgba(237,36,20, 0.8)',
+													 'rgba(237,36,20, 0.8)'
+												], 
+												borderWidth: 2
+										  }]
+									 },
+									 options: {
+										  scales: {
+												yAxes: [{
+													 ticks: {
+														  beginAtZero:true
+													 }
+												}]
+										  }
+									 }
+								});
+								
+					}
+
+					
+				});
+			});
+		});
+
+
+
+
 </script>

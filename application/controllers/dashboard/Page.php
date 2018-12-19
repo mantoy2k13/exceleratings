@@ -32,10 +32,11 @@ class Page extends CI_Controller {
 	//	pre(date('Y-m-d', strtotime('-2 months')));
 	//	prex($this->General_model->get_overall_avr_rating('2018-10-10'));
 		
-		$this->db->select('*');
-		$this->db->from('reviews');
+		$this->db->select('rv.*');
+		$this->db->from('reviews as rv');
+		$this->db->join('q_pages as pg', 'rv.for_pgid = pg.id', 'left');
 		if($this->logedin_user->usertype == 'generaluser'){
-			$this->db->where('for_pgid',$this->logedin_user->id);
+			$this->db->where('pg.userid',$this->logedin_user->id);
 		}
 		$data['total_rating_item'] = count($this->db->get()->result_object());
 		$data['total_rating_item4chart'] = $this->General_model->get_overall_avr_rating_ind();

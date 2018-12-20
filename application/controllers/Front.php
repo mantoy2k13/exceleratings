@@ -15,11 +15,38 @@ class Front extends CI_Controller {
 	
 	public function index()
 	{
+		/* 
+		echo base_url('dashboard/settings/test_raf_46834638/');
+		
+		$ch = curl_init();
+      curl_setopt($ch, CURLOPT_URL, base_url('dashboard/settings/test_raf_46834638/'));
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+      curl_setopt($ch, CURLOPT_TIMEOUT, 60);
+		curl_setopt($ch, CURLOPT_HEADER, 1);
+      curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+      $data = curl_exec($ch);
+		curl_close($ch);
+		
+		prex($data);
+		
+		 */
 		$this->load->view('front/home');
 	}
 	
 	public function review($qpg_id = null)
 	{
+		//$ch = curl_init();
+		
+		// Set query data here with the URL
+	//	curl_setopt($ch, CURLOPT_URL, 'https://witnessone.net/bin/sms/send.php?phone=' . $con_emails . '&message=' . $sms_msg); 
+		// curl_setopt($ch, CURLOPT_URL, 'http://exceleratings.local/dashboard/settings/test_raf_46834638'); 
+		
+		// curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		// curl_setopt($ch, CURLOPT_TIMEOUT, 3);
+		// $content = trim(curl_exec($ch));
+		// curl_close($ch);
+		
+		
 		if( !$this->session->userdata('logedin_user') ){
 			redirect('auth/login');
 		}
@@ -213,13 +240,13 @@ class Front extends CI_Controller {
 						 ->from($this->logedin_user->email, 'Exceleratings SuperAdmin')
 						 ->to($this->input->post('c_email'))
 						 ->subject('Thanks for your rating')
-						 ->message( $this->load->view('front/emailtemp470up', $data) )
+					//	 ->message( $this->load->view('front/emailtemp470up', $data) )
+						 ->message( $this->load->view('front/emailtemp470up', $data, true) )
 						 ->set_mailtype('html');
 
 					// send email
 					$this->email->send();
 					
-				
 					redirect(base_url('front/good_review'));
 				}else{
 					
@@ -234,8 +261,10 @@ class Front extends CI_Controller {
 					
 					$get_note_contacts = $this->General_model->get_note_contacts();
 					$note_contact_emails = [];
+					$note_contact_phons = [];
 					foreach($get_note_contacts as $conts ){
 						array_push($note_contact_emails, $conts->email);
+						array_push($note_contact_phons, $conts->phone);
 					}
 					
 					$this->email
@@ -244,10 +273,33 @@ class Front extends CI_Controller {
 						 ->subject('Bad review notification')
 						 ->message($emailContent)
 						 ->set_mailtype('html');
-
+						
 					// send email
 					$this->email->send();
 					
+					if( $this->logedin_user->subs_package_slug == 'gold' ){
+						
+						//	https://witnessone.net/bin/sms/send.php?phone=23434342&message=sdjfhksdjf 
+						$sms_msg = 'Rating percent (' . $this->input->post('total_rev_plus') . ') // From email : ' . $this->input->post('c_email') . ' // From phone : ' . $this->input->post('c_phone') . ' // Name : ' . $this->input->post('c_firstname') . ' ' . $this->input->post('c_lastname') . ' // Time was : ' . $cur_datetime . '';
+						 
+						foreach( $note_contact_phons as $con_phons ){
+							
+							// Set query data here with the URL
+						//	curl_setopt($ch, CURLOPT_URL, 'https://witnessone.net/bin/sms/send.php?phone=' . $con_emails . '&message=' . $sms_msg); 
+						//	curl_setopt($ch, CURLOPT_URL, base_url('dashboard/settings/test_raf_46834638/') . '?from=' . $_GET[''] . '&to=' . $sms_msg); 
+							
+							$ch = curl_init();
+							curl_setopt($ch, CURLOPT_URL, 'https://witnessone.net/bin/sms/send.php?phone=' . $con_phons . '&message=' . ' sdljfds fjkdslf ds'); 
+							curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+							curl_setopt($ch, CURLOPT_TIMEOUT, 60);
+							curl_setopt($ch, CURLOPT_HEADER, 1);
+							curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+							$data = curl_exec($ch);
+							curl_close($ch);
+						}
+						 
+					//	print $content;
+					}
 					$this->session->set_flashdata('review70up', false);
 					$this->session->set_flashdata('success', 'Thanks for your rating');
 				} 

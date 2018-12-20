@@ -29,6 +29,9 @@ class General_model extends CI_Model {
 		$this->db->select('*');
 		$this->db->from('notification_contacts');
 		$this->db->where('status', 1);
+		if( $this->logedin_user->usertype == 'generaluser' ){
+			$this->db->where('userid', $this->session->userdata('logedin_user')->id);
+		}
 		$conts = $this->db->get()->result_object();
 		
 		return $conts;

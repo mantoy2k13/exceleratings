@@ -74,7 +74,7 @@
                 <tbody>
                 <tr>
                   <td></td>
-                  <td colspan="2">Loading .... </td>
+                  <td colspan="2">Loading ... <span class="loading_spinning"><b> --- </b></span> </td>
                   <td> </td>
                   <td> </td>
                   <td> </td>

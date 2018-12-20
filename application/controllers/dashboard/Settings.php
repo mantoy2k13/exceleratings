@@ -557,6 +557,28 @@ class Settings extends CI_Controller {
 	}
 	
 	
+	public function test_raf_46834638(){
+	
+		$this->load->library('email');
+		$this->email
+				->from('thomas.woodfin03@yopmail.com', 'thomas.woodfin03@yopmail')
+				->to('sakiremail@gmail.com')
+				->subject('Test cURL')
+				->message('Test cURL content ....');
+			
+		$ret = [];
+		
+		if($this->email->send()){
+			$ret['status'] = 'success';
+		}
+		else {
+			$ret['status'] = 'error';
+		}
+		
+		echo json_encode($ret);
+	}
+	
+	
 }
 
 

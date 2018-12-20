@@ -61,6 +61,7 @@
                                                          <div style="cursor:auto;color:#000000;font-family:PT Sans, Trebuchet MS, sans-serif;font-size:11px;line-height:1.5;text-align:center;">
                                                             <p><em><span style="color:#f39c12;"><span style="font-size:28px;">Thankyou for your rating,&#xA0;</span></span></em></p>
                                                             <p><em><strong><span style="color:#e74c3c;"><span style="font-size:28px;">You may also rating on here ...</span></span></strong></em></p>
+                                                            <p><em><strong><span style="font-size:17px;">Please take a few extra minutes to leave a review or testimonial for us in below links.</span></strong></em></p>
                                                          </div>
                                                       </td>
                                                    </tr>

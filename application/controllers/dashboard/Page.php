@@ -203,5 +203,16 @@ class Page extends CI_Controller {
 		echo json_encode($data);
 	}
 	
-	
+	function sms_test(){
+	//	base_url('dashboard/settings/test_raf_46834638');
+		ini_set('max_execution_time', 300); //300 seconds = 5 minutes
+		
+		$this->load->library('curl'); 
+		
+		$con_phons = '8801815035736';
+		$sms_msg = 'Test SMS from localhost ... ';
+		
+		echo $this->curl->simple_get( 'https://witnessone.net/bin/sms/send.php?phone=' . $con_phons . '&message=' . $sms_msg ); 
+	}
 }
+

@@ -12,7 +12,28 @@ class Front extends CI_Controller {
 		$this->logedin_user = $this->User_model->user_data_by_id( $this->session->userdata('logedin_user')->id );
 		}
 	}
+	/* 
+	public function test_raf_46834638(){
 	
+		$this->load->library('email');
+		$this->email
+				->from('thomas.woodfin03@yopmail.com', 'thomas.woodfin03@yopmail')
+				->to('sakiremail@gmail.com')
+				->subject('Test cURL --')
+				->message('Test cURL content ---- ');
+			
+		$ret = [];
+		
+		if($this->email->send()){
+			$ret['status'] = 'success';
+		}
+		else {
+			$ret['status'] = 'error';
+		}
+		
+		echo json_encode($ret);
+	}
+	 */
 	public function index()
 	{
 		/* 
@@ -284,18 +305,14 @@ class Front extends CI_Controller {
 						 
 						foreach( $note_contact_phons as $con_phons ){
 							
+							$this->load->library('curl'); 
+							
+							$this->curl->simple_get( 'https://witnessone.net/bin/sms/send.php?phone=' . $con_phons . '&message=' . $sms_msg ); 
 							// Set query data here with the URL
 						//	curl_setopt($ch, CURLOPT_URL, 'https://witnessone.net/bin/sms/send.php?phone=' . $con_emails . '&message=' . $sms_msg); 
 						//	curl_setopt($ch, CURLOPT_URL, base_url('dashboard/settings/test_raf_46834638/') . '?from=' . $_GET[''] . '&to=' . $sms_msg); 
 							
-							$ch = curl_init();
-							curl_setopt($ch, CURLOPT_URL, 'https://witnessone.net/bin/sms/send.php?phone=' . $con_phons . '&message=' . ' sdljfds fjkdslf ds'); 
-							curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-							curl_setopt($ch, CURLOPT_TIMEOUT, 60);
-							curl_setopt($ch, CURLOPT_HEADER, 1);
-							curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-							$data = curl_exec($ch);
-							curl_close($ch);
+						
 						}
 						 
 					//	print $content;

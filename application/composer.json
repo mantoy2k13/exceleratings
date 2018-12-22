@@ -1,0 +1,5 @@
+{
+    "require": {
+        "messagemedia/messages-sdk": "^1.1"
+    }
+}

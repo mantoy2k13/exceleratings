@@ -1,6 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+use MessageMediaMessagesLib\MessageMediaMessagesClient;
+use MessageMediaMessagesLib\APIHelper;
+
 class Front extends CI_Controller {
 
 	function __construct() {
@@ -12,15 +15,15 @@ class Front extends CI_Controller {
 		$this->logedin_user = $this->User_model->user_data_by_id( $this->session->userdata('logedin_user')->id );
 		}
 	}
-	/* 
+	 
 	public function test_raf_46834638(){
 	
 		$this->load->library('email');
 		$this->email
 				->from('thomas.woodfin03@yopmail.com', 'thomas.woodfin03@yopmail')
 				->to('sakiremail@gmail.com')
-				->subject('Test cURL --')
-				->message('Test cURL content ---- ');
+				->subject('Test cURL dsfdsf dsfdsf')
+				->message('Test cURL content sd fdsfds fdsf ');
 			
 		$ret = [];
 		
@@ -33,7 +36,7 @@ class Front extends CI_Controller {
 		
 		echo json_encode($ret);
 	}
-	 */
+	 
 	public function index()
 	{
 		/* 
@@ -358,4 +361,51 @@ class Front extends CI_Controller {
 	public function team(){
 		$this->load->view('front/team');
 	}
+	
+	
+	function sms_test($phone = null){
+	//	base_url('dashboard/settings/test_raf_46834638');
+
+		
+	//	use MessageMediaMessagesLib\MessageMediaMessagesClient;
+	//	use MessageMediaMessagesLib\APIHelper;
+		if( $phone != null ){
+				/* 
+			$authUserName = '9FpRrzD8yFZpOh5cikLw'; // The API key to use with basic/HMAC authentication
+			$authPassword = 'mwGj32ezcEITUDAjbJNeZtfwlDg6k7'; // The API secret to use with basic/HMAC authentication
+				 */
+			$authUserName = '2BuJJVZO7RRGmWOiUbf8'; // The API key to use with basic/HMAC authentication
+			$authPassword = 'wN1RQ1EmURe4t1BY1jeZAqT7e67o37'; // The API secret to use with basic/HMAC authentication
+			$useHmacAuthentication = false; // Change to true if you are using HMAC keys
+
+			$client = new MessageMediaMessagesLib\MessageMediaMessagesClient($authUserName, $authPassword, $useHmacAuthentication);
+
+			$messages = $client->getMessages();
+
+			
+			
+			
+			$bodyValue = '{
+				"messages":[
+					{
+						"content":"ExceleRatings SMS test",
+						"destination_number":"+88'. $phone .'"
+					}
+				]
+			}';
+
+			$body = MessageMediaMessagesLib\APIHelper::deserialize($bodyValue);
+
+			$results = $messages->createSendMessages($body);
+			
+			pre($body);
+			pre($results);
+			$messageId = 'a508b910-84d5-4e4a-978d-f9ffcfa90953'; // The message id for the message you wish to get the status for
+
+			$result = $messages->getMessageStatus($results->messages[0]->message_id);
+			pre($result);
+			
+		}
+	}
+	
 }

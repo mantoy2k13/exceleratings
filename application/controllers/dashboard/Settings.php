@@ -300,6 +300,9 @@ class Settings extends CI_Controller {
 			}
 		}
 	}
+	
+	
+	
 	/* 
 	public function rev_question($qid = null)
 	{

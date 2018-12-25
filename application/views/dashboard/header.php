@@ -171,7 +171,9 @@
 						<a href="<?php echo base_url('dashboard/page'); ?>"><i class="menu-icon fa fa-laptop"></i>Dashboard Home</a>
 					</li>
 					<li class="menu-title"> --- </li><!-- /.menu-title -->
-
+					<?php if( $this->logedin_user->usertype == 'superadmin' ){ ?>
+					<li class="<?=$menuitem4 == 'service_categories' ? 'active':''?>"><a href="<?php echo base_url('dashboard/superadmin/service_categories'); ?>"><i class="menu-icon fa fa-list-ul"></i> <span> Servicev Categories</span></a></li>
+					<?php } ?>
 					<li class="<?=$menuitem4 == 'rev_questions' ? 'active':''?>"><a href="<?php echo base_url('dashboard/settings/rev_questions'); ?>"><i class="menu-icon fa fa-wrench"></i> <span> Question Settings</span></a></li>
 					<li class="<?=$menuitem4 == 'rev_question_add' ? 'active':''?>"><a href="<?php echo base_url('dashboard/settings/rev_question_add'); ?>"><i class="menu-icon fa fa-plus"></i> <span> Add Question</span></a></li>
 					<li class="<?=$menuitem4 == 'question_pages' ? 'active':''?>"><a href="<?php echo base_url('dashboard/settings/question_pages'); ?>"><i class="menu-icon fa fa-file-text"></i> <span> Question's Page</span></a></li>

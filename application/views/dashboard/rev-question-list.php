@@ -56,7 +56,7 @@
 								<span class="act float-right">
 									<button data-qid="<?php echo  $q_v->qid; ?>" data-toggle="modal" data-target="#qusEditForm" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" title="">
 									<i class="fa fa-fw fa-lg fa-eye"></i> / <i class="fa fa-fw fa-lg fa-edit"></i></button> &nbsp; 
-									<button type="button" class="btn btn-outline-secondary btn-sm toremove" data-toggle="tooltip" data-id="<?php echo $q_v->qid; ?>">
+									<button type="button" class="btn btn-outline-secondary btn-sm toremove" data-toggle="tooltip" data-id="<?php echo $q_v->qid; ?>"> 
 									<i class="fa fa-fw fa-lg fa-close"></i></button>
 								</span>
 								<i class="fa fa-arrows fa-lg float-left qShorting" aria-hidden="true"></i> 

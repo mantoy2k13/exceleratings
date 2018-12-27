@@ -62,6 +62,18 @@ class Settings extends CI_Controller {
 		$data['menuitem4'] = 'rev_questions';
 		
 		$this->db->select('*');
+		$this->db->from('service_categories');
+		$this->db->order_by('id', 'DESC');
+		$data['service_categories'] = $this->db->get()->result_object();
+	//	pre($data['service_categories']);
+		foreach( $data['service_categories'] as $sc_k => $sc_v ){
+			$this->db->select('*');
+			$this->db->from('rev_questions');
+			$this->db->where('service_category', $sc_v->id);
+			$data['service_categories'][$sc_k]->questions = $this->db->get()->result_object();
+		}
+		
+		$this->db->select('*');
 		$this->db->from('rev_questions');
 		if( $this->logedin_user->usertype == 'generaluser' ){
 			$this->db->where('userid', $this->logedin_user->id);
@@ -80,6 +92,12 @@ class Settings extends CI_Controller {
 		$data['profile'] = $this->General_model->get_user_data($this->logedin_user->id);
 	//	$session_user = $this->logedin_user;
 	//	prex($session_user);
+	
+		$this->db->select('*');
+		$this->db->from('service_categories');
+		$this->db->order_by('id', 'DESC');
+		$data['service_categories'] = $this->db->get()->result_object();
+	
 		if( isset($_POST['rev_question_add']) ){
 			
 			$this->form_validation->set_rules('question','Question','required');

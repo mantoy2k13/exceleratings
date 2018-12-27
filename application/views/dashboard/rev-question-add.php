@@ -30,40 +30,52 @@
 								<div class="alert alert-danger" role="alert"><?php echo $this->session->flashdata('error'); ?></div>
 							</div>
 						<?php } ?>
-												
+						
 						<div class="card-body wow bounceInRight" id="cat_add_form">
 							
 						  <div class="form-group">
 							 <label for="post_title">The Question</label>
 							<textarea name="question" id="question" class="form-control" rows=""></textarea>
 						  </div>
-							  <div class="row">
-								  <div class="col-md-6">
-									<div class="row">
-									  <div class="btn" data-toggle="buttons">
-											<div class="btn-group-vertical">
-											  <label class="btn btn-sm btn-info" title="Anser get by Yes/No options">
-												 <input type="radio" value="yes_no" name="answer_option" id="option1" > 
-												 Answer get by Yes/No options
-											  </label>
-											
-											  <label class="btn btn-sm btn-info active" title="Answer get by 1 to 10 reviewing options">
-												 <input type="radio" value="rev_1_10" name="answer_option" id="option3" checked >
-													Answer get by 1 to 10 reviewing options
-											  </label>
-											
-											</div>
-										</div>
-										</div>
-								  </div>
-								  <div class="col-md-6">
-										<br>
-										<div class="form-group">
-											<button type="submit" name="rev_question_add" class="btn btn-lg btn-info btn-block"> Save </button>
-										</div>
+						  <?php if( $this->logedin_user->usertype == 'superadmin' ){ ?>
+						  <div class="form-group">
+							 <label for="post_title">Business Category</label>
+							 <select name="service_category" class="form-control">
+								<option value=""> -- Select -- </option>
+							<?php
+								foreach( $service_categories as $sc_k => $sc_v ){ ?> 
+								<option value="<?=$sc_v->id?>"><?=$sc_v->title?></option> 
+							<?php } ?> 
+							 </select>
+						  </div>
+						  <?php } ?> 
+						  <div class="row">
+							  <div class="col-md-6">
+								<div class="row">
+								  <div class="btn" data-toggle="buttons">
+										<div class="btn-group-vertical">
+										  <label class="btn btn-sm btn-info" title="Anser get by Yes/No options">
+											 <input type="radio" value="yes_no" name="answer_option" id="option1" > 
+											 Answer get by Yes/No options
+										  </label>
 										
-								  </div>
+										  <label class="btn btn-sm btn-info active" title="Answer get by 1 to 10 reviewing options">
+											 <input type="radio" value="rev_1_10" name="answer_option" id="option3" checked >
+												Answer get by 1 to 10 reviewing options
+										  </label>
+										
+										</div>
+									</div>
+									</div>
 							  </div>
+							  <div class="col-md-6">
+									<br>
+									<div class="form-group">
+										<button type="submit" name="rev_question_add" class="btn btn-lg btn-info btn-block"> Save </button>
+									</div>
+									
+							  </div>
+						  </div>
 						</div>
 					  <!-- /.box-body -->		
 					</form>  

@@ -70,6 +70,13 @@
 										</li>
 								<?php }
 								}
+							}else{
+								foreach( $def_questions as $dq ){ ?>
+									<li class="list-group-item draging">
+										<input value="<?=$dq->qid?>" name="qid[]" size="2" hidden >
+										<?=$dq->question . ' <i>['. $dq->qid .']</i>'?>
+									</li>
+							<?php }
 							}
 							?>
 						</ul>

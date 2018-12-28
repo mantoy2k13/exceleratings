@@ -30,8 +30,7 @@
 							$inactClass = 'inactive';
 						}
 						$inactClass .= ($q_k % 2 ? ' wow bounceInLeft ' : ' wow bounceInRight ');
-						
-						
+							
 							$queations_ratings = $this->General_model->get_queations_ratings($q_v->qid);
 						//	pre($queations_ratings);
 							$queations_ratings_act = [];

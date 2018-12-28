@@ -16,7 +16,7 @@ jQuery(function ($) {
 					 data: {id: id},
 					 dataType:'JSON', 
 					 success: function(response){
-						  
+							
 							if( response == 'Success' ){
 								thisAct.closest('li').css('background','red').hide('slow');
 							}
@@ -29,7 +29,7 @@ jQuery(function ($) {
 				});
 				
 			} else {
-				 // Do nothing!
+				// Do nothing!
 			}
 			
 		});

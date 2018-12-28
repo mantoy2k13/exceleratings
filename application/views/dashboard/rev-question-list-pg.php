@@ -18,15 +18,30 @@
 								<h4 class="card-title card-box"><?=$sc_v->title?></h4>
 							</div>
 
-							<ul id="all_questions" class="connectedSortable list-group list-group-flush">
+							<ul id="all_questions" class=" list-group list-group-flush">
 							 <?php 
 								foreach( $sc_v->questions as $sc_v_k => $sc_v_v ){
 									$trClass = ($sc_v_k % 2 ? ' wow bounceInLeft ' : ' wow bounceInRight ');
+
+									$answer_option = '';
+									if( $sc_v_v->answer_option == 'yes_no' ){
+										$answer_option = 'Yes/No selection';
+									}else if( $sc_v_v->answer_option == 'rev_1_10' ){
+										$answer_option = 'Review 1-10 selection';
+									}
+									$status = '<span class="badge badge-info">ACTIVE</span>';
+									$inactClass = '';
+									if( $sc_v_v->status == '0' ){
+										$status = '<span class="badge badge-secondary">Inactive</span>';
+										$inactClass = 'inactive';
+									}
 								?>
-									<li class="list-group-item draging <?=$trClass?>">
+									<li class="list-group-item <?=$trClass?>">
 										<input value="<?=$sc_v_v->qid?>" name="qid[]" size="2" hidden>
-										<span class="qs"><?=$sc_v_v->question . '</span> <i>['. $sc_v_v->qid .']</i>'?>
+										<span class="qs"><?=$sc_v_v->question . '</span> <br><i>['. $sc_v_v->qid .']</i>'?>
+										<?php echo '<span class="ans" hidden>'. $sc_v_v->answer_option .'</span>'; ?> <?php echo $status . '<span class="sts" hidden>'. $sc_v_v->status .'</span>'; ?> 
 										<button data-qid="<?php echo  $sc_v_v->qid; ?>" data-toggle="modal" data-target="#qusEditForm" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" title=""><i class="fa fa-fw fa-lg fa-edit"></i></button>
+
 									</li>
 								<?php } ?> 
 							</ul>

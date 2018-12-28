@@ -122,6 +122,19 @@
 									<p><b><i><?php echo $profile->username; ?></b></i></p>
 							</div>
 						</div>
+
+						  <?php if( $this->logedin_user->usertype != 'superadmin' ){ ?>
+						  <div class="form-group">
+							 <label for="post_title">Services Category/Type</label>
+							 <select name="service_category" class="form-control">
+								<option value="0"> -- Select -- </option>
+							<?php
+								foreach( $service_categories as $sc_k => $sc_v ){ ?> 
+								<option value="<?=$sc_v->id?>" <?=($profile->service_category == $sc_v->id) ? 'selected' : ''?>><?=$sc_v->title?></option> 
+							<?php } ?> 
+							 </select>
+						  </div>
+						  <?php } ?>
 						<div class="form-group">
 						  <label for="about" class="control-label">About</label>
 							 <textarea class="form-control" id="about" name="about" rows="5" placeholder="About"><?php echo $profile->about; ?></textarea>

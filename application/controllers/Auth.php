@@ -59,11 +59,17 @@ class Auth extends CI_Controller
 	
 	public function registration()
 	{
-	//	prex($this->input->post);
+		$this->db->select('*')
+					->from('service_categories')
+					->order_by('id', 'DESC');
+		$data['service_categories'] = $this->db->get()->result_object();
+	
+	//	prex($data['service_categories']);
 		if( $this->input->post('submitForm') == 'register' ){
 		//	prex($this->input->post());
 			$this->form_validation->set_rules('username','UserName','required|is_unique[users.username]');
 			$this->form_validation->set_rules('email','Email','required');
+			$this->form_validation->set_rules('service_category','Service Type','required');
 			$this->form_validation->set_rules('password','Password','required|min_length[3]');
 			$this->form_validation->set_rules('conf_password','Confarm Password','required|min_length[3]|matches[password]');
 			
@@ -72,6 +78,7 @@ class Auth extends CI_Controller
 				$data = array(
 					'username' => $_POST['username'],
 					'email' => $_POST['email'],
+					'service_category' => $_POST['service_category'],
 					'password' => md5($_POST['password']),
 					'usertype' => 'generaluser',
 					'subs_package_slug' => 'free'
@@ -85,7 +92,7 @@ class Auth extends CI_Controller
 		if( isset($_SESSION['user_loged']) ){
 			redirect('dashboard/page', 'refresh');
 		}else{
-			$this->load->view('auth/registration');
+			$this->load->view('auth/registration', $data);
 		}
 	}
 	public function logout()

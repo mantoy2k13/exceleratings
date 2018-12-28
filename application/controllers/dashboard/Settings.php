@@ -135,6 +135,14 @@ class Settings extends CI_Controller {
 		$data['menuitem4'] = 'question_pages';
 	
 		$this->db->select('*');
+		$this->db->from('rev_questions');
+		if( $this->logedin_user->usertype == 'generaluser' ){
+			$this->db->where('service_category', $this->logedin_user->service_category);
+		}
+		$this->db->order_by('shorting', 'ASC');
+		$data['def_questions'] = $this->db->get()->result_object();
+		
+		$this->db->select('*');
 		$this->db->from('q_pages');
 		if( $this->logedin_user->usertype == 'generaluser' ){
 			$this->db->where('userid', $this->logedin_user->id);
@@ -460,6 +468,12 @@ class Settings extends CI_Controller {
 		if( $uid == null ){
 			$uid = $this->session->userdata('logedin_user')->id;
 		}
+		
+		$this->db->select('*')
+					->from('service_categories')
+					->order_by('id', 'DESC');
+		$data['service_categories'] = $this->db->get()->result_object();
+	
 		if( isset($_POST['profile_save']) ) {
 	
 			$proPicUpload = $this->do_upload('profilePic','uploads/profile-pic/');
@@ -480,6 +494,9 @@ class Settings extends CI_Controller {
 			
 			if( $this->input->post('usertype') ){
 				$toSave1['usertype'] = $this->input->post('usertype');
+			}
+			if( $this->input->post('service_category') ){
+				$toSave1['service_category'] = $this->input->post('service_category');
 			}
 			
 			$this->db->where('id', $uid);

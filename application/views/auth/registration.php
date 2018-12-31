@@ -26,6 +26,17 @@
 						  <input type="email" name="email" class="form-control" placeholder="Email">
 						  <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 						</div>
+						  <div class="form-group">
+							 <label for="post_title">Services Type</label>
+							 <?php // pre($service_categories); ?>
+							 <select name="service_category" class="form-control">
+								<option> -- Select -- </option>
+							<?php
+								foreach( $service_categories as $sc_k => $sc_v ){ ?> 
+								<option value="<?=$sc_v->id?>" ><?=$sc_v->title?></option> 
+							<?php } ?> 
+							 </select>
+						  </div>
 						<div class="form-group has-feedback">
 						  <input type="password" name="password" class="form-control" placeholder="Password">
 						  <span class="glyphicon glyphicon-lock form-control-feedback"></span>

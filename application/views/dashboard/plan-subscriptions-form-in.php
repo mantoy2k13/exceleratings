@@ -1,21 +1,16 @@
-
-<script src="https://js.braintreegateway.com/web/dropin/1.11.0/js/dropin.min.js"></script>
 <?php
-
-//	To Payment ####################################
-// Initiate the Braintree
-$gateway = new Braintree_Gateway([
-    'environment' => 'sandbox',
-    'merchantId' => '5288gkfmzrh7bzyp',
-    'publicKey' => '37r7jyjnqn7hv4tg',
-    'privateKey' => 'c41d6f73d3797f59b8e138ad0fe2a8df'
-]);
-
-// get the client token
-$clientToken = $gateway->clientToken()->generate();
-
+	//	To Payment ####################################
+	// Initiate the Braintree
+	$gateway = new Braintree_Gateway([
+		'environment' => 'sandbox',
+		'merchantId' => '5288gkfmzrh7bzyp',
+		'publicKey' => '37r7jyjnqn7hv4tg',
+		'privateKey' => 'c41d6f73d3797f59b8e138ad0fe2a8df'
+	]);
+	
+	// get the client token
+	$clientToken = $gateway->clientToken()->generate();
 ?>
-
       <div class="row">
         <!-- left column -->
         <div class="col-md-8">
@@ -24,9 +19,7 @@ $clientToken = $gateway->clientToken()->generate();
 				<div class="card-header with-border wow bounceInLeft">
 					<h3 class="card-title card-box">Enrollment</h3>
 				</div>
-
-				<form action="" method="post" enctype="multipart/form-data">
-
+					
 					<?php if( $this->session->flashdata('success') ){ ?>
 						<div class="container-fluid">
 							<div class="alert alert-success" role="alert"><?php echo $this->session->flashdata('success'); ?></div>
@@ -261,8 +254,7 @@ $clientToken = $gateway->clientToken()->generate();
 							  <button type="submit" class="btn btn-info btn-lg float-right"> &nbsp; &nbsp; &nbsp; Submit &nbsp; &nbsp; &nbsp; </button>
 						</form>
 					</div>
-				  <!-- /.box-body -->		
-				</form>  
+				  <!-- /.box-body -->	
 			 </div>
         </div>
         <div class="col-md-4">
@@ -344,6 +336,7 @@ $clientToken = $gateway->clientToken()->generate();
       </div>
       <!-- /.box -->
 
+<script src="https://js.braintreegateway.com/web/dropin/1.11.0/js/dropin.min.js"></script>
 <script>
 
     (function () {

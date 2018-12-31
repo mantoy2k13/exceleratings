@@ -45,7 +45,10 @@
 									<a href="<?=base_url('dashboard/superadmin/service_categories/' . $srv_v->id)?>" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" title="">
 										<i class="fa fa-fw fa-lg fa-edit"></i>
 									</a>
-									<a href="<?=base_url('dashboard/superadmin/service_category_remove/' . $srv_v->id)?>" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" onclick="return confirm('Are you sure you want to delete this item?');" title="To remove this item">
+									<!-- <a href="<?=base_url('dashboard/superadmin/service_category_remove/' . $srv_v->id)?>" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" onclick="return confirm('Are you sure you want to delete this item?');" title="To remove this item">
+										<i class="fa fa-fw fa-lg fa-close"></i>
+									</a> -->
+									<a href="javascript:;" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" onclick="service_category_remove(<?=$srv_v->id; ?>)" title="To remove this item">
 										<i class="fa fa-fw fa-lg fa-close"></i>
 									</a>
 								</td>

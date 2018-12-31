@@ -7,30 +7,35 @@ jQuery(function ($) {
 			event.preventDefault();
 			var thisAct = $(this);
 			var id = thisAct.data('id');
-						
-			if (confirm('Are you sure you want to remove this item ?')) {
 
+			swal({
+				title: "Are you sure?",
+				text: "Your will not be able to recover this review questions!",
+				type: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#DD6B55",
+				confirmButtonText: "Yes, delete it!",
+				showLoaderOnConfirm: true
+			},
+			function(){
 				$.ajax({
-					 type: "POST",
-					 url: ajaxUrl,
-					 data: {id: id},
-					 dataType:'JSON', 
-					 success: function(response){
-							
-							if( response == 'Success' ){
-								thisAct.closest('li').css('background','red').hide('slow');
-							}
-							console.log(response);
-					 },
-					 error: function(jqXHR, textStatus, errorThrown) {
-						  console.log(textStatus);
-						  console.log(errorThrown);
-					 }
-				});
-				
-			} else {
-				// Do nothing!
-			}
+					type: "POST",
+					url: ajaxUrl,
+					data: {id: id},
+					dataType:'JSON', 
+					success: function(response){
+						   
+						   if( response == 'Success' ){
+							   thisAct.closest('li').css('background','red').hide('slow');
+						   }
+						   console.log(response);
+					},
+					error: function(jqXHR, textStatus, errorThrown) {
+						 console.log(textStatus);
+						 console.log(errorThrown);
+					}
+			   });
+			});
 			
 		});
 	}
@@ -191,7 +196,7 @@ jQuery(function ($) {
 });
 
 
-
+/* Delete Functions ============================================================================= */
 function rem_rev_questions(qid){
 	swal({
 		 title: "Are you sure?",
@@ -214,6 +219,62 @@ function rem_rev_questions(qid){
 					});
 				} else{
 					swal("Failed!", "There was a problem deleting your questions!", "danger");
+				}
+		    }
+		}); 
+	 });
+}
+
+function service_category_remove(sid){
+	swal({
+		 title: "Are you sure?",
+		 text: "Your will not be able to recover this Service Categories!",
+		 type: "warning",
+		 showCancelButton: true,
+		 confirmButtonColor: "#DD6B55",
+		 confirmButtonText: "Yes, delete it!",
+		 showLoaderOnConfirm: true
+	 },
+	 function(){
+		$.ajax({
+			type: 'post',
+			url: base_url + "dashboard/superadmin/service_category_remove",
+			data: {sid:sid},
+			success: function(res){
+				if(res == 1){
+					swal({title: "Deleted!",type: "success"},function(){
+						location.reload();
+					});
+				} else{
+					swal("Failed!", "There was a problem deleting your service categories!", "danger");
+				}
+		    }
+		}); 
+	 });
+}
+
+function notification_contact_remove(cid){
+	swal({
+		 title: "Are you sure?",
+		 text: "Your will not be able to recover this contact!",
+		 type: "warning",
+		 showCancelButton: true,
+		 confirmButtonColor: "#DD6B55",
+		 confirmButtonText: "Yes, delete it!",
+		 showLoaderOnConfirm: true
+	 },
+	 function(){
+		$.ajax({
+			type: 'post',
+			url: base_url + "dashboard/settings/notification_contact_remove",
+			data: {cid:cid},
+			success: function(res){
+				if(res == 1){
+					swal({title: "Deleted!",type: "success"},function(){
+						location.reload();
+					});
+				} else{
+					swal("Failed!", "There was a problem deleting your contacts!", "danger");
 				}
 		    }
 		}); 

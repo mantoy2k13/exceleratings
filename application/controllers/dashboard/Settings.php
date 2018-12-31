@@ -329,17 +329,29 @@ class Settings extends CI_Controller {
 		}
 		$this->load->view('dashboard/notification-contacts', $data);
 	}
-	public function notification_contact_remove( $cid = null ){
-		
-		if( $cid != null ){
-			$data['page_env'] = 'addnew';
-	
+	public function notification_contact_remove(){
+
+		if($this->input->post('cid')){
+			$cid = $this->input->post('cid');
 			$this->db->where('id', $cid);
-			if($this->db->delete('notification_contacts')){
-				$this->session->set_flashdata('remvoe_success', 'Contact item removed successfully');
-				redirect('dashboard/settings/notification_contacts');
-			}
+			if($this->db->delete('notification_contacts'))
+				echo 1;
+			else
+				echo 0;
 		}
+		else{
+			redirect('dashboard/settings/notification_contacts');
+		}
+		
+		// if( $cid != null ){
+		// 	$data['page_env'] = 'addnew';
+	
+		// 	$this->db->where('id', $cid);
+		// 	if($this->db->delete('notification_contacts')){
+		// 		$this->session->set_flashdata('remvoe_success', 'Contact item removed successfully');
+		// 		redirect('dashboard/settings/notification_contacts');
+		// 	}
+		// }
 	}
 	
 	

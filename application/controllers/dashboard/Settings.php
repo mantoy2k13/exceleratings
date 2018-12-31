@@ -127,6 +127,21 @@ class Settings extends CI_Controller {
 		}
 		$this->load->view('dashboard/rev-question-add', $data);
 	}
+
+	public function rem_rev_questions(){
+		if($this->input->post('qid')){
+			$qid = $this->input->post('qid');
+			$this->db->where('qid', $qid);
+			if($this->db->delete('rev_questions')){
+				echo 1;
+			} else{
+				echo 0;
+			}
+		}
+		else{
+			redirect('dashboard/settings/rev_questions');
+		}
+	}
 	
 	public function question_pages($pgid = null)
 	{

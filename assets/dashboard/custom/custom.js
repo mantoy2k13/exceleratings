@@ -192,5 +192,35 @@ jQuery(function ($) {
 
 
 
+function rem_rev_questions(qid){
+	swal({
+		 title: "Are you sure?",
+		 text: "Your will not be able to recover this review questions!",
+		 type: "warning",
+		 showCancelButton: true,
+		 confirmButtonColor: "#DD6B55",
+		 confirmButtonText: "Yes, delete it!",
+		 showLoaderOnConfirm: true
+	 },
+	 function(){
+		$.ajax({
+			type: 'post',
+			url: base_url + "dashboard/settings/rem_rev_questions",
+			data: {qid:qid},
+			success: function(res){
+				if(res == 1){
+					swal({title: "Deleted!",type: "success"},function(){
+						location.reload();
+					});
+				} else{
+					swal("Failed!", "There was a problem deleting your questions!", "danger");
+				}
+		    }
+		}); 
+	 });
+}
+
+
+
 
 

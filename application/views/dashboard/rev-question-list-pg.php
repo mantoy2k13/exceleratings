@@ -41,6 +41,11 @@
 										<span class="qs"><?=$sc_v_v->question . '</span> <br><i>['. $sc_v_v->qid .']</i>'?>
 										<?php echo '<span class="ans" hidden>'. $sc_v_v->answer_option .'</span>'; ?> <?php echo $status . '<span class="sts" hidden>'. $sc_v_v->status .'</span>'; ?> 
 										<button data-qid="<?php echo  $sc_v_v->qid; ?>" data-toggle="modal" data-target="#qusEditForm" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" title=""><i class="fa fa-fw fa-lg fa-edit"></i></button>
+										<!-- <a href="http://exceleratings.local/dashboard/superadmin/service_category_remove/3" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" onclick="return confirm('Are you sure you want to delete this item?');" title="To remove this item">
+											<i class="fa fa-fw fa-lg fa-close"></i>
+										</a> -->
+
+										<button onclick="rem_rev_questions(<?php echo  $sc_v_v->qid; ?>)" class="btn btn-outline-secondary btn-sm"><i class="fa fa-fw fa-lg fa-close"></i></button>
 
 									</li>
 								<?php } ?> 

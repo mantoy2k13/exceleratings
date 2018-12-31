@@ -24,6 +24,7 @@
 	<script src="<?php echo base_url('/'); ?>assets/dashboard/custom/custom.js"></script>
 
 	<script src="<?php echo base_url(); ?>assets/dashboard/assets/js/lib/data-table/datatables-init.js"></script>
+	<script src="<?php echo base_url(); ?>assets/common/sweetalert/sweetalert.min.js"></script>
 	<script>
 	</script>
 </body>

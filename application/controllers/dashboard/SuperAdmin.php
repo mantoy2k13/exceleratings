@@ -73,20 +73,32 @@ class SuperAdmin extends CI_Controller {
 		}
 		$this->load->view('dashboard/service-categories', $data);
 	}
-	public function service_category_remove( $sid = null ){
-		
+	
+	public function service_category_remove(){
 		if( $this->logedin_user->usertype != 'superadmin' ){
 			redirect('dashboard');
-		}
-		if( $sid != null ){
-			$data['page_env'] = 'addnew';
-	
-			$this->db->where('id', $sid);
-			if($this->db->delete('service_categories')){
-				$this->session->set_flashdata('remvoe_success', 'Contact item removed successfully');
+		} else{
+			if($this->input->post('sid')){
+				$sid = $this->input->post('sid');
+				$this->db->where('id', $sid);
+				if($this->db->delete('service_categories'))
+					echo 1;
+				else
+					echo 0;
+			}
+			else{
 				redirect('dashboard/superadmin/service_categories');
 			}
 		}
+		// if( $sid != null ){
+		// 	$data['page_env'] = 'addnew';
+	
+		// 	$this->db->where('id', $sid);
+		// 	if($this->db->delete('service_categories')){
+		// 		$this->session->set_flashdata('remvoe_success', 'Contact item removed successfully');
+		// 		redirect('dashboard/superadmin/service_categories');
+		// 	}
+		// }
 	}
 		
 } /* ==========================[ / End SuperAdmin Class ]========================== */

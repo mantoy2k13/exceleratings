@@ -1,0 +1,16 @@
+@media screen and (max-width: 401px) {
+    .right-panel header.header {
+        padding: 0;
+    }
+
+    .right-panel header.header .top-right {
+        padding: 0 10px;
+    }
+}
+
+@media screen and (max-width: 560px) {
+    .col {
+        flex-basis: unset;
+        width: 100%;
+    }
+}

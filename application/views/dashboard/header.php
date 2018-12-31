@@ -46,6 +46,7 @@
     <link rel="stylesheet" href="<?php echo base_url('/'); ?>assets/dashboard/assets/css/lib/datatable/dataTables.bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo base_url('/'); ?>assets/dashboard/assets/wow/animate.css">
     <link rel="stylesheet" href="<?php echo base_url('/'); ?>assets/dashboard/custom/style-2.css">
+    <link rel="stylesheet" href="<?php echo base_url('/'); ?>assets/dashboard/custom/responsive.css">
 	
 	
 	<script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>

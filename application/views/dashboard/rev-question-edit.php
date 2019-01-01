@@ -77,9 +77,9 @@
       <!-- /.box -->
 
 		  <div style="clear:both;"></div>
-        <div class="box-footer">
+        <!-- <div class="box-footer">
           Footer
-        </div>
+        </div> -->
         <!-- /.box-footer-->
     </section>
     <!-- /.content -->

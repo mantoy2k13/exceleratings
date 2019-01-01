@@ -195,6 +195,7 @@ jQuery(function ($) {
 
 });
 
+$('#tbl_contact').DataTable();
 
 /* Delete Functions ============================================================================= */
 function rem_rev_questions(qid){
@@ -272,6 +273,7 @@ function notification_contact_remove(cid){
 				if(res == 1){
 					swal({title: "Deleted!",type: "success"},function(){
 						location.reload();
+						window.location.href = base_url + "dashboard/settings/notification_contacts";
 					});
 				} else{
 					swal("Failed!", "There was a problem deleting your contacts!", "danger");

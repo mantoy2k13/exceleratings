@@ -9,9 +9,9 @@
 		<?php $this->load->view('dashboard/plan-subscriptions-form-in'); ?>
 
 		  <div style="clear:both;"></div>
-        <div class="box-footer">
+        <!-- <div class="box-footer">
           Footer
-        </div>
+        </div> -->
         <!-- /.box-footer-->
     </section>
     <!-- /.content -->

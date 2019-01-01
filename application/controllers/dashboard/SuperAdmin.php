@@ -95,7 +95,7 @@ class SuperAdmin extends CI_Controller {
 	
 		// 	$this->db->where('id', $sid);
 		// 	if($this->db->delete('service_categories')){
-		// 		$this->session->set_flashdata('remvoe_success', 'Contact item removed successfully');
+		// 		$this->session->set_flashdata('remove_success', 'Contact item removed successfully');
 		// 		redirect('dashboard/superadmin/service_categories');
 		// 	}
 		// }

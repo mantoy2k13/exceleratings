@@ -299,7 +299,7 @@ class Settings extends CI_Controller {
 				];
 				if($this->db->insert('notification_contacts', $contact2add)){
 					$insert_qid = $this->db->insert_id();
-					$this->session->set_flashdata('success', '<< Added new contact');
+					$this->session->set_flashdata('success', 'New contact was successfully added.');
 					redirect('dashboard/settings/notification_contacts');
 				}
 			}
@@ -348,7 +348,7 @@ class Settings extends CI_Controller {
 	
 		// 	$this->db->where('id', $cid);
 		// 	if($this->db->delete('notification_contacts')){
-		// 		$this->session->set_flashdata('remvoe_success', 'Contact item removed successfully');
+		// 		$this->session->set_flashdata('remove_success', 'Contact item removed successfully');
 		// 		redirect('dashboard/settings/notification_contacts');
 		// 	}
 		// }

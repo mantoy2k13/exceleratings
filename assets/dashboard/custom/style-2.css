@@ -136,3 +136,12 @@ a.btn.btn-info:hover, a.btn.btn-info:focus{
         transform:rotate(360deg);
     }
 }
+
+/* Custom CSS */
+.alert a.close {
+    text-decoration: none;
+}
+
+table.dataTable {
+    border-collapse: collapse !important;
+}

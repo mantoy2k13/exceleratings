@@ -1,5 +1,4 @@
 <?php $this->load->view('dashboard/header'); ?>
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     
@@ -27,7 +26,7 @@
 							?>
 							<li class="list-group-item">
 								<a href="<?=base_url('dashboard/settings/question_pages/'.$pg_v->id)?>">
-									<h4><?=($pg_k+1) . '. ' . $pg_v->pg_title?> <?php if( $pgid == $pg_v->id ){ echo '<span class="badge badge-warning float-right"> <i class="fa fa-arrow-right" aria-hidden="true"></i> </span>'; } ?> <small><i>[<?=$pg_v->id?>]</i></small></h4>
+									<h4><?=($pg_k+1) . '. ' . $pg_v->pg_title?> <?php if( $pgid == $pg_v->id ){ echo '<span class="badge badge-warning float-right"> <i class="fa fa-arrow-right" aria-hidden="true"></i> </span>'; } ?></h4>
 								</a>
 							</li>
 							<?php } ?>
@@ -38,24 +37,38 @@
 			<div class="col">
 				<!-- Default box -->
 				<div class="card">
-
-				  <div class="card-header with-border wow bounceInDown">
-					 <h4 class="card-title card-box"><?php if( $pageType == 'edit' ){ echo 'Edit page ' . '<i><small class="border border-white"><a href="'. base_url('front/review/' . $pgid) .'"> &nbsp; Front View &nbsp; </a></small></i>'; }else{ echo 'New Page'; }?></h4>
-					 <a href="<?=base_url('dashboard/settings/question_pages')?>" class="btn btn-info float-right btn-sm" data-toggle="tooltip" style="position: absolute;right: 0;z-index: 1;" title=""> + New page </a>
+				    <div class="card-header with-border wow bounceInDown">
+                        <h4 class="card-title card-box">
+                            <?php if( $this->logedin_user->usertype == 'generaluser' ){ ?>
+                                <?php if(isset($thePage->pg_title)){ echo $thePage->pg_title; } else { echo "Questions List"; } ?>
+                            <?php } else { ?>
+                                <?php if( $pageType == 'edit' ){ echo 'Edit page ' . '<i><small class="border border-white"><a href="'. base_url('front/review/' . $pgid) .'" target="_blank"> &nbsp; Front View &nbsp; </a></small></i>'; } else { echo 'New Page'; }?>
+                            <?php } ?>
+                        </h4>
+					    <?php if( $this->logedin_user->usertype != 'generaluser' ){ ?>
+							<a href="<?=base_url('dashboard/settings/question_pages')?>" class="btn btn-info float-right btn-sm" data-toggle="tooltip" style="position: absolute;right: 0;z-index: 1;" title=""> + New page </a>
+						<?php }?>
 					</div>
-				  <div class="card-body border border-danger">
-					 <h3 class="card-title box-title">Selected questions : </h3>
-					<?php if( $this->session->flashdata('remvoe_success') ){ ?>
-								<div class="alert alert-success" role="alert"><?php echo $this->session->flashdata('remvoe_success'); ?></div>
-					<?php } ?>
-					<br>
+				  <div class="card-body">
+					<h3 class="card-title box-title">Selected questions : </h3>
+                    <?php if( $this->session->flashdata('remove_success') ){ ?>
+                        <div class="alert alert-success alert-dismissible">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Success!</strong> <?php echo $this->session->flashdata('remove_success'); ?>
+                        </div>
+                    <?php } ?>
 					<?php if( $this->session->flashdata('success') ){ ?>
-						<div class="alert alert-success" role="alert"><?php echo $this->session->flashdata('success'); ?></div>
-					<?php } ?>
-
+                        <div class="alert alert-success alert-dismissible">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Success!</strong> <?php echo $this->session->flashdata('success'); ?>
+                        </div>
+                    <?php } ?> 
+                    
 					<form action="" method="post" class="">
-						<label for="pg_title" class="control-label">Page Title</label>
-						<input type="text" name="pg_title" id="pg_title" class="form-control" value="<?php if(isset($thePage->pg_title)){ echo$thePage->pg_title; } ?>" />
+						<?php if( $this->logedin_user->usertype != 'generaluser' ){ ?>
+							<label for="pg_title" class="control-label">Page Title</label>
+							<input type="text" name="pg_title" id="pg_title" class="form-control" value="<?php if(isset($thePage->pg_title)){ echo $thePage->pg_title; } ?>" />
+						<?php }?>
 						<br>
 						<ul id="selected_questions" class="connectedSortable list-group list-group-flush" style="min-height: 40px;list-style: none;background: #eee;">
 							<?php 
@@ -66,7 +79,7 @@
 
 										<li class="list-group-item draging">
 											<input value="<?=$pgq->qid?>" name="qid[]" size="2" hidden >
-											<?=$pgq->question . ' <i>['. $pgq->qid .']</i>'?>
+											<?=$pgq->question;?>
 										</li>
 								<?php }
 								}
@@ -74,18 +87,23 @@
 								foreach( $def_questions as $dq ){ ?>
 									<li class="list-group-item draging">
 										<input value="<?=$dq->qid?>" name="qid[]" size="2" hidden >
-										<?=$dq->question . ' <i>['. $dq->qid .']</i>'?>
+										<?=$dq->question;?>
 									</li>
 							<?php }
 							}
 							?>
 						</ul>
 						<br>
-						<?php if( $pageType == 'edit' ){ ?>
-								
-							<button type="submit" class="btn btn-info btn-block" name="submit" value="q_pg_edit">Save your change</button>
-						<?php }else{ ?>
-							<button type="submit" class="btn btn-info btn-block" name="submit" value="q_pg_save"> Save </button>
+						<?php if( $this->logedin_user->usertype != 'generaluser' ){ ?>
+							<?php if( $pageType == 'edit' ){ ?>
+								<button type="submit" class="btn btn-info btn-block" name="submit" value="q_pg_edit"><i class="fa fa-edit"></i> Save your change</button>
+							<?php }else{ ?>
+								<button type="submit" class="btn btn-info btn-block" name="submit" value="q_pg_save"><i class="fa fa-check"></i> Save Page </button>
+							<?php } ?>
+						<?php } else {?>
+							<?php if( $pageType == 'edit' ){ ?>
+								<a href="<?=base_url('front/review/' . $pgid); ?>" target="_blank" class="btn btn-info btn-block"><i class="fa fa-edit"></i> Answer this questions </a>
+							<?php } ?>
 						<?php } ?>
 					</form>
 				  </div>

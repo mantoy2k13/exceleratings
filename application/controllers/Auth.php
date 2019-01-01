@@ -20,7 +20,7 @@ class Auth extends CI_Controller
 					$user = $query->row();
 					
 					if( $user->email ){
-						$this->session->set_flashdata('success', 'you are loged in');
+						$this->session->set_flashdata('is_login_msg', 'Welcome to Exceleratings. You are now logged in.');
 						
 						$_SESSION['user_loged'] = true;
 						$_SESSION['user_control'] = array(

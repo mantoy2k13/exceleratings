@@ -43,8 +43,8 @@
 					</div>
 				  <div class="card-body">
 					 <h3 class="card-title box-title">Selected questions : </h3>
-					<?php if( $this->session->flashdata('remvoe_success') ){ ?>
-								<div class="alert alert-success" role="alert"><?php echo $this->session->flashdata('remvoe_success'); ?></div>
+					<?php if( $this->session->flashdata('remove_success') ){ ?>
+								<div class="alert alert-success" role="alert"><?php echo $this->session->flashdata('remove_success'); ?></div>
 					<?php } ?>
 					<br>
 					<form action="" method="post">

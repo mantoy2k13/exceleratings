@@ -10,72 +10,73 @@
 				<!-- Default box -->
 				<div class="card">
 
-				  <div class="card-body">
-					 <h3 class="card-title box-title">Notification contacts <a href="<?=base_url('dashboard/settings/notification_contacts')?>" class="btn btn-info float-right btn-sm" data-toggle="tooltip" title="">
-										+ Add New
-									</a></h3>
+                    <div class="card-body">
+                        <h3 class="card-title box-title"><i class="fa fa-users"></i> Notification contacts 
+                        <a href="<?=base_url('dashboard/settings/notification_contacts')?>" class="btn btn-info float-right btn-sm"><i class="fa fa-plus"></i> Add New </a></h3><br>
+ 
+                        <?php if( $this->session->flashdata('remove_success') ){ ?>						
+                            <div class="alert alert-success alert-dismissible">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <strong>Success!</strong> <?php echo $this->session->flashdata('remove_success'); ?>
+                            </div>						
+                        <?php } ?>
 
-					<?php if( $this->session->flashdata('remvoe_success') ){ ?>
-						
-						
-								<div class="alert alert-success" role="alert"><?php echo $this->session->flashdata('remvoe_success'); ?></div>
-							
-					<?php } ?>
-						
-					  <table id="" data-uid="" class="display table table-bordered table-hover table-striped datatable  col_1_center col_1ast_center col_3_center col_4_center col_5_center col_6_center">
-						 <thead>
-						 <tr>
-							<th>SL.</th>
-							<th>Title</th>
-							<th>Email</th>
-							<th>Phone</th>
-							<th>Is active</th>
-							<th>Action</th>
-						 </tr>
-						 </thead>
-						 <tbody>
-						 <?php 
-							foreach( $contacts as $con_k => $con_v ){
-								$trClass = ($con_k % 2 ? ' wow bounceInLeft ' : ' wow bounceInRight ');
-								if( $edit_item == $con_v->id ){
-									$trClass .= ' table-active';
-								}
-								$trClass .= $con_v->status ? '' : ' tr_disabled';
-								
-							?>
-							 <tr class="<?=$trClass?>">
-								<td><?=$con_k+1?></td>
-								<td><?=$con_v->title?></td>
-								<td><?=$con_v->email?></td>
-								<td><?=$con_v->phone?></td>
-								<td><?=$con_v->status ? '<span class="badge badge-info">Active</span>' : '<span class="badge badge-secondary">Disabled</span>'?></td>
-								<td>
-									<a href="<?=base_url('dashboard/settings/notification_contacts/' . $con_v->id)?>" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" title="">
-										<i class="fa fa-fw fa-lg fa-edit"></i>
-									</a>
-									<!-- <a href="<?=base_url('dashboard/settings/notification_contact_remove/' . $con_v->id)?>" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" onclick="return confirm('Are you sure you want to delete this item?');" title="To remove this item">
-										<i class="fa fa-fw fa-lg fa-close"></i>
-									</a> -->
-									<a href="javascript:;" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" onclick="notification_contact_remove(<?=$con_v->id; ?>)" title="To remove this contact">
-										<i class="fa fa-fw fa-lg fa-close"></i>
-									</a>
-								</td>
-							 </tr>
-							<?php } ?>
-						 </tbody>
-						 <tfoot>
-						 <tr>
-							<th>SL.</th>
-							<th>Title</th>
-							<th>Email</th>
-							<th>Phone</th>
-							<th>Is active</th>
-							<th>Action</th>
-						 </tr>
-						 </tfoot>
-					  </table>
-				  </div>
-				  <!-- /.box-body -->
+                        <?php if( $this->session->flashdata('success') ){ ?>						
+                            <div class="alert alert-success alert-dismissible">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <strong>Success!</strong> <?php echo $this->session->flashdata('success'); ?>
+                            </div>						
+                        <?php } ?>
+
+                        <table id="tbl_contact" class="display table table-bordered table-hover table-striped datatable  col_1_center col_1ast_center col_3_center col_4_center col_5_center col_6_center">
+                            <thead>
+                                <tr>
+                                    <th>SL.</th>
+                                    <th>Title</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Is active</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach( $contacts as $con_k => $con_v ){ 
+                                    $trClass = ($con_k % 2 ? ' wow bounceInLeft ' : ' wow bounceInRight ');
+                                    if( $edit_item == $con_v->id ){
+                                        $trClass .= ' table-active';
+                                    }
+                                    $trClass .= $con_v->status ? '' : ' tr_disabled';
+                                ?>
+                                    <tr class="<?=$trClass?>">
+                                        <td><?=$con_k+1?></td>
+                                        <td><?=$con_v->title?></td>
+                                        <td><?=$con_v->email?></td>
+                                        <td><?=$con_v->phone?></td>
+                                        <td><?=$con_v->status ? '<span class="badge badge-info">Active</span>' : '<span class="badge badge-secondary">Disabled</span>'?></td>
+                                        <td>
+                                            <a href="<?=base_url('dashboard/settings/notification_contacts/' . $con_v->id)?>" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" title="">
+                                                <i class="fa fa-fw fa-edit"></i>
+                                            </a>
+                                            <a href="javascript:;" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" onclick="notification_contact_remove(<?=$con_v->id; ?>)" title="To remove this contact">
+                                                <i class="fa fa-fw fa-close"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>SL.</th>
+                                    <th>Title</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Is active</th>
+                                    <th>Action</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
 				</div>
 				<!-- /.box -->
 			</div>
@@ -86,19 +87,13 @@
 					<div class="card-header with-border wow bounceInLeft">
 					<?php 
 						if( $page_env == 'addnew' ){ ?>
-						<h4 class="card-title card-box">Add contact</h4>
+						<h4 class="card-title card-box"><i class="fa fa-user-plus"></i> Add contact</h4>
 					<?php	}elseif( $page_env == 'edit' ){ ?> 
-						<h4 class="card-title card-box">Edit contact</h4>
+						<h4 class="card-title card-box"><i class="fa fa-pencil-square-o"></i> Edit contact</h4>
 					<?php } ?>
 					</div>
 					
 				<form action="" method="post" enctype="multipart/form-data">
-					
-					<?php if( $this->session->flashdata('success') ){ ?>
-						<div class="container-fluid">
-							<div class="alert alert-success" role="alert"><?php echo $this->session->flashdata('success'); ?></div>
-						</div>
-					<?php } ?>
 					<?php 
 						if( $page_env == 'addnew' ){ ?>
 							
@@ -106,25 +101,24 @@
 							
 						  <div class="form-group">
 								<label for="post_title">Title</label>
-								<input type="text" name="title" id="" class="form-control" />
+								<input type="text" name="title" id="" class="form-control" required/>
 						  </div>
 						  <div class="form-group">
 								<label for="post_title">Email</label>
-								<input type="text" name="email" id="" class="form-control" />
+								<input type="email" name="email" id="" class="form-control" required/>
 						  </div>
 						  <div class="form-group">
 								<label for="post_title">Phone number</label>
-								<input type="text" name="phone" id="" class="form-control" />
+								<input type="text" name="phone" id="" class="form-control" required/>
 						  </div>
 						  <div class="container-fluid">
 								<hr>
 								<div class="row">
-									<button type="submit" name="add_contact" class="btn btn-info btn-block"> < &nbsp; Add New </button>
+									<button type="submit" name="add_contact" class="btn btn-info btn-block"> <i class="fa fa-plus"></i> Add New </button>
 								</div>
-								
 						  </div>
 						</div>
-					<?php	}elseif( $page_env == 'edit' ){ ?> 
+					<?php }elseif( $page_env == 'edit' ){ ?> 
 
 						<div class="card-body wow bounceInRight" id="">
 							
@@ -134,7 +128,7 @@
 						  </div>
 						  <div class="form-group">
 								<label for="post_title">Email</label>
-								<input type="text" name="email" id="" class="form-control" value="<?=$contItem->email?>" />
+								<input type="email" name="email" id="" class="form-control" value="<?=$contItem->email?>" />
 						  </div>
 						  <div class="form-group">
 								<label for="post_title">Phone number</label>
@@ -147,9 +141,8 @@
 								</div>
 								<hr>
 								<div class="row">
-									<button type="submit" name="edit_contact" class="btn btn-info btn-block"> < &nbsp; Save change </button>
+									<button type="submit" name="edit_contact" class="btn btn-info btn-block"> <i class="fa fa-pencil-square-o"></i> Save change </button>
 								</div>
-								
 						  </div>
 						</div>
 					<?php } ?>

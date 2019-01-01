@@ -61,7 +61,7 @@
 									<li class="list-group-item">Negative Review pings Manager</li>
 									<li class="list-group-item">Text Reminder with Positive</li>
 									<li class="list-group-item">Email Reminder with Positive</li>
-									<li class="list-group-item">Incentive Gift Cards(lets discuss)</li>
+									<li class="list-group-item">Incentive Gift Cards</li>
 									<li class="list-group-item">Price $350 Set Up (incudes Tablet) &nbsp;$250.00/month per Location</li>
 								</ul>
 								<br><br>
@@ -97,7 +97,7 @@
 									<li class="list-group-item">Email Reminder with Positive</li>
 									<li class="list-group-item">Survey Metrics for inner office management</li>
 									<li class="list-group-item">Social Media/Review sites Automated Updates</li>
-									<li class="list-group-item">Incentive Gift Cards (Lets Discuss)</li>
+									<li class="list-group-item">Incentive Gift Cards</li>
 									<li class="list-group-item">Price $550 Set Up (incudes Tablet) &nbsp;$250.00/month per Location</li>
 								</ul>
 								<br><br>

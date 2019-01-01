@@ -14,8 +14,8 @@
 					 <h3 class="card-title box-title">Service Categories <a href="<?=base_url('dashboard/superadmin/service_categories')?>" class="btn btn-info float-right btn-sm" data-toggle="tooltip" title="">
 										+ Add New
 									</a></h3>
-					<?php if( $this->session->flashdata('remvoe_success') ){ ?>
-						<div class="alert alert-success" role="alert"><?php echo $this->session->flashdata('remvoe_success'); ?></div>
+					<?php if( $this->session->flashdata('remove_success') ){ ?>
+						<div class="alert alert-success" role="alert"><?php echo $this->session->flashdata('remove_success'); ?></div>
 					<?php } ?>
 						
 					  <table id="" data-uid="" class="display table table-bordered table-hover table-striped datatable  col_1_center col_1ast_center col_3_center col_4_center col_5_center col_6_center">

@@ -4,39 +4,42 @@
   <div class="content-wrapper">
     <!-- Main content -->
     <section class="content">
-
+		<?php if( $this->session->flashdata('is_login_msg') ){ ?>
+			<div class="alert alert-success alert-dismissible">
+				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				<strong>Hello!</strong> <?php echo $this->session->flashdata('is_login_msg'); ?>
+			</div>
+		<?php } ?>
             <!-- Widgets  -->
             <div class="row">
                 <div class="col-lg-6 col-xl-7">
                     <div class="card wow bounceIn">
                         <div class="card-body jackInTheBox ">
-										
                             <div class="row text-center">
                                 <div class="container-fluid">
-											<h4>Total average rating (All time)</h4>
-											  <h1 class="border" style="font-size: 45px;font-weight: bold;color: #ED2424;"><span id="totlAvgRatAllTime"><span class="loading_spinning">.</span></span><small>%</small>
-												<br>
-												<?php 
-													echo $this->General_model->rating_star($overall_avr_rating);
-												?>
-												</h1>
-												<hr><hr>
-												<h3>
-													<small>Total number of reviews </small>
-													<span class="border"> &nbsp; <strong style="color: #ED2424;" id="totlNumOfRevAllTime"><span class="loading_spinning">.</span></strong> &nbsp; </span>
-												</h3>
-												<hr><hr>
-												
-												<h4>Review activity (<b>Last 30 days</b>)</h4>
-												<h1 class="border border-dark" style="font-size: 40px;font-weight: bold;color: #ED2424;">
-													<span id="revActLast30days"><span class="loading_spinning">.</span></span><?php // echo round($this->General_model->get_overall_avr_rating(date('Y-m-d', strtotime('-1 months'))), 1); ?><small>%</small><br>
-													<?php 
-														echo $this->General_model->rating_star(round($this->General_model->get_overall_avr_rating(date('Y-m-d', strtotime('-1 months'))), 1));
-													?>
-												</h1>
+									<h4>Total average rating (All time)</h4>
+										<h1 class="border" style="font-size: 45px;font-weight: bold;color: #ED2424;"><span id="totlAvgRatAllTime"><span class="loading_spinning">.</span></span><small>%</small>
+										<br>
+										<?php 
+											echo $this->General_model->rating_star($overall_avr_rating);
+										?>
+										</h1>
+										<hr><hr>
+										<h3>
+											<small>Total number of reviews </small>
+											<span class="border"> &nbsp; <strong style="color: #ED2424;" id="totlNumOfRevAllTime"><span class="loading_spinning">.</span></strong> &nbsp; </span>
+										</h3>
+										<hr><hr>
+										
+										<h4>Review activity (<b>Last 30 days</b>)</h4>
+										<h1 class="border border-dark" style="font-size: 40px;font-weight: bold;color: #ED2424;">
+											<span id="revActLast30days"><span class="loading_spinning">.</span></span><?php // echo round($this->General_model->get_overall_avr_rating(date('Y-m-d', strtotime('-1 months'))), 1); ?><small>%</small><br>
+											<?php 
+												echo $this->General_model->rating_star(round($this->General_model->get_overall_avr_rating(date('Y-m-d', strtotime('-1 months'))), 1));
+											?>
+										</h1>
                                 </div>
-                            </div>
-									 <br>
+                            </div><br>
                         </div>
                     </div>
                 </div>

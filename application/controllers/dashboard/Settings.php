@@ -55,8 +55,8 @@ class Settings extends CI_Controller {
 		$this->load->view('dashboard/settings', $data);
 	}
 	
-	public function rev_questions( $showReport = null )
-	{
+	public function rev_questions( $showReport = null ){
+		
 	//	$session_user = $this->logedin_user;
 		
 		$data['menuitem4'] = 'rev_questions';
@@ -69,6 +69,7 @@ class Settings extends CI_Controller {
 		foreach( $data['service_categories'] as $sc_k => $sc_v ){
 			$this->db->select('*');
 			$this->db->from('rev_questions');
+			$this->db->order_by('shorting', 'ASC');
 			$this->db->where('service_category', $sc_v->id);
 			$data['service_categories'][$sc_k]->questions = $this->db->get()->result_object();
 		}
@@ -113,6 +114,7 @@ class Settings extends CI_Controller {
 				$question_form = [
 					'question' => $this->input->post('question'),
 					'answer_option' => $this->input->post('answer_option'),
+					'service_category' => $this->input->post('service_category') ? $this->input->post('service_category') : 0,
 					'userid' => $this->logedin_user->id,
 					'shorting' => $get_min_shorting - 1
 				];
@@ -234,6 +236,17 @@ class Settings extends CI_Controller {
 				$this->load->view('dashboard/question-pages', $data);
 			}
 		}else{
+			
+			$this->db->select('*')->from('q_pages');
+			if( $this->logedin_user->usertype == 'generaluser' ){
+				$this->db->where('userid', $this->logedin_user->id);
+			}
+			$this->db->order_by('id', 'DESC');
+			$data['chk_pgs'] = $this->db->get()->row();
+			if( $data['chk_pgs'] ){
+				redirect('dashboard/settings/question_pages/'.$data['chk_pgs']->id);
+			}
+		//	prex($data['pgs']->id);
 			
 			if( $this->input->post('submit') == 'q_pg_save' ){
 			//	prex($this->input->post());

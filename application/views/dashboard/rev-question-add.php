@@ -51,22 +51,28 @@
 						  <?php } ?> 
 						  <div class="row">
 							  <div class="col-md-6">
-								<div class="row">
-								  <div class="btn" data-toggle="buttons">
-										<div class="btn-group-vertical">
-										  <label class="btn btn-sm btn-info" title="Anser get by Yes/No options">
-											 <input type="radio" value="yes_no" name="answer_option" id="option1" > 
-											 Answer get by Yes/No options
-										  </label>
-										
-										  <label class="btn btn-sm btn-info active" title="Answer get by 1 to 10 reviewing options">
-											 <input type="radio" value="rev_1_10" name="answer_option" id="option3" checked >
-												Answer get by 1 to 10 reviewing options
-										  </label>
-										
+							  
+										<div class="custom-control custom-radio">
+										  <input type="radio" id="customRadio1" value="yes_no" name="answer_option" class="custom-control-input">
+										  <label class="custom-control-label" for="customRadio1">Answer get by Yes/No options</label>
 										</div>
-									</div>
-									</div>
+										<div id="yes_no_point" style="display: none;">
+											<div class="btn-group btn-group-toggle" data-toggle="buttons">
+											  <label class="btn btn-info btn-sm active">
+												 <input type="radio" name="options" id="option1" autocomplete="off" checked> Rating for 'YES'
+											  </label>
+											  <label class="btn btn-info btn-sm">
+												 <input type="radio" name="options" id="option2" autocomplete="off"> Rating for 'NO'
+											  </label>
+											</div>
+											<hr>
+										</div>
+										
+										<div class="custom-control custom-radio">
+										  <input type="radio" id="customRadio2" value="rev_1_10" name="answer_option" class="custom-control-input" checked >
+										  <label class="custom-control-label" for="customRadio2">Answer get by 1 to 10 reviewing options</label>
+										</div>
+										
 							  </div>
 							  <div class="col-md-6">
 									<br>

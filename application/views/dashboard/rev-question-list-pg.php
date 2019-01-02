@@ -34,8 +34,9 @@
 											$inactClass = 'inactive';
 										}
 									?>
-										<li class="list-group-item <?=$trClass?>">
+										<li class="list-group-item <?=$trClass?>" data-qid="<?=$sc_v_v->qid?>">
 											<input value="<?=$sc_v_v->qid?>" name="qid[]" size="2" hidden>
+											<b><?=$sc_v_k+1?>. </b>
 											<span class="qs"><?=$sc_v_v->question . '</span> <br><i>['. $sc_v_v->qid .']</i>'?>
 											<?php echo '<span class="ans" hidden>'. $sc_v_v->answer_option .'</span>'; ?> <?php echo $status . '<span class="sts" hidden>'. $sc_v_v->status .'</span>'; ?> 
 											<button data-qid="<?php echo  $sc_v_v->qid; ?>" data-toggle="modal" data-target="#qusEditForm" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" title=""><i class="fa fa-fw fa-lg fa-edit"></i></button>

@@ -119,7 +119,7 @@ class Page extends CI_Controller {
 				'alt_name_client_contact' => $this->input->post('alt_name_client_contact'),
 				'alt_phone' => $this->input->post('alt_phone'),
 				'alt_email' => $this->input->post('alt_email'),
-				'tablet_needed' => $this->input->post('tablet_needed'),
+				'tablet_needed' => $this->input->post('tablet_needed') ? $this->input->post('tablet_needed') : 0,
 				'tablet_so_how_many' => $this->input->post('tablet_so_how_many'),
 				'service_location' => $this->input->post('service_location'),
 				'start_date_of_contract' => $this->input->post('start_date_of_contract'),

@@ -1,4 +1,14 @@
 jQuery(function ($) {
+	
+//	$('input[name="answer_option"]').prop( "checked", true ).closest('label').addClass('active');
+
+	$('input:radio[name="answer_option"]').change( function() { 
+		if($(this).val() == 'yes_no' ){
+			$('#yes_no_point').show('first');
+		}else{
+			$('#yes_no_point').hide('first');
+		}
+	});
 	  
 	function toAjaxRemove(ajaxUrl){
 		
@@ -119,18 +129,29 @@ jQuery(function ($) {
 		update: function (event, ui) {
 			var qShorting= {};
 			$('li', this).each(function (i) {
+			//	alert(1);
 				var numbering = i + 1;
 				$('.q_qnt span',this).text(numbering);
-				console.log($('button',this).data('qid'));
+			//	console.log($('button',this).data('qid'));
 				qShorting[i] = $('button',this).data('qid');
 			});
 			qShortingSave(qShorting);
 		}
-    });
+   });
 		
    $( "#selected_questions, #all_questions" ).sortable({
 		
-		connectWith: ".connectedSortable"
+		connectWith: ".connectedSortable",
+		update: function (event, ui) {
+			var qShorting= {};
+			$('li', this).each(function (i) {
+			//	alert(1);
+			//	console.log($('button',this).data('qid'));
+				qShorting[i] = $(this).data('qid');
+			});
+		//	console.log(qShorting);
+			qShortingSave(qShorting);
+		}
    }).disableSelection();
 		
 	$('#qusEditForm').on('show.bs.modal', function (event) {

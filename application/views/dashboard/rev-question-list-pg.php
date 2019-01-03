@@ -64,8 +64,6 @@
   </div>
   <!-- /.content-wrapper -->
 	
-
-	
 <?php $this->load->view('dashboard/footer'); ?>
 
 			

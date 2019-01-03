@@ -92,16 +92,12 @@
       </div>
 		<?php }else{ ?>
       <div class="row">
-        <!-- left column -->
-        <div class="col-md-9">
-				<!-- Default box -->
-				<div class="card">
-					<div class="alert alert-danger" role="alert">
-					  <h4 class="alert-heading">Not allow to add question until you have no any subscription plan </h4>
+        <div class="col-md-12">
+					<div class="alert alert-danger">
+						<strong>Note!</strong> Not allow to add question until you have no any subscription plan!
 					</div>
 				</div>
 			</div>
-		</div>
 		<?php $this->load->view('dashboard/plan-subscriptions-in'); ?>
 		<?php } ?>
     </section>

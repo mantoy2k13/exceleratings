@@ -114,6 +114,7 @@ class Settings extends CI_Controller {
 				$question_form = [
 					'question' => $this->input->post('question'),
 					'answer_option' => $this->input->post('answer_option'),
+					'yes_0_no_1' => $this->input->post('yes_no_count'),
 					'service_category' => $this->input->post('service_category') ? $this->input->post('service_category') : 0,
 					'userid' => $this->logedin_user->id,
 					'shorting' => $get_min_shorting - 1
@@ -398,27 +399,27 @@ class Settings extends CI_Controller {
 	}
  */
 
-	public function rev_question_edit()
-	{
+	public function rev_question_edit(){
+		
 		$qid = $this->input->post('qid');
 		if( isset($_POST['rev_question_update']) ){
 
 			$question_form = [
 				'question' => $this->input->post('question'),
 				'status' => $this->input->post('status'),
+				'yes_0_no_1' => $this->input->post('yes_no_count'),
 				'answer_option' => $this->input->post('answer_option')
 			];
 		//	prex($qid);
 			
 			$this->db->where('qid', $qid);
-		  if($this->db->update('rev_questions', $question_form)){
+			if($this->db->update('rev_questions', $question_form)){
 				$this->session->set_flashdata('success', 'Updated <h6>"'.$this->input->post('question').'"</h6>');
 				redirect('dashboard/settings/rev_questions/');
-		  }
+			}
 		}
 	}
 	
-
 	public function ajax_get_all_questions()
 	{
 		$this->db->select('*');

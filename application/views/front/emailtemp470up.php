@@ -114,10 +114,10 @@
 																								<?php 
 																									if( $pos_rdr_url_google != '' ){ ?>
 																										<a href="<?=$pos_rdr_url_google?>" target="blank">
-																										<img alt="" title="" height="auto" src="<?php echo base_url('assets/email-template');?>/images/1544777963.jpg" style="border:none;border-radius:0px;display:block;font-size:13px;outline:none;text-decoration:none;width:100%;height:auto;" width="198">
+																											<img alt="" title="" height="auto" src="<?php echo base_url('assets/email-template');?>/images/1544777963.jpg" style="border:none;border-radius:0px;display:block;font-size:13px;outline:none;text-decoration:none;width:100%;height:auto;" width="198">
 																										</a>
 																								<?php } else{ ?>
-																										<img alt="" title="" height="auto" src="<?php echo base_url('assets/email-template');?>/images/1544777963.jpg" style="border:none;border-radius:0px;display:block;font-size:13px;outline:none;text-decoration:none;width:100%;height:auto;opacity: 0.2;" width="198">
+																											<img alt="" title="" height="auto" src="<?php echo base_url('assets/email-template');?>/images/1544777963.jpg" style="border:none;border-radius:0px;display:block;font-size:13px;outline:none;text-decoration:none;width:100%;height:auto;opacity: 0.2;" width="198">
 																								<?php } ?>
 																								</td>
                                                                      </tr>

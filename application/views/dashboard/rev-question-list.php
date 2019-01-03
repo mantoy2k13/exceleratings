@@ -69,7 +69,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             
-                                            <?php echo $answer_option . '<span class="ans" hidden>'. $q_v->answer_option .'</span>'; ?> &nbsp; | &nbsp; <?php echo $status . '<span class="sts" hidden>'. $q_v->status .'</span>'; ?> 
+                                            <?php echo $answer_option . '<span class="ans" hidden data-yes_0_no_1="'. $q_v->yes_0_no_1 .'">'. $q_v->answer_option .'</span>'; ?> &nbsp; | &nbsp; <?php echo $status . '<span class="sts" hidden>'. $q_v->status .'</span>'; ?> 
                                             
                                             Average: 
                                             <div class="progress average_progress" style="height: 40px;font-weight: bold;font-size: 1.3em;">
@@ -138,20 +138,28 @@
 							  <div class="row">
 								  <div class="col-md-6">
 									<div class="row">
-									  <div class="btn" data-toggle="buttons">
-											<div class="btn-group-vertical">
-											  <label class="btn btn-sm btn-info" title="Anser get by Yes/No options">
-												 <input type="radio" value="yes_no" name="answer_option" class="answer_option"> 
-												 Answer get by Yes/No options
-											  </label>
-											
-											  <label class="btn btn-sm btn-info" title="Answer get by 1 to 10 reviewing options">
-												 <input type="radio" value="rev_1_10" name="answer_option" class="answer_option">
-													Answer get by 1 to 10 reviewing options
-											  </label>
-											
-											</div>
+										
+										<div class="custom-control custom-radio">
+										  <input type="radio" id="customRadio1" value="yes_no" name="answer_option" class="custom-control-input answer_option">
+										  <label class="custom-control-label" for="customRadio1">Answer get by Yes/No options</label>
 										</div>
+										<div id="yes_no_point" style="display: none;">
+											<div class="btn-group " data-toggle="buttons">
+											  <label class="btn btn-info btn-sm">
+												 <input type="radio" name="yes_no_count" class="yes_no_count" value="0" id="option1" autocomplete="off"> Rating for 'YES'
+											  </label>
+											  <label class="btn btn-info btn-sm">
+												 <input type="radio" name="yes_no_count" class="yes_no_count" value="1" id="option2" autocomplete="off"> Rating for 'NO'
+											  </label>
+											</div>
+											<hr>
+										</div>
+										
+										<div class="custom-control custom-radio">
+										  <input type="radio" id="customRadio2" value="rev_1_10" name="answer_option" class="custom-control-input answer_option" >
+										  <label class="custom-control-label" for="customRadio2">Answer get by 1 to 10 reviewing options</label>
+										</div>
+										
 									</div>
 								  </div>
 								  <div class="col-md-6">

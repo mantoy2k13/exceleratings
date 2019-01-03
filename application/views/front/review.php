@@ -56,10 +56,10 @@
 															<?php }elseif($q_v->answer_option == 'yes_no'){ ?>
 																<div class="btn-group">
 																	<label class="btn btn-primary btn-sm">
-																		<input type="radio" name="rev_ques[<?php echo $q_v->qid; ?>]" class="rev_input" value="7" > Yes
+																		<input type="radio" name="rev_ques[<?php echo $q_v->qid; ?>]" class="rev_input" value="<?=($q_v->yes_0_no_1 == 0) ? '10' : '0'?>" > Yes
 																	</label>
 																	<label class="btn btn-primary btn-sm">
-																		<input type="radio" name="rev_ques[<?php echo $q_v->qid; ?>]" class="rev_input" value="3"> No
+																		<input type="radio" name="rev_ques[<?php echo $q_v->qid; ?>]" class="rev_input" value="<?=($q_v->yes_0_no_1 == 1) ? '10' : '0'?>"> No
 																	</label>
 																</div>
 															<?php } ?>

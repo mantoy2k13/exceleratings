@@ -172,7 +172,33 @@ jQuery(function ($) {
 			{
 				//	console.log($(button).closest('li').find('.ans').text());
 				$(this).prop( "checked", true ).closest('label').addClass('active');
+				
+				if( $(this).val() == 'yes_no' ){
+					$('#yes_no_point').show();
+					modal.find('.yes_no_count').each(function(){
+						
+					//	console.log($(this).val());
+					//	console.log($(button).closest('li').find('.ans').data('yes_0_no_1'));
+						 
+						if($(this).val() == $(button).closest('li').find('.ans').data('yes_0_no_1')){
+						
+							$(this).prop( "checked", true ).closest('label').addClass('active');
+						}else{
+							$(this).closest('label').removeClass('active');
+						}
+						 
+					});
+				}else{
+					$('#yes_no_point').hide();
+				}
 			}
+			
+		//	console.log($(this).val());
+			/* 
+			if( $(button).closest('li').find('.ans').data('yes_0_no_1') == 1 ){
+				$('#yes_no_point').show('first');
+			}
+			 */
 		});
 		$('#status').prop( "checked", false );
 		if('1' == $(button).closest('li').find('.sts').text()){

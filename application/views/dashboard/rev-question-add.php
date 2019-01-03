@@ -59,10 +59,10 @@
 										<div id="yes_no_point" style="display: none;">
 											<div class="btn-group btn-group-toggle" data-toggle="buttons">
 											  <label class="btn btn-info btn-sm active">
-												 <input type="radio" name="options" id="option1" autocomplete="off" checked> Rating for 'YES'
+												 <input type="radio" name="yes_no_count" value="0" id="option1" autocomplete="off" checked> Rating for 'YES'
 											  </label>
 											  <label class="btn btn-info btn-sm">
-												 <input type="radio" name="options" id="option2" autocomplete="off"> Rating for 'NO'
+												 <input type="radio" name="yes_no_count" value="1" id="option2" autocomplete="off"> Rating for 'NO'
 											  </label>
 											</div>
 											<hr>

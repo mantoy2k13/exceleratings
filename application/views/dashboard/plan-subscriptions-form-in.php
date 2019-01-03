@@ -7,14 +7,12 @@
 		'publicKey' => '37r7jyjnqn7hv4tg',
 		'privateKey' => 'c41d6f73d3797f59b8e138ad0fe2a8df'
 	]);
-	
 	// get the client token
 	$clientToken = $gateway->clientToken()->generate();
 ?>
       <div class="row">
         <!-- left column -->
         <div class="col-md-8">
-			<!-- Default box -->
 			<div class="card">
 				<div class="card-header with-border wow bounceInLeft">
 					<h3 class="card-title card-box">Enrollment</h3>
@@ -427,7 +425,6 @@
 
 <script src="https://js.braintreegateway.com/web/dropin/1.11.0/js/dropin.min.js"></script>
 <script>
-
     (function () {
         var amount = document.querySelector('#total_amount');
         var amountLabel = document.querySelector('label[for="total_amount"]');

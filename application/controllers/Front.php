@@ -103,6 +103,15 @@ class Front extends CI_Controller {
 		
 		if( $qpg_id == null ){
 
+			$this->db->select('*')->from('q_pages');
+			if( $this->logedin_user->usertype == 'generaluser' ){
+				$this->db->where('userid', $this->logedin_user->id);
+			}
+			$this->db->order_by('id', 'DESC');
+			$data['chk_pgs'] = $this->db->get()->row();
+			if( $data['chk_pgs'] ){
+				redirect('front/review/'.$data['chk_pgs']->id);
+			}
 			$this->db->select('*');
 			$this->db->from('q_pages');
 			if( $this->logedin_user->usertype == 'generaluser' ){
@@ -239,8 +248,16 @@ class Front extends CI_Controller {
 				
 				$inserted_rid = $this->db->insert_id();
 				
+				$q_detail = [];
 				foreach( $rev_ques as $rvq_k => $rvq_v ){
+						
+					$this->db->select('*')
+								->from('rev_questions')
+								->where('qid', $rvq_k);
+					$q_detail[$rvq_k] = $this->db->get()->row();
+					$q_detail[$rvq_k]->rating_from_client = $rvq_v;
 				//	pre($rvq_v);
+					/* 
 					if( $rvq_v > 0 ){
 						
 						$this->db->insert('question_ratings', [
@@ -249,7 +266,9 @@ class Front extends CI_Controller {
 							'review' => $rvq_v
 						]);
 					}
+					 */
 				}
+			//	prex($q_detail);
 				
 				$this->db->select('*');
 				$this->db->from('users');
@@ -281,7 +300,48 @@ class Front extends CI_Controller {
 					$emailContent .= 'Email <strong> : ' . $this->input->post('c_email') . '</strong> <br> ';
 					$emailContent .= 'Phone <strong> : ' . $this->input->post('c_phone') . '</strong> <br> ';
 					$emailContent .= 'First Name <strong> : ' . $this->input->post('c_firstname') . '</strong> <br> ';
-					$emailContent .= 'Last Name <strong> : ' . $this->input->post('c_lastname') . '</strong> <br> ';
+					$emailContent .= 'Last Name <strong> : ' . $this->input->post('c_lastname') . '</strong> <br> '.
+					'<hr>';
+					$qdi = 1;
+					$emailContent .= '<ul>';
+					$emailContent .= ''.
+					'<li style="padding: 5px 0;font-size: 1.4em;">Head rating is <b>'.
+					$this->input->post('first_rating') . '</b> out of <b>10</b>'.
+					'</li>';
+					$emailContent .= '</ul>';
+					$emailContent .= '<ol>';
+					$ret = '';
+					foreach( $q_detail as $qd ){
+						
+						if( $qd->answer_option == 'yes_no' ){
+						
+							if( $qd->yes_0_no_1 == 0 ){
+								if( $qd->rating_from_client == 10 ){
+									$ret = '"<b>YES</b>" selected';
+								}elseif($qd->rating_from_client == 0){
+									$ret = '"<b>NO</b>" selected';
+								}
+							}elseif( $qd->yes_0_no_1 == 1 ){
+								if( $qd->rating_from_client == 10 ){
+									$ret = '"<b>NO</b>" selected';
+								}elseif($qd->rating_from_client == 0){
+									$ret = '"<b>YES</b>" selected';
+								}
+							}
+							
+						}else{
+							$ret = '<b>'.$qd->rating_from_client . '</b> rating out of <b>10</b>';
+						}
+						$emailContent .= ''.
+						'<li style="padding: 5px 0;">'.
+						$qd->question . '<br>'.
+						$ret .
+						'</li>'.
+						'';
+						$qd++;
+					}
+					$emailContent .= '</ol>';
+					$emailContent .= '<hr>';
 					
 					$get_note_contacts = $this->General_model->get_note_contacts();
 					$note_contact_emails = [];
@@ -305,18 +365,6 @@ class Front extends CI_Controller {
 						
 						//	https://witnessone.net/bin/sms/send.php?phone=23434342&message=sdjfhksdjf 
 						$sms_msg = 'Rating percent (' . $this->input->post('total_rev_plus') . ') // From email : ' . $this->input->post('c_email') . ' // From phone : ' . $this->input->post('c_phone') . ' // Name : ' . $this->input->post('c_firstname') . ' ' . $this->input->post('c_lastname') . ' // Time was : ' . $cur_datetime . '';
-						 
-						foreach( $note_contact_phons as $con_phons ){
-							
-							$this->load->library('curl'); 
-							
-							$this->curl->simple_get( 'https://witnessone.net/bin/sms/send.php?phone=' . $con_phons . '&message=' . $sms_msg ); 
-							// Set query data here with the URL
-						//	curl_setopt($ch, CURLOPT_URL, 'https://witnessone.net/bin/sms/send.php?phone=' . $con_emails . '&message=' . $sms_msg); 
-						//	curl_setopt($ch, CURLOPT_URL, base_url('dashboard/settings/test_raf_46834638/') . '?from=' . $_GET[''] . '&to=' . $sms_msg); 
-							
-						
-						}
 						 
 					//	print $content;
 					}

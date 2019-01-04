@@ -13,7 +13,7 @@
 				<div class="card">
 
 				  <div class="card-header with-border wow bounceInDown">
-					 <h4 class="card-title card-box"><?php if( $pageType == 'edit' ){ echo 'Edit page ' . '<i><small class="border border-white"><a href="'. base_url('front/review/' . $pgid) .'"> &nbsp; Front View &nbsp; </a></small></i>'; }else{ echo 'New Page'; }?></h4>
+					 <h4 class="card-title card-box"><?php if( $pageType == 'edit' ){ echo 'Edit page ' . '<i><a href="'. base_url('front/review/' . $pgid) .'" class="float-right btn btn-outline-danger btn-sm" style="font"> Front View </a></i>'; }else{ echo 'New Page'; }?></h4>
 					 
 					</div>
 				  <div class="card-body border border-danger">
@@ -25,7 +25,10 @@
 					<?php if( $this->session->flashdata('success') ){ ?>
 						<div class="alert alert-success" role="alert"><?php echo $this->session->flashdata('success'); ?></div>
 					<?php } ?>
-
+					<?php if( $this->session->flashdata('error') ){ ?>
+						<div class="alert alert-danger" role="alert"><h4><?php echo $this->session->flashdata('error'); ?></h4></div>
+					<?php } ?>
+					
 					<form action="" method="post" class="">
 						<label for="pg_title" class="control-label">Page Title</label>
 						<input type="text" name="pg_title" id="pg_title" class="form-control" value="<?php if(isset($thePage->pg_title)){ echo$thePage->pg_title; } ?>" />

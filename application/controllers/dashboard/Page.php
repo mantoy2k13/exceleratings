@@ -202,6 +202,5 @@ class Page extends CI_Controller {
 	//	print_r($posts->result_array());
 		echo json_encode($data);
 	}
-	
 }
 

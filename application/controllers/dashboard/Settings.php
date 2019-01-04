@@ -151,7 +151,7 @@ class Settings extends CI_Controller {
 		$session_user = $this->logedin_user;
 	//	prex($this->input->post());
 		$data['menuitem4'] = 'question_pages';
-	
+		
 		$this->db->select('*');
 		$this->db->from('rev_questions');
 		if( $this->logedin_user->usertype == 'generaluser' ){
@@ -184,6 +184,47 @@ class Settings extends CI_Controller {
 			
 			if( $this->input->post('submit') == 'q_pg_edit' ){
 				
+				$cur_users_qus = $this->db->select('*')
+													->from('rev_questions')
+													->where('userid', $session_user->id)
+													->get()->result_object();
+				
+				$curUserAllQs = [];
+				foreach($cur_users_qus as $cuq_k => $cuq_v){
+					$curUserAllQs[$cuq_k] = $cuq_v->qid;
+				}
+				$totalUsersQs = array_intersect($curUserAllQs, $this->input->post()['qid']);
+				
+				 
+				if( $session_user->subs_package_slug == 'gold' ){
+				//	prex(count($totalUsersQs));
+					if( count($totalUsersQs) > 10 ){
+						$this->session->set_flashdata('error', 'Your account in Gold plan, Maximum 10 question is allowed from you. <br>Now your question items limit over !!');
+					//	prex($session_user->subs_package_slug);
+						redirect('dashboard/settings/question_pages/'. $pgid);
+					}
+				}elseif( $session_user->subs_package_slug == 'silver' ){
+					
+					if( count($totalUsersQs) > 5 ){
+						$this->session->set_flashdata('error', 'Your account in Silver plan, Maximum 5 question is allowed from you. <br>Now your question items limit over !!');
+						redirect(base_url('dashboard/settings/question_pages/'. $pgid));
+					}
+				}
+				}elseif( $session_user->subs_package_slug == 'bronze' ){
+					
+					if( count($totalUsersQs) > 3 ){
+						$this->session->set_flashdata('error', 'Your account in Bronze plan, Maximum 3 question is allowed from you. <br>Now your question items limit over !!');
+						redirect(base_url('dashboard/settings/question_pages/'. $pgid));
+					}
+				}
+				
+				/* 
+				pre($this->input->post()['qid']);
+				pre($curUserAllQs);
+				pre($totalUsersQs);
+				
+				prex($cur_users_qus);
+				  */
 				$pg_data = [
 					'pg_title' => $this->input->post('pg_title')
 				];

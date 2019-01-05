@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-include APPPATH.'libraries/braintree-lib/Braintree.php';
+include 'braintree-lib/Braintree.php';
 
 /*
  *  Braintree_lib

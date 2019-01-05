@@ -1,6 +1,6 @@
 <?php
 // ################ Custom included braintree-lib to active booking payment ########################
-require ('application/libraries/braintree-lib/autoload.php');
+//require ('application/libraries/braintree-lib/autoload.php');
 /**
  * CodeIgniter
  *

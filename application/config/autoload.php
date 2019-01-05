@@ -89,7 +89,7 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array('url','helping_functions');
+$autoload['helper'] = array('url','helping_functions','sms','braintree_lib');
 
 /*
 | -------------------------------------------------------------------

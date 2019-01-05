@@ -206,14 +206,13 @@ class Settings extends CI_Controller {
 				}elseif( $session_user->subs_package_slug == 'silver' ){
 					
 					if( count($totalUsersQs) > 5 ){
-						$this->session->set_flashdata('error', 'Your account in Silver plan, Maximum 5 question is allowed from you. <br>Now your question items limit over !!');
+						$this->session->set_flashdata('error', 'Your question exceeds your plan limit. <a href="'. base_url('dashboard/page/plan_subscription_form?plan=gold') .'">Please upgrade your plan to proceed.</a>');
 						redirect(base_url('dashboard/settings/question_pages/'. $pgid));
 					}
-				}
 				}elseif( $session_user->subs_package_slug == 'bronze' ){
 					
 					if( count($totalUsersQs) > 3 ){
-						$this->session->set_flashdata('error', 'Your account in Bronze plan, Maximum 3 question is allowed from you. <br>Now your question items limit over !!');
+						$this->session->set_flashdata('error', 'Your question exceeds your plan limit. <a href="'. base_url('dashboard/page/plan_subscription_form?plan=gold') .'">Please upgrade your plan to proceed.</a>');
 						redirect(base_url('dashboard/settings/question_pages/'. $pgid));
 					}
 				}
@@ -225,6 +224,7 @@ class Settings extends CI_Controller {
 				
 				prex($cur_users_qus);
 				  */
+				  
 				$pg_data = [
 					'pg_title' => $this->input->post('pg_title')
 				];

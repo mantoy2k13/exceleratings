@@ -15,26 +15,9 @@ class Front extends CI_Controller {
 		$this->logedin_user = $this->User_model->user_data_by_id( $this->session->userdata('logedin_user')->id );
 		}
 	}
-	 
-	public function test_raf_46834638(){
 	
-		$this->load->library('email');
-		$this->email
-				->from('thomas.woodfin03@yopmail.com', 'thomas.woodfin03@yopmail')
-				->to('sakiremail@gmail.com')
-				->subject('Test cURL dsfdsf dsfdsf')
-				->message('Test cURL content sd fdsfds fdsf ');
-			
-		$ret = [];
-		
-		if($this->email->send()){
-			$ret['status'] = 'success';
-		}
-		else {
-			$ret['status'] = 'error';
-		}
-		
-		echo json_encode($ret);
+	public function test_raf_46834638(){
+		sms_send('8801815035736','Test SMS 3 ...');
 	}
 	 
 	public function index()
@@ -361,12 +344,15 @@ class Front extends CI_Controller {
 					// send email
 					$this->email->send();
 					
-					if( $this->logedin_user->subs_package_slug == 'gold' ){
+					if( $this->logedin_user->subs_package_slug == 'gold' || $this->logedin_user->subs_package_slug == 'silver' ){
 						
 						//	https://witnessone.net/bin/sms/send.php?phone=23434342&message=sdjfhksdjf 
 						$sms_msg = 'Rating percent (' . $this->input->post('total_rev_plus') . ') // From email : ' . $this->input->post('c_email') . ' // From phone : ' . $this->input->post('c_phone') . ' // Name : ' . $this->input->post('c_firstname') . ' ' . $this->input->post('c_lastname') . ' // Time was : ' . $cur_datetime . '';
-						 
-					//	print $content;
+						
+						foreach( $note_contact_phons as $c_phone ){
+							sms_send( $c_phone, $sms_msg );
+						}
+						//	print $content;
 					}
 					$this->session->set_flashdata('review70up', false);
 					$this->session->set_flashdata('success', 'Thanks for your rating');

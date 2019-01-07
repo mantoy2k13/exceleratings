@@ -223,8 +223,8 @@ class Settings extends CI_Controller {
 				pre($totalUsersQs);
 				
 				prex($cur_users_qus);
-				  */
-				  
+				*/
+				
 				$pg_data = [
 					'pg_title' => $this->input->post('pg_title')
 				];

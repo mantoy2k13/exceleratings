@@ -368,5 +368,20 @@ class General_model extends CI_Model {
 		}
 		return (object)$ratings;
 	}
+	
+	
+	public function setting_option( $slug = null ){
+		
+		if( $slug != null ){
+				
+			$this->db->select('*');
+			$this->db->from('settings');
+			$this->db->where('option_slug =',$slug);
+			$opt_val = $this->db->get()->row();
+			return $opt_val->option_value;
+		}else{
+			return '';
+		}
+	}
 
 }

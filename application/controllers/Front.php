@@ -329,6 +329,7 @@ class Front extends CI_Controller {
 					$get_note_contacts = $this->General_model->get_note_contacts();
 					$note_contact_emails = [];
 					$note_contact_phons = [];
+					
 					foreach($get_note_contacts as $conts ){
 						array_push($note_contact_emails, $conts->email);
 						array_push($note_contact_phons, $conts->phone);
@@ -340,19 +341,21 @@ class Front extends CI_Controller {
 						 ->subject('Bad review notification')
 						 ->message($emailContent)
 						 ->set_mailtype('html');
-						
 					// send email
 					$this->email->send();
 					
-					if( $this->logedin_user->subs_package_slug == 'gold' || $this->logedin_user->subs_package_slug == 'silver' ){
-						
-						//	https://witnessone.net/bin/sms/send.php?phone=23434342&message=sdjfhksdjf 
-						$sms_msg = 'Rating percent (' . $this->input->post('total_rev_plus') . ') // From email : ' . $this->input->post('c_email') . ' // From phone : ' . $this->input->post('c_phone') . ' // Name : ' . $this->input->post('c_firstname') . ' ' . $this->input->post('c_lastname') . ' // Time was : ' . $cur_datetime . '';
-						
-						foreach( $note_contact_phons as $c_phone ){
-							sms_send( $c_phone, $sms_msg );
+					if( $this->General_model->setting_option('sms-services') == 'yes' ){
+							
+						if( $this->logedin_user->subs_package_slug == 'gold' || $this->logedin_user->subs_package_slug == 'silver' ){
+							
+							//	https://witnessone.net/bin/sms/send.php?phone=23434342&message=sdjfhksdjf 
+							$sms_msg = 'Rating percent (' . $this->input->post('total_rev_plus') . ') // From email : ' . $this->input->post('c_email') . ' // From phone : ' . $this->input->post('c_phone') . ' // Name : ' . $this->input->post('c_firstname') . ' ' . $this->input->post('c_lastname') . ' // Time was : ' . $cur_datetime . '';
+							
+							foreach( $note_contact_phons as $c_phone ){
+								sms_send( $c_phone, $sms_msg );
+							}
+							//	print $content;
 						}
-						//	print $content;
 					}
 					$this->session->set_flashdata('review70up', false);
 					$this->session->set_flashdata('success', 'Thanks for your rating');

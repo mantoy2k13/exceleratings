@@ -1278,6 +1278,3 @@ class SmsInterface {
 	}
 
 }
-
-?>
-

@@ -68,7 +68,6 @@
 					<li class="dropdown"><a href="<?php echo base_url('/'); ?>" >Home</a></li>
 					<li class="dropdown"><a href="<?php echo base_url('/'); ?>front/about">About Us</a></li>
 					<li class="dropdown"><a href="<?php echo base_url('/'); ?>front/pricing">Pricing</a></li>
-					<li class="dropdown"><a href="<?php echo base_url('/'); ?>front/team">Our Team</a></li>
 					<li class="dropdown"><a href="<?php echo base_url('/'); ?>front/contact">Contact Us</a></li>
 				  <?php 
 				  if($this->session->userdata('logedin_user')){ ?>
@@ -78,6 +77,7 @@
 					<li class="dropdown"><a href="<?php echo base_url('auth/registration'); ?>">Registration</a></li>
 					<?php } ?>
               <li class="dropdown"><a href="<?php echo base_url('/'); ?>dashboard">Admin</a></li>
+					<li class="dropdown" title="Logout"><a href="<?php echo base_url('/'); ?>auth/logout"><i class="fa fa-power-off"></i></a></li>
             </ul>
 				<div class="navbar-form navbar-right" id="nav_rev_count_show" hidden >
 				  <div class="form-group">

@@ -184,7 +184,7 @@
 					<li class="<?=$menuitem4 == 'plan_subscription' ? 'active':''?>"><a href="<?php echo base_url('dashboard/page/plan_subscription'); ?>"><i class="menu-icon fa fa-bars"></i> <span>Plan Subscription</span></a></li>
 					<li class="menu-title"> --- </li><!-- /.menu-title -->
 					<li class="<?=$menuitem4 == 'profile' ? 'active':''?>"><a href="<?php echo base_url('dashboard/settings/profile'); ?>"><i class="menu-icon fa fa-user"></i> <span>Profile</span></a></li>
-					<li class="<?=$menuitem4 == 'profile' ? 'active':''?>"><a href="<?php echo base_url('dashboard/settings'); ?>"><i class="menu-icon fa fa-wrench"></i> <span>General Settings</span></a></li>
+					<li class="<?=$menuitem4 == 'settings' ? 'active':''?>"><a href="<?php echo base_url('dashboard/settings'); ?>"><i class="menu-icon fa fa-wrench"></i> <span>General Settings</span></a></li>
 					<li><a href="<?php echo base_url('auth/logout'); ?>"><i class="menu-icon fa fa-sign-out"></i> <span>LogOut</span></a></li>
 				 </ul>
 			</div><!-- /.navbar-collapse -->

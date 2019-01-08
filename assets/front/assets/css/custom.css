@@ -13,3 +13,9 @@
 	font-weight: bold;
 	font-size: 1.3em;
 }
+.fixed_footer_bottom{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+}

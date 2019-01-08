@@ -11,6 +11,17 @@
 							<h2 class="module-title font-alt">Review pages</h2>
 						  <ul class="list-group list-group-flush">
 							 <?php 
+								if( !$pgs ){ ?>
+
+									
+										<h4>Review page not ready!</h4><hr>
+									<li class="list-group-item">
+										<a href="<?=base_url('dashboard/settings/question_pages')?>" class="btn btn-info btn-block">
+											<h4>Please create your review page </h4>
+										</a>
+									</li>
+								<?php 
+								}
 								foreach( $pgs as $pg_k => $pg_v ){
 									$trClass = ($pg_k % 2 ? ' wow bounceInLeft ' : ' wow bounceInRight ');
 								?>
@@ -27,5 +38,4 @@
 					</div>
 				</div>
         </section>
-        <hr class="divider-d">
 <?php $this->load->view('front/footer-pg');?>

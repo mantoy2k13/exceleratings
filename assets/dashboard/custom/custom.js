@@ -2,6 +2,7 @@ jQuery(function ($) {
 	
 //	$('input[name="answer_option"]').prop( "checked", true ).closest('label').addClass('active');
 
+	
 	$('input:radio[name="answer_option"]').change( function() { 
 		if($(this).val() == 'yes_no' ){
 			$('#yes_no_point').show('first');
@@ -268,7 +269,7 @@ function rem_rev_questions(qid){
 				} else{
 					swal("Failed!", "There was a problem deleting your questions!", "danger");
 				}
-		    }
+		   }
 		}); 
 	 });
 }

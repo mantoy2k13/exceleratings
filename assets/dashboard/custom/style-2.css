@@ -36,6 +36,9 @@ a.btn.btn-info:hover, a.btn.btn-info:focus{
     border-color: #ED2424;
 	 color: #fff;
 }
+.login-content {
+    margin-top: 0;
+}
 .navbar .navbar-nav > .active > a, .navbar .navbar-nav > .active > a:focus, .navbar .navbar-nav > .active > a:hover,
 .navbar .navbar-nav li > a:hover, .navbar .navbar-nav li > a:hover .menu-icon,
 .navbar .navbar-nav li.active .menu-icon, .navbar .navbar-nav li:hover .toggle_nav_button:before, .navbar .navbar-nav li .toggle_nav_button.nav-open:before {
@@ -154,7 +157,23 @@ body
 .table>thead>tr>td.active, .table>tbody>tr>td.active, .table>tfoot>tr>td.active, .table>thead>tr>th.active, .table>tbody>tr>th.active, .table>tfoot>tr>th.active, .table>thead>tr.active>td, .table>tbody>tr.active>td, .table>tfoot>tr.active>td, .table>thead>tr.active>th, .table>tbody>tr.active>th, .table>tfoot>tr.active>th {
     background-color: #f5f5f5;
 }
-
+.navbar.auth_navbar{
+	display: flex;
+}
+nav.auth_navbar ul{
+	text-align: center;
+	width: 100%;
+	display: block;
+    background: #eeeeee8f;
+}
+nav.auth_navbar ul li{
+    display: inline-block;
+    width: auto;
+    margin: 0px auto;
+}
+nav.auth_navbar ul li a{
+	text-decoration:none;
+}
 .panel {
     margin-bottom: 20px;
     background-color: #fff;

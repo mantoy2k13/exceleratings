@@ -13,7 +13,7 @@
 				<div class="card">
 
 				  <div class="card-header with-border wow bounceInDown">
-					 <h4 class="card-title card-box"><?php if( $pageType == 'edit' ){ echo 'Edit page ' . '<i><a href="'. base_url('front/review/' . $pgid) .'" class="float-right btn btn-outline-danger btn-sm" style="font"> Front View </a></i>'; }else{ echo 'New Page'; }?></h4>
+					 <h4 class="card-title card-box"><?php if( $pageType == 'edit' ){ echo 'Edit page ' . '<i><a href="'. base_url('front/review/' . $pgid) .'" class="float-right btn btn-outline-danger btn-sm" style="font"><i class="fa fa-eye"></i> Front View </a></i>'; }else{ echo 'New Page'; }?></h4>
 					 
 					</div>
 				  <div class="card-body border border-danger">
@@ -42,7 +42,8 @@
 
 										<li class="list-group-item draging">
 											<input value="<?=$pgq->qid?>" name="qid[]" size="2" hidden >
-											<?=$pgq->question . ' <i>['. $pgq->qid .']</i>'?>
+											<?php //$pgq->question . ' <i>['. $pgq->qid .']</i>'?>
+											<?=$pgq->question?>
 										</li>
 								<?php }
 								}
@@ -50,7 +51,8 @@
 								foreach( $def_questions as $dq ){ ?>
 									<li class="list-group-item draging">
 										<input value="<?=$dq->qid?>" name="qid[]" size="2" hidden >
-										<?=$dq->question . ' <i>['. $dq->qid .']</i>'?>
+										<?php //$dq->question . ' <i>['. $dq->qid .']</i>'?>
+										<?=$dq->question?>
 									</li>
 							<?php }
 							}
@@ -77,14 +79,14 @@
 						<h4 class="card-title card-box">All Questions</h4>
 					</div>
 						<ul id="all_questions" class="connectedSortable list-group list-group-flush">
-						 <?php 
-							if( count($ques) == 0 ){ ?>
-								
-								<li class="list-group-item draging">
-									No questions 
-									<a href="<?=base_url('/')?>dashboard/settings/rev_question_add" class="btn btn-outline-warning btn-block">Add new question</a>
-								</li>
-							<?php }
+							<li class="list-group-item draging">
+							 <?php 
+								if( count($ques) == 0 ){ ?>
+										No questions 
+								<?php } ?>
+								<a href="<?=base_url('/')?>dashboard/settings/rev_question_add" class="btn btn-outline-warning btn-block">Add new question</a>
+							</li>
+							<?php 
 							foreach( $ques as $qus_k => $qus_v ){
 								$trClass = ($qus_k % 2 ? ' wow bounceInLeft ' : ' wow bounceInRight ');
 							//	if( $edit_item == $qus_v->id ){
@@ -94,7 +96,8 @@
 							?>
 								<li class="list-group-item draging">
 									<input value="<?=$qus_v->qid?>" name="qid[]" size="2" hidden>
-									<?=$qus_v->question . ' <i>['. $qus_v->qid .']</i>'?>
+									<?php //$qus_v->question . ' <i>['. $qus_v->qid .']</i>'?>
+									<?=$qus_v->question?>
 								</li>
 							<?php } ?> 
 						</ul>

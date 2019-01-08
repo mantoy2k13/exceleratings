@@ -1,10 +1,5 @@
 <?php $this->load->view('auth/header'); ?>
 
-  <div class="content pb-0">
-	  <!-- /.login-logo -->
-	  <div class="login-content">
-		  <div class="login-form">
-			  <div class="card wow flipInX">
 				  <div class="card-body">
 					 <h4 class="login-box-msg"><strong>Sign Up</strong></h4>
 						<?php 
@@ -49,16 +44,8 @@
 						<button type="submit" name="submitForm" value="register" class="btn btn-danger btn_xlrting btn-block btn-flat">Sign Up / Registration</button>
 					 </form>
 						<hr>
-					 <a href="<?php echo base_url('auth/login'); ?>"><b>To Login</b></a>
+					 <h4 class="text-left"><a href="<?php echo base_url('auth/login'); ?>"><b>To Login</b></a></h4>
 				  </div>
-			  </div>
-			  <!-- /.login-box-body -->
-				<center class="container-fluid"><a href="<?php echo base_url('/'); ?>"><img src="<?php echo base_url('/'); ?>assets/dashboard/images/logo.png" /></a></center>
-				<br>
-		  </div>
-	  </div>
-  </div>
-  <!-- /.login-box-body -->
 <?php $this->load->view('auth/footer'); ?>
 
 

@@ -149,12 +149,12 @@
               <li class="dropdown"><a href="<?php echo base_url('/'); ?>" >Home</a></li>
 					<li class="dropdown"><a href="<?php echo base_url('/'); ?>front/about">About Us</a></li>
 					<li class="dropdown"><a href="<?php echo base_url('/'); ?>front/pricing">Pricing</a></li>
-					<li class="dropdown"><a href="<?php echo base_url('/'); ?>front/team">Our Team</a></li>
 					<li class="dropdown"><a href="<?php echo base_url('/'); ?>front/contact">Contact Us</a></li>
 				  <?php 
 				  if($this->session->userdata('logedin_user')){ ?>
 					<li class="dropdown"><a href="<?php echo base_url('/'); ?>front/review">Review Page</a></li>
 					<li class="dropdown"><a href="<?php echo base_url('/'); ?>dashboard">Admin</a></li>
+					<li class="dropdown" title="Logout"><a href="<?php echo base_url('/'); ?>auth/logout"><i class="fa fa-power-off"></i></a></li>
 					<?php }else{ ?>
 					<li class="dropdown"><a href="<?php echo base_url('auth/login'); ?>">Login</a></li>
 					<li class="dropdown"><a href="<?php echo base_url('auth/registration'); ?>">Registration</a></li>

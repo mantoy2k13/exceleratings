@@ -240,7 +240,7 @@ class Front extends CI_Controller {
 					$q_detail[$rvq_k] = $this->db->get()->row();
 					$q_detail[$rvq_k]->rating_from_client = $rvq_v;
 				//	pre($rvq_v);
-					/* 
+					
 					if( $rvq_v > 0 ){
 						
 						$this->db->insert('question_ratings', [
@@ -249,7 +249,7 @@ class Front extends CI_Controller {
 							'review' => $rvq_v
 						]);
 					}
-					 */
+					 
 				}
 			//	prex($q_detail);
 				

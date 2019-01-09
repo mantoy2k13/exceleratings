@@ -122,8 +122,11 @@
 			var ref = firebase.database().ref("<?=$this->session->userdata('logedin_user')->id?>");
 		//	alert("<?=$this->session->userdata('logedin_user')->id?>");
 			ref.on("value", function(snapshot) {
+					$('#totlAvgRatAllTime').html(0);
+					$('#totlNumOfRevAllTime').html(0);
+					$('#revActLast30days').html(0);
 				snapshot.forEach(function(childSnapshot) {
-				//	console.log(childSnapshot.val());
+					//	console.log(childSnapshot.val());
 					if(childSnapshot.key == 'total_average_rating_alltime'){
 						$('#totlAvgRatAllTime').html(childSnapshot.val());
 					//	console.log(childSnapshot.val());

@@ -8,7 +8,7 @@
 						<div class="col-md-3">
 						</div>
 						<div class="col-md-6">
-							<h2 class="module-title font-alt">Review pages</h2>
+							<h2 class="module-title font-alt">Review page</h2>
 						  <ul class="list-group list-group-flush">
 							 <?php 
 								if( !$pgs ){ ?>

@@ -59,7 +59,7 @@
 								<div class="btn" >
 									<div class="btn-group">
 										<a href="<?=base_url('dashboard/page/plan_subscription_form?plan=bronze')?>" class="btn btn-info <?=$selected_plan == 'bronze' ? 'active' : ''?>" title="bronze">
-											<input type="radio" value="free" name="subs_package_slug" id="subs_package_slug1" <?php if( $selected_plan == 'bronze' ){ echo 'checked'; } ?>> 
+											<input type="radio" value="bronze" name="subs_package_slug" id="subs_package_slug1" <?php if( $selected_plan == 'bronze' ){ echo 'checked'; } ?>> 
 											Bronze Plan
 										</a>
 									

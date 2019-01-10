@@ -84,6 +84,27 @@ class Front extends CI_Controller {
 		$data['total_rating_item4chart'] = $this->General_model->get_overall_avr_rating_ind();
 		/* ========================= Firebase Update ======================== */
 		
+		/* ========================= Firebase Update for SuperAdmin data ======================== */
+		$this->db->select('rv.id');
+		$this->db->from('reviews as rv');
+		$this->db->join('q_pages as pg', 'rv.for_pgid = pg.id', 'left');
+		$data['user_id'] = $this->logedin_user->id;
+		$data['last_review_inserted_admin'] = $this->db->order_by('rv.id','desc')->limit(1)->get()->row();
+	//	prex($data['last_review_inserted']);
+		if( $data['last_review_inserted_admin'] ){
+			
+			$data['last_review_inserted_admin'] = $data['last_review_inserted_admin']->id;
+		}
+		
+		$data['overall_avr_rating_admin'] = $this->General_model->get_overall_avr_rating_admin();
+		$this->db->select('rv.*');
+		$this->db->from('reviews as rv');
+		$this->db->join('q_pages as pg', 'rv.for_pgid = pg.id', 'left');
+		$data['total_rating_item_admin'] = count($this->db->get()->result_object());
+		
+		$data['total_rating_item4chart_admin'] = $this->General_model->get_overall_avr_rating_ind_admin();
+		/* ========================= Firebase Update for SuperAdmin data ======================== */
+		
 		if( $qpg_id == null ){
 
 			$this->db->select('*')->from('q_pages');
@@ -246,10 +267,9 @@ class Front extends CI_Controller {
 						$this->db->insert('question_ratings', [
 							'rid' => $inserted_rid,
 							'qid' => $rvq_k,
-							'review' => $rvq_v
+							'review' => $rvq_v < 1 ? 0 : $rvq_v
 						]);
 					}
-					 
 				}
 			//	prex($q_detail);
 				
@@ -343,7 +363,6 @@ class Front extends CI_Controller {
 						 ->set_mailtype('html');
 					// send email
 					$this->email->send();
-					
 					if( $this->General_model->setting_option('sms-services') == 'yes' ){
 							
 						if( $this->logedin_user->subs_package_slug == 'gold' || $this->logedin_user->subs_package_slug == 'silver' ){
@@ -351,6 +370,7 @@ class Front extends CI_Controller {
 							//	https://witnessone.net/bin/sms/send.php?phone=23434342&message=sdjfhksdjf 
 							$sms_msg = 'Rating percent (' . $this->input->post('total_rev_plus') . ') // From email : ' . $this->input->post('c_email') . ' // From phone : ' . $this->input->post('c_phone') . ' // Name : ' . $this->input->post('c_firstname') . ' ' . $this->input->post('c_lastname') . ' // Time was : ' . $cur_datetime . '';
 							
+				//	prex($note_contact_phons);
 							foreach( $note_contact_phons as $c_phone ){
 								sms_send( $c_phone, $sms_msg );
 							}

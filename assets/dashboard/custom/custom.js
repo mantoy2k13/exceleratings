@@ -210,9 +210,28 @@ jQuery(function ($) {
 	
 	
 
-	function load_all_revs(){
+	function load_all_revs( tbl_ID ){
 		
-		$('#totalRev').DataTable( {
+		if( tbl_ID == '#totalRev4User' ){
+			var data = [
+					{ "data": "sl" },
+					{ "data": "inserted_at" },
+					{ "data": "email" },
+					{ "data": "average_rating" },
+					{ "data": "action" }
+				];
+		}else{
+			var data = [
+					{ "data": "sl" },
+					{ "data": "inserted_at" },
+					{ "data": "email" },
+					{ "data": "pg_title" },
+					{ "data": "average_rating" },
+					{ "data": "action" }
+				];
+		}
+		
+		$(tbl_ID).DataTable( {
 				'ajax': base_url + "dashboard/page/dt_ajax_get_rev_list",
 				'destroy': true,
 				'paging': true,
@@ -221,17 +240,11 @@ jQuery(function ($) {
 				'ordering': true,
 				'info': true,
 				'autoWidth': true,
-				"columns": [
-					{ "data": "sl" },
-					{ "data": "inserted_at" },
-					{ "data": "email" },
-					{ "data": "pg_title" },
-					{ "data": "average_rating" },
-					{ "data": "action" }
-				]
+				"columns": data
 		} );
 	}
-	load_all_revs();
+	load_all_revs('#totalRev4User');
+	load_all_revs('#totalRev4Admin');
 	   	
    $('.collapse').on('shown.bs.collapse', function () {
       $(this).closest('.row').find('.view_graph').text(" Hide Graph ");

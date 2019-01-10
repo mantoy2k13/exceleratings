@@ -8,6 +8,19 @@ body {
 	color: #F05223;
 }
 
+.col_1_center th:first-child,
+.col_1_center td:first-child,
+.col_1ast_center th:last-child,
+.col_1ast_center td:last-child,
+.col_3_center td:nth-child(3),
+.col_4_center th:nth-child(4),
+.col_4_center td:nth-child(4),
+.col_5_center th:nth-child(5),
+.col_5_center td:nth-child(5),
+.col_6_center th:nth-child(6),
+.col_6_center td:nth-child(6){
+	text-align: center;
+}
 .badge-info,
 .btn.btn-info,
 .btn_xlrting{

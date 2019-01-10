@@ -4,21 +4,20 @@
 					 <h4 class="login-box-msg"><strong>Sign Up</strong></h4>
 						<?php 
 							if( isset($_SESSION['success']) ){
-								echo '<div class="callout callout-success">' . $_SESSION['success'] . '</div>';
-							}
-							
+								echo '<div class="alert alert-success">' . $_SESSION['success'] . '</div>';
+							} 
 							if( isset($_SESSION['error']) ){
 								echo '<div class="alert alert-danger">' . $_SESSION['error'] . '</div>';
 							} 
 						?>
-						<?php echo validation_errors('<p class="text-red"><b>', '</b></p>'); ?>
+						<?php echo validation_errors('<p class="text-danger"><b> !> ', '</b></p>'); ?>
 					 <form action="" method="post">
 						<div class="form-group has-feedback">
-						  <input type="text" name="username" class="form-control" placeholder="User name">
+						  <input type="text" name="username" class="form-control" placeholder="User name" value="<?=$this->input->post('username')?>">
 						  <span class="glyphicon glyphicon-user form-control-feedback"></span>
 						</div>
 						<div class="form-group has-feedback">
-						  <input type="email" name="email" class="form-control" placeholder="Email">
+						  <input type="email" name="email" value="<?=$this->input->post('email')?>" class="form-control" placeholder="Email">
 						  <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 						</div>
 						  <div class="form-group">
@@ -28,7 +27,7 @@
 								<option> -- Select -- </option>
 							<?php
 								foreach( $service_categories as $sc_k => $sc_v ){ ?> 
-								<option value="<?=$sc_v->id?>" ><?=$sc_v->title?></option> 
+								<option value="<?=$sc_v->id?>" <?php if( $this->input->post('service_category') == $sc_v->id ){ echo 'selected'; } ?>><?=$sc_v->title?></option> 
 							<?php } ?> 
 							 </select>
 						  </div>

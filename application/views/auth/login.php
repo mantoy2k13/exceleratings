@@ -1,6 +1,4 @@
 <?php $this->load->view('auth/header'); ?>
-
-
 				  <div class="card-body">
 					 <h4 class="login-box-msg"><strong>Sign In</strong> to start your session</h4>
 						<?php 
@@ -11,7 +9,7 @@
 								echo '<div class="alert alert-danger">' . $_SESSION['error'] . '</div>';
 							} 
 						?>
-						<?php echo validation_errors('<p class="text-red"><b>', '</b></p>'); ?>
+						<?php echo validation_errors('<p class="text-danger"><b> !> ', '</b></p>'); ?>
 					 <form action="" method="post">
 						<div class="form-group has-feedback">
 						  <input type="text" name="username" class="form-control" placeholder="UserName">

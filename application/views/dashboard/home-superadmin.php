@@ -62,38 +62,70 @@
 
 			  <div class="card-body">
 				 <h3 class="card-title box-title">Dashboard Home </h3>
-
-              <table id="totalRev" data-uid="" class="display table table-bordered table-hover table-striped datatable  col_1_center col_1ast_center col_3_center col_4_center col_5_center col_6_center">
-                <thead>
-                <tr>
-                  <th>SL.</th>
-                  <th>Review Time</th>
-                  <th>Reviewer Email</th>
-                  <th>Question Page</th>
-                  <th>Average Rating</th>
-                  <th>Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                  <td></td>
-                  <td colspan="2">Loading ... <span class="loading_spinning"><b> --- </b></span> </td>
-                  <td> </td>
-                  <td> </td>
-                  <td> </td>
-                </tr>
-                </tbody>
-                <tfoot>
-                <tr>
-                  <th>SL.</th>
-                  <th>Review Time</th>
-                  <th>Reviewer Email</th>
-                  <th>Question Page</th>
-                  <th>Average Rating</th>
-                  <th>Action</th>
-                </tr>
-                </tfoot>
+					
+					<?php 
+						if( $this->session->userdata('logedin_user')->usertype == 'superadmin' ){ ?>
+							<table id="totalRev4Admin" data-uid="" class="display table table-bordered table-hover table-striped datatable  col_1_center col_1ast_center col_5_center col_6_center">
+							 <thead>
+							 <tr>
+								<th>SL.</th>
+								<th>Review Time</th>
+								<th>Reviewer Email</th>
+								<th>Review Author</th>
+								<th>Average Rating</th>
+								<th>Action</th>
+							 </tr>
+							 </thead>
+							 <tbody>
+							 <tr>
+								<td></td>
+								<td colspan="2">Loading ... <span class="loading_spinning"><b> --- </b></span> </td>
+								<td> </td>
+								<td> </td>
+								<td> </td>
+							 </tr>
+							 </tbody>
+							 <tfoot>
+							 <tr>
+								<th>SL.</th>
+								<th>Review Time</th>
+								<th>Reviewer Email</th>
+								<th>Review Author</th>
+								<th>Average Rating</th>
+								<th>Action</th>
+							 </tr>
+							 </tfoot>
+					<?php	}else{ ?>
+							<table id="totalRev4User" data-uid="" class="display table table-bordered table-hover table-striped datatable  col_1_center col_1ast_center col_4_center col_5_center">
+							 <thead>
+							 <tr>
+								<th>SL.</th>
+								<th>Review Time</th>
+								<th>Reviewer Email</th>
+								<th>Average Rating</th>
+								<th>Action</th>
+							 </tr>
+							 </thead>
+							 <tbody>
+							 <tr>
+								<td></td>
+								<td colspan="2">Loading ... <span class="loading_spinning"><b> --- </b></span> </td>
+								<td> </td>
+								<td> </td>
+							 </tr>
+							 </tbody>
+							 <tfoot>
+							 <tr>
+								<th>SL.</th>
+								<th>Review Time</th>
+								<th>Reviewer Email</th>
+								<th>Average Rating</th>
+								<th>Action</th>
+							 </tr>
+							 </tfoot>
+					<?php } ?>
               </table>
+				  
 			  </div>
 			  <!-- /.box-body -->
 			</div>
@@ -115,11 +147,14 @@
 <?php $this->load->view('dashboard/footer'); ?>
 <script>
 
-
-
-
 		$(document).ready(function() {
-			var ref = firebase.database().ref("<?=$this->session->userdata('logedin_user')->id?>");
+			<?php 
+				if( $this->session->userdata('logedin_user')->usertype == 'superadmin' ){ ?>
+					var ref = firebase.database().ref();
+			<?php	}else{ ?>
+					var ref = firebase.database().ref("<?=$this->session->userdata('logedin_user')->id?>");
+			<?php } ?>
+			
 		//	alert("<?=$this->session->userdata('logedin_user')->id?>");
 			ref.on("value", function(snapshot) {
 					$('#totlAvgRatAllTime').html(0);
@@ -147,8 +182,6 @@
 						//alert(childSnapshot.val());
 					//	$('#revActLast30days').html( childSnapshot.val() );
 						
-						
-
 								var ctx = document.getElementById("myChart");
 								Chart.defaults.global.defaultFontColor = '#ED2424';
 								var myChart = new Chart(ctx, {

@@ -80,8 +80,15 @@
 							foreach($revItem_ques as $q_k => $q_v){ // pre($q_v); ?>
 								
 								<li class="list-group-item <?php echo ($q_k % 2 ? ' wow bounceInLeft ' : ' wow bounceInRight '); ?>">
+									<?php 
+								//		pre($q_v);
+									?>
 									<b><?php echo $q_k *1 +1; ?>.</b> <?php echo $q_v->question; ?>
-																
+									<?php 
+										if( $q_v->answer_option == 'yes_no' ){
+											echo '<span class="badge badge-secondary">YES/NO option</span>';
+										}
+									?>
 									<div class="progress ind_progress" style="height: 20px;font-weight: bold;">
 									  <div class="progress-bar progress-bar-striped bg_xlrting" role="progressbar" style="width: <?=$q_v->review * 10?>%" aria-valuenow="<?=$q_v->review * 10?>" aria-valuemin="0" aria-valuemax="100"><?=$q_v->review * 10?>%</div>
 									</div>

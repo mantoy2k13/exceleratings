@@ -110,6 +110,7 @@
 									<input type="email" class="form-control" id="alt_email" name="alt_email" value="<?php echo $profile->alt_email; ?>" placeholder="Email">
 								 </div>
 							</div>
+							<?php if( $selected_plan == 'silver' || $selected_plan == 'gold' ){ ?>
 							<div class="form-group wow bounceInLeft">
 								<label for="inputAddress">Tablet needed:</label>
 								<div class="row" >
@@ -137,8 +138,8 @@
 										</div>
 									 </div>
 								 </div>
-								
 							</div>
+							<?php } ?>
 							<div class="form-group wow bounceInRight">
 								 <label for="service_location">Number of service locations:</label>
 								 <input type="text" class="form-control" id="service_location" name="service_location" value="<?php echo $profile->service_location; ?>" placeholder="Number of service locations">

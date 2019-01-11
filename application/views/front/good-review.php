@@ -1,5 +1,6 @@
 <?php $this->load->view('front/header-pg');?>
 
+<?php $this->load->view('front/firebase-update');?>
 
       <div class="main">
         <section class="module bg-dark-60 contact-page-header bg-dark" data-background="<?php echo base_url('assets/front/'); ?>assets/img/contact.jpg">

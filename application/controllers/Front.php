@@ -40,23 +40,9 @@ class Front extends CI_Controller {
 		$this->load->view('front/home');
 	}
 	
-	public function review($qpg_id = null)
-	{
-		//$ch = curl_init();
-		
-		// Set query data here with the URL
-	//	curl_setopt($ch, CURLOPT_URL, 'https://witnessone.net/bin/sms/send.php?phone=' . $con_emails . '&message=' . $sms_msg); 
-		// curl_setopt($ch, CURLOPT_URL, 'http://exceleratings.local/dashboard/settings/test_raf_46834638'); 
-		
-		// curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		// curl_setopt($ch, CURLOPT_TIMEOUT, 3);
-		// $content = trim(curl_exec($ch));
-		// curl_close($ch);
-		
-		
-		if( !$this->session->userdata('logedin_user') ){
-			redirect('auth/login');
-		}
+	public function firebase_update()
+	{		
+
 		/* ========================= Firebase Update ======================== */
 		$this->db->select('rv.id');
 		$this->db->from('reviews as rv');
@@ -104,15 +90,27 @@ class Front extends CI_Controller {
 		
 		$data['total_rating_item4chart_admin'] = $this->General_model->get_overall_avr_rating_ind_admin();
 		/* ========================= Firebase Update for SuperAdmin data ======================== */
+		return $data;
+	}
+
+	public function review($qpg_id = null)
+	{		
+	//	prex(6);
+		if( !$this->session->userdata('logedin_user') ){
+			redirect('auth/login');
+		}
+		$data = $this->firebase_update();
+	//	prex($data);
+		
+		$this->db->select('*')->from('q_pages');
+		if( $this->logedin_user->usertype == 'generaluser' ){
+			$this->db->where('userid', $this->logedin_user->id);
+		}
+		$this->db->order_by('id', 'DESC');
+		$data['chk_pgs'] = $this->db->get()->row();
 		
 		if( $qpg_id == null ){
 
-			$this->db->select('*')->from('q_pages');
-			if( $this->logedin_user->usertype == 'generaluser' ){
-				$this->db->where('userid', $this->logedin_user->id);
-			}
-			$this->db->order_by('id', 'DESC');
-			$data['chk_pgs'] = $this->db->get()->row();
 			if( $data['chk_pgs'] ){
 				redirect('front/review/'.$data['chk_pgs']->id);
 			}
@@ -124,8 +122,11 @@ class Front extends CI_Controller {
 			$this->db->order_by('id', 'DESC');
 			$data['pgs'] = $this->db->get()->result_object();
 			
+		//	prex( $this->db->last_query() );
+			
 			$this->load->view('front/review-pages', $data);
 		}else{
+			$qpg_id = $data['chk_pgs']->id;
 			$data['qpg_id'] = $qpg_id;
 			$this->db->select('*')
 						->from('pages_questions')
@@ -144,13 +145,13 @@ class Front extends CI_Controller {
 		if( !$this->session->userdata('logedin_user') ){
 			redirect('auth/login');
 		}
+		$data = $this->firebase_update();
 		$data['profile'] = $this->General_model->get_user_data($this->logedin_user->id);
 		$this->load->view('front/good-review', $data);
 	}
 	
 	public function enrollment(){
 		
-
 		$uid = $this->session->userdata('logedin_user')->id;
 		
 		$data['profile'] = $this->General_model->get_user_data($uid);
@@ -294,6 +295,7 @@ class Front extends CI_Controller {
 					$this->email->send();
 					
 					redirect(base_url('front/good_review'));
+				//	redirect(base_url('front/review/' . $this->input->post('qpg_id') . '?good_review'));
 				}else{
 					
 					$emailContent = '';

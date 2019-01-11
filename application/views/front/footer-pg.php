@@ -1,5 +1,6 @@
 
         <footer class="footer bg-dark">
+			<hr class="divider-d">
           <div class="container">
             <div class="row">
               <div class="col-sm-6">
@@ -52,12 +53,13 @@
 			var totalRevItem = 0;
 			var revItem = 0;
 			var ratingPercentage = 0;
-			$('.rev_input').on('change', function(){
-			//	console.log( $(this).closest('form').serializeArray() );
-			//	/* 
+			
+			function each_rev_input_calc(){
+				
 				$( ".rev_input" ).each(function( index, e ) {
 				//	console.log( $( this ).attr('type') );
 				//  console.log( $(this).prop('checked') );
+				//	console.log( $( this ).val() );
 					if( $( this ).attr('type') == 'range' ){
 						
 						if( $( this ).val() > 0 ){
@@ -95,10 +97,17 @@
 				console.log('===');
 				rev = 0;
 				revItem = 0;
-			//	 */
+			}
+			$('.rateit.rateit-font .rateit-reset, .rateit.rateit-bg .rateit-reset').on('click', function(){
+				each_rev_input_calc();
+			});
+			$('.rev_input').on('change', function(){
+				each_rev_input_calc();
 			});
 			
+		//	alert($('body').height());
 		});
 	</script>
+    <script src="<?php echo base_url('assets/front/'); ?>assets/js/custom.js"></script>
   </body>
 </html>

@@ -120,7 +120,7 @@ class Page extends CI_Controller {
 				'alt_phone' => $this->input->post('alt_phone'),
 				'alt_email' => $this->input->post('alt_email'),
 				'tablet_needed' => $this->input->post('tablet_needed') ? $this->input->post('tablet_needed') : 0,
-				'tablet_so_how_many' => $this->input->post('tablet_so_how_many'),
+				'tablet_so_how_many' => $this->input->post('tablet_so_how_many') ? $this->input->post('tablet_so_how_many') : 0,
 				'service_location' => $this->input->post('service_location'),
 				'start_date_of_contract' => $this->input->post('start_date_of_contract'),
 				'pos_rdr_url_yelp' => $this->input->post('pos_rdr_url_yelp'),
@@ -159,9 +159,23 @@ class Page extends CI_Controller {
 	
 	public function dt_ajax_get_rev_list()
 	{
-		$this->db->select('reviews.*, q_pages.id pg_id, q_pages.pg_title pg_title, q_pages.userid userid ');
+		$this->db->select('
+			reviews.*, 
+			q_pages.id pg_id, 
+			q_pages.pg_title pg_title, 
+			q_pages.userid userid, 
+			users.username auth_username, 
+			users.email auth_email, 
+			users.subs_package_slug auth_subs_package, 
+			user_profile.fullname auth_fullname, 
+			users.service_category auth_service_category_id, 
+			service_categories.title auth_business_type 
+			');
 		$this->db->from('reviews');
 		$this->db->join('q_pages', 'reviews.for_pgid = q_pages.id', 'left');
+		$this->db->join('users', 'q_pages.userid = users.id', 'left');
+		$this->db->join('user_profile', 'users.id = user_profile.uid', 'left');
+		$this->db->join('service_categories', 'users.service_category = service_categories.id', 'left');
 		if($this->logedin_user->usertype == 'generaluser'){
 			$this->db->where('q_pages.userid',$this->logedin_user->id);
 		}
@@ -172,7 +186,7 @@ class Page extends CI_Controller {
 		$rv_data = [];
 		
 		foreach( $reviews->result_object() as $rv_k => $rv_v ){
-		//	pre($rv_v->id);
+		//	pre($rv_v);
 			$status = '';
 			$rating = '';
 			if( $rv_v->status == 1 ){
@@ -189,7 +203,18 @@ class Page extends CI_Controller {
 			$rv_data['sl'] = $rv_k *1 +1;
 			$rv_data['inserted_at'] = $rv_v->inserted_at;
 			$rv_data['email'] = $rv_v->email;
-			$rv_data['pg_title'] = '<a href="'. base_url('/dashboard/settings/question_pages/'. $rv_v->pg_id ) .'" >' . $rv_v->pg_title . ' <i>[' . $rv_v->pg_id . ']</i></a>';
+			$rv_data['pg_title'] = 'Username: <b>'. $rv_v->auth_username .'</b><br>
+			Email: <b>'. $rv_v->auth_email .'</b> <br>';
+			if( $rv_v->auth_fullname != '' ){
+				$rv_data['pg_title'] .= 'FullName: <b>'. $rv_v->auth_fullname .'</b>';
+			}
+			if( $rv_v->auth_subs_package == 'silver' ){
+				$rv_data['pg_title'] .= 'Subs:Package: <b class="badge badge-secondary">'. $rv_v->auth_subs_package .'</b>';
+			}elseif($rv_v->auth_subs_package == 'gold' ){
+				$rv_data['pg_title'] .= 'Subs:Package: <b class="badge badge-danger">'. $rv_v->auth_subs_package .'</b>';
+			}elseif($rv_v->auth_subs_package == 'bronze' ){
+				$rv_data['pg_title'] .= 'Subs:Package: <b class="badge badge-warning">'. $rv_v->auth_subs_package .'</b>';
+			}
 			$rv_data['average_rating'] = $rating;
 			$rv_data['action'] = '<a href="'. base_url('/dashboard/page/review/'. $rv_v->id ) .'" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" title="">
 						<i class="fa fa-fw fa-lg fa-eye"></i> / <i class="fa fa-fw fa-lg fa-edit"></i></a>';

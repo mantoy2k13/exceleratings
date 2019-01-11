@@ -28,20 +28,41 @@
 	<meta name="msapplication-TileImage" content="<?php echo base_url('/'); ?>assets/dashboard/images/favicons/ms-icon-144x144.png">
 	<meta name="theme-color" content="#ffffff">
 
-	<link rel="stylesheet" href="<?php echo base_url('/'); ?>assets/dashboard/assets/css/normalize.css">
-	<link rel="stylesheet" href="<?php echo base_url('/'); ?>assets/dashboard/assets/css/bootstrap.min.css">
-
-	<link rel="stylesheet" href="<?php echo base_url('/'); ?>assets/dashboard/assets/css/font-awesome.min.css">
-
-
-
-	<link rel="stylesheet" href="<?php echo base_url('/'); ?>assets/dashboard/assets/css/style.css">
-
-
-
-	<link rel="stylesheet" href="<?php echo base_url('/'); ?>assets/dashboard/assets/wow/animate.css">
-	<link rel="stylesheet" href="<?php echo base_url('/'); ?>--assets/dashboard/custom/style.css">
-	<link rel="stylesheet" href="<?php echo base_url('/'); ?>assets/dashboard/custom/style-2.css">
+	<link rel="stylesheet" href="<?=base_url('/')?>assets/dashboard/assets/css/normalize.css">
+	<link rel="stylesheet" href="<?=base_url('/')?>assets/dashboard/assets/css/bootstrap.min.css">
+                                  
+	<link rel="stylesheet" href="<?=base_url('/')?>assets/dashboard/assets/css/font-awesome.min.css">
+                                  
+	<link rel="stylesheet" href="<?=base_url('/')?>assets/dashboard/assets/css/style.css">
+                                 
+	<link rel="stylesheet" href="<?=base_url('/')?>assets/dashboard/assets/wow/animate.css">
+	<link rel="stylesheet" href="<?=base_url('/')?>--assets/dashboard/custom/style.css">
+	<link rel="stylesheet" href="<?=base_url('/')?>assets/dashboard/custom/style-2.css">
 
 </head>
 <body>
+
+  <div class="content pb-0">
+	  <!-- /.login-logo -->
+			  <!-- /.login-box-body -->
+				<center class="container-fluid wow flip"><a href="<?php echo base_url('/'); ?>"><img src="<?php echo base_url('/'); ?>assets/dashboard/images/logo.png" /></a></center>
+	  <div class="login-content">
+		  <div class="login-form">
+			  <div class="card wow flipInX">
+			 
+	<nav class="auth_navbar ">
+		 <ul class="border">
+			<li class="">
+			  <a class="nav-link" href="<?=base_url('/')?>">HOME</a>
+			</li>
+			<li class="">
+			  <a class="nav-link" href="<?=base_url('/')?>front/about">ABOUT US</a>
+			</li>
+			<li class="">
+			  <a class="nav-link" href="<?=base_url('/')?>front/pricing">PRICING</a>
+			</li>
+			<li class="">
+			  <a class="nav-link" href="<?=base_url('/')?>front/contact">CONTACT US</a>
+			</li>
+		 </ul>
+	</nav>

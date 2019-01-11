@@ -92,7 +92,9 @@
 							 <!-- /.box -->
 						<?php } ?>
 					<?php }elseif( $this->logedin_usertype == 'generaluser' ){ ?>
-						
+						<?php 
+						//	pre($profile);
+						?>
 							<div class="alert alert-warning alert-dismissible fade show" role="alert">
 							  <i><strong><?php echo $profile->spk_title; ?></strong> (Subscription)</i>
 							</div>

@@ -67,8 +67,9 @@ class Auth extends CI_Controller
 	//	prex($data['service_categories']);
 		if( $this->input->post('submitForm') == 'register' ){
 		//	prex($this->input->post());
+			$this->form_validation->set_message('is_unique', 'The %s is already taken');
 			$this->form_validation->set_rules('username','UserName','required|is_unique[users.username]');
-			$this->form_validation->set_rules('email','Email','required');
+			$this->form_validation->set_rules('email','Email','required|is_unique[users.email]');
 			$this->form_validation->set_rules('service_category','Service Type','required');
 			$this->form_validation->set_rules('password','Password','required|min_length[3]');
 			$this->form_validation->set_rules('conf_password','Confarm Password','required|min_length[3]|matches[password]');
@@ -87,6 +88,8 @@ class Auth extends CI_Controller
 				
 				$this->session->set_flashdata('success', 'Your account has been registered. You can login now.');
 				redirect('auth/login', 'refresh');
+			}else{
+				
 			}
 		}
 		if( isset($_SESSION['user_loged']) ){

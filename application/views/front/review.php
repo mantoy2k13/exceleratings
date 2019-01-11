@@ -56,10 +56,10 @@
 															<?php }elseif($q_v->answer_option == 'yes_no'){ ?>
 																<div class="btn-group">
 																	<label class="btn btn-primary btn-sm">
-																		<input type="radio" name="rev_ques[<?php echo $q_v->qid; ?>]" class="rev_input" value="<?=($q_v->yes_0_no_1 == 0) ? '10' : '0'?>" > Yes
+																		<input type="radio" name="rev_ques[<?php echo $q_v->qid; ?>]" class="rev_input" value="<?=($q_v->yes_0_no_1 == 0) ? '10' : '0.01'?>" > Yes
 																	</label>
 																	<label class="btn btn-primary btn-sm">
-																		<input type="radio" name="rev_ques[<?php echo $q_v->qid; ?>]" class="rev_input" value="<?=($q_v->yes_0_no_1 == 1) ? '10' : '0'?>"> No
+																		<input type="radio" name="rev_ques[<?php echo $q_v->qid; ?>]" class="rev_input" value="<?=($q_v->yes_0_no_1 == 1) ? '10' : '0.01'?>"> No
 																	</label>
 																</div>
 															<?php } ?>
@@ -101,5 +101,4 @@
 					</div>
 				</div>
         </section>
-        <hr class="divider-d">
 <?php $this->load->view('front/footer-pg');?>

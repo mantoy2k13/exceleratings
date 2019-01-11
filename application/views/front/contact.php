@@ -90,5 +90,4 @@
 		</div>
 	</div>		
 </section>
-        <hr class="divider-d">
 <?php $this->load->view('front/footer-pg');?>

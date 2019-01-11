@@ -8,6 +8,19 @@ body {
 	color: #F05223;
 }
 
+.col_1_center th:first-child,
+.col_1_center td:first-child,
+.col_1ast_center th:last-child,
+.col_1ast_center td:last-child,
+.col_3_center td:nth-child(3),
+.col_4_center th:nth-child(4),
+.col_4_center td:nth-child(4),
+.col_5_center th:nth-child(5),
+.col_5_center td:nth-child(5),
+.col_6_center th:nth-child(6),
+.col_6_center td:nth-child(6){
+	text-align: center;
+}
 .badge-info,
 .btn.btn-info,
 .btn_xlrting{
@@ -35,6 +48,9 @@ a.btn.btn-info:hover, a.btn.btn-info:focus{
     background-color: #e80000;
     border-color: #ED2424;
 	 color: #fff;
+}
+.login-content {
+    margin-top: 0;
 }
 .navbar .navbar-nav > .active > a, .navbar .navbar-nav > .active > a:focus, .navbar .navbar-nav > .active > a:hover,
 .navbar .navbar-nav li > a:hover, .navbar .navbar-nav li > a:hover .menu-icon,
@@ -154,7 +170,23 @@ body
 .table>thead>tr>td.active, .table>tbody>tr>td.active, .table>tfoot>tr>td.active, .table>thead>tr>th.active, .table>tbody>tr>th.active, .table>tfoot>tr>th.active, .table>thead>tr.active>td, .table>tbody>tr.active>td, .table>tfoot>tr.active>td, .table>thead>tr.active>th, .table>tbody>tr.active>th, .table>tfoot>tr.active>th {
     background-color: #f5f5f5;
 }
-
+.navbar.auth_navbar{
+	display: flex;
+}
+nav.auth_navbar ul{
+	text-align: center;
+	width: 100%;
+	display: block;
+    background: #eeeeee8f;
+}
+nav.auth_navbar ul li{
+    display: inline-block;
+    width: auto;
+    margin: 0px auto;
+}
+nav.auth_navbar ul li a{
+	text-decoration:none;
+}
 .panel {
     margin-bottom: 20px;
     background-color: #fff;

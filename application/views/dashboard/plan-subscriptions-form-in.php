@@ -56,22 +56,22 @@
 						?>
 						<form action="" id="enrollment_form" method="POST" >
 						  <div class="row wow bounceInRight">
-								<div class="btn" data-toggle="buttons">
+								<div class="btn" >
 									<div class="btn-group">
-										<label class="btn btn-info <?=$selected_plan == 'basic' ? 'active' : ''?>" title="Anser get by Yes/No options">
-											<input type="radio" value="free" name="subs_package_slug" id="subs_package_slug1" <?php if( $selected_plan == 'basic' ){ echo 'checked'; } ?>> 
-											Basic Plan
-										</label>
+										<a href="<?=base_url('dashboard/page/plan_subscription_form?plan=bronze')?>" class="btn btn-info <?=$selected_plan == 'bronze' ? 'active' : ''?>" title="bronze">
+											<input type="radio" value="bronze" name="subs_package_slug" id="subs_package_slug1" <?php if( $selected_plan == 'bronze' ){ echo 'checked'; } ?>> 
+											Bronze Plan
+										</a>
 									
-										<label class="btn btn-info <?=$selected_plan == 'silver' ? 'active' : ''?>" title="Answer get by 1 to 10 reviewing options">
+										<a href="<?=base_url('dashboard/page/plan_subscription_form?plan=silver')?>" class="btn btn-info <?=$selected_plan == 'silver' ? 'active' : ''?>" title="silver">
 											<input type="radio" value="silver" name="subs_package_slug" id="subs_package_slug2" <?php if( $selected_plan == 'silver' ){ echo 'checked'; } ?>>
-											Basic Plus Plan (Silver)
-										</label>
+											Silver Plan
+										</a>
 									
-										<label class="btn btn-info <?=$selected_plan == 'gold' ? 'active' : ''?>" title="Answer get by 1 to 10 reviewing options">
+										<a href="<?=base_url('dashboard/page/plan_subscription_form?plan=gold')?>" class="btn btn-info <?=$selected_plan == 'gold' ? 'active' : ''?>" title="gold">
 											<input type="radio" value="gold" name="subs_package_slug" id="subs_package_slug3" <?php if( $selected_plan == 'gold' ){ echo 'checked'; } ?>>
-											Premium Plan (Golden)
-										</label>
+											Golden Plan
+										</a>
 									</div>
 								</div>
 							</div>
@@ -110,6 +110,7 @@
 									<input type="email" class="form-control" id="alt_email" name="alt_email" value="<?php echo $profile->alt_email; ?>" placeholder="Email">
 								 </div>
 							</div>
+							<?php if( $selected_plan == 'silver' || $selected_plan == 'gold' ){ ?>
 							<div class="form-group wow bounceInLeft">
 								<label for="inputAddress">Tablet needed:</label>
 								<div class="row" >
@@ -137,8 +138,8 @@
 										</div>
 									 </div>
 								 </div>
-								
 							</div>
+							<?php } ?>
 							<div class="form-group wow bounceInRight">
 								 <label for="service_location">Number of service locations:</label>
 								 <input type="text" class="form-control" id="service_location" name="service_location" value="<?php echo $profile->service_location; ?>" placeholder="Number of service locations">
@@ -147,23 +148,28 @@
 								 <label for="start_date_of_contract">Start date of contract:</label>
 								 <input type="text" class="form-control" id="start_date_of_contract"name="start_date_of_contract" value="<?php echo $profile->start_date_of_contract; ?>" placeholder="Start date of contract">
 							</div>
+							<br>
 							<div class="container-fluid">
+								<div class="row">
+									<h4>Your social URL review links:</h4>
+								</div>
+								<br>
 								<div class="row">
 									<div class="col-sm-4">
 										<div class="row form-group">
-											<label for="pos_rdr_url_yelp">Yelp:</label>
+											<label for="pos_rdr_url_yelp">Yelp (URL):</label>
 											<input type="text" class="form-control form-control-sm" id="pos_rdr_url_yelp"name="pos_rdr_url_yelp" value="<?php echo $profile->pos_rdr_url_yelp; ?>" placeholder="">
 										</div>
 									</div>
 									<div class="col-sm-4">
 										<div class="row form-group">
-											<label for="pos_rdr_url_facebook">Facebook:</label>
+											<label for="pos_rdr_url_facebook">Facebook (URL):</label>
 											<input type="text" class="form-control form-control-sm" id="pos_rdr_url_facebook"name="pos_rdr_url_facebook" value="<?php echo $profile->pos_rdr_url_facebook; ?>" placeholder="">
 										</div>
 									</div>
 									<div class="col-sm-4">
 										<div class="row form-group">
-											<label for="pos_rdr_url_urban_spoon">Urban Spoon:</label>
+											<label for="pos_rdr_url_urban_spoon">Urban Spoon (URL):</label>
 											<input type="text" class="form-control form-control-sm" id="pos_rdr_url_urban_spoon"name="pos_rdr_url_urban_spoon" value="<?php echo $profile->pos_rdr_url_urban_spoon; ?>" placeholder="">
 										</div>
 									</div>
@@ -171,19 +177,19 @@
 								<div class="row">
 									<div class="col-sm-4">
 										<div class="row form-group">
-											<label for="pos_rdr_url_google">Google+:</label>
+											<label for="pos_rdr_url_google">Google+ (URL):</label>
 											<input type="text" class="form-control form-control-sm" id="pos_rdr_url_google"name="pos_rdr_url_google" value="<?php echo $profile->pos_rdr_url_google; ?>" placeholder="">
 										</div>
 									</div>
 									<div class="col-sm-4">
 										<div class="row form-group">
-											<label for="pos_rdr_url_trip_advisor">Trip Advisor:</label>
+											<label for="pos_rdr_url_trip_advisor">Trip Advisor (URL):</label>
 											<input type="text" class="form-control form-control-sm" id="pos_rdr_url_trip_advisor" name="pos_rdr_url_trip_advisor" value="<?php echo $profile->pos_rdr_url_trip_advisor; ?>" placeholder="">
 										</div>
 									</div>
 									<div class="col-sm-4">
 										<div class="row form-group">
-											<label for="pos_rdr_url_city_search">City Search:</label>
+											<label for="pos_rdr_url_city_search">City Search (URL):</label>
 											<input type="text" class="form-control form-control-sm" id="pos_rdr_url_city_search" name="pos_rdr_url_city_search" value="<?php echo $profile->pos_rdr_url_city_search; ?>" placeholder="">
 										</div>
 									</div>

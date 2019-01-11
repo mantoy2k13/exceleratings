@@ -1,28 +1,67 @@
-<?php $this->load->view('auth/header'); ?>
-				  <div class="card-body">
-					 <h4 class="login-box-msg"><strong>Sign In</strong> to start your session</h4>
-						<?php 
-							if( isset($_SESSION['success']) ){
-								echo '<div class="alert alert-success">' . $_SESSION['success'] . '</div>';
-							} 
-							if( isset($_SESSION['error']) ){
-								echo '<div class="alert alert-danger">' . $_SESSION['error'] . '</div>';
-							} 
-						?>
-						<?php echo validation_errors('<p class="text-danger"><b> !> ', '</b></p>'); ?>
-					 <form action="" method="post">
-						<div class="form-group has-feedback">
-						  <input type="text" name="username" class="form-control" placeholder="UserName">
-						  <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-						</div>
-						<div class="form-group has-feedback">
-						  <input type="password" name="password" class="form-control" placeholder="Password">
-						  <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-						</div>
-						<hr>
-						<button type="submit" name="login" class="btn btn-danger btn_xlrting btn-block btn-flat">Sign In / Login</button>
-					 </form>
-						<hr>
-					 <h4 class="text-left"><a href="<?php echo base_url('auth/registration'); ?>"><b>To Registration</b></a></h4>
-				  </div>
-<?php $this->load->view('auth/footer'); ?>
+<?php $this->load->view('front/header-pg');?>
+	  <section class="module" style="padding-top:35px;">
+		 <div class="container">
+			<div class="row multi-columns-row form-custom">
+                <div class="col-md-12">
+                    
+                <div class="col-sm-6 col-sm-offset-3 align-center">
+                <div class="container-fluid wow flip">
+                    <a href="<?php echo base_url('/'); ?>">
+                        <img class="img-custom" src="<?php echo base_url('/'); ?>assets/dashboard/images/logo.png" />
+                    </a>
+                </div>
+                </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="price-table font-alt">
+                        <h4>Sign In</h4>
+                        <div class="borderline"></div>
+                            Sign In to start your session
+                        <hr>
+                        <ul class="price-details text-left" >
+                            <li>
+                                <form role="form" method="post" action="">
+                                    <?php if( isset($_SESSION['success']) ){ ?>
+                                        <div class="alert-custom alert-success">
+                                            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                                            <strong>Success!</strong> <?php echo $_SESSION['success']; ?>
+                                        </div>
+                                    <?php } ?>
+
+                                    <?php if( isset($_SESSION['error']) ){ ?>
+                                        <div class="alert-custom alert-custom-danger">
+                                            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                                            <strong>Oops!</strong> <?php echo $_SESSION['error']; ?>
+                                        </div>
+                                    <?php } ?>
+
+                                    <div class="form-group">
+                                        <label for="username">Username</label>
+                                        <input class="form-control" type="text" id="username" name="username" placeholder="Your Name*" required="required">
+                                    </div>
+                                
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input class="form-control" type="password" id="password" name="password" placeholder="Password*" required="required">
+                                    </div>
+                                    <div class="text-center">
+                                        <button class="btn btn-block btn-round btn-d" name="login" type="submit">Sign In</button>
+                                        
+                                    </div>
+                                    <div class="text-center link-custom">
+                                        <a href="<?php echo base_url('auth/registration'); ?>">Click here to regiter</a>
+                                    </div>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+			</div>
+			<div class="row mt-40">
+                <div class="col-sm-6 col-sm-offset-3 align-center">
+                    <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
+                </div>
+			</div>
+		 </div>
+	  </section>
+<?php $this->load->view('front/footer-pg');?>

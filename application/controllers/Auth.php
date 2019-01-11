@@ -72,7 +72,7 @@ class Auth extends CI_Controller
 			$this->form_validation->set_rules('email','Email','required|is_unique[users.email]');
 			$this->form_validation->set_rules('service_category','Service Type','required');
 			$this->form_validation->set_rules('password','Password','required|min_length[3]');
-			$this->form_validation->set_rules('conf_password','Confarm Password','required|min_length[3]|matches[password]');
+			$this->form_validation->set_rules('conf_password','Confirm Password','required|min_length[3]|matches[password]');
 			
 			if( $this->form_validation->run() == TRUE ){
 				
@@ -102,6 +102,7 @@ class Auth extends CI_Controller
 	{
 		unset($_SESSION);
 		session_destroy();
-		redirect(base_url('dashboard'), 'refresh');
+		$this->session->set_flashdata('success', 'Thank you. You are logged out.');
+		redirect('auth/login');
 	}
 }

@@ -19,3 +19,47 @@
 	left: 0;
 	width: 100%;
 }
+
+.form-custom {
+    width: 650px;
+    margin: 0 auto;
+}
+
+img.img-custom {
+    width: 216px;
+}
+
+.text-center.link-custom {
+    margin-top: 20px;
+}
+
+.alert-custom {
+    padding: 10px 15px;
+    margin-bottom: 20px;
+}
+
+.alert-custom-danger {
+	background-color: #da574e;
+    color: white;
+}
+  
+.closebtn {
+	margin-left: 15px;
+	color: #ca9d9d;
+	font-weight: bold;
+	float: right;
+	font-size: 22px;
+	line-height: 20px;
+	cursor: pointer;
+	transition: 0.3s;
+}
+  
+.closebtn:hover {
+	color: black;
+}
+
+@media only screen and (max-width:690px){
+	.form-custom {
+		width: 100%;
+	}
+}

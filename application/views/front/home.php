@@ -5,6 +5,12 @@
             <div class="container">
               <div class="font-alt mb-30 titan-title-size-4">Exceleratings</div>
               <div class="font-alt"><h3 style="background: #00000057;display: initial;padding: 0 20px;">The only platform that gives you real time reviews and negates bad news!</h3></div>
+				  <hr>
+					<h4  style="background: #00000057;border: 1px solid #fff;display: inline-flex;">
+						<a class="font-alt" href="<?=base_url('uploads/ExceleRatings Product One-Sheet-3.pdf')?>" style="padding: 5px 20px;color: #fff">
+							The only platform that gives you real time reviews and negates bad news!<br><small style="color: #fff">(Download .PDF file)</small>
+						</a>
+					</h4>
             </div>
           </div>
         </div>

@@ -123,12 +123,12 @@ class Page extends CI_Controller {
 				'tablet_so_how_many' => $this->input->post('tablet_so_how_many') ? $this->input->post('tablet_so_how_many') : 0,
 				'service_location' => $this->input->post('service_location'),
 				'start_date_of_contract' => $this->input->post('start_date_of_contract'),
-				'pos_rdr_url_yelp' => $this->input->post('pos_rdr_url_yelp'),
-				'pos_rdr_url_google' => $this->input->post('pos_rdr_url_google'),
-				'pos_rdr_url_facebook' => $this->input->post('pos_rdr_url_facebook'),
-				'pos_rdr_url_trip_advisor' => $this->input->post('pos_rdr_url_trip_advisor'),
-				'pos_rdr_url_urban_spoon' => $this->input->post('pos_rdr_url_urban_spoon'),
-				'pos_rdr_url_city_search' => $this->input->post('pos_rdr_url_city_search')
+				'pos_rdr_url_yelp' => $this->input->post('pos_rdr_url_yelp') ? addhttp($this->input->post('pos_rdr_url_yelp')) : '',
+				'pos_rdr_url_google' => $this->input->post('pos_rdr_url_google') ? addhttp($this->input->post('pos_rdr_url_google')) : '',
+				'pos_rdr_url_facebook' => $this->input->post('pos_rdr_url_facebook') ? addhttp($this->input->post('pos_rdr_url_facebook')) : '',
+				'pos_rdr_url_trip_advisor' => $this->input->post('pos_rdr_url_trip_advisor') ? addhttp($this->input->post('pos_rdr_url_trip_advisor')) : '',
+				'pos_rdr_url_urban_spoon' => $this->input->post('pos_rdr_url_urban_spoon') ? addhttp($this->input->post('pos_rdr_url_urban_spoon')) : '',
+				'pos_rdr_url_city_search' => $this->input->post('pos_rdr_url_city_search') ? addhttp($this->input->post('pos_rdr_url_city_search')) : ''
 			];
 			
 			$this->db->select('*');

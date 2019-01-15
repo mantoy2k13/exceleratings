@@ -76,9 +76,9 @@ $query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
-	'username' => 'root',
+	'username' => '',
 	'password' => '',
-	'database' => 'exceleratings',
+	'database' => '',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
@@ -94,3 +94,15 @@ $db['default'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
+
+$whitelist = array('127.0.0.1','::1');
+if(!in_array($_SERVER['REMOTE_ADDR'], $whitelist)){
+	$db['default']['database'] = 'technool_exceleratings';
+	$db['default']['username'] = 'technool_exceler';
+	$db['default']['password'] = 'YoT5.VXOu9FR';
+}else{
+	$db['default']['database'] = 'exceleratings';
+	$db['default']['username'] = 'root';
+	$db['default']['password'] = '';
+}
+

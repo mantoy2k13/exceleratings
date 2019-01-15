@@ -93,6 +93,9 @@ class Page extends CI_Controller {
 	public function plan_subscription(){
 		
 		$data['menuitem4'] = 'plan_subscription';
+		if( $this->logedin_user->usertype == 'superadmin' ){
+			redirect('dashboard');
+		}
 		/* 
 		$uid = $this->session->userdata('logedin_user')->id;
 		$data['profile'] = $this->General_model->get_user_data($uid);

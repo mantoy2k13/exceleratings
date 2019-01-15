@@ -603,13 +603,12 @@ class Settings extends CI_Controller {
 						'fullname' => $this->input->post('fullname'),
 						'about' => $this->input->post('about'),
 						'profilpic' => $profilePicName,
-						'pos_rdr_url_yelp' => $this->input->post('pos_rdr_url_yelp'),
-						'pos_rdr_url_google' => $this->input->post('pos_rdr_url_google'),
-						'pos_rdr_url_facebook' => $this->input->post('pos_rdr_url_facebook'),
-						'pos_rdr_url_trip_advisor' => $this->input->post('pos_rdr_url_trip_advisor'),
-						'pos_rdr_url_urban_spoon' => $this->input->post('pos_rdr_url_urban_spoon'),
-						'pos_rdr_url_urban_spoon' => $this->input->post('pos_rdr_url_urban_spoon'),
-						'pos_rdr_url_city_search' => $this->input->post('pos_rdr_url_city_search')
+						'pos_rdr_url_yelp' => $this->input->post('pos_rdr_url_yelp') ? addhttp($this->input->post('pos_rdr_url_yelp')) : '',
+						'pos_rdr_url_google' => $this->input->post('pos_rdr_url_google') ? addhttp($this->input->post('pos_rdr_url_google')) : '',
+						'pos_rdr_url_facebook' => $this->input->post('pos_rdr_url_facebook') ? addhttp($this->input->post('pos_rdr_url_facebook')) : '',
+						'pos_rdr_url_trip_advisor' => $this->input->post('pos_rdr_url_trip_advisor') ? addhttp($this->input->post('pos_rdr_url_trip_advisor')) : '',
+						'pos_rdr_url_urban_spoon' => $this->input->post('pos_rdr_url_urban_spoon') ? addhttp($this->input->post('pos_rdr_url_urban_spoon')) : '',
+						'pos_rdr_url_city_search' => $this->input->post('pos_rdr_url_city_search') ? addhttp($this->input->post('pos_rdr_url_city_search')) : ''
 					];
 					
 				//	prex($toSave2);

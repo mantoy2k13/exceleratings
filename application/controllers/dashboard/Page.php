@@ -56,7 +56,36 @@ class Page extends CI_Controller {
 			$this->load->view('dashboard/home-superadmin', $data);
 		}
 	}
-	
+ /* 
+	public function subscription_features($rid){
+		
+		$data['menuitem4'] = 'subscription_features';
+		
+		$this->db->select('*');
+		$this->db->from('service_categories');
+		$this->db->order_by('id', 'DESC');
+		$data['service_categories'] = $this->db->get()->result_object();
+	//	pre($data['service_categories']);
+		foreach( $data['service_categories'] as $sc_k => $sc_v ){
+			$this->db->select('*');
+			$this->db->from('rev_questions');
+			$this->db->order_by('shorting', 'ASC');
+			$data['service_categories'][$sc_k]->questions = $this->db->get()->result_object();
+		}
+		
+		$this->db->select('*');
+		$this->db->from('rev_questions');
+		if( $this->logedin_user->usertype == 'generaluser' ){
+			$this->db->where('userid', $this->logedin_user->id);
+		}
+		$this->db->order_by('shorting', 'ASC');
+		$this->db->order_by('qid', 'DESC');
+		$data['ques'] = $this->db->get()->result_object();
+		
+	//	prex($this->General_model->get_queations_ratings(5));
+		$this->load->view('dashboard/subscription-features', $data);
+	}
+	 */
 	public function review($rid){
 		
 		$data['menuitem4'] = '';

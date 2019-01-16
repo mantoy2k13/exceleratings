@@ -228,7 +228,7 @@ class Front extends CI_Controller {
 			// load email library
 			$this->load->library('email');
 
-			$rev_ques = $this->input->post()['rev_ques'];
+			$rev_ques = $this->input->post('rev_ques');
 		//	prex($rev_ques);
 			$cur_datetime = date("Y-m-d H:i:s");
 		//	prex($this->input->post());
@@ -254,22 +254,24 @@ class Front extends CI_Controller {
 				$inserted_rid = $this->db->insert_id();
 				
 				$q_detail = [];
-				foreach( $rev_ques as $rvq_k => $rvq_v ){
+				if( $rev_ques ){
+					foreach( $rev_ques as $rvq_k => $rvq_v ){
+							
+						$this->db->select('*')
+									->from('rev_questions')
+									->where('qid', $rvq_k);
+						$q_detail[$rvq_k] = $this->db->get()->row();
+						$q_detail[$rvq_k]->rating_from_client = $rvq_v;
+					//	pre($rvq_v);
 						
-					$this->db->select('*')
-								->from('rev_questions')
-								->where('qid', $rvq_k);
-					$q_detail[$rvq_k] = $this->db->get()->row();
-					$q_detail[$rvq_k]->rating_from_client = $rvq_v;
-				//	pre($rvq_v);
-					
-					if( $rvq_v > 0 ){
-						
-						$this->db->insert('question_ratings', [
-							'rid' => $inserted_rid,
-							'qid' => $rvq_k,
-							'review' => $rvq_v < 1 ? 0 : $rvq_v
-						]);
+						if( $rvq_v > 0 ){
+							
+							$this->db->insert('question_ratings', [
+								'rid' => $inserted_rid,
+								'qid' => $rvq_k,
+								'review' => $rvq_v < 1 ? 0 : $rvq_v
+							]);
+						}
 					}
 				}
 			//	prex($q_detail);

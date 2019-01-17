@@ -56,36 +56,84 @@ class Page extends CI_Controller {
 			$this->load->view('dashboard/home-superadmin', $data);
 		}
 	}
- /* 
-	public function subscription_features($rid){
+	
+	
+	public function subscription_features($fid = null){
 		
 		$data['menuitem4'] = 'subscription_features';
 		
 		$this->db->select('*');
-		$this->db->from('service_categories');
-		$this->db->order_by('id', 'DESC');
-		$data['service_categories'] = $this->db->get()->result_object();
-	//	pre($data['service_categories']);
-		foreach( $data['service_categories'] as $sc_k => $sc_v ){
-			$this->db->select('*');
-			$this->db->from('rev_questions');
-			$this->db->order_by('shorting', 'ASC');
-			$data['service_categories'][$sc_k]->questions = $this->db->get()->result_object();
-		}
+		$this->db->from('subs_packages');
+		$this->db->order_by('order_by', 'ASC');
+		$data['subs_packages'] = $this->db->get()->result_object();
 		
 		$this->db->select('*');
-		$this->db->from('rev_questions');
-		if( $this->logedin_user->usertype == 'generaluser' ){
-			$this->db->where('userid', $this->logedin_user->id);
-		}
-		$this->db->order_by('shorting', 'ASC');
-		$this->db->order_by('qid', 'DESC');
-		$data['ques'] = $this->db->get()->result_object();
+		$this->db->from('subs_features');
+		$this->db->order_by('order_by', 'ASC');
+		$data['subs_features'] = $this->db->get()->result_object();
 		
-	//	prex($this->General_model->get_queations_ratings(5));
+		if( $fid != null ){
+				
+			$this->db->select('*');
+			$this->db->from('subs_features');
+			$this->db->where('id', $fid);
+			$data['subs_feature'] = $this->db->get()->row();
+		//	prex($data['subs_feature']);
+		
+			if($this->input->post()){
+					
+				$subs_feature = array(
+					'sf_title' => $this->input->post('sf_title'),
+					'pac_slug' => $this->input->post('pac_slug')
+				);
+				$this->db->where('id', $fid);
+				if( $this->db->update('subs_features', $subs_feature) ){
+					
+					$this->session->set_flashdata('success', 'Feature item  edited <b>"'. $this->input->post('sf_title') .'"</b> for <b>'.$this->input->post('pac_slug').'</b>');
+					redirect('dashboard/page/subscription_features');
+				}
+			}
+		}
+		
+		if($this->input->post()){
+			$this->form_validation->set_rules('sf_title','"Feature item"','required');
+			$this->form_validation->set_rules('pac_slug','"Package"','required');
+			if( $this->form_validation->run() == TRUE ){
+				
+			//	prex($this->input->post());
+				$subs_feature = array(
+					'sf_title' => $this->input->post('sf_title'),
+					'pac_slug' => $this->input->post('pac_slug'),
+					'order_by' => 0
+				);
+				if( $this->db->insert('subs_features', $subs_feature) ){
+					
+					$this->session->set_flashdata('success', 'New feature item added for <b>'. $this->input->post('pac_slug') .'</b>');
+					redirect('dashboard/page/subscription_features');
+				}
+			}
+		}
+		
 		$this->load->view('dashboard/subscription-features', $data);
 	}
-	 */
+
+	public function remove_feature_item(){
+		
+		if( $_POST ){			
+
+			if ( $this->db->delete('subs_features', array('id' => $this->input->post('id'))) ) {
+				 $result = 'success';
+			} else {
+				 $result = 'Error!';
+			}
+			
+			echo json_encode($result);
+		}else{
+			echo 'Not posted !';
+		}
+	}
+	
+	
 	public function review($rid){
 		
 		$data['menuitem4'] = '';
@@ -129,6 +177,11 @@ class Page extends CI_Controller {
 		$uid = $this->session->userdata('logedin_user')->id;
 		$data['profile'] = $this->General_model->get_user_data($uid);
 		 */
+		$this->db->select('*');
+		$this->db->from('subs_features');
+		$this->db->order_by('order_by', 'ASC');
+		$data['subs_features'] = $this->db->get()->result_object();
+		
 		$this->load->view('dashboard/plan-subscriptions', $data);
 	}
 	public function plan_subscription_form(){

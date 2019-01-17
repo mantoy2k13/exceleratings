@@ -185,7 +185,10 @@
 					<?php } ?>
 					<li class="menu-title"> --- </li><!-- /.menu-title -->
 					<li class="<?=$menuitem4 == 'profile' ? 'active':''?>"><a href="<?php echo base_url('dashboard/settings/profile'); ?>"><i class="menu-icon fa fa-user"></i> <span>Profile</span></a></li>
+					<?php if( $this->logedin_user->usertype == 'superadmin' ){ ?>
+					<li class="<?=$menuitem4 == 'subscription_features' ? 'active':''?>"><a href="<?php echo base_url('dashboard/page/subscription_features'); ?>"><i class="menu-icon fa fa-bookmark"></i> <span>Subscription features</span></a></li>
 					<li class="<?=$menuitem4 == 'settings' ? 'active':''?>"><a href="<?php echo base_url('dashboard/settings'); ?>"><i class="menu-icon fa fa-wrench"></i> <span>General Settings</span></a></li>
+					<?php } ?>
 					<li><a href="<?php echo base_url('auth/logout'); ?>"><i class="menu-icon fa fa-sign-out"></i> <span>LogOut</span></a></li>
 				 </ul>
 			</div><!-- /.navbar-collapse -->

@@ -12,6 +12,7 @@
                 </div>
                 </div>
                 </div>
+					<?php echo validation_errors('<p class="text-red"><b>', '</b></p>'); ?>
                 <div class="col-sm-12">
                     <div class="price-table font-alt">
                         <h4>Sign Up</h4>

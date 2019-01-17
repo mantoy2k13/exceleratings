@@ -11,7 +11,7 @@
 				<div class="card">
 
 				  <div class="card-body">
-					 <h3 class="card-title box-title">Service Categories <a href="<?=base_url('dashboard/superadmin/service_categories')?>" class="btn btn-info float-right btn-sm" data-toggle="tooltip" title="">
+					 <h3 class="card-title box-title">Service Categories (Business type) <a href="<?=base_url('dashboard/superadmin/service_categories')?>" class="btn btn-info float-right btn-sm" data-toggle="tooltip" title="">
 										+ Add New
 									</a></h3>
 					<?php if( $this->session->flashdata('remove_success') ){ ?>

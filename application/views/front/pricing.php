@@ -19,10 +19,17 @@
                         <small>*with 1 year contract</small>
                         <p class="price"><span>$</span>250<span>.00</span></p>
                         <ul class="price-details">
-                        <li>√ Attach to Invoice (Contractors)  or Check (restaurants) or Check Out at Dr’’s  Office Or Hotels</li>
-                        <li>√ Text goes out immediately to their phone</li>
-                        <li>√ Option to Leave Review on Google or FB  only (Podium Model as Reference)</li>
-                        <li>√ Price : $250 Set Up fee  $150/Month per location</li>
+									<?php
+										if( $subs_features ){
+											foreach( $subs_features as $sf ){ 
+												if( $sf->pac_slug == 'bronze' ){ ?>
+												<li>
+														√ <?=$sf->sf_title?>
+												</li>
+									<?php		}
+											}
+										}
+									?>
                         </ul>
                         <?php 
                             if( $this->session->userdata('logedin_user') ){ ?>
@@ -42,13 +49,17 @@
                         <small>*with 1 year contract</small>
                         <p class="price"><span>$</span>350<span>.00</span></p>
                         <ul class="price-details">
-                        <li>√ Tablet with 5 Basic Question –Questionnaire on it presented in Office or Business or  Home</li>
-                        <li>√ Positive Review opens link to leave review</li>
-                        <li>√ Negative Review pings Manager</li>
-                        <li>√ Text Reminder with Positive</li>
-                        <li>√ Email Reminder with Positive</li>
-                        <li>√ Incentive Gift Cards</li>
-                        <li>√ Price $350 Set Up (incudes Tablet) $250.00/month per Location</li>
+									<?php
+										if( $subs_features ){
+											foreach( $subs_features as $sf ){ 
+												if( $sf->pac_slug == 'silver' ){ ?>
+												<li>
+														√ <?=$sf->sf_title?>
+												</li>
+									<?php		}
+											}
+										}
+									?>
                         </ul>
                         <?php 
                             if( $this->session->userdata('logedin_user') ){ ?>
@@ -69,15 +80,17 @@
                         <small>*with 1 year contract</small>
                         <p class="price"><span>$</span>550<span>.00</span></p>
                         <ul class="price-details">
-                            <li>√ Tablet with 10 Custom Questions Question –Questionnaire on it presented in Office or Business or  Home</li>
-                            <li>√ Positive Review opens link to leave review</li>
-                            <li>√ Negative Review pings Manager</li>
-                            <li>√ Text Reminder with Positive</li>
-                            <li>√ Email Reminder with Positive</li>
-                            <li>√ Survey Metrics for inner office management</li>
-                            <li>√ Social Media/Review sites Automated Updates</li>
-                            <li>√ Incentive Gift Cards</li>
-                            <li>√ Price $550 Set Up (incudes Tablet) $250.00/month per Location</li>
+									<?php
+										if( $subs_features ){
+											foreach( $subs_features as $sf ){ 
+												if( $sf->pac_slug == 'gold' ){ ?>
+												<li>
+														√ <?=$sf->sf_title?>
+												</li>
+									<?php		}
+											}
+										}
+									?>
                         </ul>
                         <?php 
                             if( $this->session->userdata('logedin_user') ){ ?>

@@ -50,7 +50,43 @@ jQuery(function ($) {
 			
 		});
 	}
-	toAjaxRemove(base_url + "dashboard/settings/remove_qs_item");
+	toAjaxRemove(base_url + "dashboard/settings/remove_qs_item");	
+	
+	function toAjaxRemoveFeature(ajaxUrl){
+		
+		$('.toremove_feature').on('click',function(event){
+			
+			event.preventDefault();
+			var thisAct = $(this);
+			var id = thisAct.data('id');
+
+			swal({
+				title: "Are you sure?",
+				text: "Your will not be able to recover this review questions!",
+				type: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#DD6B55",
+				confirmButtonText: "Yes, delete it!",
+				showLoaderOnConfirm: true
+			},
+			function(){
+				$.ajax({
+					type: "POST",
+					url: ajaxUrl,
+					data: {'id': id},
+					success: function(response){
+						   
+						if( JSON.parse(response) == "success" ){
+							thisAct.closest('li').css('background','red').hide('slow');
+						}
+					//	console.log(JSON.parse(response));
+					}
+			   });
+			});
+			
+		});
+	}
+	toAjaxRemoveFeature(base_url + "dashboard/page/remove_feature_item");	
 	
 
 	function readURL(input) {

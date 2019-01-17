@@ -44,6 +44,9 @@ a.btn,
 a.btn.btn-info:hover, a.btn.btn-info:focus{
 	color: #fff;
 }
+.btn {
+    padding: .250rem .75rem;
+}
 .btn-info:not(:disabled):not(.disabled).active, .btn-info:not(:disabled):not(.disabled):active, .show>.btn-info.dropdown-toggle{
     background-color: #e80000;
     border-color: #ED2424;

@@ -38,6 +38,9 @@ class Settings extends CI_Controller {
 	{	
 		$data['menuitem4'] = 'settings';
 		
+		if( $this->logedin_user->usertype != 'superadmin' ){
+			redirect('dashboard');
+		}
 		if( isset($_POST['save_setting_options']) ){
 			foreach( $this->input->post('setting_options') as $op_p_k => $op_p_v ){
 				

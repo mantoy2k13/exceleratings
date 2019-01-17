@@ -15,26 +15,19 @@
 							<div class="text-center">Service Fee: <b>$150.00 <small>/ month</small> </b></div>  
 						</div>
 						<table class="table">
-							<tr>
-								<td>
-									√ Attach to Invoice (Contractors)  or Check (restaurants) or Check Out at Dr’s  Office Or Hotels
-								</td>
-							</tr>
-							<tr class="active">
-								<td>
-									√ Text goes out immediately to their phone
-								</td>
-							</tr>
-							<tr>
-								<td>
-									√ Option to Leave Review on Google or FB  only (Podium Model as Reference)
-								</td>
-							</tr>
-							<tr class="active">
-								<td>
-									√ Price : $250 Set Up fee  $150/Month per location
-								</td>
-							</tr>
+							<?php
+								if( $subs_features ){
+									foreach( $subs_features as $sf ){ 
+										if( $sf->pac_slug == 'bronze' ){ ?>
+										<tr>
+											<td>
+												√ <?=$sf->sf_title?>
+											</td>
+										</tr>
+							<?php		}
+									}
+								}
+							?>
 						</table>
 					</div>
 					<div class="panel-footer">
@@ -57,41 +50,19 @@
 							<div class="text-center">Service Fee: <b>$250.00 <small>/ month</small> </b></div>  
 						</div>
 						<table class="table">
-							<tr>
-								<td>
-									√ Tablet with 5 Basic Question –Questionnaire on it presented in Office or Business or Home
-								</td>
-							</tr>
-							<tr class="active">
-								<td>
-									√ Positive Review opens link to leave review
-								</td>
-							</tr>
-							<tr>
-								<td>
-									√ Negative Review pings Manager
-								</td>
-							</tr>
-							<tr class="active">
-								<td>
-									√ Text Reminder with Positive
-								</td>
-							</tr>
-							<tr>
-								<td>
-									√ Email Reminder with Positive
-								</td>
-							</tr>
-							<tr class="active">
-								<td>
-									√ Incentive Gift Cards
-								</td>
-							</tr>
-							<tr>
-								<td>
-									√ Price $350 Set Up (incudes Tablet) $250.00/month per Location 
-								</td>
-							</tr>
+							<?php
+								if( $subs_features ){
+									foreach( $subs_features as $sf ){ 
+										if( $sf->pac_slug == 'silver' ){ ?>
+										<tr>
+											<td>
+												√ <?=$sf->sf_title?>
+											</td>
+										</tr>
+							<?php		}
+									}
+								}
+							?>
 						</table>
 					</div>
 					<div class="panel-footer">
@@ -114,51 +85,20 @@
 							<div class="text-center">Service Fee: <b>$250.00 <small>/ month</small> </b></div>  
 						</div>
 						<table class="table">
-							<tr>
-								<td>
-									√ Tablet with 10 Custom Questions Question –Questionnaire on it presented in Office or Business or Home
-								</td>
-							</tr>
-							<tr class="active">
-								<td>
-									√ Positive Review opens link to leave review
-								</td>
-							</tr>
-							<tr>
-								<td>
-									√ Negative Review pings Manager
-								</td>
-							</tr>
-							<tr class="active">
-								<td>
-									√ Text Reminder with Positive
-								</td>
-							</tr>
-							<tr>
-								<td>
-									√ Email Reminder with Positive
-								</td>
-							</tr>
-							<tr class="active">
-								<td>
-									√ Survey Metrics for inner office management
-								</td>
-							</tr>
-							<tr>
-								<td>
-									√ Social Media/Review sites Automated Updates
-								</td>
-							</tr>
-							<tr class="active">
-								<td>
-									√ Incentive Gift Cards
-								</td>
-							</tr>
-							<tr>
-								<td>
-									√ Price $550 Set Up (incudes Tablet) $250.00/month per Location
-								</td>
-							</tr>
+							<?php
+								if( $subs_features ){
+									foreach( $subs_features as $sf ){ 
+										if( $sf->pac_slug == 'gold' ){ ?>
+										<tr>
+											<td>
+												√ <?=$sf->sf_title?>
+											</td>
+										</tr>
+							<?php		}
+									}
+								}
+							?>
+
 						</table>
 					</div>
 					<div class="panel-footer">

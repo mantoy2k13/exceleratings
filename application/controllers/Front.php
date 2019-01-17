@@ -376,8 +376,12 @@ class Front extends CI_Controller {
 							
 				//	prex($note_contact_phons);
 							foreach( $note_contact_phons as $c_phone ){
-								sms_send( $c_phone, $sms_msg );
+							//	pre(preg_replace("/[^0-9]/", "", $c_phone));
+							//	sms_send( $c_phone, $sms_msg );
+								sms_send( preg_replace("/[^0-9]/", "", $c_phone), $sms_msg );
+								$c_phone = '';
 							}
+							
 							//	print $content;
 						}
 					}
@@ -417,7 +421,13 @@ class Front extends CI_Controller {
 		$this->load->view('front/about');
 	}
 	public function pricing(){
-		$this->load->view('front/pricing');
+
+		$this->db->select('*');
+		$this->db->from('subs_features');
+		$this->db->order_by('order_by', 'ASC');
+		$data['subs_features'] = $this->db->get()->result_object();
+		
+		$this->load->view('front/pricing', $data);
 	}
 	public function team(){
 		$this->load->view('front/team');

@@ -3026,3 +3026,17 @@ Google map
     width: 100%;
   }
 }
+
+
+
+@media only screen and (max-width: 1199px) {
+    .banner-img {
+      margin-top: -115px;
+    }
+}
+
+@media only screen and (max-width: 468px) {
+    .banner-img {
+      margin-top: -60px;
+    }
+}

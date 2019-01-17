@@ -1,6 +1,5 @@
 <?php $this->load->view('front/header-pg');?>
 
-
 <section class="module bg-dark-60 contact-page-header bg-dark" data-background="<?php echo base_url('assets/front/'); ?>assets/img/contact.jpg">
 	<div class="container">
 		<div class="row">

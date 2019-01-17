@@ -614,7 +614,7 @@ class Settings extends CI_Controller {
 				//	prex($toSave2);
 					$this->db->where('uid', $uid);
 					if($this->db->update('user_profile', $toSave2)){
-						
+						$this->session->userdata('logedin_user')->profilpic = $profilePicName;
 						$this->session->set_flashdata('success', 'Updated done.');
 						redirect('dashboard/settings/profile/'. $uid);
 					}
@@ -627,6 +627,7 @@ class Settings extends CI_Controller {
 						'profilpic' => $profilePicName
 					];
 				  if($this->db->insert('user_profile', $toSave2)){
+						$this->session->userdata('logedin_user')->profilpic = $profilePicName;
 						$this->session->set_flashdata('success', 'Updated done.');
 						redirect('dashboard/profile/'. $uid);
 				  }

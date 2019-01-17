@@ -244,16 +244,23 @@
 
                     </div>
                     <div class="user-area dropdown float-right">
-                        <a href="<?php echo base_url('/'); ?>assets/dashboard/#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="user-avatar rounded-circle" src="<?php echo base_url('/'); ?>assets/dashboard/images/admin.jpg" alt="User Avatar">
+						<a href="<?php echo base_url('/'); ?>assets/dashboard/#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<?php if(!$this->session->userdata('logedin_user')->profilpic){ ?>
+								<div class="thumbnail-profile">
+									<img class="user-avatar rounded-circle" src="<?php echo base_url('/'); ?>assets/dashboard/images/admin.jpg" alt="Profile Picture">
+								</div>
+							<?php } else { ?>
+								<div class="thumbnail-profile">
+									<img class="user-avatar rounded-circle" src="<?php echo base_url('/'); ?>uploads/profile-pic/<?=$this->session->userdata('logedin_user')->profilpic; ?>" alt="Profile Picture">
+								</div>
+							<?php } ?>
                         </a>
 
                         <div class="user-menu dropdown-menu">
-                            <a class="nav-link" href="<?php echo base_url('/')?>auth/logout"><i class="fa fa-power-off"></i>Logout</a>
+                            <a class="nav-link" href="<?php echo base_url('/')?>auth/logout"><i class="fa fa-power-off"></i>Logout </a>
                         </div>
                     </div> 
                 </div>  
             </div>
       
 		 </header><!-- /header -->
-        <!-- Header-->

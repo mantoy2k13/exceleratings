@@ -30,31 +30,30 @@
 			<div class="row">
 			  <div class="col-md-3">
 
+				<?php if( $this->session->userdata('logedin_user')->usertype == 'superadmin'  ){ ?>
+					<?php if( $profile->usertype == 'superadmin'  ){ ?>
+						<div class="alert alert-info alert-dismissible fade show" role="alert">
+						  <i><strong>SuperAdmin</strong></i>
+						</div>
+					<?php } else{ ?>
+						
+						<div class="custom-control custom-radio">
+						  <input type="radio" id="usertype_gadmin" name="usertype" class="custom-control-input" value="generaladmin" <?php if( $profile->usertype == 'generaladmin' ){ echo 'checked'; }?>>
+						  <label class="custom-control-label" for="usertype_gadmin">General Admin</label>
+						</div>
+						<div class="custom-control custom-radio">
+						  <input type="radio" id="usertype_guser" name="usertype" class="custom-control-input" value="generaluser" <?php if( $profile->usertype == 'generaluser' ){ echo 'checked'; }?>>
+						  <label class="custom-control-label" for="usertype_guser">General User</label>
+						</div>
+					<?php } ?>
+				<?php }else{ ?>
+						<div class="alert alert-info alert-dismissible fade show" role="alert">
+						  <i><strong><?php if( $profile->usertype == 'generaladmin' ){ echo 'General Admin'; }elseif( $profile->usertype == 'generaluser' ){ echo 'General User'; }?></strong> <small>(User type)</small></i>
+						</div>
+					<?php } ?>
 				 <!-- Profile Image -->
 				 <div class="card card-primary wow bounceInRight">
 					<div class="card-body card-profile">
-						<?php if( $this->session->userdata('logedin_user')->usertype == 'superadmin'  ){ ?>
-							<?php if( $profile->usertype == 'superadmin'  ){ ?>
-								<div class="alert alert-info alert-dismissible fade show" role="alert">
-								  <i><strong>SuperAdmin</strong></i>
-								</div>
-							<?php } else{ ?>
-								
-								<div class="custom-control custom-radio">
-								  <input type="radio" id="usertype_gadmin" name="usertype" class="custom-control-input" value="generaladmin" <?php if( $profile->usertype == 'generaladmin' ){ echo 'checked'; }?>>
-								  <label class="custom-control-label" for="usertype_gadmin">General Admin</label>
-								</div>
-								<div class="custom-control custom-radio">
-								  <input type="radio" id="usertype_guser" name="usertype" class="custom-control-input" value="generaluser" <?php if( $profile->usertype == 'generaluser' ){ echo 'checked'; }?>>
-								  <label class="custom-control-label" for="usertype_guser">General User</label>
-								</div>
-							<?php } ?>
-						<?php }else{ ?>
-								<div class="alert alert-info alert-dismissible fade show" role="alert">
-								  <i><strong><?php if( $profile->usertype == 'generaladmin' ){ echo 'General Admin'; }elseif( $profile->usertype == 'generaluser' ){ echo 'General User'; }?></strong> <small>(User type)</small></i>
-								</div>
-							<?php } ?>
-							<hr>
 						<div class="video_up_with_prog">
 							<label for="profilePic">Profile Picture</label>
 							<input type="file" name="profilePic" id="profilePic" class="form-control media_upload_prev" data-act-name="profilePic_val">
@@ -96,7 +95,7 @@
 						//	pre($profile);
 						?>
 							<div class="alert alert-warning alert-dismissible fade show" role="alert">
-							  <i><strong><?php echo $profile->spk_title; ?></strong> (Subscription)</i>
+							  <i><strong><?php echo $profile->spk_title; ?></strong> (Subscription Plan)</i>
 							</div>
 					<?php } ?>
 
@@ -153,6 +152,7 @@
 				<!-- /.col -->
 
 				<div class="col-md-4">
+				<?php if( $this->logedin_user->usertype != 'superadmin' ){ ?>
 					<!-- Profile Image -->
 					<div class="card card-primary wow bounceInLeft">
 						<div class="card-body card-profile">
@@ -182,6 +182,7 @@
 							</div>
 						</div>
 					</div>
+				<?php } ?>
 				</div>
 				
 			</div>

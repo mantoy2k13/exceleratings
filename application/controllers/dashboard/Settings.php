@@ -182,9 +182,10 @@ class Settings extends CI_Controller {
 			$data['pgid'] = $pgid;
 			$data['pageType'] = 'edit';
 			$data['thePage'] = $this->db->select('*')->from('q_pages')->where('id', $pgid)->get()->row();
-			$data['thePageQs'] = $this->db->select('pages_questions.*, rev_questions.question')
+			$data['thePageQs'] = $this->db->select('pages_questions.*, rev_questions.question, rev_questions.userid, users.usertype')
 												->from('pages_questions')
 												->join('rev_questions', 'rev_questions.qid = pages_questions.qid', 'left')
+												->join('users', 'users.id = rev_questions.userid', 'left')
 												->where('page_id', $pgid)
 												->order_by('q_shorting', 'ASC')
 												->get()->result_object();
@@ -636,7 +637,7 @@ class Settings extends CI_Controller {
 				  if($this->db->insert('user_profile', $toSave2)){
 						$this->session->userdata('logedin_user')->profilpic = $profilePicName;
 						$this->session->set_flashdata('success', 'Updated done.');
-						redirect('dashboard/profile/'. $uid);
+						redirect('dashboard/settings/profile/'. $uid);
 				  }
 				}
 			}

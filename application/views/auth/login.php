@@ -37,8 +37,8 @@
                                     <?php } ?>
 
                                     <div class="form-group">
-                                        <label for="username">Username</label>
-                                        <input class="form-control" type="text" id="username" name="username" placeholder="Your Name*" required="required">
+                                        <label for="username">UserName / Email</label>
+                                        <input class="form-control" type="text" id="username" name="username" placeholder="Your Name / Email *" required="required">
                                     </div>
                                 
                                     <div class="form-group">

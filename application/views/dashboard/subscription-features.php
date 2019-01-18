@@ -2,10 +2,12 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    
+   
     <!-- Main content -->
+    <div class="container">
+			<h3>Subscription Features</h3>
+	 </div>
     <section class="content">
-
 			<form action='' method="post">
 					<?php echo validation_errors('<p class="text-danger"><b>', '</b></p>'); ?>
 			  <div class="form-row">

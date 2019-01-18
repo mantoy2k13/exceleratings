@@ -35,7 +35,10 @@
 									<?php }else{  ?>
 								  <h4>Answering a few short questions, enables us to better serve you.</h4>
 								  <h5>CLICK INSIDE THE CIRCLE TO THE RIGHT THAT BEST ANSWERS EACH QUESTION</h5>
-									<form action="<?=base_url('front/review_add')?>" method="post">
+								  
+									<?php echo validation_errors('<span class="text-danger">', '</span><br>'); ?>
+									
+									<form action="" method="post">
 										<div class="img_container_center first_rating_wrap"> 
 											<h5>Need Improve - &nbsp; &nbsp; </h5><input type="range" name="first_rating" min="0" max="10" step="1" value="0" class="rev_input" id="first_rating">
 											<div class="rateit" data-rateit-mode="font"  style="font-size:30px;top: 8px;" data-rateit-backingfld="#first_rating"></div><h5> &nbsp; &nbsp;  + Very Positive </h5>

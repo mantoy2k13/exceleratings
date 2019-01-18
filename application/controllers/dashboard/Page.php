@@ -21,6 +21,7 @@ class Page extends CI_Controller {
 	
 	public function index()
 	{
+		$data = $this->General_model->firebase_update();
 		$data['menuitem4'] = 'home';
 		
 		$this->db->select('*');

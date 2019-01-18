@@ -1,9 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-use MessageMediaMessagesLib\MessageMediaMessagesClient;
-use MessageMediaMessagesLib\APIHelper;
-
 class Front extends CI_Controller {
 
 	function __construct() {
@@ -17,89 +14,216 @@ class Front extends CI_Controller {
 	}
 	
 	public function test_raf_46834638(){
-		sms_send('8801815035736','Test SMS 3 ...');
-	}
-	 
-	public function index()
-	{
-		/* 
-		echo base_url('dashboard/settings/test_raf_46834638/');
-		
-		$ch = curl_init();
-      curl_setopt($ch, CURLOPT_URL, base_url('dashboard/settings/test_raf_46834638/'));
-      curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-      curl_setopt($ch, CURLOPT_TIMEOUT, 60);
-		curl_setopt($ch, CURLOPT_HEADER, 1);
-      curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-      $data = curl_exec($ch);
-		curl_close($ch);
-		
-		prex($data);
-		
-		 */
-		$this->load->view('front/home');
+	//	sms_send('454654035736','Test SMS 3 ...');
+		return '';
 	}
 	
-	public function firebase_update()
-	{		
-
-		/* ========================= Firebase Update ======================== */
-		$this->db->select('rv.id');
-		$this->db->from('reviews as rv');
-		$this->db->join('q_pages as pg', 'rv.for_pgid = pg.id', 'left');
-		if($this->logedin_user->usertype == 'generaluser'){
-			$this->db->where('pg.userid',$this->logedin_user->id);
-		}
-		$data['user_id'] = $this->logedin_user->id;
-		$data['last_review_inserted'] = $this->db->order_by('rv.id','desc')->limit(1)->get()->row();
-	//	prex($data['last_review_inserted']);
-		if( $data['last_review_inserted'] ){
-			
-			$data['last_review_inserted'] = $data['last_review_inserted']->id;
-		}
-		
-		$data['overall_avr_rating'] = $this->General_model->get_overall_avr_rating();
-		$this->db->select('rv.*');
-		$this->db->from('reviews as rv');
-		$this->db->join('q_pages as pg', 'rv.for_pgid = pg.id', 'left');
-		if($this->logedin_user->usertype == 'generaluser'){
-			$this->db->where('pg.userid',$this->logedin_user->id);
-		}
-		$data['total_rating_item'] = count($this->db->get()->result_object());
-		
-		$data['total_rating_item4chart'] = $this->General_model->get_overall_avr_rating_ind();
-		/* ========================= Firebase Update ======================== */
-		
-		/* ========================= Firebase Update for SuperAdmin data ======================== */
-		$this->db->select('rv.id');
-		$this->db->from('reviews as rv');
-		$this->db->join('q_pages as pg', 'rv.for_pgid = pg.id', 'left');
-		$data['user_id'] = $this->logedin_user->id;
-		$data['last_review_inserted_admin'] = $this->db->order_by('rv.id','desc')->limit(1)->get()->row();
-	//	prex($data['last_review_inserted']);
-		if( $data['last_review_inserted_admin'] ){
-			
-			$data['last_review_inserted_admin'] = $data['last_review_inserted_admin']->id;
-		}
-		
-		$data['overall_avr_rating_admin'] = $this->General_model->get_overall_avr_rating_admin();
-		$this->db->select('rv.*');
-		$this->db->from('reviews as rv');
-		$this->db->join('q_pages as pg', 'rv.for_pgid = pg.id', 'left');
-		$data['total_rating_item_admin'] = count($this->db->get()->result_object());
-		
-		$data['total_rating_item4chart_admin'] = $this->General_model->get_overall_avr_rating_ind_admin();
-		/* ========================= Firebase Update for SuperAdmin data ======================== */
-		return $data;
+	public function index()
+	{
+		$this->load->view('front/home');
 	}
 
+	public function first_rating_check($str){
+		
+		if ($str*1 < 1)
+		{
+				$this->form_validation->set_message('first_rating_check', 'The <b>{field}</b> can\'t be unselected');
+				return FALSE;
+		}
+		else
+		{
+				return TRUE;
+		}
+	}
+	
 	public function review($qpg_id = null)
 	{		
 	//	prex(6);
 		if( !$this->session->userdata('logedin_user') ){
 			redirect('auth/login');
 		}
-		$data = $this->firebase_update();
+
+		if( $this->input->post() ){
+			
+			$this->form_validation->set_message('required', 'This form not will be submit without <b>"%s"</b> data');
+			
+			$this->form_validation->set_rules('first_rating','First Rating','required|callback_first_rating_check');
+			$this->form_validation->set_rules('c_firstname','First Name','required');
+			$this->form_validation->set_rules('c_lastname','Last Name','required');
+			$this->form_validation->set_rules('c_email','Email','required|valid_email');
+			$this->form_validation->set_rules('c_phone','Phone','required');
+			
+			if( $this->form_validation->run() == TRUE ){
+				
+				// load email library
+				$this->load->library('email');
+
+				$rev_ques = $this->input->post('rev_ques');
+			//	prex($rev_ques);
+				$cur_datetime = date("Y-m-d H:i:s");
+			//	prex($this->input->post());
+				$raringToSave = [
+					'for_pgid' => $this->input->post('qpg_id'),
+					'first_rating' => $this->input->post('first_rating'),
+					'firstname' => $this->input->post('c_firstname'),
+					'lastname' => $this->input->post('c_lastname'),
+					'email' => $this->input->post('c_email'),
+					'phone' => $this->input->post('c_phone'),
+					'street' => $this->input->post('c_street'),
+					'address' => $this->input->post('c_address'),
+					'rev_comment' => $this->input->post('rev_comment'),
+					'rev_about_experience' => $this->input->post('rev_about_experience'),
+					'inserted_at' => $cur_datetime
+				];
+				if( str_replace('%','',$this->input->post('total_rev_plus')) * 1 > 69 ){
+					$raringToSave['status'] = 1;
+				}
+			//	prex($raringToSave);
+				if($this->db->insert('reviews', $raringToSave)){
+					
+					$inserted_rid = $this->db->insert_id();
+					
+					$q_detail = [];
+					if( $rev_ques ){
+						foreach( $rev_ques as $rvq_k => $rvq_v ){
+								
+							$this->db->select('*')
+										->from('rev_questions')
+										->where('qid', $rvq_k);
+							$q_detail[$rvq_k] = $this->db->get()->row();
+							$q_detail[$rvq_k]->rating_from_client = $rvq_v;
+						//	pre($rvq_v);
+							
+							if( $rvq_v > 0 ){
+								
+								$this->db->insert('question_ratings', [
+									'rid' => $inserted_rid,
+									'qid' => $rvq_k,
+									'review' => $rvq_v < 1 ? 0 : $rvq_v
+								]);
+							}
+						}
+					}
+				//	prex($q_detail);
+					
+					$this->db->select('*');
+					$this->db->from('users');
+					$this->db->where('username', 'admin');
+					$siteadmin = $this->db->get()->row();
+					
+					if( str_replace('%','',$this->input->post('total_rev_plus')) * 1 > 69 ){
+						$this->session->set_flashdata('review70up', true);
+					//	$this->session->set_flashdata('success', 'Thanks for your rating, Please review us also on Yelp and Google review page. ');
+						$data = $this->logedin_user;
+						$this->email
+							 ->from($this->logedin_user->email, 'Exceleratings SuperAdmin')
+							 ->to($this->input->post('c_email'))
+							 ->subject('Thanks for your rating')
+						//	 ->message( $this->load->view('front/emailtemp470up', $data) )
+							 ->message( $this->load->view('front/emailtemp470up', $data, true) )
+							 ->set_mailtype('html');
+
+						// send email
+						$this->email->send();
+						
+						redirect(base_url('front/good_review'));
+					//	redirect(base_url('front/review/' . $this->input->post('qpg_id') . '?good_review'));
+					}else{
+						
+						$emailContent = '';
+						
+						$emailContent .= '<h2><small>Rating percent<strong></small> : ' . $this->input->post('total_rev_plus') . '</strong> </h2><br> ';
+						$emailContent .= 'Time <strong> : ' . $cur_datetime . '</strong> <br> ';
+						$emailContent .= 'Email <strong> : ' . $this->input->post('c_email') . '</strong> <br> ';
+						$emailContent .= 'Phone <strong> : ' . $this->input->post('c_phone') . '</strong> <br> ';
+						$emailContent .= 'First Name <strong> : ' . $this->input->post('c_firstname') . '</strong> <br> ';
+						$emailContent .= 'Last Name <strong> : ' . $this->input->post('c_lastname') . '</strong> <br> '.
+						'<hr>';
+						$qdi = 1;
+						$emailContent .= '<ul>';
+						$emailContent .= ''.
+						'<li style="padding: 5px 0;font-size: 1.4em;">Head rating is <b>'.
+						$this->input->post('first_rating') . '</b> out of <b>10</b>'.
+						'</li>';
+						$emailContent .= '</ul>';
+						$emailContent .= '<ol>';
+						$ret = '';
+						foreach( $q_detail as $qd ){
+							
+							if( $qd->answer_option == 'yes_no' ){
+							
+								if( $qd->yes_0_no_1 == 0 ){
+									if( $qd->rating_from_client == 10 ){
+										$ret = '"<b>YES</b>" selected';
+									}elseif($qd->rating_from_client == 0){
+										$ret = '"<b>NO</b>" selected';
+									}
+								}elseif( $qd->yes_0_no_1 == 1 ){
+									if( $qd->rating_from_client == 10 ){
+										$ret = '"<b>NO</b>" selected';
+									}elseif($qd->rating_from_client == 0){
+										$ret = '"<b>YES</b>" selected';
+									}
+								}
+								
+							}else{
+								$ret = '<b>'.$qd->rating_from_client . '</b> rating out of <b>10</b>';
+							}
+							$emailContent .= ''.
+							'<li style="padding: 5px 0;">'.
+							$qd->question . '<br>'.
+							$ret .
+							'</li>'.
+							'';
+							$qd++;
+						}
+						$emailContent .= '</ol>';
+						$emailContent .= '<hr>';
+						
+						$get_note_contacts = $this->General_model->get_note_contacts();
+						$note_contact_emails = [];
+						$note_contact_phons = [];
+						
+						foreach($get_note_contacts as $conts ){
+							array_push($note_contact_emails, $conts->email);
+							array_push($note_contact_phons, $conts->phone);
+						}
+						
+						$this->email
+							 ->from($siteadmin->email, 'Exceleratings SuperAdmin')
+							 ->to($note_contact_emails)
+							 ->subject('Bad review notification')
+							 ->message($emailContent)
+							 ->set_mailtype('html');
+						// send email
+						$this->email->send();
+						if( $this->General_model->setting_option('sms-services') == 'yes' ){
+								
+							if( $this->logedin_user->subs_package_slug == 'gold' || $this->logedin_user->subs_package_slug == 'silver' ){
+								
+								//	https://witnessone.net/bin/sms/send.php?phone=23434342&message=sdjfhksdjf 
+								$sms_msg = 'Rating percent (' . $this->input->post('total_rev_plus') . ') // From email : ' . $this->input->post('c_email') . ' // From phone : ' . $this->input->post('c_phone') . ' // Name : ' . $this->input->post('c_firstname') . ' ' . $this->input->post('c_lastname') . ' // Time was : ' . $cur_datetime . '';
+								
+					//	prex($note_contact_phons);
+								foreach( $note_contact_phons as $c_phone ){
+								//	pre(preg_replace("/[^0-9]/", "", $c_phone));
+								//	sms_send( $c_phone, $sms_msg );
+									sms_send( preg_replace("/[^0-9]/", "", $c_phone), $sms_msg );
+									$c_phone = '';
+								}
+								
+								//	print $content;
+							}
+						}
+						$this->session->set_flashdata('review70up', false);
+						$this->session->set_flashdata('success', 'Thanks for your rating');
+					} 
+					redirect(base_url('front/review/' . $this->input->post('qpg_id')));
+				}
+			}
+		}
+		
+		$data = $this->General_model->firebase_update();
 	//	prex($data);
 		
 		$this->db->select('*')->from('q_pages');
@@ -145,7 +269,7 @@ class Front extends CI_Controller {
 		if( !$this->session->userdata('logedin_user') ){
 			redirect('auth/login');
 		}
-		$data = $this->firebase_update();
+		$data = $this->General_model->firebase_update();
 		$data['profile'] = $this->General_model->get_user_data($this->logedin_user->id);
 		$this->load->view('front/good-review', $data);
 	}
@@ -223,175 +347,185 @@ class Front extends CI_Controller {
 	
 	public function review_add()
 	{
+		$data = array();
 		if( $this->input->post() ){
 			
-			// load email library
-			$this->load->library('email');
+			$this->form_validation->set_rules('first_rating','First Rating','required');
+			$this->form_validation->set_rules('c_firstname','First Name','required');
+			$this->form_validation->set_rules('c_lastname','Last Name','required');
+			$this->form_validation->set_rules('c_email','Email','required');
+			$this->form_validation->set_rules('c_phone','Phone','required');
+			
+			if( $this->form_validation->run() == TRUE ){
+				
+				// load email library
+				$this->load->library('email');
 
-			$rev_ques = $this->input->post('rev_ques');
-		//	prex($rev_ques);
-			$cur_datetime = date("Y-m-d H:i:s");
-		//	prex($this->input->post());
-			$raringToSave = [
-				'for_pgid' => $this->input->post('qpg_id'),
-				'first_rating' => $this->input->post('first_rating'),
-				'firstname' => $this->input->post('c_firstname'),
-				'lastname' => $this->input->post('c_lastname'),
-				'email' => $this->input->post('c_email'),
-				'phone' => $this->input->post('c_phone'),
-				'street' => $this->input->post('c_street'),
-				'address' => $this->input->post('c_address'),
-				'rev_comment' => $this->input->post('rev_comment'),
-				'rev_about_experience' => $this->input->post('rev_about_experience'),
-				'inserted_at' => $cur_datetime
-			];
-			if( str_replace('%','',$this->input->post('total_rev_plus')) * 1 > 69 ){
-				$raringToSave['status'] = 1;
-			}
-		//	prex($raringToSave);
-			if($this->db->insert('reviews', $raringToSave)){
-				
-				$inserted_rid = $this->db->insert_id();
-				
-				$q_detail = [];
-				if( $rev_ques ){
-					foreach( $rev_ques as $rvq_k => $rvq_v ){
-							
-						$this->db->select('*')
-									->from('rev_questions')
-									->where('qid', $rvq_k);
-						$q_detail[$rvq_k] = $this->db->get()->row();
-						$q_detail[$rvq_k]->rating_from_client = $rvq_v;
-					//	pre($rvq_v);
-						
-						if( $rvq_v > 0 ){
-							
-							$this->db->insert('question_ratings', [
-								'rid' => $inserted_rid,
-								'qid' => $rvq_k,
-								'review' => $rvq_v < 1 ? 0 : $rvq_v
-							]);
-						}
-					}
-				}
-			//	prex($q_detail);
-				
-				$this->db->select('*');
-				$this->db->from('users');
-				$this->db->where('username', 'admin');
-				$siteadmin = $this->db->get()->row();
-				
+				$rev_ques = $this->input->post('rev_ques');
+			//	prex($rev_ques);
+				$cur_datetime = date("Y-m-d H:i:s");
+			//	prex($this->input->post());
+				$raringToSave = [
+					'for_pgid' => $this->input->post('qpg_id'),
+					'first_rating' => $this->input->post('first_rating'),
+					'firstname' => $this->input->post('c_firstname'),
+					'lastname' => $this->input->post('c_lastname'),
+					'email' => $this->input->post('c_email'),
+					'phone' => $this->input->post('c_phone'),
+					'street' => $this->input->post('c_street'),
+					'address' => $this->input->post('c_address'),
+					'rev_comment' => $this->input->post('rev_comment'),
+					'rev_about_experience' => $this->input->post('rev_about_experience'),
+					'inserted_at' => $cur_datetime
+				];
 				if( str_replace('%','',$this->input->post('total_rev_plus')) * 1 > 69 ){
-					$this->session->set_flashdata('review70up', true);
-				//	$this->session->set_flashdata('success', 'Thanks for your rating, Please review us also on Yelp and Google review page. ');
-					$data = $this->logedin_user;
-					$this->email
-						 ->from($this->logedin_user->email, 'Exceleratings SuperAdmin')
-						 ->to($this->input->post('c_email'))
-						 ->subject('Thanks for your rating')
-					//	 ->message( $this->load->view('front/emailtemp470up', $data) )
-						 ->message( $this->load->view('front/emailtemp470up', $data, true) )
-						 ->set_mailtype('html');
+					$raringToSave['status'] = 1;
+				}
+			//	prex($raringToSave);
+				if($this->db->insert('reviews', $raringToSave)){
+					
+					$inserted_rid = $this->db->insert_id();
+					
+					$q_detail = [];
+					if( $rev_ques ){
+						foreach( $rev_ques as $rvq_k => $rvq_v ){
+								
+							$this->db->select('*')
+										->from('rev_questions')
+										->where('qid', $rvq_k);
+							$q_detail[$rvq_k] = $this->db->get()->row();
+							$q_detail[$rvq_k]->rating_from_client = $rvq_v;
+						//	pre($rvq_v);
+							
+							if( $rvq_v > 0 ){
+								
+								$this->db->insert('question_ratings', [
+									'rid' => $inserted_rid,
+									'qid' => $rvq_k,
+									'review' => $rvq_v < 1 ? 0 : $rvq_v
+								]);
+							}
+						}
+					}
+				//	prex($q_detail);
+					
+					$this->db->select('*');
+					$this->db->from('users');
+					$this->db->where('username', 'admin');
+					$siteadmin = $this->db->get()->row();
+					
+					if( str_replace('%','',$this->input->post('total_rev_plus')) * 1 > 69 ){
+						$this->session->set_flashdata('review70up', true);
+					//	$this->session->set_flashdata('success', 'Thanks for your rating, Please review us also on Yelp and Google review page. ');
+						$data = $this->logedin_user;
+						$this->email
+							 ->from($this->logedin_user->email, 'Exceleratings SuperAdmin')
+							 ->to($this->input->post('c_email'))
+							 ->subject('Thanks for your rating')
+						//	 ->message( $this->load->view('front/emailtemp470up', $data) )
+							 ->message( $this->load->view('front/emailtemp470up', $data, true) )
+							 ->set_mailtype('html');
 
-					// send email
-					$this->email->send();
-					
-					redirect(base_url('front/good_review'));
-				//	redirect(base_url('front/review/' . $this->input->post('qpg_id') . '?good_review'));
-				}else{
-					
-					$emailContent = '';
-					
-					$emailContent .= '<h2><small>Rating percent<strong></small> : ' . $this->input->post('total_rev_plus') . '</strong> </h2><br> ';
-					$emailContent .= 'Time <strong> : ' . $cur_datetime . '</strong> <br> ';
-					$emailContent .= 'Email <strong> : ' . $this->input->post('c_email') . '</strong> <br> ';
-					$emailContent .= 'Phone <strong> : ' . $this->input->post('c_phone') . '</strong> <br> ';
-					$emailContent .= 'First Name <strong> : ' . $this->input->post('c_firstname') . '</strong> <br> ';
-					$emailContent .= 'Last Name <strong> : ' . $this->input->post('c_lastname') . '</strong> <br> '.
-					'<hr>';
-					$qdi = 1;
-					$emailContent .= '<ul>';
-					$emailContent .= ''.
-					'<li style="padding: 5px 0;font-size: 1.4em;">Head rating is <b>'.
-					$this->input->post('first_rating') . '</b> out of <b>10</b>'.
-					'</li>';
-					$emailContent .= '</ul>';
-					$emailContent .= '<ol>';
-					$ret = '';
-					foreach( $q_detail as $qd ){
+						// send email
+						$this->email->send();
 						
-						if( $qd->answer_option == 'yes_no' ){
+						redirect(base_url('front/good_review'));
+					//	redirect(base_url('front/review/' . $this->input->post('qpg_id') . '?good_review'));
+					}else{
 						
-							if( $qd->yes_0_no_1 == 0 ){
-								if( $qd->rating_from_client == 10 ){
-									$ret = '"<b>YES</b>" selected';
-								}elseif($qd->rating_from_client == 0){
-									$ret = '"<b>NO</b>" selected';
-								}
-							}elseif( $qd->yes_0_no_1 == 1 ){
-								if( $qd->rating_from_client == 10 ){
-									$ret = '"<b>NO</b>" selected';
-								}elseif($qd->rating_from_client == 0){
-									$ret = '"<b>YES</b>" selected';
-								}
-							}
-							
-						}else{
-							$ret = '<b>'.$qd->rating_from_client . '</b> rating out of <b>10</b>';
-						}
+						$emailContent = '';
+						
+						$emailContent .= '<h2><small>Rating percent<strong></small> : ' . $this->input->post('total_rev_plus') . '</strong> </h2><br> ';
+						$emailContent .= 'Time <strong> : ' . $cur_datetime . '</strong> <br> ';
+						$emailContent .= 'Email <strong> : ' . $this->input->post('c_email') . '</strong> <br> ';
+						$emailContent .= 'Phone <strong> : ' . $this->input->post('c_phone') . '</strong> <br> ';
+						$emailContent .= 'First Name <strong> : ' . $this->input->post('c_firstname') . '</strong> <br> ';
+						$emailContent .= 'Last Name <strong> : ' . $this->input->post('c_lastname') . '</strong> <br> '.
+						'<hr>';
+						$qdi = 1;
+						$emailContent .= '<ul>';
 						$emailContent .= ''.
-						'<li style="padding: 5px 0;">'.
-						$qd->question . '<br>'.
-						$ret .
-						'</li>'.
-						'';
-						$qd++;
-					}
-					$emailContent .= '</ol>';
-					$emailContent .= '<hr>';
-					
-					$get_note_contacts = $this->General_model->get_note_contacts();
-					$note_contact_emails = [];
-					$note_contact_phons = [];
-					
-					foreach($get_note_contacts as $conts ){
-						array_push($note_contact_emails, $conts->email);
-						array_push($note_contact_phons, $conts->phone);
-					}
-					
-					$this->email
-						 ->from($siteadmin->email, 'Exceleratings SuperAdmin')
-						 ->to($note_contact_emails)
-						 ->subject('Bad review notification')
-						 ->message($emailContent)
-						 ->set_mailtype('html');
-					// send email
-					$this->email->send();
-					if( $this->General_model->setting_option('sms-services') == 'yes' ){
+						'<li style="padding: 5px 0;font-size: 1.4em;">Head rating is <b>'.
+						$this->input->post('first_rating') . '</b> out of <b>10</b>'.
+						'</li>';
+						$emailContent .= '</ul>';
+						$emailContent .= '<ol>';
+						$ret = '';
+						foreach( $q_detail as $qd ){
 							
-						if( $this->logedin_user->subs_package_slug == 'gold' || $this->logedin_user->subs_package_slug == 'silver' ){
+							if( $qd->answer_option == 'yes_no' ){
 							
-							//	https://witnessone.net/bin/sms/send.php?phone=23434342&message=sdjfhksdjf 
-							$sms_msg = 'Rating percent (' . $this->input->post('total_rev_plus') . ') // From email : ' . $this->input->post('c_email') . ' // From phone : ' . $this->input->post('c_phone') . ' // Name : ' . $this->input->post('c_firstname') . ' ' . $this->input->post('c_lastname') . ' // Time was : ' . $cur_datetime . '';
-							
-				//	prex($note_contact_phons);
-							foreach( $note_contact_phons as $c_phone ){
-							//	pre(preg_replace("/[^0-9]/", "", $c_phone));
-							//	sms_send( $c_phone, $sms_msg );
-								sms_send( preg_replace("/[^0-9]/", "", $c_phone), $sms_msg );
-								$c_phone = '';
+								if( $qd->yes_0_no_1 == 0 ){
+									if( $qd->rating_from_client == 10 ){
+										$ret = '"<b>YES</b>" selected';
+									}elseif($qd->rating_from_client == 0){
+										$ret = '"<b>NO</b>" selected';
+									}
+								}elseif( $qd->yes_0_no_1 == 1 ){
+									if( $qd->rating_from_client == 10 ){
+										$ret = '"<b>NO</b>" selected';
+									}elseif($qd->rating_from_client == 0){
+										$ret = '"<b>YES</b>" selected';
+									}
+								}
+								
+							}else{
+								$ret = '<b>'.$qd->rating_from_client . '</b> rating out of <b>10</b>';
 							}
-							
-							//	print $content;
+							$emailContent .= ''.
+							'<li style="padding: 5px 0;">'.
+							$qd->question . '<br>'.
+							$ret .
+							'</li>'.
+							'';
+							$qd++;
 						}
-					}
-					$this->session->set_flashdata('review70up', false);
-					$this->session->set_flashdata('success', 'Thanks for your rating');
-				} 
-				redirect(base_url('front/review/' . $this->input->post('qpg_id')));
+						$emailContent .= '</ol>';
+						$emailContent .= '<hr>';
+						
+						$get_note_contacts = $this->General_model->get_note_contacts();
+						$note_contact_emails = [];
+						$note_contact_phons = [];
+						
+						foreach($get_note_contacts as $conts ){
+							array_push($note_contact_emails, $conts->email);
+							array_push($note_contact_phons, $conts->phone);
+						}
+						
+						$this->email
+							 ->from($siteadmin->email, 'Exceleratings SuperAdmin')
+							 ->to($note_contact_emails)
+							 ->subject('Bad review notification')
+							 ->message($emailContent)
+							 ->set_mailtype('html');
+						// send email
+						$this->email->send();
+						if( $this->General_model->setting_option('sms-services') == 'yes' ){
+								
+							if( $this->logedin_user->subs_package_slug == 'gold' || $this->logedin_user->subs_package_slug == 'silver' ){
+								
+								//	https://witnessone.net/bin/sms/send.php?phone=23434342&message=sdjfhksdjf 
+								$sms_msg = 'Rating percent (' . $this->input->post('total_rev_plus') . ') // From email : ' . $this->input->post('c_email') . ' // From phone : ' . $this->input->post('c_phone') . ' // Name : ' . $this->input->post('c_firstname') . ' ' . $this->input->post('c_lastname') . ' // Time was : ' . $cur_datetime . '';
+								
+					//	prex($note_contact_phons);
+								foreach( $note_contact_phons as $c_phone ){
+								//	pre(preg_replace("/[^0-9]/", "", $c_phone));
+								//	sms_send( $c_phone, $sms_msg );
+									sms_send( preg_replace("/[^0-9]/", "", $c_phone), $sms_msg );
+									$c_phone = '';
+								}
+								
+								//	print $content;
+							}
+						}
+						$this->session->set_flashdata('review70up', false);
+						$this->session->set_flashdata('success', 'Thanks for your rating');
+					} 
+					redirect(base_url('front/review/' . $this->input->post('qpg_id')));
+				}
 			}
 		}else{
-				prex(44444);
+			echo 'Not submitted !!';
 		}
 		$this->load->view('front/review', $data);
 	}
@@ -431,52 +565,6 @@ class Front extends CI_Controller {
 	}
 	public function team(){
 		$this->load->view('front/team');
-	}
-	
-	
-	function sms_test($phone = null){
-	//	base_url('dashboard/settings/test_raf_46834638');
-
-		
-	//	use MessageMediaMessagesLib\MessageMediaMessagesClient;
-	//	use MessageMediaMessagesLib\APIHelper;
-		if( $phone != null ){
-				/* 
-			$authUserName = '9FpRrzD8yFZpOh5cikLw'; // The API key to use with basic/HMAC authentication
-			$authPassword = 'mwGj32ezcEITUDAjbJNeZtfwlDg6k7'; // The API secret to use with basic/HMAC authentication
-				 */
-			$authUserName = '2BuJJVZO7RRGmWOiUbf8'; // The API key to use with basic/HMAC authentication
-			$authPassword = 'wN1RQ1EmURe4t1BY1jeZAqT7e67o37'; // The API secret to use with basic/HMAC authentication
-			$useHmacAuthentication = false; // Change to true if you are using HMAC keys
-
-			$client = new MessageMediaMessagesLib\MessageMediaMessagesClient($authUserName, $authPassword, $useHmacAuthentication);
-
-			$messages = $client->getMessages();
-
-			
-			
-			
-			$bodyValue = '{
-				"messages":[
-					{
-						"content":"ExceleRatings SMS test",
-						"destination_number":"+88'. $phone .'"
-					}
-				]
-			}';
-
-			$body = MessageMediaMessagesLib\APIHelper::deserialize($bodyValue);
-
-			$results = $messages->createSendMessages($body);
-			
-			pre($body);
-			pre($results);
-			$messageId = 'a508b910-84d5-4e4a-978d-f9ffcfa90953'; // The message id for the message you wish to get the status for
-
-			$result = $messages->getMessageStatus($results->messages[0]->message_id);
-			pre($result);
-			
-		}
 	}
 	
 }

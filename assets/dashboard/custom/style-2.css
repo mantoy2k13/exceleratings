@@ -41,6 +41,9 @@ a.btn,
 .nav a{
 	text-decoration: none;
 }
+a.btn.btn-outline-danger:focus{
+	color: red;
+}
 a.btn.btn-info:hover, a.btn.btn-info:focus{
 	color: #fff;
 }

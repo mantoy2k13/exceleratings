@@ -485,4 +485,58 @@ class General_model extends CI_Model {
 		}
 	}
 
+	
+	
+	public function firebase_update()
+	{		
+		/* ========================= Firebase Update ======================== */
+		$this->db->select('rv.id');
+		$this->db->from('reviews as rv');
+		$this->db->join('q_pages as pg', 'rv.for_pgid = pg.id', 'left');
+		if($this->logedin_user->usertype == 'generaluser'){
+			$this->db->where('pg.userid',$this->logedin_user->id);
+		}
+		$data['user_id'] = $this->logedin_user->id;
+		$data['last_review_inserted'] = $this->db->order_by('rv.id','desc')->limit(1)->get()->row();
+	//	prex($data['last_review_inserted']);
+		if( $data['last_review_inserted'] ){
+			
+			$data['last_review_inserted'] = $data['last_review_inserted']->id;
+		}
+		
+		$data['overall_avr_rating'] = $this->General_model->get_overall_avr_rating();
+		$this->db->select('rv.*');
+		$this->db->from('reviews as rv');
+		$this->db->join('q_pages as pg', 'rv.for_pgid = pg.id', 'left');
+		if($this->logedin_user->usertype == 'generaluser'){
+			$this->db->where('pg.userid',$this->logedin_user->id);
+		}
+		$data['total_rating_item'] = count($this->db->get()->result_object());
+		
+		$data['total_rating_item4chart'] = $this->General_model->get_overall_avr_rating_ind();
+		/* ========================= Firebase Update ======================== */
+		
+		/* ========================= Firebase Update for SuperAdmin data ======================== */
+		$this->db->select('rv.id');
+		$this->db->from('reviews as rv');
+		$this->db->join('q_pages as pg', 'rv.for_pgid = pg.id', 'left');
+		$data['user_id'] = $this->logedin_user->id;
+		$data['last_review_inserted_admin'] = $this->db->order_by('rv.id','desc')->limit(1)->get()->row();
+	//	prex($data['last_review_inserted']);
+		if( $data['last_review_inserted_admin'] ){
+			
+			$data['last_review_inserted_admin'] = $data['last_review_inserted_admin']->id;
+		}
+		
+		$data['overall_avr_rating_admin'] = $this->General_model->get_overall_avr_rating_admin();
+		$this->db->select('rv.*');
+		$this->db->from('reviews as rv');
+		$this->db->join('q_pages as pg', 'rv.for_pgid = pg.id', 'left');
+		$data['total_rating_item_admin'] = count($this->db->get()->result_object());
+		
+		$data['total_rating_item4chart_admin'] = $this->General_model->get_overall_avr_rating_ind_admin();
+		/* ========================= Firebase Update for SuperAdmin data ======================== */
+		return $data;
+	}
+
 }

@@ -70,7 +70,7 @@ class Auth extends CI_Controller
 		//	prex($this->input->post());
 			$this->form_validation->set_message('is_unique', 'The %s is already taken');
 			$this->form_validation->set_rules('username','UserName','required|is_unique[users.username]');
-			$this->form_validation->set_rules('email','Email','required|is_unique[users.email]');
+			$this->form_validation->set_rules('email','Email','required|valid_email|is_unique[users.email]');
 			$this->form_validation->set_rules('service_category','Service Type','required');
 			$this->form_validation->set_rules('password','Password','required|min_length[3]');
 			$this->form_validation->set_rules('conf_password','Confirm Password','required|min_length[3]|matches[password]');

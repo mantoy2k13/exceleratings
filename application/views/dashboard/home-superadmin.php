@@ -1,5 +1,6 @@
 <?php $this->load->view('dashboard/header'); ?>
 
+<?php $this->load->view('front/firebase-update');?>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Main content -->

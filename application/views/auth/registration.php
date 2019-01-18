@@ -44,11 +44,11 @@
 
                                     <div class="form-group">
                                         <label for="username">Username</label>
-                                        <input class="form-control" type="text" id="username" name="username" placeholder="Your Name*" required="required" value="<?=$this->input->post('username')?>">
+                                        <input class="form-control" type="text" id="username" name="username" placeholder="Your UserName*" required="required" value="<?=$this->input->post('username')?>">
                                     </div>
                                     <div class="form-group">
                                         <label for="email">Email</label>
-                                        <input class="form-control" type="email" id="email" name="email" placeholder="Your Name*" required="required" value="<?=$this->input->post('email')?>">
+                                        <input class="form-control" type="email" id="email" name="email" placeholder="Your Email*" required="required" value="<?=$this->input->post('email')?>">
                                     </div>
                                     <div class="form-group">
                                         <label for="service_category">Services Type</label>

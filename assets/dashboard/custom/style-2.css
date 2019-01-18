@@ -47,6 +47,9 @@ a.btn.btn-outline-danger:focus{
 a.btn.btn-info:hover, a.btn.btn-info:focus{
 	color: #fff;
 }
+.input-group-text{
+	padding: .255rem .75rem;
+}
 .btn {
     padding: .250rem .75rem;
 }

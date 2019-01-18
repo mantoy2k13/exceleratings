@@ -539,4 +539,11 @@ class General_model extends CI_Model {
 		return $data;
 	}
 
+	public function subs_features()
+	{		
+		$this->db->select('*');
+		$this->db->from('subs_features');
+		$this->db->order_by('order_by', 'ASC');
+		return $this->db->get()->result_object();
+	}
 }

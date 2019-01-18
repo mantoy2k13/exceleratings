@@ -235,14 +235,15 @@
 								</div>
 							 </div>
 							
-							 <div class="col-sm-6 col-form-label font-weight-bold"><br>TOTAL:</div>
+							 <div class="col-sm-6 col-form-label font-weight-bold text-right"><br>TOTAL:</div>
 							 <div class="col-sm-6">
+							 <br>
 								<div class="input-group">
 									<label for="total_amount"></label>
 									<div class="input-group-prepend">
 										<div class="input-group-text font-weight-bold ">$</div>
 									</div>
-									<input type="text" class="form-control form-control-lg font-weight-bold text-right" id="total_amount" name="total_amount" placeholder="#" value="<?=$setup_fee + $service_fee_month2month + $service_fee_yearcotract + $additional_services?>" readonly>
+									<input type="number" class="form-control form-control-lg font-weight-bold text-right" id="total_amount" name="total_amount" placeholder="#" value="<?=$setup_fee + $service_fee_month2month + $service_fee_yearcotract + $additional_services?>" readonly>
 								</div>
 							 </div>
 						  </div>

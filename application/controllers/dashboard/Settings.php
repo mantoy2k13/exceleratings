@@ -97,6 +97,8 @@ class Settings extends CI_Controller {
 	//	$session_user = $this->logedin_user;
 	//	prex($session_user);
 	
+		$data['subs_features'] = $this->General_model->subs_features();
+		
 		$this->db->select('*');
 		$this->db->from('service_categories');
 		$this->db->order_by('id', 'DESC');
@@ -154,6 +156,8 @@ class Settings extends CI_Controller {
 		$session_user = $this->logedin_user;
 	//	prex($this->input->post());
 		$data['menuitem4'] = 'question_pages';
+		
+		$data['subs_features'] = $this->General_model->subs_features();
 		
 		$this->db->select('*');
 		$this->db->from('rev_questions');

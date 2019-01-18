@@ -178,10 +178,7 @@ class Page extends CI_Controller {
 		$uid = $this->session->userdata('logedin_user')->id;
 		$data['profile'] = $this->General_model->get_user_data($uid);
 		 */
-		$this->db->select('*');
-		$this->db->from('subs_features');
-		$this->db->order_by('order_by', 'ASC');
-		$data['subs_features'] = $this->db->get()->result_object();
+		$data['subs_features'] = $this->General_model->subs_features();
 		
 		$this->load->view('dashboard/plan-subscriptions', $data);
 	}

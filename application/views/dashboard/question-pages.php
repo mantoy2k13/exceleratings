@@ -6,6 +6,9 @@
     <!-- Main content -->
     <section class="content">
 
+	<?php 
+	//	pre($this->logedin_user->subs_package_slug);
+		if( $this->logedin_user->subs_package_slug == 'bronze' || $this->logedin_user->subs_package_slug == 'silver' || $this->logedin_user->subs_package_slug == 'gold' || $this->logedin_user->usertype == 'superadmin' ){ ?>
 		<div class="row">
 	
 			<div class="col">
@@ -106,6 +109,16 @@
 
       </div>
 
+		<?php }else{ ?>
+      <div class="row">
+        <div class="col-md-12">
+					<div class="alert alert-danger">
+						<strong>Note!</strong> Not allow to set this question page until you have no any subscription plan!
+					</div>
+				</div>
+			</div>
+		<?php $this->load->view('dashboard/plan-subscriptions-in'); ?>
+		<?php } ?>
     </section>
 
   </div>

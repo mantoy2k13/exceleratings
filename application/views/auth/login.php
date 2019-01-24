@@ -38,7 +38,7 @@
 
                                     <div class="form-group">
                                         <label for="username">UserName / Email</label>
-                                        <input class="form-control" type="text" id="username" name="username" placeholder="Your Name / Email *" required="required">
+                                        <input class="form-control" type="text" id="username" name="username" placeholder="UserName / Email *" required="required">
                                     </div>
                                 
                                     <div class="form-group">

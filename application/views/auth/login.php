@@ -50,7 +50,7 @@
                                         
                                     </div>
                                     <div class="text-center link-custom">
-                                        <a href="<?php echo base_url('auth/registration'); ?>">Click here to regiter</a>
+                                        <a href="<?php echo base_url('auth/registration'); ?>">Click here to register</a>
                                     </div>
                                 </form>
                             </li>

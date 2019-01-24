@@ -16,13 +16,12 @@
 				<div class="card">
 
 				  <div class="card-header with-border wow bounceInDown">
-					 <h4 class="card-title card-box"><?php if( $pageType == 'edit' ){ echo 'Edit page ' . '<i><a href="'. base_url('front/review/' . $pgid) .'" class="float-right btn btn-outline-danger btn-sm" style="font"><i class="fa fa-eye"></i> Front View </a></i>'; }else{ echo 'New Page'; }?></h4>
-					 
+						<h4 class="card-title card-box"><?php if( $pageType == 'edit' ){ echo 'Edit page ' . '<i><a href="'. base_url('front/review/' . $pgid) .'" class="float-right btn btn-outline-danger btn-sm" style="font"><i class="fa fa-eye"></i> Front View </a></i>'; }else{ echo 'New Page'; }?></h4>
 					</div>
 				  <div class="card-body border border-danger">
 					 <h3 class="card-title box-title">Selected questions : <br><small>[ custom questions will support : <b>Gold</b> for maximum 10, <b>Silver</b> for maximum 5, <b>Bronze</b> for maximum 3 ]</small></h3>
 					<?php if( $this->session->flashdata('remvoe_success') ){ ?>
-								<div class="alert alert-success" role="alert"><?php echo $this->session->flashdata('remvoe_success'); ?></div>
+						<div class="alert alert-success" role="alert"><?php echo $this->session->flashdata('remvoe_success'); ?></div>
 					<?php } ?>
 					<br>
 					<?php if( $this->session->flashdata('success') ){ ?>
@@ -46,7 +45,7 @@
 										<li class="list-group-item draging">
 											<input value="<?=$pgq->qid?>" name="qid[]" size="2" hidden >
 											<?php //$pgq->question . ' <i>['. $pgq->qid .']</i>'?>
-										
+											
 											<?=$pgq->question?><br>
 											<?php if( $pgq->usertype == 'superadmin' ){ echo '<span class="badge badge-secondary float-right">Default question from SuperAdmin</span>'; } ?>
 											<?php if( $pgq->userid == $this->session->userdata('logedin_user')->id ){ echo '<span class="badge badge-primary float-right">Created by me</span>'; } ?>
@@ -105,7 +104,17 @@
 									<?php //$qus_v->question . ' <i>['. $qus_v->qid .']</i>'?>
 									<?=$qus_v->question?>
 								</li>
-							<?php } ?> 
+							<?php } 
+								if( isset($def_questions2) ){
+									
+								foreach( $def_questions2 as $dq ){ ?>
+									<li class="list-group-item draging">
+										<input value="<?=$dq->qid?>" name="qid[]" size="2" hidden >
+										<?php //$dq->question . ' <i>['. $dq->qid .']</i>'?>
+										<?=$dq->question?>
+									</li>
+							<?php }
+								} ?> 
 						</ul>
 			  </div>
 			</div>

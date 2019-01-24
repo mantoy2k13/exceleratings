@@ -183,15 +183,27 @@ class Settings extends CI_Controller {
 			$data['pageType'] = 'edit';
 			$data['thePage'] = $this->db->select('*')->from('q_pages')->where('id', $pgid)->get()->row();
 			$data['thePageQs'] = $this->db->select('pages_questions.*, rev_questions.question, rev_questions.userid, users.usertype')
-												->from('pages_questions')
-												->join('rev_questions', 'rev_questions.qid = pages_questions.qid', 'left')
-												->join('users', 'users.id = rev_questions.userid', 'left')
-												->where('page_id', $pgid)
-												->order_by('q_shorting', 'ASC')
-												->get()->result_object();
+								->from('pages_questions')
+								->join('rev_questions', 'rev_questions.qid = pages_questions.qid', 'left')
+								->join('users', 'users.id = rev_questions.userid', 'left')
+								->where('page_id', $pgid)
+								->order_by('q_shorting', 'ASC')
+								->get()->result_object();
+
+			$this->db->select('*');
+			$this->db->from('rev_questions');
+			if( $this->logedin_user->usertype == 'generaluser' ){
+				$this->db->where('service_category', $this->logedin_user->service_category);
+			}
+			foreach( $data['thePageQs'] as $qs ){
+				$this->db->where('qid !=', $qs->qid);
+			}
+			$this->db->order_by('shorting', 'ASC');
+			$data['def_questions2'] = $this->db->get()->result_object();
+			
 			
 			if( $this->input->post('submit') == 'q_pg_edit' ){
-				
+			//	prex($session_user->subs_package_slug);
 				$cur_users_qus = $this->db->select('*')
 													->from('rev_questions')
 													->where('userid', $session_user->id)
@@ -201,9 +213,8 @@ class Settings extends CI_Controller {
 				foreach($cur_users_qus as $cuq_k => $cuq_v){
 					$curUserAllQs[$cuq_k] = $cuq_v->qid;
 				}
-				$totalUsersQs = array_intersect($curUserAllQs, $this->input->post()['qid']);
+				$totalUsersQs = array_intersect($curUserAllQs, $this->input->post('qid'));
 				
-				 
 				if( $session_user->subs_package_slug == 'gold' ){
 				//	prex(count($totalUsersQs));
 					if( count($totalUsersQs) > 10 ){
@@ -218,7 +229,7 @@ class Settings extends CI_Controller {
 						redirect(base_url('dashboard/settings/question_pages/'. $pgid));
 					}
 				}elseif( $session_user->subs_package_slug == 'bronze' ){
-					
+				
 					if( count($totalUsersQs) > 3 ){
 						$this->session->set_flashdata('error', 'Your question exceeds your plan limit. <a href="'. base_url('dashboard/page/plan_subscription_form?plan=gold') .'">Please upgrade your plan to proceed.</a>');
 						redirect(base_url('dashboard/settings/question_pages/'. $pgid));
@@ -241,7 +252,7 @@ class Settings extends CI_Controller {
 					
 					$this->db->where('page_id', $pgid);
 					if($this->db->delete('pages_questions')){
-							
+						
 						foreach( $this->input->post('qid') as $qid_k => $qid_v ){
 							
 							$data = [
@@ -268,7 +279,7 @@ class Settings extends CI_Controller {
 				redirect('dashboard/settings/rev_questions/');
 			//	prex( $this->input->post('qid') );
 			}else{
-					
+				
 				$this->db->select('*');
 				$this->db->from('rev_questions');
 				if( $this->logedin_user->usertype == 'generaluser' ){

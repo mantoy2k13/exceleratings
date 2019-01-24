@@ -5,14 +5,13 @@
                 <div class="col-md-12">
                     
                 <div class="col-sm-6 col-sm-offset-3 align-center">
-                <div class="container-fluid wow flip">
-                    <a href="<?php echo base_url('/'); ?>">
-                        <img class="img-custom" src="<?php echo base_url('/'); ?>assets/dashboard/images/logo.png" />
-                    </a>
+						 <div class="container-fluid wow flip">
+							  <a href="<?php echo base_url('/'); ?>">
+									<img class="img-custom" src="<?php echo base_url('/'); ?>assets/dashboard/images/logo.png" />
+							  </a>
+						 </div>
                 </div>
                 </div>
-                </div>
-					<?php echo validation_errors('<p class="text-red"><b>', '</b></p>'); ?>
                 <div class="col-sm-12">
                     <div class="price-table font-alt">
                         <h4>Sign Up</h4>

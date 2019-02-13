@@ -95,12 +95,11 @@ $db['default'] = array(
 	'save_queries' => TRUE
 );
 
-$whitelist = array('127.0.0.1','::1');
-if(!in_array($_SERVER['REMOTE_ADDR'], $whitelist)){
-	$db['default']['database'] = 'technool_exceleratings';
-	$db['default']['username'] = 'technool_exceler';
-	$db['default']['password'] = 'YoT5.VXOu9FR';
-}else{
+if($_SERVER['HTTP_HOST']=='www.exceleratings.com' || $_SERVER['HTTP_HOST']=='exceleratings.com'){
+	$db['default']['database'] = 'excelera_exceleratings';
+	$db['default']['username'] = 'excelera_exceler';
+	$db['default']['password'] = 'eoC@FVDvWsUn';
+}elseif($_SERVER['HTTP_HOST']=='exceleratings.local' ){
 	$db['default']['database'] = 'exceleratings';
 	$db['default']['username'] = 'root';
 	$db['default']['password'] = '';

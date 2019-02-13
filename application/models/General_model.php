@@ -546,4 +546,12 @@ class General_model extends CI_Model {
 		$this->db->order_by('order_by', 'ASC');
 		return $this->db->get()->result_object();
 	}
+
+	public function subs_packages()
+	{
+		$this->db->select('*');
+		$this->db->from('subs_packages');
+		$this->db->order_by('order_by', 'ASC');
+		return $this->db->get()->result_object();
+	}
 }

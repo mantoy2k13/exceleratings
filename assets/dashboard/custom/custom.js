@@ -36,10 +36,10 @@ jQuery(function ($) {
 					dataType:'JSON', 
 					success: function(response){
 						   
-						   if( response == 'Success' ){
-							   thisAct.closest('li').css('background','red').hide('slow');
-						   }
-						   console.log(response);
+					   if( response == 'Success' ){
+						   thisAct.closest('li').css('background','red').hide('slow');
+					   }
+					   console.log(response);
 					},
 					error: function(jqXHR, textStatus, errorThrown) {
 						 console.log(textStatus);

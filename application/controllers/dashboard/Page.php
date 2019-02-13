@@ -57,21 +57,15 @@ class Page extends CI_Controller {
 			$this->load->view('dashboard/home-superadmin', $data);
 		}
 	}
-	
-	
+
+
 	public function subscription_features($fid = null){
 		
 		$data['menuitem4'] = 'subscription_features';
-		
-		$this->db->select('*');
-		$this->db->from('subs_packages');
-		$this->db->order_by('order_by', 'ASC');
-		$data['subs_packages'] = $this->db->get()->result_object();
-		
-		$this->db->select('*');
-		$this->db->from('subs_features');
-		$this->db->order_by('order_by', 'ASC');
-		$data['subs_features'] = $this->db->get()->result_object();
+
+		$data['subs_packages'] = $this->General_model->subs_packages();
+
+		$data['subs_features'] = $this->General_model->subs_features();
 		
 		if( $fid != null ){
 				

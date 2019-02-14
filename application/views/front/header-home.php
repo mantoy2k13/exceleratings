@@ -153,7 +153,7 @@
 				  <?php 
 				  if($this->session->userdata('logedin_user')){ ?>
 					<li class="dropdown"><a href="<?php echo base_url('/'); ?>front/review">Review Page</a></li>
-					<li class="dropdown"><a href="<?php echo base_url('/'); ?>dashboard">Admin</a></li>
+					<li class="dropdown"><a href="<?php echo base_url('/'); ?>dashboard">Dashboard</a></li>
 					<li class="dropdown" title="Logout"><a href="<?php echo base_url('/'); ?>auth/logout"><i class="fa fa-power-off"></i></a></li>
 					<?php }else{ ?>
 					<li class="dropdown"><a href="<?php echo base_url('auth/login'); ?>">Login</a></li>

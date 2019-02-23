@@ -280,7 +280,34 @@ jQuery(function ($) {
 		} );
 	}
 	load_all_revs('#totalRev4User');
+        
 	load_all_revs('#totalRev4Admin');
+	   	
+
+	function load_all_users( tbl_ID ){
+		
+               var data = [
+                               { "data": "sl" },
+                               { "data": "the_user" },
+                               { "data": "subs_plan" },
+                               { "data": "action" }
+                       ];
+
+		
+		$(tbl_ID).DataTable( {
+				'ajax': base_url + "dashboard/superadmin/ajax_get_all_users",
+				'destroy': true,
+				'paging': true,
+				'lengthChange': true,
+				'searching': true,
+				'ordering': true,
+				'info': true,
+				'autoWidth': true,
+				"columns": data
+		} );
+	}
+	load_all_users('#all_users_tbl');
+        
 	   	
    $('.collapse').on('shown.bs.collapse', function () {
       $(this).closest('.row').find('.view_graph').text(" Hide Graph ");

@@ -85,6 +85,10 @@
 										  <label class="custom-control-label" for="<?php echo $sbs->spk_id; ?>"><b><?php echo $sbs->spk_title; ?></b></label>
 										</div>
 									<?php	} ?>
+										<div class="custom-control custom-radio">
+										  <input type="radio" id="0" name="user_subs" class="custom-control-input" value="free" <?php if( $profile->subs_package_slug == 'free' ){ echo 'checked'; } ?> >
+										  <label class="custom-control-label" for="0"><b>Free</b></label>
+										</div>
 								</div>
 								<!-- /.box-body -->
 							 </div>
@@ -95,7 +99,11 @@
 						//	pre($profile);
 						?>
 							<div class="alert alert-warning alert-dismissible fade show" role="alert">
-							  <i><strong><?php echo $profile->spk_title; ?></strong> (Subscription Plan)</i>
+                        <i><strong><?php echo $profile->spk_title; ?></strong> <small>(Subscription Plan)</small></i>
+                        <hr>
+                        Validity: <br>
+                        <small>Start date:  <b><?php echo date("Y-M-d", strtotime($profile->subs_start_date)); ?></b></small><br>
+                        End Date: <b><?php echo date("Y-M-d", strtotime(date("Y-m-d", strtotime($profile->subs_start_date)) . " + 1 year")); ?></b>
 							</div>
 					<?php } ?>
 

@@ -11,6 +11,7 @@ class Front extends CI_Controller {
 		if($this->session->userdata('logedin_user')){
 		$this->logedin_user = $this->User_model->user_data_by_id( $this->session->userdata('logedin_user')->id );
 		}
+   //   $this->User_model->check_package_limit( $this->session->userdata('logedin_user')->id );
 	}
 	
 	public function test_raf_46834638(){

@@ -29,4 +29,35 @@ class User_model extends CI_Model {
 		}
 	//	prex($uid);
 	}
+   
+   public function check_package_limit( $uid )
+   {
+      $theUser = $this->user_data_by_id($uid);
+   //   prex($theUser);
+      if( $theUser->usertype == 'generaluser' ){
+         if( 
+            $theUser->subs_package_slug == 'bronze' || 
+            $theUser->subs_package_slug == 'gold' || 
+            $theUser->subs_package_slug == 'silver'
+            ){
+
+            $pkg_end_date = date("Y-m-d", strtotime(date("Y-m-d", strtotime($theUser->subs_start_date)) . " + 1 year")); 
+            if (date("Y-m-d") > $pkg_end_date) {
+            //    prex(5454);
+                  $subs_plan = array(
+                     'subs_package_slug' => 'free'
+                  );
+                  $this->db->where('id', $uid);
+                  $this->db->update('users', $subs_plan);
+            }
+            
+         }
+      }
+      /*
+            pre($theUser->subs_package_slug);
+            pre('last date: ' . date("Y-m-d", strtotime(date("Y-m-d", strtotime($theUser->subs_start_date)) . " + 1 year")));
+            pre('Today: ' . date("Y-m-d"));
+            exit;
+            */
+   }
 }

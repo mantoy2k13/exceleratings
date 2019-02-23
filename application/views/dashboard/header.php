@@ -188,7 +188,8 @@
 					<li class="menu-title"> --- </li><!-- /.menu-title -->
 					<li class="<?=$menuitem4 == 'profile' ? 'active':''?>"><a href="<?php echo base_url('dashboard/settings/profile'); ?>"><i class="menu-icon fa fa-user"></i> <span>Profile</span></a></li>
 					<?php if( $this->logedin_user->usertype == 'superadmin' ){ ?>
-					<li class="<?=$menuitem4 == 'subscription_features' ? 'active':''?>"><a href="<?php echo base_url('dashboard/page/subscription_features'); ?>"><i class="menu-icon fa fa-bookmark"></i> <span>Subscription features</span></a></li>
+               <li class="<?=$menuitem4 == 'users' ? 'active':''?>"><a href="<?php echo base_url('dashboard/superadmin/users'); ?>"><i class="menu-icon fa fa-users"></i> <span>All Users</span></a></li>
+					<li class="<?=$menuitem4 == 'subscription_features' ? 'active':''?>"><a href="<?php echo base_url('dashboard/page/subscription_features'); ?>"><i class="menu-icon fa fa-bookmark"></i> <span>Subscription features</span></a></li>					
 					<li class="<?=$menuitem4 == 'settings' ? 'active':''?>"><a href="<?php echo base_url('dashboard/settings'); ?>"><i class="menu-icon fa fa-wrench"></i> <span>General Settings</span></a></li>
 					<?php } ?>
 					<li><a href="<?php echo base_url('auth/logout'); ?>"><i class="menu-icon fa fa-sign-out"></i> <span>LogOut</span></a></li>
@@ -249,7 +250,7 @@
 
                     </div>
                     <div class="user-area dropdown float-right">
-						<a href="<?php echo base_url('/'); ?>assets/dashboard/#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<a href="<?php echo base_url('/'); ?>#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							<?php if(!$this->session->userdata('logedin_user')->profilpic){ ?>
 								<div class="thumbnail-profile">
 									<img class="user-avatar rounded-circle" src="<?php echo base_url('/'); ?>assets/dashboard/images/admin.jpg" alt="Profile Picture">

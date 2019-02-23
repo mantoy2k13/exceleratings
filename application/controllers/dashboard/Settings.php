@@ -17,8 +17,10 @@ class Settings extends CI_Controller {
 			
 		$this->load->model('General_model');
 		$this->logedin_usertype = $this->session->userdata('logedin_user')->usertype;
+      
+      $this->User_model->check_package_limit( $this->session->userdata('logedin_user')->id );
 	}
-	
+     
 	public $logedin_usertype;
 	
 	public function check_usertype( $chk_label ){

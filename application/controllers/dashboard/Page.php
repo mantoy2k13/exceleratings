@@ -13,9 +13,10 @@ class Page extends CI_Controller {
 		$this->load->model('User_model');		
 		$this->logedin_usertype = $this->User_model->user_data_by_id( $this->session->userdata('logedin_user')->id )->usertype;
 		$this->logedin_user = $this->User_model->user_data_by_id( $this->session->userdata('logedin_user')->id );
-		
+           
 		$this->load->model('General_model');
 	//	$this->User_model->user_data_by_id( $this->session->userdata('logedin_user')->id )->usertype;
+      $this->User_model->check_package_limit( $this->session->userdata('logedin_user')->id );
 	}
 	public $logedin_usertype;
 	

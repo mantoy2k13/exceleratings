@@ -58,6 +58,56 @@ img.img-custom {
 	color: black;
 }
 
+
+
+
+.btn-info.active, .btn-info:active, .btn-info.active:focus {
+    background-color: #0b7290 !important;
+}
+.panel-bronze>.panel-heading {
+    color: #fff;
+    background-color: #cd7f32 ;
+    border-color: #cd7f32 ;
+}
+
+.panel-bronze {
+    border-color: #cd7f32  !important;
+}
+
+.btn-orange {
+    color: #fff;
+    background-color: #f05223;
+    border-color: #f05223;
+}
+
+
+.panel-silver>.panel-heading {
+    color: #fff;
+    background-color: #C0C0C0 ;
+    border-color: #C0C0C0 ;
+}
+
+.panel-silver {
+    border-color: #C0C0C0  !important;
+}
+
+.panel-gold>.panel-heading {
+    color: #fff;
+    background-color: #FFA500 ;
+    border-color: #FFA500 ;
+}
+
+.panel-gold {
+    border-color: #FFA500  !important;
+}
+
+.panel-heading {
+    padding: 10px 15px;
+    border-bottom: 1px solid transparent;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+}
+
 @media only screen and (max-width:690px){
 	.form-custom {
 		width: 100%;

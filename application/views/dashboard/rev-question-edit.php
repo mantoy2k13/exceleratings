@@ -47,12 +47,12 @@
 									<div class="btn-group-vertical">
 									  <label class="btn btn-sm btn-info" title="Anser get by Yes/No options">
 										 <input type="radio" value="yes_no" name="answer_option" id="" <?php if( $question->answer_option == 'yes_no' ){ echo 'checked'; } ?>> 
-										 Answer get by Yes/No options
+										 Get Answers by Yes/No options
 									  </label>
 									
-									  <label class="btn btn-sm btn-info" title="Answer get by 1 to 10 reviewing options">
+									  <label class="btn btn-sm btn-info" title="Get Answers by 1 to 10 reviewing options">
 										 <input type="radio" value="rev_1_10" name="answer_option" id="" <?php if( $question->answer_option == 'rev_1_10' ){ echo 'checked'; } ?>>
-											Answer get by 1 to 10 reviewing options
+											Get Answers by in 1-10 review points
 									  </label>
 									
 									</div>

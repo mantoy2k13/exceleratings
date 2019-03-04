@@ -54,7 +54,7 @@
 							  
 										<div class="custom-control custom-radio">
 										  <input type="radio" id="customRadio1" value="yes_no" name="answer_option" class="custom-control-input">
-										  <label class="custom-control-label" for="customRadio1">Answer get by Yes/No options</label>
+										  <label class="custom-control-label" for="customRadio1">Get Answers by Yes/No options</label>
 										</div>
 										<div id="yes_no_point" style="display: none;">
 											<div class="btn-group btn-group-toggle" data-toggle="buttons">
@@ -70,7 +70,7 @@
 										
 										<div class="custom-control custom-radio">
 										  <input type="radio" id="customRadio2" value="rev_1_10" name="answer_option" class="custom-control-input" checked >
-										  <label class="custom-control-label" for="customRadio2">Answer get by 1 to 10 reviewing options</label>
+										  <label class="custom-control-label" for="customRadio2">Get Answers by in 1-10 review points</label>
 										</div>
 										
 							  </div>

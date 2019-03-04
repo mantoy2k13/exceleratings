@@ -163,20 +163,6 @@ class Page extends CI_Controller {
 		$this->load->view('dashboard/single-review', $data);
 	}
 	
-	public function plan_subscription(){
-		
-		$data['menuitem4'] = 'plan_subscription';
-		if( $this->logedin_user->usertype == 'superadmin' ){
-			redirect('dashboard');
-		}
-		/* 
-		$uid = $this->session->userdata('logedin_user')->id;
-		$data['profile'] = $this->General_model->get_user_data($uid);
-		 */
-		$data['subs_features'] = $this->General_model->subs_features();
-		
-		$this->load->view('dashboard/plan-subscriptions', $data);
-	}
 	public function plan_subscription_form(){
 		$session_userdata = $this->session->userdata();
 		/* 

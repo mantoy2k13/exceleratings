@@ -140,7 +140,7 @@ $clientToken = $gateway->clientToken()->generate();
                                           Yes
                                        </label>
 
-                                       <label class="btn btn-sm btn-info" title="Answer get by 1 to 10 reviewing options">
+                                       <label class="btn btn-sm btn-info" title="Get Answers in 1-10 review points">
                                           <input type="radio" value="0" name="tablet_needed" id="tablet_needed2" <?= $profile->tablet_needed == '0' ? 'checked' : '' ?>>
                                           No
                                        </label>
@@ -270,7 +270,7 @@ $clientToken = $gateway->clientToken()->generate();
                <hr>
                <p class="font-italic"><small>Exceleratings promises to provide a convenient opportunity for your customers to post their reviews on-line. Exceleratings can not guarantee the postings of the reviews on any third party portal, as each entity has it’s own !ltering protocals in place. Exceleratings will make every e"ort to ensure that customer reviews are directed to the preferred “review site” of the clients choice</small></p>
                <p class="font-italic"><small>Excleratings guarantees that all questionnaires and metrics will be provided according to the plan that is being executed by this contract</small></p>
-               <p class="font-weight-bold text-danger bg-dark p-3 mb-2 text-center">Without your permission, your client information is NEVER shared – PERIOD!</p>
+               <p class="font-weight-bold text-danger bg-dark p-3 mb-2 text-center">Your information remains confidential and is never shared</p>
                <hr>
                <button type="submit" class="btn btn-info btn-lg btn-block float-right"> &nbsp; &nbsp; &nbsp; Submit &nbsp; &nbsp; &nbsp; </button>
             </form>

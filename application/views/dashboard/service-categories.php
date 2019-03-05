@@ -40,7 +40,7 @@
 							 <tr class="<?=$trClass?>">
 								<td><?=$srv_k+1?></td>
 								<td><?=$srv_v->title?></td>
-								<td><?=$srv_v->status ? '<span class="badge badge-info">Active</span>' : '<span class="badge badge-secondary">Disabled</span>'?></td>
+								<td><?=$srv_v->status ? '<span class="badge badge-info">Activate</span>' : '<span class="badge badge-secondary">Disabled</span>'?></td>
 								<td>
 									<a href="<?=base_url('dashboard/superadmin/service_categories/' . $srv_v->id)?>" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" title="">
 										<i class="fa fa-fw fa-lg fa-edit"></i>

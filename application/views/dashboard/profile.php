@@ -55,7 +55,7 @@
 				 <div class="card card-primary wow bounceInRight">
 					<div class="card-body card-profile">
 						<div class="video_up_with_prog">
-							<label for="profilePic">Profile Picture</label>
+							<label for="profilePic">Company Logo</label>
 							<input type="file" name="profilePic" id="profilePic" class="form-control media_upload_prev" data-act-name="profilePic_val">
 							<div id="imgPreview" class="actions_prev">
 								<?php 
@@ -106,7 +106,6 @@
                         End Date: <b><?php echo date("Y-M-d", strtotime(date("Y-m-d", strtotime($profile->subs_start_date)) . " + 1 year")); ?></b>
 							</div>
 					<?php } ?>
-
 			  </div>
 			  <!-- /.col -->
 			  <div class="col-md-5">
@@ -115,7 +114,7 @@
 				 <div class="card card-primary wow bounceInLeft">
 					<div class="card-body card-profile">
 						<div class="form-group">
-						  <label for="fullname" class="control-label">Full Name</label>
+						  <label for="fullname" class="control-label">Company Name</label>
 							 <input type="text" class="form-control" id="fullname" name="fullname" value="<?php echo $profile->fullname; ?>" placeholder="Full Name">
 						</div>
 						<div class="row">

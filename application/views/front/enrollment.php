@@ -70,12 +70,12 @@ $clientToken = $gateway->clientToken()->generate();
 											Basic Plan
 										</label>
 									
-										<label class="btn btn-info <?=$selected_plan == 'silver' ? 'active' : ''?>" title="Answer get by 1 to 10 reviewing options">
+										<label class="btn btn-info <?=$selected_plan == 'silver' ? 'active' : ''?>" title="Get Answers in 1-10 review points">
 											<input type="radio" value="silver" name="subs_package_slug" id="subs_package_slug2" <?php if( $selected_plan == 'silver' ){ echo 'checked'; } ?>>
 											Basic Plus Plan (Silver)
 										</label>
 									
-										<label class="btn btn-info <?=$selected_plan == 'gold' ? 'active' : ''?>" title="Answer get by 1 to 10 reviewing options">
+										<label class="btn btn-info <?=$selected_plan == 'gold' ? 'active' : ''?>" title="Get Answers in 1-10 review points">
 											<input type="radio" value="gold" name="subs_package_slug" id="subs_package_slug3" <?php if( $selected_plan == 'gold' ){ echo 'checked'; } ?>>
 											Premium Plan (Golden)
 										</label>
@@ -130,7 +130,7 @@ $clientToken = $gateway->clientToken()->generate();
 															Yes
 														</label>
 													
-														<label class="btn btn-sm btn-info" title="Answer get by 1 to 10 reviewing options">
+														<label class="btn btn-sm btn-info" title="Get Answers in 1-10 review points">
 															<input type="radio" value="0" name="tablet_needed" id="tablet_needed2" <?=$profile->tablet_needed == '0' ? 'checked' : ''?>>
 															No
 														</label>

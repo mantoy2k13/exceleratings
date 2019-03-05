@@ -29,12 +29,12 @@
 											Basic Plan
 										</label>
 									
-										<label class="btn btn-info" title="Answer get by 1 to 10 reviewing options">
+										<label class="btn btn-info" title="Get Answers in 1-10 review points">
 											<input type="radio" value="rev_1_10" name="answer_option" id="option3" >
 											Basic Plus Plan (Silver)
 										</label>
 									
-										<label class="btn btn-info" title="Answer get by 1 to 10 reviewing options">
+										<label class="btn btn-info" title="Get Answers in 1-10 review points">
 											<input type="radio" value="rev_1_10" name="answer_option" id="option3" >
 											Premium Plan (Golden)
 										</label>
@@ -88,7 +88,7 @@
 														Yes
 													</label>
 												
-													<label class="btn btn-sm btn-info" title="Answer get by 1 to 10 reviewing options">
+													<label class="btn btn-sm btn-info" title="Get Answers in 1-10 review points">
 														<input type="radio" value="rev_1_10" name="answer_option" id="option3" >
 														No
 													</label>
@@ -206,17 +206,17 @@
 												<i class="fa fa-cc-visa" aria-hidden="true"></i>
 											</label>
 										
-											<label class="btn btn-sm btn-info" title="Answer get by 1 to 10 reviewing options">
+											<label class="btn btn-sm btn-info" title="Get Answers in 1-10 review points">
 												<input type="radio" value="rev_1_10" name="answer_option" id="option3" >
 												Master Card 
 												<i class="fa fa-cc-mastercard" aria-hidden="true"></i>
 											</label>
-											<label class="btn btn-sm btn-info" title="Answer get by 1 to 10 reviewing options">
+											<label class="btn btn-sm btn-info" title="Get Answers in 1-10 review points">
 												<input type="radio" value="rev_1_10" name="answer_option" id="option3" >
 												Amex
 												<i class="fa fa-cc-amex" aria-hidden="true"></i>
 											</label>
-											<label class="btn btn-sm btn-info" title="Answer get by 1 to 10 reviewing options">
+											<label class="btn btn-sm btn-info" title="Get Answers in 1-10 review points">
 												<input type="radio" value="rev_1_10" name="answer_option" id="option3" >
 												Paypal
 												<i class="fa fa-cc-paypal" aria-hidden="true"></i>

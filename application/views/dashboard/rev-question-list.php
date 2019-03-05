@@ -131,7 +131,7 @@
 						<div class="container-fluid">
 						<form action="<?php echo base_url('dashboard/settings/'); ?>rev_question_edit" method="post" enctype="multipart/form-data">
 						  <div class="form-group">
-							 <label for="post_title">The Question</label>
+							 <label for="post_title">Add new review question</label>
 							<textarea name="question" id="question" class="form-control" rows=""><?php // echo $question->question; ?></textarea>
 							<input type="hidden" name="qid"/>
 						  </div>
@@ -141,7 +141,7 @@
 										
 										<div class="custom-control custom-radio">
 										  <input type="radio" id="customRadio1" value="yes_no" name="answer_option" class="custom-control-input answer_option">
-										  <label class="custom-control-label" for="customRadio1">Answer get by Yes/No options</label>
+										  <label class="custom-control-label" for="customRadio1">Get Answers by Yes/No options</label>
 										</div>
 										<div id="yes_no_point" style="display: none;">
 											<div class="btn-group " data-toggle="buttons">
@@ -157,7 +157,7 @@
 										
 										<div class="custom-control custom-radio">
 										  <input type="radio" id="customRadio2" value="rev_1_10" name="answer_option" class="custom-control-input answer_option" >
-										  <label class="custom-control-label" for="customRadio2">Answer get by 1 to 10 reviewing options</label>
+										  <label class="custom-control-label" for="customRadio2">Get Answers in 1-10 review points</label>
 										</div>
 										
 									</div>
@@ -165,7 +165,7 @@
 								  <div class="col-md-6">
 										<div class="custom-control custom-checkbox">
 										  <input type="checkbox" class="custom-control-input" id="status" name="status" value="1" <?php // if($advertise->status == 1 ){ echo 'checked';} ?>>
-										  <label class="custom-control-label" for="status">Active</label>
+										  <label class="custom-control-label" for="status">Activate</label>
 										</div>
 										<hr>
 										<div class="form-group">

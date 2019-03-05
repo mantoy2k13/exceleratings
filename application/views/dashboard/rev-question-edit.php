@@ -12,7 +12,7 @@
 			<!-- Default box -->
 			<div class="card">
 				<div class="card-header with-border wow bounceInLeft">
-					<h3 class="card-title card-box">Review question add form</h3>
+					<h3 class="card-title card-box">Add new review question</h3>
 				</div>
 
 				<form action="" method="post" enctype="multipart/form-data">
@@ -25,7 +25,7 @@
 					<div class="card-body wow bounceInRight" id="cat_add_form">
 						
 					  <div class="form-group">
-						 <label for="post_title">The Question</label>
+						 <label for="post_title">Add new review question</label>
 						<textarea name="question" id="question" class="form-control" rows=""><?php echo $question->question; ?></textarea>
 					  </div>
 					  <?php if( $this->logedin_user->usertype == 'superadmin' ){ ?>
@@ -52,7 +52,7 @@
 									
 									  <label class="btn btn-sm btn-info" title="Get Answers by 1 to 10 reviewing options">
 										 <input type="radio" value="rev_1_10" name="answer_option" id="" <?php if( $question->answer_option == 'rev_1_10' ){ echo 'checked'; } ?>>
-											Get Answers by in 1-10 review points
+											Get Answers in 1-10 review points
 									  </label>
 									
 									</div>

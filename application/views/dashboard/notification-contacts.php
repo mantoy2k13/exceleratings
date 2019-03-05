@@ -52,7 +52,7 @@
                                         <td><?=$con_v->title?></td>
                                         <td><?=$con_v->email?></td>
                                         <td><?=$con_v->phone?></td>
-                                        <td><?=$con_v->status ? '<span class="badge badge-info">Active</span>' : '<span class="badge badge-secondary">Disabled</span>'?></td>
+                                        <td><?=$con_v->status ? '<span class="badge badge-info">Activate</span>' : '<span class="badge badge-secondary">Disabled</span>'?></td>
                                         <td>
                                             <a href="<?=base_url('dashboard/settings/notification_contacts/' . $con_v->id)?>" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" title="">
                                                 <i class="fa fa-fw fa-edit"></i>

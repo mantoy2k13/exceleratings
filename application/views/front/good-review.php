@@ -9,7 +9,8 @@
               <div class="col-sm-6 col-sm-offset-3">
 							<?php // pre($profile); ?>
 							<center>
-							<h4>Thanks for your rating, Please review us also on this sites.</h4>
+							<h4>Thank you for taking a moment to rate our business.</h4>
+							<h3>You can also leave a review or a testimonial for us using the links below.</h3>
 							<?php 
 								if( $profile->pos_rdr_url_yelp ){ ?>
 									
@@ -57,7 +58,7 @@
 						<div class="col-sm-12">
 							<div class="in_center">
 								<div class="in_center_content">
-										<div class="alert alert-success" role="alert"><h4>Thanks for your rating, Please review us also on above sites.</h4></div>
+										<div class="alert alert-success" role="alert"><h4>Thank you</h4></div>
 								</div>
 							</div>
 						</div>

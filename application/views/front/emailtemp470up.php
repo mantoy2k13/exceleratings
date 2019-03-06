@@ -59,9 +59,9 @@
                                                    <tr>
                                                       <td style="word-wrap:break-word;font-size:0px;padding:15px 15px 15px 15px;" align="center">
                                                          <div style="cursor:auto;color:#000000;font-family:PT Sans, Trebuchet MS, sans-serif;font-size:11px;line-height:1.5;text-align:center;">
-                                                            <p><em><span style="color:#f39c12;"><span style="font-size:28px;">Thankyou for your rating,&#xA0;</span></span></em></p>
-                                                            <p><em><strong><span style="color:#e74c3c;"><span style="font-size:28px;">You may also rating on here ...</span></span></strong></em></p>
-                                                            <p><em><strong><span style="font-size:17px;">Please take a few extra minutes to leave a review or testimonial for us in below links.</span></strong></em></p>
+                                                            <p><em><span style="color:#f39c12;"><span style="font-size:28px;">Thank you for taking a moment to rate our business,&#xA0;</span></span></em></p>
+                                                            <p><em><strong><span style="color:#e74c3c;"><span style="font-size:28px;">You can also leave a review or a testimonial for us using the links below</span></span></strong></em></p>
+                                                            
                                                          </div>
                                                       </td>
                                                    </tr>
@@ -102,7 +102,7 @@
                                           <tr>
                                              <td style="vertical-align:top;width:198px;">
                                                 <![endif]-->
-                                                <div class="mj-column-per-33 outlook-group-fix" style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%;">
+                                                <div class="mj-column-per-33 outlook-group-fix" style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:200px;">
                                                    <table role="presentation" cellpadding="0" cellspacing="0" style="vertical-align:top;" width="100%" border="0">
                                                       <tbody>
                                                          <tr>
@@ -132,7 +132,7 @@
                                              </td>
                                              <td style="vertical-align:top;width:198px;">
                                                 <![endif]-->
-                                                <div class="mj-column-per-33 outlook-group-fix" style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%;">
+                                                <div class="mj-column-per-33 outlook-group-fix" style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:200px;">
                                                    <table role="presentation" cellpadding="0" cellspacing="0" style="vertical-align:top;" width="100%" border="0">
                                                       <tbody>
                                                          <tr>

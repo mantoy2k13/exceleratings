@@ -201,14 +201,19 @@ class Page extends CI_Controller {
 			
 			if($this->db->get()->row()){ // Checking if user row found in user_profile table
 				
+            //   prex(3333);
 				$this->db->where('uid', $uid);
 				if( $this->db->update('user_profile', $enroll_data) ){
+                              
 					$this->db->where('id', $uid);
 					$this->db->update('users', ['subs_package_slug'=>$this->input->post('subs_package_slug')]);
+            //   prex($this->input->post('subs_package_slug'));
 					redirect('dashboard/settings/profile');
 				}
 				
 			}else{
+            
+            //   prex(4444);
 				$enroll_data['uid'] = $uid;
 				if( $this->db->insert('user_profile', $enroll_data) ){
 					$this->db->where('id', $uid);

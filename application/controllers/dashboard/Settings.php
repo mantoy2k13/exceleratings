@@ -562,6 +562,7 @@ class Settings extends CI_Controller {
 
 	public function profile( $uid = null )
 	{
+      
 		$data['menuitem4'] = 'profile';
 	//	prex($this->User_model->user_data_by_id($this->session->userdata('logedin_user')->id));
 		if( $this->logedin_usertype != 'superadmin' ){

@@ -95,15 +95,21 @@
 							 <!-- /.box -->
 						<?php } ?>
 					<?php }elseif( $this->logedin_usertype == 'generaluser' ){ ?>
-						<?php 
-						//	pre($profile);
-						?>
+
+                        
 							<div class="alert alert-warning alert-dismissible fade show" role="alert">
+						<?php 
+                     if( $profile->spk_title ){ ?>
                         <i><strong><?php echo $profile->spk_title; ?></strong> <small>(Subscription Plan)</small></i>
+                        <!--
                         <hr>
                         Validity: <br>
                         <small>Start date:  <b><?php echo date("Y-M-d", strtotime($profile->subs_start_date)); ?></b></small><br>
                         End Date: <b><?php echo date("Y-M-d", strtotime(date("Y-m-d", strtotime($profile->subs_start_date)) . " + 1 year")); ?></b>
+                        -->
+                  <?php   }  else {
+                         echo 'No Subscription still now';
+                      }	?>
 							</div>
 					<?php } ?>
 			  </div>

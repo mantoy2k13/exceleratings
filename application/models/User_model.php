@@ -42,6 +42,7 @@ class User_model extends CI_Model {
             ){
 
             $pkg_end_date = date("Y-m-d", strtotime(date("Y-m-d", strtotime($theUser->subs_start_date)) . " + 1 year")); 
+            /*
             if (date("Y-m-d") > $pkg_end_date) {
             //    prex(5454);
                   $subs_plan = array(
@@ -50,6 +51,7 @@ class User_model extends CI_Model {
                   $this->db->where('id', $uid);
                   $this->db->update('users', $subs_plan);
             }
+            */
             
          }
       }

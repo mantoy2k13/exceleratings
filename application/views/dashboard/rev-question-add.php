@@ -98,7 +98,8 @@
 					</div>
 				</div>
 			</div>
-		<?php $this->load->view('dashboard/plan-subscriptions-in'); ?>
+		<?php // $this->load->view('dashboard/plan-subscriptions-in'); ?>
+       <a href="<?php echo base_url('front/pricing'); ?>" class="btn btn-info">Subscription plan page link</a>
 		<?php } ?>
     </section>
     <!-- /.content -->

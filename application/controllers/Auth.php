@@ -19,6 +19,7 @@ class Auth extends CI_Controller
 				$this->db->where('password', md5($_POST['password']));
 				
 				$query = $this->db->get();
+         //   prex( $this->db->last_query() );
 				if( $query->num_rows() > 0 ){
 					$user = $query->row();
 					

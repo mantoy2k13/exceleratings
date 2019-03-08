@@ -102,7 +102,7 @@
                                           <tr>
                                              <td style="vertical-align:top;width:198px;">
                                                 <![endif]-->
-                                                <div class="mj-column-per-33 outlook-group-fix" style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:200px;">
+                                                <div class="mj-column-per-33 outlook-group-fix" style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;">
                                                    <table role="presentation" cellpadding="0" cellspacing="0" style="vertical-align:top;" width="100%" border="0">
                                                       <tbody>
                                                          <tr>
@@ -132,7 +132,7 @@
                                              </td>
                                              <td style="vertical-align:top;width:198px;">
                                                 <![endif]-->
-                                                <div class="mj-column-per-33 outlook-group-fix" style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:200px;">
+                                                <div class="mj-column-per-33 outlook-group-fix" style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;">
                                                    <table role="presentation" cellpadding="0" cellspacing="0" style="vertical-align:top;" width="100%" border="0">
                                                       <tbody>
                                                          <tr>

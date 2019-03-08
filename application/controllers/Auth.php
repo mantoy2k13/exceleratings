@@ -14,12 +14,12 @@ class Auth extends CI_Controller
 				$this->db->select('*');
 				$this->db->from('users');
 				$this->db->join ( 'user_profile', 'user_profile.uid = users.id' , 'left' );
+				$this->db->where('password', md5($_POST['password']));
 				$this->db->where('username', $_POST['username']);
 				$this->db->or_where('email',$_POST['username']); 
-				$this->db->where('password', md5($_POST['password']));
 				
 				$query = $this->db->get();
-         //   prex( $this->db->last_query() );
+         // prex( $this->db->last_query() );
 				if( $query->num_rows() > 0 ){
 					$user = $query->row();
 					

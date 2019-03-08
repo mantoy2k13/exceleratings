@@ -163,10 +163,6 @@ $clientToken = $gateway->clientToken()->generate();
                   <label for="service_location">Number of service locations:</label>
                   <input type="text" class="form-control" id="service_location" name="service_location" value="<?php echo $profile->service_location; ?>" placeholder="Number of service locations">
                </div>
-               <div class="form-group wow bounceInLeft">
-                  <label for="start_date_of_contract">Start date of contract:</label>
-                  <input type="text" class="form-control" id="start_date_of_contract"name="start_date_of_contract" value="<?php echo $profile->start_date_of_contract; ?>" placeholder="Start date of contract">
-               </div>
                <br>
                <div class="container-fluid">
                   <div class="row">

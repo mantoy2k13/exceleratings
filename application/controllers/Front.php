@@ -311,7 +311,10 @@ class Front extends CI_Controller {
 				$this->db->where('uid', $uid);
 				if( $this->db->update('user_profile', $enroll_data) ){
 					$this->db->where('id', $uid);
-					$this->db->update('users', ['subs_package_slug'=>$this->input->post('subs_package_slug')]);
+					$this->db->update('users', [
+                     'subs_package_slug'=>$this->input->post('subs_package_slug'),
+                     'subs_start_date'=>date("Y-m-d")
+                       ]);
 					redirect('dashboard/settings/profile');
 				}
 				
@@ -319,7 +322,10 @@ class Front extends CI_Controller {
 				$enroll_data['uid'] = $uid;
 				if( $this->db->insert('user_profile', $enroll_data) ){
 					$this->db->where('id', $uid);
-					$this->db->update('users', ['subs_package_slug'=>$this->input->post('subs_package_slug')]);
+					$this->db->update('users', [
+                     'subs_package_slug'=>$this->input->post('subs_package_slug'),
+                     'subs_start_date'=>date("Y-m-d")
+                       ]);
 					redirect('dashboard/settings/profile');
 				}
 			}

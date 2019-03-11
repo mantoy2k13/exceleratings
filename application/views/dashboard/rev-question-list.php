@@ -23,10 +23,10 @@
                                     $answer_option = 'Review 1-10 selection';
                                 }
                                 
-                                $status = '<span class="badge badge-info">ACTIVE</span>';
+                                $status = '<span class="badge badge-info">Activated</span>';
                                 $inactClass = '';
                                 if( $q_v->status == '0' ){
-                                    $status = 'Inactive';
+                                    $status = '<span class="badge badge-secondary">Deactivated</span>';
                                     $inactClass = 'inactive';
                                 }
                                 $inactClass .= ($q_k % 2 ? ' wow bounceInLeft ' : ' wow bounceInRight ');

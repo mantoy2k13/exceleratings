@@ -3,10 +3,18 @@
 <?php $this->load->view('front/firebase-update');?>
 
       <div class="main">
-        <section class="module bg-dark-60 contact-page-header bg-dark" data-background="<?php echo base_url('assets/front/'); ?>assets/img/contact.jpg">
+         <section class="module bg-dark-60 contact-page-header bg-dark" style="padding: 50px 0;" data-background="<?php echo base_url('assets/front/'); ?>assets/img/contact.jpg">
           <div class="container">
             <div class="row">
-              <div class="col-sm-6 col-sm-offset-3">
+              <div class="col-sm-6 ">
+                 <?php if($profile->profilpic){ ?>
+                  <div class="row">
+                     <div class="container-fluid">
+                        <img src="<?= base_url('uploads/profile-pic/') . $profile->profilpic ?>" style="width: 100px; " class="pull-right"/>
+                     </div>
+                     </div>
+                 <hr>
+                 <?php } ?>
 					<?php if( $this->session->flashdata('success') ){ ?>
 						<h2 class="module-title font-alt"><?php echo $this->session->flashdata('success'); ?></h2>
 						<?php if( $this->session->flashdata('review70up') ){ ?>
@@ -16,9 +24,18 @@
 							</center>
 						<?php } ?>
 					<?php }else{  ?>
-                <h2 class="module-title font-alt">Review</h2>
+                <h2 class="module-title font-alt">Review Page</h2>
 					<div class="module-subtitle font-serif">Your feedback is a VITAL TOOL used to ensure that we are providing the BEST SERVICE possible!</div>
 					<?php } ?>
+              </div>
+              <div class="col-sm-6 border border-light">
+                 Company Name: <b><?= $profile->fullname ?></b><br>
+                 Company Email: <b><?= $profile->email ?></b><br>
+                 Service Category type: <b><?= $profile->service_category_title ?></b><br>
+                 <?php if($profile->docpic){ ?>
+                 <br>
+                 <img src="<?= base_url('uploads/doc-pic/') . $profile->docpic ?>"/>
+                 <?php } ?>
               </div>
             </div>
           </div>
@@ -77,7 +94,6 @@
 											<br>
 											<p><b>If anything about your experience here failed to meet your expectations, what could we do to improve it for you?</b></p>
 											<textarea class="form-control" name="rev_about_experience"></textarea>
-											
 											<br>
 											<div class="row padd-b10">
 												<div class="col-md-3 col-sm-12"><input class="add_coment height-s" type="text" name="c_firstname" placeholder="First Name"  /></div>

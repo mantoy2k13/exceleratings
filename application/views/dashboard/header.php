@@ -166,7 +166,8 @@
 
 	<!-- Left Panel --> 
 	<aside id="left-panel" class="left-panel">
-	  <nav class="navbar navbar-expand-sm navbar-default"> 
+      
+      <nav class="navbar navbar-expand-sm navbar-default"> 
 			<div id="main-menu" class="main-menu collapse navbar-collapse">
 				 <ul class="nav navbar-nav">
 					<li class="<?=$menuitem4 == 'home' ? 'active':''?>">
@@ -182,7 +183,6 @@
 					<li class="<?=$menuitem4 == 'question_pages' ? 'active':''?>"><a href="<?php echo base_url('dashboard/settings/question_pages'); ?>"><i class="menu-icon fa fa-file-text"></i> <span> Question's Page</span></a></li>
 					<li class="<?=$menuitem4 == 'notification_contacts' ? 'active':''?>"><a href="<?php echo base_url('dashboard/settings/notification_contacts'); ?>"><i class="menu-icon fa fa-users"></i> <span>Notification contacts</span></a></li>
 					<?php } ?>
-					<li class="menu-title"> --- </li><!-- /.menu-title -->
 					<li class="<?=$menuitem4 == 'profile' ? 'active':''?>"><a href="<?php echo base_url('dashboard/settings/profile'); ?>"><i class="menu-icon fa fa-user"></i> <span>Profile</span></a></li>
 					<?php if( $this->logedin_user->usertype == 'superadmin' ){ ?>
                <li class="<?=$menuitem4 == 'users' ? 'active':''?>"><a href="<?php echo base_url('dashboard/superadmin/users'); ?>"><i class="menu-icon fa fa-users"></i> <span>All Users</span></a></li>
@@ -192,12 +192,50 @@
 					<li><a href="<?php echo base_url('auth/logout'); ?>"><i class="menu-icon fa fa-sign-out"></i> <span>LogOut</span></a></li>
 				 </ul>
 			</div><!-- /.navbar-collapse -->
-	  </nav>
+      </nav>
+      <?php if( $this->logedin_user->usertype != 'superadmin' ){ ?>
+      <div class="card border border-secondary curr_subs_details">
+        <div class="card-body">
+         <?php if( $this->logedin_user->subs_package_slug == 'bronze' ){ ?>
+            <h4 class="card-title"><small>Current package</small> BRONZE</h4>
+            <hr>
+            <ul class="nav navbar-nav">
+               <li>&radic; Attach to invoice (contractors) or check (restaurants) or check out at dr&rsquo;s office or hotels</li>
+               <li>&radic; Text goes out immediately to their phone</li>
+               <li>&radic; Option to leave review on google or fb only (podium model as reference)</li>
+               <li>&radic; Price: $250 set up fee $150/month per location</li>
+            </ul>
+         <?php }else if( $this->logedin_user->subs_package_slug == 'silver' ){ ?>
+            <h4 class="card-title"><small>Current package</small> Silver</h4>
+            <hr>
+            <ul class="nav navbar-nav">
+               <li>√ Tablet with 5 basic question &ndash;questionnaire on it presented in office or business or home</li>
+               <li>√ positive review opens link to leave review</li>
+               <li>√ negative review pings manager</li>
+               <li>√ text reminder with positive</li>
+               <li>√ price $350 set up (incudes tablet) $250.00/month per location</li>
+            </ul>
+         <?php }else if( $this->logedin_user->subs_package_slug == 'gold' ){ ?>
+            <h4 class="card-title"><small>Current package</small> Gold</h4>
+            <hr>
+            <ul class="nav navbar-nav">
+               <li>&radic; Tablet with 10 custom questions question &ndash;questionnaire on it presented in office or business or home</li>
+               <li>&radic; positive review opens link to leave review</li>
+               <li>&radic; negative review pings manager</li>
+               <li>&radic; text reminder with positive</li>
+               <li>&radic; survey metrics for inner office management</li>
+               <li>&radic; social media/review sites automated updates</li>
+               <li>&radic; price $550 set up (incudes tablet) $250.00/month per location</li>
+            </ul>
+         <?php } ?>
+        </div>
+      </div>
+      <?php } ?>
 	</aside><!-- /#left-panel --> 
 	<!-- Left Panel -->
 
-    <!-- Right Panel --> 
-    <div id="right-panel" class="right-panel">
+   <!-- Right Panel --> 
+   <div id="right-panel" class="right-panel">
 
         <!-- Header-->
         <header id="header" class="header">  

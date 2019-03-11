@@ -17,6 +17,7 @@ class Page extends CI_Controller {
 		$this->load->model('General_model');
 	//	$this->User_model->user_data_by_id( $this->session->userdata('logedin_user')->id )->usertype;
       $this->User_model->check_package_limit( $this->session->userdata('logedin_user')->id );
+      $this->User_model->check_package_condetions( $this->session->userdata('logedin_user')->id );
 	}
 	public $logedin_usertype;
 	

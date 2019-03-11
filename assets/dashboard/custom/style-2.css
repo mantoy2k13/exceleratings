@@ -395,3 +395,14 @@ a.btn:hover,a.btn:focus {
     -ms-transform: translate(-50%,-50%);
     transform: translate(-50%,-50%);
 }
+
+.curr_subs_details ul li {
+    margin-bottom: 7px;
+    font-size: 0.85em;
+}
+aside .navbar .main-menu{
+    padding-bottom: 20px;
+}
+.navbar .menu-title {
+    line-height: 20px;
+}

@@ -64,4 +64,26 @@ class User_model extends CI_Model {
             exit;
             */
    }
+   
+   
+   public function check_package_condetions( $uid )
+   {
+      $theUser = $this->user_data_by_id($uid);
+   //   prex($theUser);
+      if( $theUser->usertype == 'generaluser' ){
+         if( $theUser->subs_package_slug == 'bronze' ){
+
+            $social_links = array(
+               'pos_rdr_url_yelp' => '',
+               'pos_rdr_url_trip_advisor' => '',
+               'pos_rdr_url_urban_spoon' => '',
+               'pos_rdr_url_city_search' => ''
+            );
+            $this->db->where('uid', $uid);
+            $this->db->update('user_profile', $social_links);
+         }
+      }
+   }
+   
+   
 }

@@ -153,6 +153,19 @@
 						  <label for="about" class="control-label">About</label>
 							 <textarea class="form-control" id="about" name="about" rows="5" placeholder="About"><?php echo $profile->about; ?></textarea>
 						</div>
+
+						<div class="video_up_with_prog">
+							<label for="docPic">Want to show any doc view image to client </label>
+							<input type="file" name="docPic" id="docPic" class="form-control media_upload_prev" data-act-name="docPic_val">
+							<div id="imgPreview" class="actions_prev">
+								<?php 
+									if( $profile->docpic ){ ?>
+										<img src="<?php echo base_url('uploads/doc-pic/' . $profile->docpic); ?>" class="img-thumbnail"/>
+									<?php } ?>
+							</div>
+							<input type="hidden" name="docPic_hid" id="docPic_hid" value="<?php echo $profile->docpic; ?>">
+						</div>
+                  
 						<hr>
 						<div class="form-group">
 							<button type="submit" name="profile_save" class="btn btn-lg btn-info btn-block"> Save </button>
@@ -173,7 +186,7 @@
 							  <label for="pos_rdr_url_google" class="control-label">Google URL</label>
 								 <input type="text" class="form-control" id="pos_rdr_url_google" name="pos_rdr_url_google" value="<?php echo $profile->pos_rdr_url_google; ?>" placeholder="Google URL">
 							</div>
-							<div class="form-group">
+							<div class="form-group" hidden>
 							  <label for="pos_rdr_url_yelp" class="control-label">Yelp URL</label>
 								 <input type="text" class="form-control" id="pos_rdr_url_yelp" name="pos_rdr_url_yelp" value="<?php echo $profile->pos_rdr_url_yelp; ?>" placeholder="Yelp URL">
 							</div>
@@ -181,18 +194,21 @@
 							  <label for="pos_rdr_url_facebook" class="control-label">Facebook URL</label>
 								 <input type="text" class="form-control" id="pos_rdr_url_facebook" name="pos_rdr_url_facebook" value="<?php echo $profile->pos_rdr_url_facebook; ?>" placeholder="Facebook URL">
 							</div>
-							<div class="form-group">
-							  <label for="pos_rdr_url_trip_advisor" class="control-label">Trip Advisor URL</label>
-								 <input type="text" class="form-control" id="pos_rdr_url_trip_advisor" name="pos_rdr_url_trip_advisor" value="<?php echo $profile->pos_rdr_url_trip_advisor; ?>" placeholder="Trip Advisor URL">
-							</div>
-							<div class="form-group">
-							  <label for="pos_rdr_url_urban_spoon" class="control-label">Urban Spoon URL</label>
-								 <input type="text" class="form-control" id="pos_rdr_url_urban_spoon" name="pos_rdr_url_urban_spoon" value="<?php echo $profile->pos_rdr_url_urban_spoon; ?>" placeholder="Trip Advisor URL">
-							</div>
-							<div class="form-group">
-							  <label for="pos_rdr_url_city_search" class="control-label">City Search URL</label>
-								 <input type="text" class="form-control" id="pos_rdr_url_city_search" name="pos_rdr_url_city_search" value="<?php echo $profile->pos_rdr_url_city_search; ?>" placeholder="Trip Advisor URL">
-							</div>
+                     <?php if( $profile->subs_package_slug == 'silver' || $profile->subs_package_slug == 'gold' ){ ?>
+
+                        <div class="form-group">
+                          <label for="pos_rdr_url_trip_advisor" class="control-label">Trip Advisor URL</label>
+                            <input type="text" class="form-control" id="pos_rdr_url_trip_advisor" name="pos_rdr_url_trip_advisor" value="<?php echo $profile->pos_rdr_url_trip_advisor; ?>" placeholder="Trip Advisor URL">
+                        </div>
+                        <div class="form-group">
+                          <label for="pos_rdr_url_urban_spoon" class="control-label">Urban Spoon URL</label>
+                            <input type="text" class="form-control" id="pos_rdr_url_urban_spoon" name="pos_rdr_url_urban_spoon" value="<?php echo $profile->pos_rdr_url_urban_spoon; ?>" placeholder="Trip Advisor URL">
+                        </div>
+                        <div class="form-group">
+                          <label for="pos_rdr_url_city_search" class="control-label">City Search URL</label>
+                            <input type="text" class="form-control" id="pos_rdr_url_city_search" name="pos_rdr_url_city_search" value="<?php echo $profile->pos_rdr_url_city_search; ?>" placeholder="Trip Advisor URL">
+                        </div>
+                     <?php } ?>
 						</div>
 					</div>
 				<?php } ?>

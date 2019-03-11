@@ -19,6 +19,7 @@ class Settings extends CI_Controller {
 		$this->logedin_usertype = $this->session->userdata('logedin_user')->usertype;
       
       $this->User_model->check_package_limit( $this->session->userdata('logedin_user')->id );
+      $this->User_model->check_package_condetions( $this->session->userdata('logedin_user')->id );
 	}
      
 	public $logedin_usertype;
@@ -580,13 +581,26 @@ class Settings extends CI_Controller {
 	
 		if( isset($_POST['profile_save']) ) {
 	
-			$proPicUpload = $this->do_upload('profilePic','uploads/profile-pic/');
-		
-			if( isset($proPicUpload['upload_data']) ){
-				$profilePicName = $proPicUpload['upload_data']['file_name'];
-			}else{
-				$profilePicName = '';
-			}
+         if($_FILES['profilePic']['name']) {
+            $proPicUpload = $this->do_upload('profilePic','uploads/profile-pic/');
+            if( isset($proPicUpload['upload_data']) ){
+               $profilePicName = $proPicUpload['upload_data']['file_name'];
+            }else{
+               $profilePicName = '';
+            }
+         }
+         
+         if($_FILES['docPic']['name']) {            
+            $docPicUpload = $this->do_upload('docPic','uploads/doc-pic/');
+         //   prex($docPicUpload);
+            if( isset($docPicUpload['upload_data']) ){
+
+               $docPicName = $docPicUpload['upload_data']['file_name'];
+            }else{
+               $docPicName = '';
+            }
+         }
+         
 			//	prex($this->input->post('user_subs'));
 			$toSave1 = [
 				'email' => $this->input->post('email')
@@ -621,10 +635,22 @@ class Settings extends CI_Controller {
 					}
 				}
 					
+				$docPicName = $this->input->post('docPic_hid');
+				if($_FILES['docPic']['name']) {
+					
+					$catImgUpload_docPic = $this->do_upload('docPic','uploads/doc-pic/');
+				//	prex($catImgUpload_docPic);
+					if( isset($catImgUpload_docPic['upload_data']) ){
+						
+						$docPicName = $catImgUpload_docPic['upload_data']['file_name'];
+					}
+				}
+           
 					$toSave2 = [
 						'fullname' => $this->input->post('fullname'),
 						'about' => $this->input->post('about'),
 						'profilpic' => $profilePicName,
+						'docpic' => $docPicName,
 						'pos_rdr_url_yelp' => $this->input->post('pos_rdr_url_yelp') ? addhttp($this->input->post('pos_rdr_url_yelp')) : '',
 						'pos_rdr_url_google' => $this->input->post('pos_rdr_url_google') ? addhttp($this->input->post('pos_rdr_url_google')) : '',
 						'pos_rdr_url_facebook' => $this->input->post('pos_rdr_url_facebook') ? addhttp($this->input->post('pos_rdr_url_facebook')) : '',

@@ -234,6 +234,18 @@ class Front extends CI_Controller {
 		$this->db->order_by('id', 'DESC');
 		$data['chk_pgs'] = $this->db->get()->row();
 		
+			$this->db->select('*, service_categories.title service_category_title');
+			$this->db->from('users');
+			$this->db->join('user_profile', 'user_profile.uid = users.id', 'left');
+			$this->db->join('subs_packages', 'subs_packages.spk_slug = users.subs_package_slug', 'left');
+			$this->db->join('service_categories', 'users.service_category = service_categories.id', 'left');
+			$this->db->where('users.id', $this->logedin_user->id);
+			$profile = $this->db->get()->row();
+		//	prex($this->db->last_query());
+			unset($profile->password);
+			$data['profile'] = $profile;
+      //   prex($profile);
+         
 		if( $qpg_id == null ){
 
 			if( $data['chk_pgs'] ){

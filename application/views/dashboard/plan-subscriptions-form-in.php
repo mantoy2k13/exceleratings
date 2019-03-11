@@ -170,10 +170,16 @@ $clientToken = $gateway->clientToken()->generate();
                   </div>
                   <br>
                   <div class="row">
-                     <div class="col-sm-4">
+                     <div class="col-sm-4" hidden>
                         <div class="row form-group">
                            <label for="pos_rdr_url_yelp">Yelp (URL):</label>
                            <input type="text" class="form-control form-control-sm" id="pos_rdr_url_yelp"name="pos_rdr_url_yelp" value="<?php echo $profile->pos_rdr_url_yelp; ?>" placeholder="">
+                        </div>
+                     </div>
+                     <div class="col-sm-4">
+                        <div class="row form-group">
+                           <label for="pos_rdr_url_google">Google+ (URL):</label>
+                           <input type="text" class="form-control form-control-sm" id="pos_rdr_url_google"name="pos_rdr_url_google" value="<?php echo $profile->pos_rdr_url_google; ?>" placeholder="">
                         </div>
                      </div>
                      <div class="col-sm-4">
@@ -190,12 +196,6 @@ $clientToken = $gateway->clientToken()->generate();
                      </div>
                   </div>
                   <div class="row">
-                     <div class="col-sm-4">
-                        <div class="row form-group">
-                           <label for="pos_rdr_url_google">Google+ (URL):</label>
-                           <input type="text" class="form-control form-control-sm" id="pos_rdr_url_google"name="pos_rdr_url_google" value="<?php echo $profile->pos_rdr_url_google; ?>" placeholder="">
-                        </div>
-                     </div>
                      <div class="col-sm-4">
                         <div class="row form-group">
                            <label for="pos_rdr_url_trip_advisor">Trip Advisor (URL):</label>

@@ -54,36 +54,37 @@ $clientToken = $gateway->clientToken()->generate();
             ?>
             <form action="" id="enrollment_form" method="POST" >
                
-                  <div class="wow bounceInRight">
-                     
-                        <div class="btn-group" data-toggle="buttons">
-                           <label class="btn btn-info <?= $selected_plan == 'bronze' ? 'active' : '' ?>" title="bronze">
-                              <input type="radio" value="bronze" name="subs_package_slug" id="subs_package_slug1" <?php
-                              if ($selected_plan == 'bronze') {
-                                 echo 'checked';
-                              }
-                              ?>> 
-                              Bronze Plan
-                           </label>
-                           <label class="btn btn-info <?= $selected_plan == 'silver' ? 'active' : '' ?>" title="silver">
-                              <input type="radio" value="silver" name="subs_package_slug" id="subs_package_slug2" <?php
-                              if ($selected_plan == 'silver') {
-                                 echo 'checked';
-                              }
-                              ?>>
-                              Silver Plan
-                           </label>
-                           <label class="btn btn-info <?= $selected_plan == 'gold' ? 'active' : '' ?>" title="gold">
-                              <input type="radio" value="gold" name="subs_package_slug" id="subs_package_slug3" <?php
-                              if ($selected_plan == 'gold') {
-                                 echo 'checked';
-                              }
-                              ?>>
-                              Golden Plan
-                           </label>
-                        </div>
-                        
-                  </div>
+               <div class="wow bounceInRight">
+
+                     <div class="btn-group plan_seection" >
+                        <a href="<?= base_url('/') ?>dashboard/page/plan_subscription_form?plan=bronze" class="btn btn-info <?= $selected_plan == 'bronze' ? 'active' : '' ?>" title="bronze">
+                           <input type="radio" value="bronze" name="subs_package_slug" id="subs_package_slug1" <?php
+                           if ($selected_plan == 'bronze') {
+                              echo 'checked';
+                           }
+                           ?>> 
+                           Bronze Plan
+                        </a>
+                        <a href="<?= base_url('/') ?>dashboard/page/plan_subscription_form?plan=silver" class="btn btn-info <?= $selected_plan == 'silver' ? 'active' : '' ?>" title="silver">
+                           <input type="radio" value="silver" name="subs_package_slug" id="subs_package_slug2" <?php
+                           if ($selected_plan == 'silver') {
+                              echo 'checked';
+                           }
+                           ?>>
+                           Silver Plan
+                        </a>
+                        <a href="<?= base_url('/') ?>dashboard/page/plan_subscription_form?plan=gold" class="btn btn-info <?= $selected_plan == 'gold' ? 'active' : '' ?>" title="gold">
+                           <input type="radio" value="gold" name="subs_package_slug" id="subs_package_slug3" <?php
+                           if ($selected_plan == 'gold') {
+                              echo 'checked';
+                           }
+                           ?>>
+                           Golden Plan
+                        </a>
+                     </div>
+                  <h4 class="loading2change">please wait it's loading <span class="loading_spinning"><b> --- </b></span> to change.</h4>
+               </div>
+               
                <br>
                <div class="row">
                   <div class="form-row wow bounceInLeft">

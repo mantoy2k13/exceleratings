@@ -605,9 +605,17 @@ class Settings extends CI_Controller {
 			$toSave1 = [
 				'email' => $this->input->post('email')
 			];
-			
+         
+			$the_userdata = $this->User_model->user_data_by_id( $uid );
+         
+      //   pre($this->input->post('user_subs'));
+      //   prex($the_userdata->subs_package_slug);
+         
 			if( $this->input->post('user_subs') ){
 				$toSave1['subs_package_slug'] = $this->input->post('user_subs');
+            if( $the_userdata->subs_package_slug != $this->input->post('user_subs') ){
+               $toSave1['subs_start_date'] = date('Y-m-d');
+            }
 			}
 			
 			if( $this->input->post('usertype') ){

@@ -14,6 +14,7 @@ class User_model extends CI_Model {
 	}
 	
 	public function user_data_by_id( $uid = null ){
+      
 		if( $uid != null ){
 			
 			$this->db->select('*');
@@ -40,19 +41,20 @@ class User_model extends CI_Model {
             $theUser->subs_package_slug == 'gold' || 
             $theUser->subs_package_slug == 'silver'
             ){
-
-            $pkg_end_date = date("Y-m-d", strtotime(date("Y-m-d", strtotime($theUser->subs_start_date)) . " + 1 year")); 
-        //    pre($theUser);
-        //    pre($pkg_end_date);
-         //   prex(date("Y-m-d"));
-            if (date("Y-m-d") > $pkg_end_date) {
-            //    prex(5454);
-                  $subs_plan = array(
-                     'subs_package_slug' => 'free'
-                  );
-                  $this->db->where('id', $uid);
-                  $this->db->update('users', $subs_plan);
-            }
+               
+         //   pre($theUser);
+               $pkg_end_date = date("Y-m-d", strtotime(date("Y-m-d", strtotime($theUser->subs_start_date)) . " + 1 year")); 
+           //    pre($theUser);
+            //   pre($pkg_end_date);
+            //   prex(date("Y-m-d"));
+               if (date("Y-m-d") > $pkg_end_date) {
+               //    prex(5454);
+                     $subs_plan = array(
+                        'subs_package_slug' => 'free'
+                     );
+                     $this->db->where('id', $uid);
+                     $this->db->update('users', $subs_plan);
+               }
             
             
          }

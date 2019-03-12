@@ -276,7 +276,7 @@ class Page extends CI_Controller {
 			$rv_data['pg_title'] = 'Username: <b>'. $rv_v->auth_username .'</b><br>
 			Email: <b>'. $rv_v->auth_email .'</b> <br>';
 			if( $rv_v->auth_fullname != '' ){
-				$rv_data['pg_title'] .= 'FullName: <b>'. $rv_v->auth_fullname .'</b>';
+				$rv_data['pg_title'] .= 'FullName: <b>'. $rv_v->auth_fullname .'</b><br>';
 			}
 			if( $rv_v->auth_subs_package == 'silver' ){
 				$rv_data['pg_title'] .= 'Subs:Package: <b class="badge badge-secondary">'. $rv_v->auth_subs_package .'</b>';

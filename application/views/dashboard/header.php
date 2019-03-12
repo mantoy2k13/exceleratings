@@ -196,6 +196,7 @@
       <?php if( $this->logedin_user->usertype != 'superadmin' ){ ?>
       <div class="card border border-secondary curr_subs_details">
         <div class="card-body">
+           <a href="<?= base_url('/') ?>front/pricing" class="btn btn-info btn-sm"> Upgrade Plan </a>
          <?php if( $this->logedin_user->subs_package_slug == 'bronze' ){ ?>
             <h4 class="card-title"><small>Current package</small> BRONZE</h4>
             <hr>
@@ -237,71 +238,57 @@
    <!-- Right Panel --> 
    <div id="right-panel" class="right-panel">
 
-        <!-- Header-->
-        <header id="header" class="header">  
-            <div class="top-left">
-                <div class="navbar-header"> 
-                    <a class="navbar-brand" href="<?php echo base_url('/')?>"><img src="<?php echo base_url('assets/front/'); ?>assets/img/logo-sm.png" alt="logo" /></a>
-                    <a class="navbar-brand hidden" href="<?php echo base_url('/'); ?>assets/dashboard/./">EX</a> 
-                    <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a> 
-                </div> 
-            </div>
-            <div class="top-right"> 
-                <div class="header-menu"> 
+      <!-- Header-->
+      <header id="header" class="header">  
+         <div class="top-left">
+             <div class="navbar-header"> 
+                 <a class="navbar-brand" href="<?php echo base_url('/')?>"><img src="<?php echo base_url('assets/front/'); ?>assets/img/logo-sm.png" alt="logo" /></a>
+                 <a class="navbar-brand hidden" href="<?php echo base_url('/'); ?>assets/dashboard/./">EX</a> 
+                 <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a> 
+             </div> 
+         </div>
+         <div class="top-right"> 
+             <div class="header-menu"> 
 
-                    <div class="header-left">
-                       
-                        <div class="dropdown for-notification">
-									<?php 
-										if( $this->logedin_user->usertype == 'superadmin' ){ ?>
-											<span class="badge badge-info">Super Admin</span>
-									<?php	}elseif( $this->logedin_user->usertype == 'generaladmin' ){ ?>
-											<span class="badge badge-dark">General Admin</span>
-									<?php	}elseif( $this->logedin_user->usertype == 'generaluser' ){ ?>
-											<span class="badge badge-light">General User</span>
-									<?php	} ?>
-                            <span class="badge badge-info userinfo_label">
-                                <?php echo $this->session->userdata('logedin_user')->username; ?>
-                            </span>
-                            <span class="badge badge-info userinfo_label">
-                                <?php echo $this->logedin_user->email; ?>
-                            </span>
-                            <div class="dropdown-menu" aria-labelledby="notification">
-                                <p class="red">You have 3 Notification</p>
-                                <a class="dropdown-item media" href="<?php echo base_url('/')?>accessories/#">
-                                    <i class="fa fa-check"></i>
-                                    <p>Server #1 overloaded.</p>
-                                </a>
-                                <a class="dropdown-item media" href="<?php echo base_url('/')?>accessories/#">
-                                    <i class="fa fa-info"></i>
-                                    <p>Server #2 overloaded.</p>
-                                </a>
-                                <a class="dropdown-item media" href="<?php echo base_url('/')?>accessories/#">
-                                    <i class="fa fa-warning"></i>
-                                    <p>Server #3 overloaded.</p>
-                                </a>
-                            </div>
+                 <div class="header-left">
+
+                     <div class="dropdown for-notification">
+                        <?php 
+                           if( $this->logedin_user->usertype == 'superadmin' ){ ?>
+                              <span class="badge badge-info">Super Admin</span>
+                        <?php	}elseif( $this->logedin_user->usertype == 'generaladmin' ){ ?>
+                              <span class="badge badge-dark">General Admin</span>
+                        <?php	}elseif( $this->logedin_user->usertype == 'generaluser' ){ ?>
+                              <span class="badge badge-light">General User</span>
+                        <?php	} ?>
+                         <span class="badge badge-info userinfo_label">
+                             <?php echo $this->logedin_user->username; ?>
+                         </span>
+                         <span class="badge badge-info userinfo_label">
+                             <?php echo $this->logedin_user->email; ?>
+                         </span>
+
+                 </div>
+                    <?php // pre($this->logedin_user->profilpic); ?>
+                 <div class="user-area dropdown float-right">
+                     <a href="<?php echo base_url('/'); ?>#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                     <?php if(!$this->logedin_user->profilpic){ ?>
+                        <div class="thumbnail-profile">
+                           <img class="user-avatar rounded-circle" src="<?php echo base_url('/'); ?>assets/dashboard/images/admin.jpg" alt="Profile Picture">
                         </div>
-
-                    </div>
-                    <div class="user-area dropdown float-right">
-						<a href="<?php echo base_url('/'); ?>#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<?php if(!$this->session->userdata('logedin_user')->profilpic){ ?>
-								<div class="thumbnail-profile">
-									<img class="user-avatar rounded-circle" src="<?php echo base_url('/'); ?>assets/dashboard/images/admin.jpg" alt="Profile Picture">
-								</div>
-							<?php } else { ?>
-								<div class="thumbnail-profile">
-									<img class="user-avatar rounded-circle" src="<?php echo base_url('/'); ?>uploads/profile-pic/<?=$this->session->userdata('logedin_user')->profilpic; ?>" alt="Profile Picture">
-								</div>
-							<?php } ?>
-                        </a>
-
-                        <div class="user-menu dropdown-menu">
-                            <a class="nav-link" href="<?php echo base_url('/')?>auth/logout"><i class="fa fa-power-off"></i>Logout </a>
+                     <?php } else { ?>
+                        <div class="thumbnail-profile">
+                           <img class="user-avatar rounded-circle" src="<?php echo base_url('/'); ?>uploads/profile-pic/<?=$this->logedin_user->profilpic; ?>" alt="Profile Picture">
                         </div>
-                    </div> 
-                </div>  
-            </div>
+                     <?php } ?>
+                     </a>
+
+                     <div class="user-menu dropdown-menu">
+                         <a class="nav-link" href="<?php echo base_url('/')?>auth/logout"><i class="fa fa-power-off"></i>Logout </a>
+                     </div>
+                 </div> 
+             </div>  
+         </div>
       
-		 </header><!-- /header -->
+		</header><!-- /header -->
+       

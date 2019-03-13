@@ -198,7 +198,7 @@
         <div class="card-body">
            <a href="<?= base_url('/') ?>front/pricing" class="btn btn-info btn-sm"> Upgrade Plan </a>
          <?php if( $this->logedin_user->subs_package_slug == 'bronze' ){ ?>
-            <h4 class="card-title"><small>Current package</small> BRONZE</h4>
+            <h4 class="card-title"><small>Current plan</small> BRONZE</h4>
             <hr>
             <ul class="nav navbar-nav">
                <li>&radic; Attach to invoice (contractors) or check (restaurants) or check out at dr&rsquo;s office or hotels</li>
@@ -207,7 +207,7 @@
                <li>&radic; Price: $250 set up fee $150/month per location</li>
             </ul>
          <?php }else if( $this->logedin_user->subs_package_slug == 'silver' ){ ?>
-            <h4 class="card-title"><small>Current package</small> Silver</h4>
+            <h4 class="card-title"><small>Current plan</small> Silver</h4>
             <hr>
             <ul class="nav navbar-nav">
                <li>√ Tablet with 5 basic question &ndash;questionnaire on it presented in office or business or home</li>
@@ -217,7 +217,7 @@
                <li>√ price $350 set up (incudes tablet) $250.00/month per location</li>
             </ul>
          <?php }else if( $this->logedin_user->subs_package_slug == 'gold' ){ ?>
-            <h4 class="card-title"><small>Current package</small> Gold</h4>
+            <h4 class="card-title"><small>Current plan</small> Gold</h4>
             <hr>
             <ul class="nav navbar-nav">
                <li>&radic; Tablet with 10 custom questions question &ndash;questionnaire on it presented in office or business or home</li>

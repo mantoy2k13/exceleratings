@@ -187,7 +187,7 @@ class Page extends CI_Controller {
 				'tablet_needed' => $this->input->post('tablet_needed') ? $this->input->post('tablet_needed') : 0,
 				'tablet_so_how_many' => $this->input->post('tablet_so_how_many') ? $this->input->post('tablet_so_how_many') : 0,
 				'service_location' => $this->input->post('service_location'),
-				'start_date_of_contract' => $this->input->post('start_date_of_contract'),
+				'start_date_of_contract' => $this->input->post('start_date_of_contract') ?? '',
 				'pos_rdr_url_yelp' => $this->input->post('pos_rdr_url_yelp') ? addhttp($this->input->post('pos_rdr_url_yelp')) : '',
 				'pos_rdr_url_google' => $this->input->post('pos_rdr_url_google') ? addhttp($this->input->post('pos_rdr_url_google')) : '',
 				'pos_rdr_url_facebook' => $this->input->post('pos_rdr_url_facebook') ? addhttp($this->input->post('pos_rdr_url_facebook')) : '',
@@ -207,7 +207,11 @@ class Page extends CI_Controller {
 				if( $this->db->update('user_profile', $enroll_data) ){
                               
 					$this->db->where('id', $uid);
-					$this->db->update('users', ['subs_package_slug'=>$this->input->post('subs_package_slug')]);
+					$this->db->update('users', [
+                     'subs_package_slug'=>$this->input->post('subs_package_slug'),
+                     'subs_start_date'=>date('Y-m-d')
+                       ]);
+                        //      prex(444);
             //   prex($this->input->post('subs_package_slug'));
 					redirect('dashboard/settings/profile');
 				}
@@ -217,8 +221,10 @@ class Page extends CI_Controller {
             //   prex(4444);
 				$enroll_data['uid'] = $uid;
 				if( $this->db->insert('user_profile', $enroll_data) ){
+               
 					$this->db->where('id', $uid);
-					$this->db->update('users', ['subs_package_slug'=>$this->input->post('subs_package_slug')]);
+					$this->db->update('users', ['subs_package_slug'=>$this->input->post('subs_package_slug'),'subs_start_date'=>date('Y-m-d')]);
+
 					redirect('dashboard/settings/profile');
 				}
 			}

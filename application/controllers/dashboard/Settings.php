@@ -142,9 +142,22 @@ class Settings extends CI_Controller {
 	public function rem_rev_questions(){
 		if($this->input->post('qid')){
 			$qid = $this->input->post('qid');
+         
 			$this->db->where('qid', $qid);
 			if($this->db->delete('rev_questions')){
-				echo 1;
+            
+            $this->db->select('*');
+            $this->db->from('rev_questions');
+           $qus = $this->db->get()->row();
+            if( $qus->userid == $this->logedin_user->id ){
+               
+               $this->db->where('qid', $qid);
+               if($this->db->delete('pages_questions')){
+                  echo 1;
+               }
+            }else{
+               echo 0;
+            }
 			} else{
 				echo 0;
 			}
